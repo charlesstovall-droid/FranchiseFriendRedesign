@@ -20,10 +20,13 @@ export function About() {
           </div>
           
           <div className="w-full md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">
-              Meet Charles Stovall
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
+              About Charles
             </h2>
-            <h3 className="text-xl text-secondary font-medium mb-6">
+            <p className="text-xl text-secondary font-bold mb-2 uppercase tracking-wider text-sm">
+              Your Franchise Friend™
+            </p>
+            <h3 className="text-lg text-muted-foreground font-medium mb-6">
               Franchise Consultant & Business Strategist
             </h3>
             
@@ -36,9 +39,18 @@ export function About() {
               </p>
             </div>
 
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base">
-              Work With Charles
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#contact">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base">
+                  Work With Charles
+                </Button>
+              </a>
+              <a href="mailto:CStovall@FranChoice.com">
+                <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 px-8 h-12 text-base">
+                  Send Email
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>

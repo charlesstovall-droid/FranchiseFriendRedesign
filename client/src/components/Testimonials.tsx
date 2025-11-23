@@ -31,10 +31,10 @@ export function Testimonials() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
-            Success Stories
+            Client Success Stories
           </h2>
           <p className="text-lg text-muted-foreground">
-            Don't just take our word for it. See how we've helped others achieve their dreams of ownership.
+            Don't just take my word for it. See how Charles has helped others achieve their dreams of franchise ownership.
           </p>
         </div>
 

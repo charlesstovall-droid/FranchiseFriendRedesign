@@ -15,7 +15,7 @@ export function PodcastSection() {
             <div className="relative aspect-square max-w-md mx-auto lg:mr-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
               <img 
                 src={podcastImage} 
-                alt="Franchise Friend Podcast" 
+                alt="The Charles Stovall Podcast" 
                 className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700" 
               />
               <div className="absolute inset-0 flex items-center justify-center">
@@ -33,12 +33,12 @@ export function PodcastSection() {
             </div>
             
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
-              The Franchise Friend <br />
+              The Charles Stovall <br />
               <span className="text-secondary">Podcast</span>
             </h2>
             
             <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-              Hear the latest on how to buy a franchise with no money, how to evaluate the best franchise for you, and key notes for navigating ownership. We help you make educated decisions for your future.
+              Hear the latest on how to buy a franchise with no money, how to evaluate the best franchise for you, and key notes for navigating ownership. Charles helps you make educated decisions for your future.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

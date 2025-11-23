@@ -17,18 +17,19 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary-foreground text-sm font-semibold mb-6">
             <span className="w-2 h-2 rounded-full bg-secondary" />
-            Your Journey Starts Here
+            Charleston, SC
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-primary leading-[1.1] mb-6">
-            Guiding People to <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80">
-              Franchise Ownership
+              Charles Stovall
             </span>
+            <br />
+            <span className="text-3xl md:text-4xl lg:text-5xl">Your Franchise Friend</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
-            Expertise, insight, and inside knowledge to help you find a top franchise, change careers, and create your own financial security.
+            I guide people to franchise ownership with expertise, insight, and inside knowledge—helping you find the right opportunity, secure funding, and build lasting success.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -76,8 +77,8 @@ export function Hero() {
           
           {/* Floating Badge */}
           <div className="absolute bottom-8 left-8 bg-background/95 backdrop-blur p-4 rounded-lg shadow-lg max-w-xs border border-border">
-            <p className="font-serif font-bold text-primary text-lg mb-1">Charles Stovall</p>
-            <p className="text-muted-foreground text-sm">"I provide a road map and honest assessment of how to succeed."</p>
+            <p className="text-secondary uppercase text-xs font-bold tracking-widest mb-1">Your Franchise Friend™</p>
+            <p className="text-muted-foreground text-sm italic">"I provide a road map and honest assessment of how to succeed."</p>
           </div>
         </motion.div>
       </div>

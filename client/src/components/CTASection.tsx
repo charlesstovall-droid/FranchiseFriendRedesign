@@ -24,7 +24,7 @@ export function CTASection() {
             </h2>
             
             <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-              Book a complimentary consultation with Charles Stovall to discuss your goals, 
+              Book a complimentary consultation with Charles to discuss your goals, 
               financial position, and find the perfect franchise opportunity for you.
             </p>
 
@@ -51,8 +51,11 @@ export function CTASection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="bg-background/95 backdrop-blur p-8 rounded-2xl shadow-2xl">
+              <p className="text-secondary uppercase text-xs font-bold tracking-widest mb-2">
+                Your Franchise Friend™
+              </p>
               <h3 className="text-2xl font-serif font-bold text-primary mb-6">
-                Book Your Consultation
+                Schedule Time with Charles
               </h3>
               <ContactForm 
                 leadType="consultation" 

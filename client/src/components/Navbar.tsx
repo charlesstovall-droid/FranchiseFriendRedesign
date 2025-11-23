@@ -19,11 +19,14 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-secondary rounded-sm flex items-center justify-center">
-              <span className="font-serif font-bold text-secondary-foreground text-xl">F</span>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center">
+              <span className="font-serif font-bold text-primary-foreground text-lg">CS</span>
             </div>
-            <span className="font-serif font-bold text-xl tracking-tight text-primary">Franchise Friend</span>
+            <div className="flex flex-col">
+              <span className="font-serif font-bold text-lg leading-tight text-primary">Charles Stovall</span>
+              <span className="text-[10px] uppercase tracking-widest text-secondary font-semibold">Franchise Friend</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

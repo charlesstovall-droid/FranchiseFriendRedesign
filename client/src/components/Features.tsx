@@ -6,32 +6,32 @@ const services = [
   {
     icon: Compass,
     title: "Strategic Guidance",
-    description: "Navigate the complex world of franchise ownership with a personalized roadmap tailored to your goals.",
+    description: "I help you navigate the complex world of franchise ownership with a personalized roadmap tailored to your goals.",
   },
   {
     icon: Search,
     title: "Franchise Selection",
-    description: "We evaluate your position and needs to identify top franchise opportunities that match your vision.",
+    description: "I evaluate your position and needs to identify top franchise opportunities that match your vision.",
   },
   {
     icon: Wallet,
     title: "Financial Planning",
-    description: "Honest assessments of costs, funding options, and long-term earning potential for your investment.",
+    description: "Get honest assessments of costs, funding options, and long-term earning potential for your investment.",
   },
   {
     icon: TrendingUp,
     title: "Market Analysis",
-    description: "Deep dive into market trends and local opportunities to ensure your business is positioned for growth.",
+    description: "I dive deep into market trends and local opportunities to ensure your business is positioned for growth.",
   },
   {
     icon: Lightbulb,
     title: "Education & Insight",
-    description: "Learn the critical dos and don'ts of ownership through our expert consultation and resources.",
+    description: "Learn the critical dos and don'ts of ownership through expert consultation and resources.",
   },
   {
     icon: Target,
     title: "Success Coaching",
-    description: "From initial research to opening day, we provide the mentorship needed to launch with confidence.",
+    description: "From initial research to opening day, I provide the mentorship you need to launch with confidence.",
   },
 ];
 
@@ -40,11 +40,14 @@ export function Features() {
     <section id="services" className="py-24 bg-secondary/5">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-secondary uppercase text-sm font-bold tracking-widest mb-3">
+            Your Franchise Friend™
+          </p>
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
-            Expertise for Your Journey
+            How Charles Guides You
           </h2>
           <p className="text-lg text-muted-foreground">
-            We don't just find you a franchise; we build a comprehensive strategy for your future success and financial freedom.
+            I don't just find you a franchise—I build a comprehensive strategy for your future success and financial freedom.
           </p>
         </div>
 
