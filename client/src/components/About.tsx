@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import aboutImage from "@assets/generated_images/professional_male_consultant_portrait_placeholder.png";
+import charlesPhoto from "@assets/IMG_2636_1763927193167.jpeg";
 
 export function About() {
   return (
@@ -11,10 +11,10 @@ export function About() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-secondary/10">
                <img 
-                src={aboutImage} 
-                alt="Charles Stovall" 
+                src={charlesPhoto} 
+                alt="Charles Stovall - Your Franchise Friend" 
                 className="w-full h-auto object-cover"
               />
             </div>

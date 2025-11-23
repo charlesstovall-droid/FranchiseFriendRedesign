@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import heroImage from "@assets/generated_images/professional_modern_office_space_with_warm_lighting_and_depth.png";
+import charlesPhoto from "@assets/IMG_2636_1763927193167.jpeg";
 
 export function Hero() {
   return (
@@ -74,14 +74,14 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[600px] hidden md:block rounded-2xl overflow-hidden shadow-2xl"
+          className="relative h-[600px] hidden md:block rounded-2xl overflow-hidden shadow-2xl border-2 border-secondary/10"
         >
           <img 
-            src={heroImage} 
-            alt="Modern Professional Office" 
-            className="w-full h-full object-cover"
+            src={charlesPhoto} 
+            alt="Charles Stovall - Your Franchise Friend" 
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
           
           {/* Floating Badge */}
           <div className="absolute bottom-8 left-8 bg-background/95 backdrop-blur p-4 rounded-lg shadow-lg max-w-xs border border-border">
