@@ -5,9 +5,17 @@ import heroImage from "@assets/generated_images/professional_modern_office_space
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-background via-background to-secondary/5">
       {/* Background abstract shapes */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/5 -skew-x-12 translate-x-1/4 z-0" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-secondary/10 via-transparent to-transparent -skew-x-12 translate-x-1/4 z-0" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl z-0" />
+      
+      {/* Animated dots pattern */}
+      <div className="absolute inset-0 opacity-30 z-0">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-secondary rounded-full animate-pulse" />
+        <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-1/4 left-1/2 w-2.5 h-2.5 bg-secondary/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -34,13 +42,13 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <a href="#contact">
-              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12">
+              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 transition-all">
                 Start Your Search
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </a>
             <a href="#services">
-              <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 font-semibold text-base h-12">
+              <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 font-semibold text-base h-12 hover:border-primary/40 transition-all">
                 Learn More
               </Button>
             </a>

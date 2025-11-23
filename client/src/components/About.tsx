@@ -3,8 +3,12 @@ import aboutImage from "@assets/generated_images/professional_male_consultant_po
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="about" className="py-24 bg-gradient-to-b from-background to-secondary/5 overflow-hidden relative">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-secondary/20 rounded-full blur-3xl" />
+      </div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
@@ -15,8 +19,9 @@ export function About() {
               />
             </div>
             {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-secondary rounded-full z-[-1]" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/10 rounded-full z-[-1]" />
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-tr from-secondary to-secondary/60 rounded-full z-[-1] animate-pulse" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/20 rounded-full z-[-1]" />
+            <div className="absolute top-1/2 -left-8 w-20 h-20 bg-primary/10 rounded-full blur-xl z-[-1]" />
           </div>
           
           <div className="w-full md:w-1/2">

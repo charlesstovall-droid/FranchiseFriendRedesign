@@ -27,8 +27,10 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="testimonials" className="py-24 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
             Client Success Stories
@@ -49,7 +51,7 @@ export function Testimonials() {
             {testimonials.map((item, index) => (
               <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/2">
                 <div className="p-1">
-                  <Card className="bg-secondary/5 border-none shadow-none h-full">
+                  <Card className="bg-gradient-to-br from-background to-secondary/5 border border-secondary/10 shadow-md hover:shadow-lg transition-shadow h-full">
                     <CardContent className="flex flex-col justify-between h-full p-8">
                       <div>
                         <Quote className="w-10 h-10 text-secondary/40 mb-6" />
