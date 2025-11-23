@@ -9,8 +9,8 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Services", href: "#services" },
+    { name: "Brands", href: "/franchise-brands" },
     { name: "Reviews", href: "#reviews" },
-    { name: "Podcast", href: "#podcast" },
     { name: "About", href: "#about" },
   ];
 
