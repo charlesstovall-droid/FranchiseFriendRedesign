@@ -2,8 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TrustBanner } from "@/components/TrustBanner";
 import { Features } from "@/components/Features";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { PodcastSection } from "@/components/PodcastSection";
-import { Testimonials } from "@/components/Testimonials";
 import { About } from "@/components/About";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <TrustBanner />
         <Features />
+        <ReviewsSection />
         <PodcastSection />
-        <Testimonials />
         <About />
         <CTASection />
       </main>
