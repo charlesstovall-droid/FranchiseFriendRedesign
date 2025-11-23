@@ -4,6 +4,7 @@ import { Features } from "@/components/Features";
 import { PodcastSection } from "@/components/PodcastSection";
 import { Testimonials } from "@/components/Testimonials";
 import { About } from "@/components/About";
+import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <PodcastSection />
         <Testimonials />
         <About />
+        <CTASection />
       </main>
       <Footer />
     </div>

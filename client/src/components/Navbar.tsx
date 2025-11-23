@@ -19,13 +19,11 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/">
-            <a className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-secondary rounded-sm flex items-center justify-center">
-                <span className="font-serif font-bold text-secondary-foreground text-xl">F</span>
-              </div>
-              <span className="font-serif font-bold text-xl tracking-tight text-primary">Franchise Friend</span>
-            </a>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-secondary rounded-sm flex items-center justify-center">
+              <span className="font-serif font-bold text-secondary-foreground text-xl">F</span>
+            </div>
+            <span className="font-serif font-bold text-xl tracking-tight text-primary">Franchise Friend</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -39,9 +37,11 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-              Book a Consultation
-            </Button>
+            <a href="#contact">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                Book a Consultation
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,9 +74,11 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                Book a Consultation
-              </Button>
+              <a href="#contact" className="w-full">
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                  Book a Consultation
+                </Button>
+              </a>
             </div>
           </motion.div>
         )}

@@ -32,13 +32,17 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12">
-              Start Your Search
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 font-semibold text-base h-12">
-              Learn More
-            </Button>
+            <a href="#contact">
+              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12">
+                Start Your Search
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </a>
+            <a href="#services">
+              <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 font-semibold text-base h-12">
+                Learn More
+              </Button>
+            </a>
           </div>
 
           <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
