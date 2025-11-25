@@ -21,13 +21,63 @@ export function BlackBookCTA() {
             viewport={{ once: true }}
             className="flex justify-center md:justify-start"
           >
-            <div className="relative w-72 h-96 bg-gradient-to-br from-gray-800 to-black rounded-lg shadow-2xl border border-gray-700 flex flex-col items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform duration-300">
-              <BookOpen className="w-24 h-24 text-gray-400 mb-6" />
-              <h3 className="text-2xl font-serif font-bold text-center px-6">
-                The Black Book
-              </h3>
-              <p className="text-gray-400 text-sm mt-2">of Franchising</p>
-              <p className="text-gray-500 text-xs mt-6">187 pages</p>
+            <div className="perspective" style={{ perspective: "1200px" }}>
+              <motion.div
+                whileHover={{ rotateY: 15, rotateX: -5 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-80 h-96 origin-center"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transform: "rotateX(-5deg) rotateY(-15deg) rotateZ(-8deg)",
+                }}
+              >
+                {/* Book Cover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900 rounded-xl shadow-2xl border border-gray-700 overflow-hidden">
+                  {/* Red accent stripe */}
+                  <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-secondary via-secondary to-transparent"></div>
+
+                  {/* Content */}
+                  <div className="h-full flex flex-col items-center justify-center px-8 text-white relative z-10">
+                    {/* Decorative elements */}
+                    <div className="absolute top-12 right-8 w-20 h-20 border border-secondary/30 rounded-full"></div>
+                    <div className="absolute bottom-16 left-6 w-12 h-12 bg-secondary/10 rounded-lg"></div>
+
+                    {/* Main content */}
+                    <h3 className="text-5xl font-serif font-bold text-center leading-tight mb-2">
+                      The
+                    </h3>
+                    <div className="text-center mb-8">
+                      <h4 className="text-4xl font-serif font-bold text-white mb-1">
+                        Black Book
+                      </h4>
+                      <p className="text-lg text-secondary font-semibold tracking-wide">
+                        OF FRANCHISING
+                      </p>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="w-16 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent mb-6"></div>
+
+                    {/* Tagline */}
+                    <p className="text-center text-sm text-gray-300 italic max-w-xs mb-8">
+                      What Every Franchisor Prays You Never Find
+                    </p>
+
+                    {/* Bottom accent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent"></div>
+                  </div>
+                </div>
+
+                {/* Book spine/3D effect */}
+                <div
+                  className="absolute top-0 right-full w-8 h-96 bg-gradient-to-r from-gray-950 to-black rounded-l-xl"
+                  style={{
+                    transform: "translateX(-100%) rotateY(-90deg)",
+                    transformOrigin: "right center",
+                    boxShadow: "-10px 20px 40px rgba(0,0,0,0.8)",
+                  }}
+                ></div>
+              </motion.div>
             </div>
           </motion.div>
 
