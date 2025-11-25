@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -57,3 +57,36 @@ export const insertPodcastSchema = createInsertSchema(podcasts).omit({
 
 export type InsertPodcast = z.infer<typeof insertPodcastSchema>;
 export type Podcast = typeof podcasts.$inferSelect;
+
+export const members = pgTable("members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  phase1Complete: boolean("phase_1_complete").default(false),
+  phase2Complete: boolean("phase_2_complete").default(false),
+  phase3Complete: boolean("phase_3_complete").default(false),
+  phase4Complete: boolean("phase_4_complete").default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const invitations = pgTable("invitations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  invitationCode: varchar("invitation_code", { length: 50 }).notNull().unique(),
+  isUsed: boolean("is_used").default(false),
+  usedAt: timestamp("used_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertMemberSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1),
+});
+
+export const insertInvitationSchema = z.object({
+  email: z.string().email(),
+});
+
+export type InsertMember = z.infer<typeof insertMemberSchema>;
+export type Member = typeof members.$inferSelect;
+export type Invitation = typeof invitations.$inferSelect;

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertPodcastSchema } from "@shared/schema";
+import { insertLeadSchema, insertPodcastSchema, insertInvitationSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
@@ -145,6 +145,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error generating RSS feed:", error);
       res.status(500).send("Error generating RSS feed");
+    }
+  });
+
+  // Member invitation routes
+  app.post("/api/invitations/send", async (req, res) => {
+    try {
+      const { email, name } = req.body;
+      if (!email || !name) {
+        return res.status(400).json({ success: false, error: "Email and name required" });
+      }
+      const invitation = await storage.createInvitation(email, name);
+      res.json({ success: true, invitation });
+    } catch (error: any) {
+      console.error("Error creating invitation:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  app.post("/api/members/redeem", async (req, res) => {
+    try {
+      const { code, email, name } = req.body;
+      if (!code || !email || !name) {
+        return res.status(400).json({ success: false, error: "Code, email, and name required" });
+      }
+      const invitation = await storage.getInvitationByCode(code);
+      if (!invitation) {
+        return res.status(404).json({ success: false, error: "Invalid invitation code" });
+      }
+      if (invitation.isUsed) {
+        return res.status(400).json({ success: false, error: "Invitation already used" });
+      }
+      const member = await storage.redeemInvitation(code, email, name);
+      res.json({ success: true, member });
+    } catch (error: any) {
+      console.error("Error redeeming invitation:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  app.get("/api/members/:email", async (req, res) => {
+    try {
+      const member = await storage.getMemberByEmail(req.params.email);
+      if (!member) {
+        return res.status(404).json({ success: false, error: "Member not found" });
+      }
+      res.json({ success: true, member });
+    } catch (error) {
+      console.error("Error fetching member:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch member" });
+    }
+  });
+
+  app.post("/api/members/:email/progress", async (req, res) => {
+    try {
+      const { phase, complete } = req.body;
+      if (!phase || complete === undefined) {
+        return res.status(400).json({ success: false, error: "Phase and complete required" });
+      }
+      await storage.updateMemberProgress(req.params.email, phase, complete);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating progress:", error);
+      res.status(500).json({ success: false, error: "Failed to update progress" });
     }
   });
 

@@ -1,4 +1,4 @@
-import { type Lead, type InsertLead, leads, type Podcast, type InsertPodcast, podcasts } from "@shared/schema";
+import { type Lead, type InsertLead, leads, type Podcast, type InsertPodcast, podcasts, type Member, type Invitation, members, invitations } from "@shared/schema";
 import { db } from "../db";
 import { eq, desc } from "drizzle-orm";
 
@@ -10,6 +10,11 @@ export interface IStorage {
   getAllPodcasts(): Promise<Podcast[]>;
   getPodcastById(id: string): Promise<Podcast | undefined>;
   deletePodcast(id: string): Promise<boolean>;
+  createInvitation(email: string, name: string): Promise<Invitation>;
+  getInvitationByCode(code: string): Promise<Invitation | undefined>;
+  redeemInvitation(code: string, email: string, name: string): Promise<Member>;
+  getMemberByEmail(email: string): Promise<Member | undefined>;
+  updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
 }
 
 export class DbStorage implements IStorage {
@@ -43,6 +48,51 @@ export class DbStorage implements IStorage {
   async deletePodcast(id: string): Promise<boolean> {
     const result = await db.delete(podcasts).where(eq(podcasts.id, id));
     return result.rowCount > 0;
+  }
+
+  async createInvitation(email: string, name: string): Promise<Invitation> {
+    const code = Math.random().toString(36).substring(2, 15).toUpperCase();
+    const [invitation] = await db.insert(invitations).values({
+      email,
+      invitationCode: code,
+    }).returning();
+    return invitation;
+  }
+
+  async getInvitationByCode(code: string): Promise<Invitation | undefined> {
+    const [invitation] = await db.select().from(invitations).where(eq(invitations.invitationCode, code));
+    return invitation;
+  }
+
+  async redeemInvitation(code: string, email: string, name: string): Promise<Member> {
+    const [member] = await db.insert(members).values({
+      email,
+      name,
+    }).returning();
+    
+    await db.update(invitations).set({
+      isUsed: true,
+      usedAt: new Date(),
+    }).where(eq(invitations.invitationCode, code));
+    
+    return member;
+  }
+
+  async getMemberByEmail(email: string): Promise<Member | undefined> {
+    const [member] = await db.select().from(members).where(eq(members.email, email));
+    return member;
+  }
+
+  async updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void> {
+    if (phase === 1) {
+      await db.update(members).set({ phase1Complete: complete }).where(eq(members.email, email));
+    } else if (phase === 2) {
+      await db.update(members).set({ phase2Complete: complete }).where(eq(members.email, email));
+    } else if (phase === 3) {
+      await db.update(members).set({ phase3Complete: complete }).where(eq(members.email, email));
+    } else if (phase === 4) {
+      await db.update(members).set({ phase4Complete: complete }).where(eq(members.email, email));
+    }
   }
 }
 
