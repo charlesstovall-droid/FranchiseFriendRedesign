@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -237,6 +237,56 @@ export default function FranchiseBrands() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Add Schema markup for SEO
+  useEffect(() => {
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Verified Franchise Opportunities",
+      "description": "Browse 214+ verified franchise brands with investment data from Franchise Business Review and FranchiseHelp",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Charles Stovall | Franchise Friend",
+        "url": "https://franchisefriend.net",
+        "logo": "https://franchisefriend.net/favicon.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Franchise Consulting",
+          "url": "https://calendly.com/charles-stovall/introduction-meeting-charlesstovall"
+        }
+      },
+      "itemListElement": franchises.map((franchise, index) => ({
+        "@type": "Product",
+        "position": index + 1,
+        "name": franchise.name,
+        "description": franchise.industry,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": franchise.investmentRange,
+          "availability": "https://schema.org/PreOrder",
+          "description": `Total Investment: ${franchise.investmentRange}, Minimum Cash Required: ${franchise.minCash}`
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "1"
+        }
+      }))
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(schemaData);
+    document.head.appendChild(script);
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   const filteredFranchises = useMemo(() => {
     let result = activeCategory === "all" 
       ? franchises 
@@ -361,10 +411,11 @@ export default function FranchiseBrands() {
                     </div>
                     <Button 
                       className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
+                      onClick={() => window.open("https://calendly.com/charles-stovall/introduction-meeting-charlesstovall", "_blank")}
                       data-testid={`button-details-${franchise.name}`}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Learn More
+                      Book a Consultation
                     </Button>
                   </CardContent>
                 </Card>
