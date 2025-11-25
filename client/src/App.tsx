@@ -7,12 +7,14 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import FranchiseBrands from "@/pages/franchise-brands";
 import PodcastAdmin from "@/pages/podcast-admin";
+import PodcastsPage from "@/pages/podcasts";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/franchise-brands" component={FranchiseBrands} />
+      <Route path="/podcasts" component={PodcastsPage} />
       <Route path="/podcast-admin" component={PodcastAdmin} />
       <Route component={NotFound} />
     </Switch>
