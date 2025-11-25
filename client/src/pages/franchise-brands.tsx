@@ -264,14 +264,14 @@ export default function FranchiseBrands() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      {/* Hero Section - Navy Blue with Gold Accent */}
-      <section style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)" }} className="py-16 text-white">
+      {/* Hero Section - Primary Color with Secondary Accent */}
+      <section className="py-16 bg-gradient-to-br from-primary to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center gap-3 mb-4">
-            <Star className="w-8 h-8 fill-amber-400 text-amber-400" />
+            <Star className="w-8 h-8 fill-secondary text-secondary" />
             <h1 className="text-4xl md:text-5xl font-serif font-bold">Verified Franchise Opportunities</h1>
           </div>
-          <p className="text-lg text-blue-100">Browse {franchises.length}+ carefully selected franchise brands with verified investment ranges from Franchise Business Review & FranchiseHelp</p>
+          <p className="text-lg text-primary-foreground/80">Browse {franchises.length}+ carefully selected franchise brands with verified investment ranges from Franchise Business Review & FranchiseHelp</p>
         </div>
       </section>
 
@@ -284,14 +284,13 @@ export default function FranchiseBrands() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8 relative"
           >
-            <Search className="absolute left-3 top-3.5 w-5 h-5" style={{ color: "#1e3a8a" }} />
+            <Search className="absolute left-3 top-3.5 w-5 h-5 text-primary" />
             <Input
               type="text"
               placeholder="Search franchises or industries..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12 text-base border-2"
-              style={{ borderColor: "#1e3a8a" }}
+              className="pl-10 h-12 text-base border-2 border-primary"
               data-testid="input-search-franchises"
             />
           </motion.div>
@@ -303,12 +302,11 @@ export default function FranchiseBrands() {
                 <TabsTrigger
                   key={cat.id}
                   value={cat.id}
-                  className="rounded-lg border-2 transition-all"
-                  style={{
-                    borderColor: activeCategory === cat.id ? "#f59e0b" : "#1e3a8a",
-                    backgroundColor: activeCategory === cat.id ? "rgba(245, 158, 11, 0.1)" : "transparent",
-                    color: activeCategory === cat.id ? "#1e3a8a" : "#1e3a8a"
-                  }}
+                  className={`rounded-lg border-2 transition-all ${
+                    activeCategory === cat.id 
+                      ? 'border-secondary bg-secondary/10 text-primary' 
+                      : 'border-primary text-primary'
+                  }`}
                   data-testid={`tab-category-${cat.id}`}
                 >
                   <div className="text-center">
@@ -324,8 +322,7 @@ export default function FranchiseBrands() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-6 flex items-center gap-2 text-sm"
-            style={{ color: "#1e3a8a" }}
+            className="mb-6 flex items-center gap-2 text-sm text-primary"
           >
             <Filter className="w-4 h-4" />
             <span>Showing {filteredFranchises.length} franchise{filteredFranchises.length !== 1 ? 's' : ''}</span>
@@ -340,43 +337,30 @@ export default function FranchiseBrands() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all border-2" style={{ borderColor: "#1e3a8a" }}>
-                  <CardHeader style={{ borderBottom: "2px solid #f59e0b", background: "rgba(30, 58, 138, 0.02)" }}>
-                    <h3 className="font-serif text-lg font-bold line-clamp-2" style={{ color: "#1e3a8a" }}>{franchise.name}</h3>
+                <Card className="h-full hover:shadow-xl transition-all border-2 border-primary">
+                  <CardHeader className="border-b-2 border-secondary bg-secondary/5">
+                    <h3 className="font-serif text-lg font-bold line-clamp-2 text-primary">{franchise.name}</h3>
                     <p className="text-sm opacity-70 mt-1">{franchise.industry}</p>
                   </CardHeader>
                   <CardContent className="space-y-4 pt-4">
                     <div className="space-y-3">
                       <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold mb-1" style={{ color: "#f59e0b" }}>
+                        <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
                           <DollarSign className="w-4 h-4" />
                           Total Investment
                         </div>
-                        <p className="text-lg font-bold" style={{ color: "#1e3a8a" }}>{franchise.investmentRange}</p>
+                        <p className="text-lg font-bold text-primary">{franchise.investmentRange}</p>
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold mb-1" style={{ color: "#f59e0b" }}>
+                        <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
                           <TrendingUp className="w-4 h-4" />
                           Min. Cash Required
                         </div>
-                        <p className="text-lg font-bold" style={{ color: "#1e3a8a" }}>{franchise.minCash}</p>
+                        <p className="text-lg font-bold text-primary">{franchise.minCash}</p>
                       </div>
                     </div>
                     <Button 
-                      className="w-full font-semibold transition-all hover:shadow-md"
-                      style={{ 
-                        background: "#1e3a8a",
-                        color: "white",
-                        borderColor: "#f59e0b"
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "#f59e0b";
-                        e.currentTarget.style.color = "#1e3a8a";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "#1e3a8a";
-                        e.currentTarget.style.color = "white";
-                      }}
+                      className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
                       data-testid={`button-details-${franchise.name}`}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -394,13 +378,13 @@ export default function FranchiseBrands() {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-lg mb-4" style={{ color: "#1e3a8a" }}>No franchises found matching your search.</p>
+              <p className="text-lg mb-4 text-primary">No franchises found matching your search.</p>
               <Button 
                 onClick={() => {
                   setSearchTerm("");
                   setActiveCategory("all");
                 }}
-                style={{ background: "#1e3a8a", color: "white" }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
                 data-testid="button-reset-search"
               >
                 Clear Search
