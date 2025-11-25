@@ -7,6 +7,7 @@ import { MediaFeatures } from "@/components/MediaFeatures";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PodcastSection } from "@/components/PodcastSection";
 import { About } from "@/components/About";
+import { MeetCharlesFamily } from "@/components/MeetCharlesFamily";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <ReviewsSection />
         <PodcastSection />
         <About />
+        <MeetCharlesFamily />
         <CTASection />
       </main>
       <Footer />
