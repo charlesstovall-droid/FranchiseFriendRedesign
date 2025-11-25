@@ -1,7 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TrustBanner } from "@/components/TrustBanner";
+import { HowItWorks } from "@/components/HowItWorks";
 import { Features } from "@/components/Features";
+import { MediaFeatures } from "@/components/MediaFeatures";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PodcastSection } from "@/components/PodcastSection";
 import { About } from "@/components/About";
@@ -15,7 +17,9 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBanner />
+        <HowItWorks />
         <Features />
+        <MediaFeatures />
         <ReviewsSection />
         <PodcastSection />
         <About />

@@ -1,0 +1,28 @@
+Redesign my website franchisefriend.net from scratch as a high-converting, confidence-building franchise consulting site for 2025. Use modern HTML5, CSS3 (Tailwind or Bootstrap), and vanilla JavaScript. Make it fully responsive, fast-loading, and SEO-optimized.
+
+Core requirements:
+1. Color scheme: Deep navy primary (#1e3a8a), gold accents (#fbbf24), clean white background.
+2. Hero section: Full-width background image of diverse happy entrepreneurs. Headline: “Find Your Perfect Franchise in 2025 — Zero Cost Until You Sign.” Sub-headline: “Take the 2-minute Franchise Fit Score and get personally matched with proven brands.” Huge gold CTA button: “Get My Free Franchise Fit Score” that scrolls to the assessment form.
+3. Sticky top navigation: Home | How It Works | Explore Brands | Success Stories | Blog | Book a Call (Calendly embed).
+4. Trust bar just below navbar: Auto-scrolling logos (grayscale → color on hover) of: Inc. 5000, International Franchise Association (IFA), Entrepreneur Magazine, Franchise Business Review, Forbes Councils, VetFran. Make it loop smoothly.
+5. “How It Works” 4-step timeline with icons: 1. Assess Your Fit (2-min quiz), 2. Get Personalized Matches, 3. Expert Validation Call, 4. Launch Your Business.
+6. Testimonials carousel: 6 real-looking testimonials with photos, 5-star ratings, and metrics (e.g., “Closed my $180K cleaning franchise in 71 days — Mark R.”).
+7. Media features section: 4 cards linking to Entrepreneur, Forbes, Franchise Times features.
+8. NEW “Explore Brands” page/tab — this is critical for SEO and authority:
+   - Create a filterable, searchable directory of the top 2025 franchises categorized by investment level.
+   - Use real data from Entrepreneur Franchise 500 and Franchise Business Review Top 200 (2025 lists).
+   - Categories with H2 headers and schema markup:
+     • Under $50K (examples: Cruise Planners $2K–$23K, Buildingstars $3K–$72K, Stratus Building Solutions $5K–$150K, etc.)
+     • $50K–$250K (NextHome, The UPS Store, Fully Promoted, Ace Hardware, etc.)
+     • $250K–$1M (Anytime Fitness, Christian Brothers Automotive, Sport Clips, Great Clips, etc.)
+     • Over $1M (McDonald’s, Hilton, Marriott, Chick-fil-A, etc.)
+   - For each brand show: logo, short description, total investment range, # of units, industry, and a “See If This Fits Me” button that links back to the quiz with pre-filled category.
+   - Add filters for industry and investment range + search bar.
+   - Include disclaimer: “Investment ranges and rankings based on 2025 Entrepreneur Franchise 500 and Franchise Business Review data. Verify current figures with franchisor.”
+9. Embed the existing Franchise Fit Score quiz (or create a clean multi-step form if none exists).
+10. Results page: Personalized greeting (“Hi [Name], here are your top matches…”), score breakdown, and 3–5 recommended brands with “Request Free Intro” forms.
+11. Footer: Full links, privacy policy, “No upfront fees — we only earn when you succeed” tagline, and Calendly booking widget.
+12. Add live chat (Tidio or similar free embed) with trigger message on quiz completion: “Congrats on finishing! Want to see your top 3 matches right now?”
+13. Full SEO: Proper meta titles/descriptions, schema.org FranchiseBroker markup, alt text on all images, fast loading (optimize images), and internal linking.
+
+Output complete, commented code (index.html, styles.css or Tailwind, script.js) ready to deploy. Make everything look premium, trustworthy, and conversion-focused.
