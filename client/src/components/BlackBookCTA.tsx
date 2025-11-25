@@ -43,23 +43,23 @@ export function BlackBookCTA() {
                     <div className="absolute bottom-16 left-6 w-12 h-12 bg-secondary/10 rounded-lg"></div>
 
                     {/* Main content */}
-                    <h3 className="text-5xl font-serif font-bold text-center leading-tight mb-2">
+                    <h3 className="text-2xl font-serif font-bold text-center leading-tight mb-1">
                       The
                     </h3>
-                    <div className="text-center mb-8">
-                      <h4 className="text-4xl font-serif font-bold text-white mb-1">
+                    <div className="text-center mb-6">
+                      <h4 className="text-2xl font-serif font-bold text-white mb-0">
                         Black Book
                       </h4>
-                      <p className="text-lg text-secondary font-semibold tracking-wide">
+                      <p className="text-xs text-secondary font-semibold tracking-wide">
                         OF FRANCHISING
                       </p>
                     </div>
 
                     {/* Divider */}
-                    <div className="w-16 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent mb-6"></div>
+                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-secondary to-transparent mb-4"></div>
 
                     {/* Tagline */}
-                    <p className="text-center text-sm text-gray-300 italic max-w-xs mb-8">
+                    <p className="text-center text-xs text-gray-300 italic max-w-xs">
                       What Every Franchisor Prays You Never Find
                     </p>
 
