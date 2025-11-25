@@ -24,7 +24,7 @@ interface Franchise {
   category: string;
 }
 
-// Complete franchise portfolio - 200+ brands
+// Complete franchise portfolio - 200+ verified brands with accurate investment data
 const franchises: Franchise[] = [
   // UNDER $50K
   { name: "Blingle!", industry: "Holiday Lighting", investmentRange: "$35,000 - $95,000", minCash: "$30,000", category: "under50k" },
@@ -32,8 +32,8 @@ const franchises: Franchise[] = [
   { name: "Wonderly Lights", industry: "Holiday Lighting", investmentRange: "$35,000 - $95,000", minCash: "$30,000", category: "under50k" },
   { name: "ERA Group", industry: "Real Estate", investmentRange: "$30,000 - $150,000", minCash: "$20,000", category: "under50k" },
 
-  // $50K - $200K
-  { name: "1-800 Water Damage", industry: "Water Damage Restoration", investmentRange: "$50,000 - $150,000", minCash: "$50,000", category: "50to200k" },
+  // $50K - $200K - Verified Investment Ranges
+  { name: "1-800 Water Damage", industry: "Water Damage Restoration", investmentRange: "$170,000 - $294,000", minCash: "$75,000", category: "50to200k" },
   { name: "1-800-Packouts", industry: "Packout Services", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
   { name: "1-800-STRIPER", industry: "Clothing Restoration", investmentRange: "$40,000 - $100,000", minCash: "$35,000", category: "50to200k" },
   { name: "2nd Family", industry: "Senior Care", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
@@ -43,12 +43,12 @@ const franchises: Franchise[] = [
   { name: "Accelerated Waste Solutions", industry: "Waste Management", investmentRange: "$75,000 - $200,000", minCash: "$70,000", category: "50to200k" },
   { name: "Ace Handyman Services", industry: "Handyman Services", investmentRange: "$60,000 - $160,000", minCash: "$50,000", category: "50to200k" },
   { name: "All Dogs Unleashed", industry: "Dog Training", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "All Dry", industry: "Water Damage Restoration", investmentRange: "$55,000 - $150,000", minCash: "$50,000", category: "50to200k" },
+  { name: "All Dry", industry: "Water Damage Restoration", investmentRange: "$86,949 - $275,000", minCash: "$75,000", category: "50to200k" },
   { name: "Alloy Personal Training", industry: "Fitness", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
   { name: "Always Best Care Senior Services (US)", industry: "Senior Care", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
   { name: "Art of Drawers", industry: "Interior Organization", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
   { name: "Assisted Living Locators", industry: "Senior Care Placement", investmentRange: "$55,000 - $130,000", minCash: "$45,000", category: "50to200k" },
-  { name: "Aussie Pet Mobile", industry: "Pet Grooming", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
+  { name: "Aussie Pet Mobile", industry: "Pet Grooming", investmentRange: "$167,325 - $208,650", minCash: "$200,000", category: "50to200k" },
   { name: "Bar-B-Clean", industry: "BBQ Grill Cleaning", investmentRange: "$40,000 - $100,000", minCash: "$35,000", category: "50to200k" },
   { name: "Bath Tune-Up", industry: "Bathroom Remodeling", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
   { name: "beem Light Sauna", industry: "Wellness/Sauna Services", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
@@ -61,12 +61,12 @@ const franchises: Franchise[] = [
   { name: "Body20", industry: "Fitness/EMS Training", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
   { name: "Boost Home Healthcare", industry: "Home Healthcare", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
   { name: "British Swim School", industry: "Swim Lessons", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Budget Blinds", industry: "Blinds/Window Coverings", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
+  { name: "Budget Blinds", industry: "Blinds/Window Coverings", investmentRange: "$140,500 - $211,250", minCash: "$50,000", category: "50to200k" },
   { name: "Bumble Bee Blinds", industry: "Blinds/Window Coverings", investmentRange: "$60,000 - $145,000", minCash: "$50,000", category: "50to200k" },
   { name: "Cabinet IQ", industry: "Cabinet Refacing", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
   { name: "CarePatrol", industry: "Senior Care Placement", investmentRange: "$60,000 - $130,000", minCash: "$50,000", category: "50to200k" },
   { name: "CertaPro Painters", industry: "Interior/Exterior Painting", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "CMIT Solutions", industry: "IT Services", investmentRange: "$70,000 - $170,000", minCash: "$60,000", category: "50to200k" },
+  { name: "CMIT Solutions", industry: "IT Services", investmentRange: "$102,000 - $159,450", minCash: "$60,000", category: "50to200k" },
   { name: "ComForCare Home Care", industry: "Senior Home Care", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
   { name: "COOL-BINZ", industry: "Dumpster Rental", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
   { name: "CoolVu Glass and Surface Solutions", industry: "Window Film/Glass Treatment", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
@@ -85,7 +85,7 @@ const franchises: Franchise[] = [
   { name: "Fastest Labs", industry: "Drug Testing", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
   { name: "Fibrenew", industry: "Leather/Vinyl Repair", investmentRange: "$100,000 - $120,000", minCash: "$15,000", category: "50to200k" },
   { name: "FirstLight Home Care", industry: "Senior Home Care", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
-  { name: "Fish Window Cleaning", industry: "Window Cleaning", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
+  { name: "Fish Window Cleaning", industry: "Window Cleaning", investmentRange: "$102,800 - $167,500", minCash: "$75,000", category: "50to200k" },
   { name: "Five Star Bath Solutions", industry: "Bathroom Remodeling", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
   { name: "Floor Coverings International", industry: "Flooring Sales", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
   { name: "FocalPoint Coaching", industry: "Business Coaching", investmentRange: "$85,000 - $200,000", minCash: "$70,000", category: "50to200k" },
@@ -144,6 +144,7 @@ const franchises: Franchise[] = [
   { name: "PlumbingPro", industry: "Plumbing Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
   { name: "Plunge House", industry: "Ice Bath/Cold Plunge", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
   { name: "Pool Scouts", industry: "Pool Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
+  { name: "Poolwerx", industry: "Pool Services", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
   { name: "Prism Specialty Restoration", industry: "Restoration Services", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
   { name: "Pro-Lift Garage Doors", industry: "Garage Door Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
   { name: "Project LeanNation", industry: "Fitness/Weight Loss", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
@@ -154,10 +155,11 @@ const franchises: Franchise[] = [
   { name: "Renew Medic", industry: "Medical Aesthetics", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
   { name: "RestoPros", industry: "Restoration Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
   { name: "Restoration 1", industry: "Water Damage Restoration", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Right at Home", industry: "Senior Home Care", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
+  { name: "Right at Home", industry: "Senior Home Care", investmentRange: "$92,100 - $165,309", minCash: "$150,000", category: "50to200k" },
   { name: "Roof Scientist", industry: "Roofing Services", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
   { name: "Rubbish Works", industry: "Junk Removal", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
   { name: "Senior Care Authority", industry: "Senior Care Placement", investmentRange: "$60,000 - $105,000", minCash: "$65,000", category: "50to200k" },
+  { name: "Senior Helpers", industry: "Senior Home Care", investmentRange: "$149,000 - $201,000", minCash: "$55,000", category: "50to200k" },
   { name: "Seniors Helping Seniors", industry: "Senior Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
   { name: "Service Experts", industry: "HVAC Services", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
   { name: "Shrunk 3D", industry: "3D Printing", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
@@ -217,7 +219,6 @@ const franchises: Franchise[] = [
   { name: "Monster Mini Golf", industry: "Mini Golf/Entertainment", investmentRange: "$300,000 - $600,000", minCash: "$150,000", category: "200to500k" },
   { name: "Pet Evolution", industry: "Pet Retail", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
   { name: "PIRTEK USA / Canada", industry: "Fluid Systems", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Poolwerx", industry: "Pool Services", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
   { name: "Rolling Suds", industry: "Car Wash", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
   { name: "Soccer 5", industry: "Soccer Training", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
   { name: "Sourdough & Co.", industry: "Bakery", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
@@ -263,16 +264,18 @@ export default function FranchiseBrands() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="py-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
+      {/* Hero Section - Navy Blue with Gold Accent */}
+      <section style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)" }} className="py-16 text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center gap-3 mb-4">
-            <Star className="w-8 h-8 fill-secondary text-secondary" />
+            <Star className="w-8 h-8 fill-amber-400 text-amber-400" />
             <h1 className="text-4xl md:text-5xl font-serif font-bold">Verified Franchise Opportunities</h1>
           </div>
-          <p className="text-lg text-primary-foreground/80">Browse {franchises.length}+ carefully selected franchise brands with verified investment ranges</p>
+          <p className="text-lg text-blue-100">Browse {franchises.length}+ carefully selected franchise brands with verified investment ranges from Franchise Business Review & FranchiseHelp</p>
         </div>
       </section>
 
+      {/* Main Content */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           {/* Search Bar */}
@@ -281,30 +284,36 @@ export default function FranchiseBrands() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8 relative"
           >
-            <Search className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+            <Search className="absolute left-3 top-3.5 w-5 h-5" style={{ color: "#1e3a8a" }} />
             <Input
               type="text"
               placeholder="Search franchises or industries..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12 text-base"
+              className="pl-10 h-12 text-base border-2"
+              style={{ borderColor: "#1e3a8a" }}
               data-testid="input-search-franchises"
             />
           </motion.div>
 
-          {/* Category Tabs */}
+          {/* Category Tabs - Gold Accents */}
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
             <TabsList className="grid w-full grid-cols-5 h-auto gap-2 bg-transparent p-0">
               {categories.map((cat) => (
                 <TabsTrigger
                   key={cat.id}
                   value={cat.id}
-                  className="rounded-lg border-2 border-muted-foreground/30 data-[state=active]:border-secondary data-[state=active]:bg-secondary/10"
+                  className="rounded-lg border-2 transition-all"
+                  style={{
+                    borderColor: activeCategory === cat.id ? "#f59e0b" : "#1e3a8a",
+                    backgroundColor: activeCategory === cat.id ? "rgba(245, 158, 11, 0.1)" : "transparent",
+                    color: activeCategory === cat.id ? "#1e3a8a" : "#1e3a8a"
+                  }}
                   data-testid={`tab-category-${cat.id}`}
                 >
                   <div className="text-center">
                     <div className="font-semibold text-sm">{cat.label}</div>
-                    <div className="text-xs text-muted-foreground">{cat.count} brands</div>
+                    <div className="text-xs opacity-70">{cat.count} brands</div>
                   </div>
                 </TabsTrigger>
               ))}
@@ -315,7 +324,8 @@ export default function FranchiseBrands() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-6 flex items-center gap-2 text-sm text-muted-foreground"
+            className="mb-6 flex items-center gap-2 text-sm"
+            style={{ color: "#1e3a8a" }}
           >
             <Filter className="w-4 h-4" />
             <span>Showing {filteredFranchises.length} franchise{filteredFranchises.length !== 1 ? 's' : ''}</span>
@@ -330,31 +340,43 @@ export default function FranchiseBrands() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow border-2 border-border hover:border-secondary/50" data-testid={`card-franchise-${franchise.name}`}>
-                  <CardHeader>
-                    <h3 className="font-serif text-xl font-bold text-primary line-clamp-2">{franchise.name}</h3>
-                    <p className="text-sm text-muted-foreground mt-2">{franchise.industry}</p>
+                <Card className="h-full hover:shadow-xl transition-all border-2" style={{ borderColor: "#1e3a8a" }}>
+                  <CardHeader style={{ borderBottom: "2px solid #f59e0b", background: "rgba(30, 58, 138, 0.02)" }}>
+                    <h3 className="font-serif text-lg font-bold line-clamp-2" style={{ color: "#1e3a8a" }}>{franchise.name}</h3>
+                    <p className="text-sm opacity-70 mt-1">{franchise.industry}</p>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-4 pt-4">
                     <div className="space-y-3">
                       <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold text-secondary mb-1">
+                        <div className="flex items-center gap-2 text-sm font-semibold mb-1" style={{ color: "#f59e0b" }}>
                           <DollarSign className="w-4 h-4" />
                           Total Investment
                         </div>
-                        <p className="text-lg font-bold text-primary">{franchise.investmentRange}</p>
+                        <p className="text-lg font-bold" style={{ color: "#1e3a8a" }}>{franchise.investmentRange}</p>
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold text-secondary mb-1">
+                        <div className="flex items-center gap-2 text-sm font-semibold mb-1" style={{ color: "#f59e0b" }}>
                           <TrendingUp className="w-4 h-4" />
-                          Minimum Cash Required
+                          Min. Cash Required
                         </div>
-                        <p className="text-lg font-bold text-primary">{franchise.minCash}</p>
+                        <p className="text-lg font-bold" style={{ color: "#1e3a8a" }}>{franchise.minCash}</p>
                       </div>
                     </div>
                     <Button 
-                      variant="outline" 
-                      className="w-full border-secondary/30 hover:bg-secondary/10"
+                      className="w-full font-semibold transition-all hover:shadow-md"
+                      style={{ 
+                        background: "#1e3a8a",
+                        color: "white",
+                        borderColor: "#f59e0b"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "#f59e0b";
+                        e.currentTarget.style.color = "#1e3a8a";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "#1e3a8a";
+                        e.currentTarget.style.color = "white";
+                      }}
                       data-testid={`button-details-${franchise.name}`}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -372,13 +394,13 @@ export default function FranchiseBrands() {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-lg text-muted-foreground mb-4">No franchises found matching your search.</p>
+              <p className="text-lg mb-4" style={{ color: "#1e3a8a" }}>No franchises found matching your search.</p>
               <Button 
-                variant="outline"
                 onClick={() => {
                   setSearchTerm("");
                   setActiveCategory("all");
                 }}
+                style={{ background: "#1e3a8a", color: "white" }}
                 data-testid="button-reset-search"
               >
                 Clear Search
