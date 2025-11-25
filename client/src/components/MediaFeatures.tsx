@@ -6,28 +6,28 @@ const mediaFeatures = [
     outlet: "Entrepreneur Magazine",
     title: "Top Franchise Consulting Trends 2025",
     description: "How personalized franchise matching is revolutionizing the industry with data-driven recommendations.",
-    link: "#",
+    link: "https://www.entrepreneur.com/franchises",
     color: "from-blue-500/10 to-blue-600/5",
   },
   {
     outlet: "Forbes Councils",
     title: "The Future of Franchise Ownership",
     description: "Expert perspective on emerging franchise models and success factors for modern entrepreneurs.",
-    link: "#",
+    link: "https://www.forbes.com/councils/forbesfinancecouncil/",
     color: "from-red-500/10 to-red-600/5",
   },
   {
     outlet: "Franchise Business Review",
     title: "2025 Top Franchises Report",
     description: "Curated analysis of highest-satisfaction franchises based on 34,000+ franchisee reviews.",
-    link: "#",
+    link: "https://www.franchisebusinessreview.com/top200",
     color: "from-green-500/10 to-green-600/5",
   },
   {
     outlet: "Franchise Times",
     title: "Inside the Franchise Consulting Business",
     description: "How consultants help franchisees navigate due diligence and minimize risk in their investments.",
-    link: "#",
+    link: "https://www.franchisetimes.com",
     color: "from-purple-500/10 to-purple-600/5",
   },
 ];
@@ -73,6 +73,8 @@ export function MediaFeatures() {
             <motion.a
               key={index}
               href={feature.link}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
