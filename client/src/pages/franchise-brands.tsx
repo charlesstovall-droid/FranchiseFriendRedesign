@@ -35,7 +35,7 @@ const franchises: Franchise[] = [
   // $50K - $200K - Verified Investment Ranges
   { name: "1-800 Water Damage", industry: "Water Damage Restoration", investmentRange: "$170,000 - $294,000", minCash: "$75,000", category: "50to200k" },
   { name: "1-800-Packouts", industry: "Packout Services", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "1-800-STRIPER", industry: "Clothing Restoration", investmentRange: "$40,000 - $100,000", minCash: "$35,000", category: "50to200k" },
+  { name: "1-800-STRIPER", industry: "Parking Lot Striping", investmentRange: "$300,000 - $500,000", minCash: "$150,000", category: "200to500k" },
   { name: "2nd Family", industry: "Senior Care", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
   { name: "360° Painting", industry: "Painting Services", investmentRange: "$65,000 - $155,000", minCash: "$50,000", category: "50to200k" },
   { name: "4Ever Young", industry: "Medical Spa/Anti-Aging", investmentRange: "$80,000 - $200,000", minCash: "$75,000", category: "50to200k" },
