@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import FranchiseBrands from "@/pages/franchise-brands";
 import PodcastAdmin from "@/pages/podcast-admin";
 import PodcastsPage from "@/pages/podcasts";
+import BlackBook from "@/pages/black-book";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/franchise-brands" component={FranchiseBrands} />
       <Route path="/podcasts" component={PodcastsPage} />
       <Route path="/podcast-admin" component={PodcastAdmin} />
+      <Route path="/black-book" component={BlackBook} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Black Book of Franchising</title>
+  <link rel="stylesheet" href="style.css"> <!-- reuse your existing CSS or create new one below -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>The Black Book<br><span>of Franchising</span></h1>
+      <p class="tagline">What every franchisor prays you never find</p>
+    </header>
+
+    <div class="cover-mockup">
+      <div class="book">
+        <div class="black-cover"></div>
+        <div class="spine"></div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <h2>Inside this 187-page underground PDF:</h2>
+      <ul>
+        <li>The 37 red-flag phrases buried in every FDD</li>
+        <li>Franchises where 60%+ of owners lost money (Item 19 receipts)</li>
+        <li>The “renewal trap” that locks you in forever</li>
+        <li>How brokers collect 6-figure checks to mislead you</li>
+        <li>Real exits: who made 8 figures… and who walked away broke</li>
+        <li>The silent million-dollar brands that never advertise</li>
+        <li>Scripts that make franchisors sweat on Discovery Day</li>
+      </ul>
+    </div>
+
+    <div class="form-section">
+      <h2>Get the full PDF free — right now</h2>
+      <p class="small">Zero spam ever. We hate that crap too.</p>
+      
+      <form id="downloadForm">
+        <input type="text" placeholder="First Name" required>
+        <input type="email" placeholder="Email" required>
+        <button type="submit">Download The Black Book →</button>
+      </form>
+      
+      <p class="disclaimer">Your info stays private • Instant PDF link after you hit submit</p>
+    </div>
+
+    <p class="back-link"><a href="/">← Back to main site</a></p>
+  </div>
+
+  <div id="thankyou" class="hidden">
+    <h2>Check your email in 10 seconds</h2>
+    <p>The download link just landed. Check spam/promotions if you don’t see it.</p>
+    <a href="/" class="back">← Back</a>
+  </div>
+
+  <script>
+    document.getElementById('downloadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Replace with your real PDF link
+      setTimeout(() => {
+        window.location.href = "https://yourdomain.com/The-Black-Book-of-Franchising.pdf
