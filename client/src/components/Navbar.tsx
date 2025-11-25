@@ -41,6 +41,15 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
+            <Link href="/client-portal">
+              <Button 
+                variant="outline" 
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                data-testid="button-client-portal"
+              >
+                Client Portal
+              </Button>
+            </Link>
             <a href="#contact">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                 Book a Consultation
@@ -78,6 +87,14 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
+              <Link href="/client-portal" onClick={() => setIsOpen(false)}>
+                <Button 
+                  variant="outline" 
+                  className="w-full border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                >
+                  Client Portal
+                </Button>
+              </Link>
               <a href="#contact" className="w-full">
                 <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                   Book a Consultation

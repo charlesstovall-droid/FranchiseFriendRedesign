@@ -5,15 +5,29 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { CheckCircle, Circle } from "lucide-react";
 import { useState } from "react";
+import { useProtectedRoute } from "@/lib/AuthContext";
 
 export default function Phase1() {
+  const { member, loading: authLoading } = useProtectedRoute();
   const [isComplete, setIsComplete] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   const handleMarkComplete = async () => {
+    if (!member) return;
+    
     setLoading(true);
     try {
-      const response = await fetch("/api/members/member@example.com/progress", {
+      const response = await fetch(`/api/members/${member.email}/progress`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phase: 1, complete: true }),

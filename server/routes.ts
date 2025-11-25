@@ -42,6 +42,68 @@ function escapeXml(str: string = ""): string {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Auth routes
+  app.post("/api/auth/login", async (req: any, res: any) => {
+    try {
+      const { email } = req.body;
+      if (!email) {
+        return res.status(400).json({ success: false, error: "Email required" });
+      }
+
+      // Check if member exists
+      const member = await storage.getMemberByEmail(email);
+      if (!member) {
+        return res.status(401).json({ success: false, error: "No account found with this email. Please contact Charles for an invitation." });
+      }
+
+      // Store member info in session
+      if (req.session) {
+        req.session.memberId = member.id;
+        req.session.memberEmail = member.email;
+        req.session.memberName = member.name;
+      }
+
+      res.json({ success: true, member });
+    } catch (error) {
+      console.error("Error logging in:", error);
+      res.status(500).json({ success: false, error: "Login failed" });
+    }
+  });
+
+  app.post("/api/auth/logout", async (req: any, res: any) => {
+    if (req.session) {
+      req.session.destroy((err: any) => {
+        if (err) {
+          return res.status(500).json({ success: false, error: "Logout failed" });
+        }
+        res.json({ success: true });
+      });
+    } else {
+      res.json({ success: true });
+    }
+  });
+
+  app.get("/api/auth/me", async (req: any, res: any) => {
+    try {
+      if (!req.session?.memberEmail) {
+        return res.status(401).json({ success: false, error: "Not logged in" });
+      }
+
+      const member = await storage.getMemberByEmail(req.session.memberEmail);
+      if (!member) {
+        if (req.session) {
+          req.session.destroy(() => {});
+        }
+        return res.status(401).json({ success: false, error: "Session invalid" });
+      }
+
+      res.json({ success: true, member });
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch user" });
+    }
+  });
+
   app.post("/api/leads", async (req, res) => {
     try {
       const validatedData = insertLeadSchema.parse(req.body);
