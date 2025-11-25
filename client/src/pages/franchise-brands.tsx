@@ -172,6 +172,106 @@ const franchises: Franchise[] = [
     category: "under50k",
     fbrLink: "https://franchisebusinessreview.com/top-franchises/fibrenew/"
   },
+  {
+    name: "Our Town America",
+    industry: "Advertising & Sales",
+    investmentRange: "$64,200 - $86,500",
+    minCash: "$70,000",
+    description: "Community event advertising and local business partnerships. Recurring revenue model.",
+    icon: Briefcase,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "ActionCOACH",
+    industry: "Business Services",
+    investmentRange: "$139,951 - $317,022",
+    minCash: "$100,000",
+    description: "Business coaching and consulting for entrepreneurs. Established brand with training.",
+    icon: Briefcase,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Mathnasium Learning Centers",
+    industry: "Education",
+    investmentRange: "$112,936 - $149,616",
+    minCash: "$112,000",
+    description: "Math tutoring and learning centers for children. Growing education franchise.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Right at Home",
+    industry: "Senior Care",
+    investmentRange: "Varies",
+    minCash: "$50,000+",
+    description: "Senior care services and in-home assistance. FBR Most Profitable franchise.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "DreamMaker Bath & Kitchen",
+    industry: "Home Services",
+    investmentRange: "$235,075 - $507,231",
+    minCash: "$200,000",
+    description: "Bath and kitchen remodeling services. Home improvement opportunity.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Five Star Bath Solutions",
+    industry: "Home Remodeling",
+    investmentRange: "Varies",
+    minCash: "Varies",
+    description: "Bath remodeling and renovation services. Established franchise system.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Card My Yard",
+    industry: "Services",
+    investmentRange: "Varies",
+    minCash: "Varies",
+    description: "Personalized yard card service for celebrations. Unique niche market.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "SYNERGY HomeCare",
+    industry: "Senior Care",
+    investmentRange: "$51,856 - $201,053",
+    minCash: "$50,000",
+    description: "Home care services for seniors and clients with special needs.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "WOW 1 DAY PAINTING",
+    industry: "Home Services",
+    investmentRange: "$88,300 - $163,200",
+    minCash: "$80,000",
+    description: "One-day interior painting services. High-demand home improvement niche.",
+    icon: Home,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Any Lab Test Now",
+    industry: "Health Services",
+    investmentRange: "$166,900 - $293,900",
+    minCash: "$90,000",
+    description: "Laboratory testing services without doctor referral. Growing health franchise.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
 
   // $50K - $200K (45+ franchises)
   {
@@ -537,6 +637,414 @@ const franchises: Franchise[] = [
     icon: Home,
     category: "500plus",
     fbrLink: "https://franchisebusinessreview.com/top-franchises/sothebys/"
+  },
+
+  // Additional Low-Cost Franchises Under $50K
+  {
+    name: "Fitness Together",
+    industry: "Fitness",
+    investmentRange: "$65,000 - $95,000",
+    minCash: "$50,000",
+    description: "Personal training studios with proven business model. Growing fitness franchise.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Coco's Variety",
+    industry: "Retail",
+    investmentRange: "$35,000 - $55,000",
+    minCash: "$20,000",
+    description: "Specialty variety and gift retail franchise. Low startup investment.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "The UPS Store",
+    industry: "Services",
+    investmentRange: "$164,750 - $354,200",
+    minCash: "$50,000",
+    description: "Shipping, printing and business services center. Established brand.",
+    icon: Briefcase,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Fast-Teks",
+    industry: "Technology",
+    investmentRange: "$280,000 - $390,000",
+    minCash: "$100,000",
+    description: "Computer and tech support services for businesses and consumers.",
+    icon: Briefcase,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Jani-King",
+    industry: "Cleaning",
+    investmentRange: "$11,350 - $35,150",
+    minCash: "$3,000",
+    description: "Commercial cleaning franchise with low startup costs. High margins.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Valet Living",
+    industry: "Services",
+    investmentRange: "$75,000 - $115,000",
+    minCash: "$50,000",
+    description: "Residential valet trash collection service. Recurring revenue model.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Stratus Building Solutions",
+    industry: "Commercial Cleaning",
+    investmentRange: "$27,075 - $71,600",
+    minCash: "$3,000",
+    description: "Commercial cleaning with flexible model. Low initial investment.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Executive Cleaning Services",
+    industry: "Cleaning",
+    investmentRange: "$35,000 - $65,000",
+    minCash: "$30,000",
+    description: "Commercial and residential cleaning services. Growing demand.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Mosquito Joe",
+    industry: "Pest Control",
+    investmentRange: "$25,000 - $45,000",
+    minCash: "$15,000",
+    description: "Mosquito and outdoor pest control service. Seasonal recurring revenue.",
+    icon: Building2,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Scale Back Office",
+    industry: "Business Services",
+    investmentRange: "$50,000 - $100,000",
+    minCash: "$50,000",
+    description: "Virtual business support and back-office services. Remote-based model.",
+    icon: Briefcase,
+    category: "under50k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+
+  // Additional Mid-Range Franchises $50K-$200K
+  {
+    name: "Unarmed Security Services",
+    industry: "Security",
+    investmentRange: "$89,000 - $165,000",
+    minCash: "$50,000",
+    description: "Security guard services for residential and commercial clients.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "CleanNet USA",
+    industry: "Commercial Cleaning",
+    investmentRange: "$89,400 - $178,900",
+    minCash: "$50,000",
+    description: "Office and commercial cleaning franchise with recurring revenue.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "The Cleaning Authority",
+    industry: "Residential Cleaning",
+    investmentRange: "$100,000 - $200,000",
+    minCash: "$75,000",
+    description: "Premium residential cleaning service franchise. Quality-focused model.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Property Damage Appraisers",
+    industry: "Insurance Services",
+    investmentRange: "$130,000 - $180,000",
+    minCash: "$100,000",
+    description: "Insurance claim appraisal services. Recurring revenue from insurance companies.",
+    icon: Briefcase,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Molly Maid",
+    industry: "Residential Cleaning",
+    investmentRange: "$146,000 - $287,200",
+    minCash: "$100,000",
+    description: "Residential maid service franchise. Strong brand recognition.",
+    icon: Home,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "ServiceMaster Clean",
+    industry: "Cleaning & Restoration",
+    investmentRange: "$107,000 - $355,000",
+    minCash: "$80,000",
+    description: "Carpet cleaning and restoration services. Established global brand.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Maid Brigade",
+    industry: "Residential Cleaning",
+    investmentRange: "$143,000 - $328,000",
+    minCash: "$100,000",
+    description: "Eco-friendly residential cleaning franchise. Growing green market.",
+    icon: Home,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Eco-Rent",
+    industry: "Rental Services",
+    investmentRange: "$80,000 - $150,000",
+    minCash: "$60,000",
+    description: "Party and event equipment rental services. Seasonal demand.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Budget Blinds",
+    industry: "Home Furnishings",
+    investmentRange: "$58,700 - $150,900",
+    minCash: "$50,000",
+    description: "Custom window coverings and blinds. Mobile service model.",
+    icon: Home,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Spring-Green",
+    industry: "Lawn Care",
+    investmentRange: "$100,000 - $150,000",
+    minCash: "$70,000",
+    description: "Lawn and tree care services with proven systems. Seasonal recurring revenue.",
+    icon: Building2,
+    category: "50to200k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+
+  // Additional Premium Franchises $200K-$500K
+  {
+    name: "HomeServe USA",
+    industry: "Home Services",
+    investmentRange: "$200,000 - $400,000",
+    minCash: "$100,000",
+    description: "Emergency home repair services with warranty. Recession-resistant.",
+    icon: Home,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Midas",
+    industry: "Automotive",
+    investmentRange: "$250,000 - $450,000",
+    minCash: "$125,000",
+    description: "Automotive service and repairs. Established global franchise.",
+    icon: Building2,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Snap-on Tools",
+    industry: "Retail",
+    investmentRange: "$150,000 - $300,000",
+    minCash: "$100,000",
+    description: "Professional tool retail and distribution. Mobile sales model.",
+    icon: Briefcase,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "The Little Gym",
+    industry: "Child Enrichment",
+    investmentRange: "$235,000 - $395,000",
+    minCash: "$100,000",
+    description: "Physical development classes for children. Growing franchise network.",
+    icon: Home,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Merle Norman Cosmetics",
+    industry: "Beauty & Retail",
+    investmentRange: "$80,000 - $250,000",
+    minCash: "$80,000",
+    description: "Cosmetics retail and beauty services. Established heritage brand.",
+    icon: Building2,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Sylvan Learning",
+    industry: "Education",
+    investmentRange: "$235,000 - $465,000",
+    minCash: "$100,000",
+    description: "Tutoring and test prep for students. Multi-service education center.",
+    icon: Home,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Jan-Pro",
+    industry: "Commercial Cleaning",
+    investmentRange: "$140,000 - $280,000",
+    minCash: "$75,000",
+    description: "Commercial cleaning with commercial client base. Recurring revenue.",
+    icon: Building2,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Facilities Group",
+    industry: "Cleaning & Maintenance",
+    investmentRange: "$210,000 - $400,000",
+    minCash: "$150,000",
+    description: "Comprehensive facility management and cleaning services.",
+    icon: Building2,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Money Mart",
+    industry: "Financial Services",
+    investmentRange: "$200,000 - $350,000",
+    minCash: "$100,000",
+    description: "Check cashing and short-term loan services. Recession-resistant.",
+    icon: Briefcase,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Lids Sports",
+    industry: "Retail",
+    investmentRange: "$200,000 - $450,000",
+    minCash: "$150,000",
+    description: "Sports merchandise and headwear retail. Shopping mall locations.",
+    icon: Building2,
+    category: "200to500k",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+
+  // Additional Premium Franchises $500K+
+  {
+    name: "Applebee's",
+    industry: "Food & Beverage",
+    investmentRange: "$2,300,000 - $3,600,000",
+    minCash: "$1,000,000",
+    description: "Casual dining restaurant chain. Global brand with proven model.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Chick-fil-A",
+    industry: "Food & Beverage",
+    investmentRange: "$1,500,000 - $2,500,000",
+    minCash: "$1,200,000",
+    description: "Fast-casual chicken restaurant. Award-winning franchise system.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Subway",
+    industry: "Food & Beverage",
+    investmentRange: "$370,000 - $1,100,000",
+    minCash: "$200,000",
+    description: "Submarine sandwich quick service restaurant. World's largest franchise.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Dunkin'",
+    industry: "Food & Beverage",
+    investmentRange: "$450,000 - $1,800,000",
+    minCash: "$500,000",
+    description: "Coffee and donuts quick service. Iconic American brand.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Taco Bell",
+    industry: "Food & Beverage",
+    investmentRange: "$670,000 - $2,200,000",
+    minCash: "$500,000",
+    description: "Mexican-inspired quick service restaurant. Established QSR brand.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "McDonald's",
+    industry: "Food & Beverage",
+    investmentRange: "$1,000,000 - $2,200,000",
+    minCash: "$750,000",
+    description: "Fast food restaurant chain. World's largest QSR system.",
+    icon: Utensils,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Marriott Hotels",
+    industry: "Hospitality",
+    investmentRange: "$3,000,000 - $10,000,000",
+    minCash: "$1,500,000",
+    description: "Luxury hotel franchise. Global hospitality leader.",
+    icon: Home,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Holiday Inn",
+    industry: "Hospitality",
+    investmentRange: "$2,500,000 - $8,000,000",
+    minCash: "$1,200,000",
+    description: "Hotel and hospitality franchise. Worldwide presence.",
+    icon: Home,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Hilton Hotels",
+    industry: "Hospitality",
+    investmentRange: "$3,200,000 - $12,000,000",
+    minCash: "$1,500,000",
+    description: "Premium hotel franchise. Industry leader.",
+    icon: Home,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
+  },
+  {
+    name: "Choice Hotels",
+    industry: "Hospitality",
+    investmentRange: "$1,800,000 - $5,000,000",
+    minCash: "$800,000",
+    description: "Hotel franchise portfolio. Multiple brand options.",
+    icon: Home,
+    category: "500plus",
+    fbrLink: "https://franchisebusinessreview.com/"
   },
 ];
 
