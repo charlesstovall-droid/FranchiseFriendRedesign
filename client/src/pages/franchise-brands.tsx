@@ -315,13 +315,13 @@ export default function FranchiseBrands() {
       <Navbar />
       
       {/* Hero Section - Primary Color with Secondary Accent */}
-      <section className="py-16 bg-gradient-to-br from-primary to-primary text-primary-foreground">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center gap-3 mb-4">
             <Star className="w-8 h-8 fill-secondary text-secondary" />
             <h1 className="text-4xl md:text-5xl font-serif font-bold">Verified Franchise Opportunities</h1>
           </div>
-          <p className="text-lg text-primary-foreground/80">Browse {franchises.length}+ carefully selected franchise brands with verified investment ranges from Franchise Business Review & FranchiseHelp</p>
+          <p className="text-lg text-primary-foreground/80">Browse {franchises.length}+ carefully selected franchise brands</p>
         </div>
       </section>
 
