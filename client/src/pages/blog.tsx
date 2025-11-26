@@ -2,8 +2,9 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 
 interface BlogPost {
   id: string;
@@ -16,108 +17,108 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    id: 1,
+    id: "what-does-franchising-mean",
     title: "What Does Franchising Really Mean? Is It the Right Fit for You?",
     excerpt: "Explore the fundamentals of franchising and determine if franchise ownership aligns with your goals and lifestyle.",
     date: "February 12, 2025",
     category: "Franchise Basics",
-    link: "https://www.franchisefriend.net/blog/what-does-franchising-really-mean-is-it-the-right-fit-for-you"
+    link: "/blog/what-does-franchising-mean"
   },
   {
-    id: 2,
+    id: "create-business-plan",
     title: "How to Create a Business Plan",
     excerpt: "Learn the essential steps to create a comprehensive business plan that guides your franchise success.",
     date: "February 12, 2025",
     category: "Planning",
-    link: "https://www.franchisefriend.net/blog/how-to-create-a-business-plan"
+    link: "/blog/create-business-plan"
   },
   {
-    id: 3,
+    id: "navigating-financial-fears",
     title: "Franchising: Navigating Financial Fears with Informed Decision-Making",
     excerpt: "Address common financial concerns and learn how to make confident, informed decisions about franchise investment.",
     date: "February 20, 2024",
     category: "Finance",
-    link: "https://www.franchisefriend.net/blog/franchising-navigating-financial-fears-with-informed-decision-making"
+    link: "/blog/navigating-financial-fears"
   },
   {
-    id: 4,
+    id: "questions-to-clarity",
     title: "From Questions to Clarity",
     excerpt: "Embarking on the franchise discovery journey often feels like being a detective in a mystery novel. We guide you through the clues.",
     date: "February 20, 2024",
     category: "Discovery",
-    link: "https://www.franchisefriend.net/blog/from-questions-to-clarity"
+    link: "/blog/questions-to-clarity"
   },
   {
-    id: 5,
+    id: "franchise-success-guide",
     title: "Mastering Franchise Success: A Comprehensive Guide to Ownership and Growth",
     excerpt: "Comprehensive guide to building a successful franchise business and achieving sustainable growth.",
     date: "June 13, 2023",
     category: "Success",
-    link: "https://www.franchisefriend.net/blog/mastering-franchise-success-a-comprehensive-guide-to-ownership-and-growth"
+    link: "/blog/franchise-success-guide"
   },
   {
-    id: 6,
+    id: "overcoming-fear",
     title: "Overcoming Fear and Building Confidence",
     excerpt: "Discover strategies to overcome common fears and build the confidence needed for franchise ownership.",
     date: "April 24, 2023",
     category: "Mindset",
-    link: "https://www.franchisefriend.net/blog/overcoming-fear-and-building-confidence-a-guide-to-opening-a-franchise"
+    link: "/blog/overcoming-fear"
   },
   {
-    id: 7,
+    id: "lease-negotiation",
     title: "Strategic Tips for Negotiating a Favorable Commercial Lease",
     excerpt: "Master the art of lease negotiation to secure the best terms for your franchise location.",
     date: "April 10, 2023",
     category: "Operations",
-    link: "https://www.franchisefriend.net/blog/strategic-tips-for-negotiating-a-favorable-commercial-lease-for-your-business"
+    link: "/blog/lease-negotiation"
   },
   {
-    id: 8,
+    id: "manage-people",
     title: "How to Manage People in Your Franchise Business",
     excerpt: "Essential management principles for building and leading an effective franchise team.",
     date: "April 4, 2023",
     category: "Management",
-    link: "https://www.franchisefriend.net/blog/how-to-manage-people-in-your-franchise-business"
+    link: "/blog/manage-people"
   },
   {
-    id: 9,
+    id: "sba-loan",
     title: "Securing an SBA Loan for Your Franchise",
     excerpt: "Key considerations and timelines for securing SBA financing for your franchise investment.",
     date: "April 4, 2023",
     category: "Finance",
-    link: "https://www.franchisefriend.net/blog/securing-an-sba-loan-for-your-franchise-key-considerations-and-timelines-to-keep-in-mind"
+    link: "/blog/sba-loan"
   },
   {
-    id: 10,
+    id: "franchisee-truths",
     title: "5 Truths from an Experienced Franchisee",
     excerpt: "Learn valuable insights from someone who has walked the franchise ownership path before you.",
     date: "March 13, 2023",
     category: "Insights",
-    link: "https://www.franchisefriend.net/blog/5-truths-from-an-experience-franchisee"
+    link: "/blog/franchisee-truths"
   },
   {
-    id: 11,
+    id: "franchisor-looking-for",
     title: "What are Franchisors Looking for in Franchisees?",
     excerpt: "Understand the criteria franchisors use when evaluating potential franchisees.",
     date: "March 13, 2023",
     category: "Franchise Basics",
-    link: "https://www.franchisefriend.net/blog/what-are-franchisors-looking-for-in-frachisees"
+    link: "/blog/franchisor-looking-for"
   },
   {
-    id: 12,
+    id: "signs-not-buy",
     title: "5 Signs You Should Not Buy a Franchise",
     excerpt: "Important warning signs that might indicate franchise ownership isn't the right path for you.",
     date: "March 13, 2023",
     category: "Decision Making",
-    link: "https://www.franchisefriend.net/blog/5-signs-you-should-not-buy-a-franchise"
+    link: "/blog/signs-not-buy"
   },
   {
-    id: 13,
+    id: "franchisee-mistakes",
     title: "Top 5 Mistakes a New Franchisee Makes",
     excerpt: "Avoid common pitfalls by learning from mistakes others have made in their franchise journey.",
     date: "March 13, 2023",
     category: "Learning",
-    link: "https://www.franchisefriend.net/blog/top-5-mistakes-a-new-franchisee-makes"
+    link: "/blog/franchisee-mistakes"
   },
 ];
 
@@ -210,16 +211,14 @@ export default function Blog() {
                     
                     <div className="flex items-center justify-between pt-4 border-t border-border">
                       <span className="text-xs text-muted-foreground">{post.date}</span>
-                      <a 
+                      <Link 
                         href={post.link}
-                        target="_blank" 
-                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-secondary hover:text-accent-pop transition-colors font-semibold text-sm"
                         data-testid={`link-post-${post.id}`}
                       >
                         Read More
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
+                        <ChevronRight className="w-3 h-3" />
+                      </Link>
                     </div>
                   </div>
                 </div>
