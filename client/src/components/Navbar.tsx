@@ -43,15 +43,15 @@ export function Navbar() {
             <Link href="/client-portal">
               <Button 
                 variant="outline" 
-                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold text-xs uppercase tracking-wide h-9"
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1"
                 data-testid="button-client-portal"
               >
                 Client Portal
               </Button>
             </Link>
             <a href="#contact">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs uppercase tracking-wide h-9">
-                Book a Consultation
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1">
+                Book Consultation
               </Button>
             </a>
           </div>
