@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Zap, Target, TrendingUp, Award, MessageCircle, Users, HelpCircle, CheckCircle } from "lucide-react";
+import { Zap, Target, TrendingUp, Award, MessageCircle, Users, HelpCircle, CheckCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
@@ -304,11 +304,61 @@ export default function Phase3() {
             </Card>
           </motion.div>
 
-          {/* Next Steps */}
+          {/* Funding Consultation */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
+            className="mb-12"
+          >
+            <Card className="border-2 border-primary/20 bg-gradient-to-br from-secondary/5 to-transparent">
+              <CardHeader>
+                <h2 className="text-2xl font-serif font-bold text-primary">Ready to Explore Funding Options?</h2>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Franchise financing is a critical piece of your decision. If you haven't already connected with our funding consultant, now is the time to explore your options and understand the real costs of ownership.
+                </p>
+                
+                <div className="bg-muted/5 p-4 rounded-lg border border-secondary/20">
+                  <div className="flex items-start gap-3 mb-3">
+                    <Mail className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-primary">Brandon Lusk</p>
+                      <p className="text-sm text-muted-foreground">Funding Consultant at Benetrends</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Brandon specializes in helping franchise candidates understand their financing options and structure the best deal for their situation. He'll answer your questions about SBA loans, alternative financing, and what to expect throughout the process.
+                  </p>
+                  <a
+                    href="mailto:blusk@benetrends.com?subject=Schedule Funding Consultation for Franchise Investment&body=Hi Brandon,%0A%0AI'm in Phase 3 of my franchise discovery journey and would like to schedule a consultation to discuss funding options for my franchise investment.%0A%0AHere's your calendar link: https://www.benetrends.com/brandon-lusk%0A%0ALooking forward to connecting!%0A%0AThank you"
+                    className="inline-block"
+                  >
+                    <Button
+                      className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold"
+                      data-testid="button-email-funding-consultant"
+                    >
+                      <Mail className="w-4 h-4 mr-2" />
+                      Schedule Funding Consultation
+                    </Button>
+                  </a>
+                </div>
+
+                <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-semibold text-primary">Why Now?</span> Understanding your financing options before Discovery Day helps you negotiate confidently and make a fully informed decision about the total investment required.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Next Steps */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
             className="flex flex-col md:flex-row gap-4 justify-between items-center bg-secondary/10 p-6 rounded-lg border border-secondary/20"
           >
             <div>
