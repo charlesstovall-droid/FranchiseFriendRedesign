@@ -93,6 +93,38 @@ const googleReviews = [
     text: "Charles was fantastic to work with. He's incredibly knowledgeable about franchising, but what really stands out is how much he genuinely cares about helping you find the right fit. He's honest, professional, and patient throughout the entire process. I highly recommend him to anyone considering franchise ownership.",
     platform: "Google",
   },
+  {
+    author: "Jon Cohen",
+    role: "Local Guide • 8 Reviews",
+    rating: 5,
+    date: "13 months ago",
+    text: "Just a fantastic experience all around. I let Charles know I was not interested in seeing 100 opportunities, but just a few that were extremely well curated to my needs. He clearly listened and did his due diligence and made it a positive experience all around.",
+    platform: "Google",
+  },
+  {
+    author: "Brent Ely",
+    role: "Local Guide • 9 Reviews",
+    rating: 5,
+    date: "15 months ago",
+    text: "Charles is a great person with strong morals and that shows in how he works with his customers. He is positive, but also very honest to help you evaluate and make the best decision for you and your family. He draws on a ton of personal experience in the franchising world and could not recommend him more for anyone who is looking at franchising.",
+    platform: "Google",
+  },
+  {
+    author: "Michael Howard",
+    role: "Local Guide • 1 Review",
+    rating: 5,
+    date: "16 months ago",
+    text: "Charles took the time to really get to know me and did an outstanding job of helping guide me through the franchise review/selection process. I would highly recommend him and his approach to anyone considering franchise ownership!",
+    platform: "Google",
+  },
+  {
+    author: "Hunter Bishop Hockey",
+    role: "Local Guide • 4 Reviews",
+    rating: 5,
+    date: "22 months ago",
+    text: "Top-notch franchise consultant! Incredibly knowledgeable, guided me seamlessly through the process. A true expert who has a ton of first hand experience in the franchising world. Loved his honestly and feedback for the good, the bad, and the ugly parts of business. Highly recommended.",
+    platform: "Google",
+  },
 ];
 
 function StarRating({ rating }: { rating: number }) {
