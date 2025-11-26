@@ -4,8 +4,8 @@ import { CheckCircle2, BarChart3, PhoneCall, Rocket } from "lucide-react";
 const steps = [
   {
     number: 1,
-    title: "Take the Franchise Fit Score",
-    description: "2-minute assessment revealing your ideal franchise type, investment capacity, and lifestyle preferences.",
+    title: "Take Questionnaire & Map Your Ideal Life",
+    description: "Discover your perfect day—your ideal schedule, environment, lifestyle, and impact. This foundation guides every franchise recommendation.",
     icon: BarChart3,
   },
   {
