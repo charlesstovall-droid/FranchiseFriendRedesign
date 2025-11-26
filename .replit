@@ -47,6 +47,10 @@ localPort = 38987
 externalPort = 6800
 
 [[ports]]
+localPort = 43453
+externalPort = 3001
+
+[[ports]]
 localPort = 45481
 externalPort = 3003
 
@@ -76,3 +80,9 @@ waitForPort = 5000
 
 [agent]
 mockupState = "FULLSTACK"
+
+[userenv]
+
+[userenv.shared]
+EMAIL_SERVICE = "production"
+EMAIL_PROVIDER = "gmail"
