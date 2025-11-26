@@ -342,6 +342,30 @@ export default function Phase1() {
             </Card>
           </motion.div>
 
+          {/* Schedule Consultation CTA */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.55 }}
+            className="mb-12 p-8 bg-gradient-to-r from-secondary/10 to-secondary/5 border border-secondary/30 rounded-lg"
+          >
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+              <div>
+                <h3 className="text-xl font-bold text-primary mb-2">Need Guidance?</h3>
+                <p className="text-muted-foreground">Schedule a consultation with Charles to discuss your progress and get personalized recommendations.</p>
+              </div>
+              <a 
+                href="https://calendly.com/charles-stovall/intro" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap">
+                  Schedule Consultation
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+
           {/* Navigation */}
           <motion.div
             initial={{ opacity: 0 }}

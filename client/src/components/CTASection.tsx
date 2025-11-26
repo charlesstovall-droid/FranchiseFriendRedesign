@@ -57,10 +57,25 @@ export function CTASection() {
               <h3 className="text-2xl font-serif font-bold text-primary mb-6">
                 Schedule Time with Charles
               </h3>
-              <ContactForm 
-                leadType="consultation" 
-                buttonText="Request Consultation"
-              />
+              <div className="space-y-4">
+                <a 
+                  href="https://calendly.com/charles-stovall/intro" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold py-3 px-6 rounded-lg transition-all">
+                    Book Your Free Consultation
+                  </button>
+                </a>
+                <p className="text-xs text-muted-foreground text-center">
+                  Or fill out the form below and we'll be in touch
+                </p>
+                <ContactForm 
+                  leadType="consultation" 
+                  buttonText="Send Message"
+                />
+              </div>
             </div>
           </motion.div>
         </div>

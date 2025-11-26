@@ -41,7 +41,7 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <a href="#contact">
+            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 transition-all">
                 Start Your Search
                 <ArrowRight className="ml-2 w-4 h-4" />
