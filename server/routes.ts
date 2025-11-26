@@ -411,6 +411,251 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Business Reality Book PDF endpoint
+  app.get("/api/download/business-reality-book", (req, res) => {
+    try {
+      const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
+      
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", "attachment; filename=Business-Reality-Guide.pdf");
+      
+      doc.pipe(res);
+
+      const navyBlue = "#1E2B42";
+      const gold = "#F3AE1B";
+      const margin = 40;
+      const pageWidth = 612 - 2 * margin;
+
+      // Title Page
+      doc.fontSize(32).font("Helvetica-Bold").fillColor(navyBlue).text("The Reality of Business Ownership", { align: "center" });
+      doc.moveDown(0.5);
+      doc.fontSize(18).font("Helvetica").fillColor(gold).text("An Honest Guide to Franchise Ownership", { align: "center" });
+      doc.moveDown(2);
+      doc.fontSize(11).fillColor("#000000").font("Helvetica").text(
+        "By Charles Stovall - Franchise Friend\n\nSetting Expectations Before You Invest",
+        { align: "center", width: pageWidth }
+      );
+      doc.moveDown(3);
+
+      // Critical Opening
+      doc.fontSize(13).font("Helvetica-Bold").fillColor(navyBlue).text("⚠ REALITY CHECK");
+      doc.moveDown(0.4);
+      doc.fontSize(11).fillColor("#C00000").font("Helvetica-Bold").text(
+        "If you are looking for part-time work, this is NOT for you.",
+        { width: pageWidth }
+      );
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "Business ownership—whether franchise or independent—demands significant time, energy, and commitment. This is not a side project. This is your job. Treat it accordingly.",
+        { width: pageWidth }
+      );
+      doc.moveDown(1.5);
+
+      // TOC
+      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("What You'll Learn In This Guide");
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
+        "• The Time Commitment Reality",
+        "• Financial Realities & Investment Truths",
+        "• Common Mistakes Business Owners Make",
+        "• Lifestyle Expectations vs. Reality",
+        "• Understanding Failure Rates",
+        "• Questions You Must Answer Honestly"
+      ], { width: pageWidth, lineGap: 6 });
+      
+      doc.addPage();
+
+      // Section 1: Time Commitment
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("1. THE TIME COMMITMENT REALITY");
+      doc.moveDown(0.5);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "Let's be direct: most franchises require 50-70+ hours per week during the first 2-3 years.",
+        { width: pageWidth }
+      );
+      doc.moveDown(0.5);
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("What This Looks Like:");
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#000000").text([
+        "• 6-7 day work weeks in early growth phase",
+        "• Working nights/weekends on administrative tasks",
+        "• Being 'on call' for emergencies",
+        "• Managing staff, finances, and operations simultaneously",
+        "• Less vacation time than corporate jobs",
+        "• Stress that follows you home"
+      ], { width: pageWidth, lineGap: 4 });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#666666").font("Helvetica-Italic").text(
+        "The business owns you at first. After 3-5 years, if built correctly, you might own the business.",
+        { width: pageWidth }
+      );
+      
+      doc.moveDown(1.2);
+
+      // Section 2: Financial Reality
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("2. FINANCIAL REALITIES & INVESTMENT TRUTHS");
+      doc.moveDown(0.5);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
+        "Initial Investment: Most franchises cost $200K-$1M+ to launch. This covers the franchise fee, equipment, inventory, buildout, and working capital.",
+        "",
+        "Personal Funds Required: Expect to invest 25-40% of your own money. Lenders want to know you have skin in the game.",
+        "",
+        "First Year Losses: Many franchises are unprofitable in year one. Budget for 12-24 months before seeing positive cash flow.",
+        "",
+        "Your Paycheck: During growth phase, you might take little to no salary while reinvesting profits."
+      ], { width: pageWidth, lineGap: 5 });
+      doc.moveDown(1);
+
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Hidden Costs Nobody Talks About:");
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#000000").text([
+        "• Accounting & legal fees ($3K-$10K+ annually)",
+        "• Insurance (liability, property, workers' comp)",
+        "• Marketing & customer acquisition",
+        "• Technology systems & software subscriptions",
+        "• Employee training & turnover costs",
+        "• Unexpected repairs & emergency expenses"
+      ], { width: pageWidth, lineGap: 4 });
+
+      doc.addPage();
+
+      // Section 3: Common Mistakes
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("3. COMMON MISTAKES BUSINESS OWNERS MAKE");
+      doc.moveDown(0.5);
+
+      const mistakes = [
+        { title: "Underestimating Time", desc: "Thinking you can run the business part-time or hire someone to run it while you stay hands-off. Wrong. You need to know every aspect intimately." },
+        { title: "Overestimating Revenue", desc: "Franchisors' financial projections are often optimistic. Your market, location, and execution will differ. Add a 20% discount to any projections you see." },
+        { title: "Ignoring the Franchise Agreement", desc: "Not fully understanding royalties, marketing fees, restrictions, and what the franchisor controls. Read it multiple times with a franchise lawyer." },
+        { title: "Poor Location Selection", desc: "Choosing based on emotional reasons instead of demographics, foot traffic, competition, and visibility. Location can make or break a franchise." },
+        { title: "Hiring Wrong", desc: "Rushing to hire family or friends instead of finding the right talent. Your team is everything. Hire slow, fire fast." },
+        { title: "Ignoring Cash Flow", desc: "Confusing profit with cash. You can be profitable on paper but cash-poor. Track cash weekly, not just monthly." }
+      ];
+
+      mistakes.forEach((mistake, idx) => {
+        doc.fontSize(10).font("Helvetica-Bold").fillColor(gold).text(`${idx + 1}. ${mistake.title}`);
+        doc.moveDown(0.2);
+        doc.fontSize(9).fillColor("#000000").font("Helvetica").text(mistake.desc, { width: pageWidth });
+        doc.moveDown(0.5);
+      });
+
+      doc.addPage();
+
+      // Section 4: Lifestyle Expectations
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("4. LIFESTYLE EXPECTATIONS VS. REALITY");
+      doc.moveDown(0.5);
+
+      doc.fontSize(10).font("Helvetica-Bold").fillColor("#0066CC").text("What You Hope:");
+      doc.moveDown(0.2);
+      doc.fontSize(10).fillColor("#000000").text(
+        "Be your own boss. Make your own schedule. Unlimited income potential. Control your future.",
+        { width: pageWidth }
+      );
+      doc.moveDown(0.5);
+
+      doc.fontSize(10).font("Helvetica-Bold").fillColor("#C00000").text("What You Get:");
+      doc.moveDown(0.2);
+      doc.fontSize(10).fillColor("#000000").text([
+        "• You ARE your own boss, but the franchise agreement limits your freedom",
+        "• Your schedule is dictated by customer demand and staff needs",
+        "• Income potential is real, but comes after years of work and reinvestment",
+        "• You control operations, but must follow franchisor standards"
+      ], { width: pageWidth, lineGap: 5 });
+      doc.moveDown(1);
+
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("The Honest Truth About Work-Life Balance:");
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "It doesn't exist during growth phase. Plan for your family to make sacrifices. Plan for missed events, late nights, and stress. If this doesn't align with your values, reconsider before investing.",
+        { width: pageWidth }
+      );
+
+      doc.addPage();
+
+      // Section 5: Failure Rates
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("5. UNDERSTANDING FAILURE RATES");
+      doc.moveDown(0.5);
+
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
+        "Industry Data: Approximately 50% of franchises fail within the first 5 years.",
+        "",
+        "What 'Failure' Means: Closing the business, walking away from investment, having to sell at a loss.",
+        "",
+        "Why Franchises Fail:",
+        "• Location was wrong (traffic, demographics)",
+        "• Owner burnout or unwillingness to do the work",
+        "• Insufficient capital reserves",
+        "• Poor management of staff and finances",
+        "• Market changes (new competition, economic downturn)",
+        "• Franchisor support fell short of promises"
+      ], { width: pageWidth, lineGap: 5 });
+
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#666666").font("Helvetica-Italic").text(
+        "Franchises with LOWER failure rates share common traits: strong owner commitment, adequate capitalization, good locations, and proven franchisor support systems.",
+        { width: pageWidth }
+      );
+
+      doc.addPage();
+
+      // Section 6: Questions to Answer Honestly
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("6. QUESTIONS YOU MUST ANSWER HONESTLY");
+      doc.moveDown(0.5);
+
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
+        "Am I prepared to work 60+ hours per week for the next 2-3 years?",
+        "",
+        "Can my family handle me being less available for time, vacations, and events?",
+        "",
+        "Do I have enough capital (25-40% down) WITHOUT jeopardizing my family's security?",
+        "",
+        "Can I handle the stress of payroll, cash flow, and employee issues?",
+        "",
+        "Am I coachable? Can I follow the franchisor's system even if I disagree?",
+        "",
+        "If this fails, can I financially and emotionally recover?",
+        "",
+        "Why do I REALLY want to do this? (Be honest—is it escape? Status? Money? Passion?)",
+        "",
+        "Have I talked to 10+ franchisees from the same brand about their REAL experience?"
+      ], { width: pageWidth, lineGap: 6 });
+
+      doc.addPage();
+
+      // Closing
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("FINAL THOUGHTS");
+      doc.moveDown(0.5);
+
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "Franchise ownership CAN be incredibly rewarding. It can provide income, independence, and the satisfaction of building something. But it demands everything—your time, energy, capital, and emotional resilience.",
+        { width: pageWidth }
+      );
+      doc.moveDown(0.8);
+
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "If you're looking for a quick path to wealth or a part-time venture, this isn't it. But if you're willing to work hard, stay committed, and build systematically, you can create real success.",
+        { width: pageWidth }
+      );
+      doc.moveDown(0.8);
+
+      doc.fontSize(10).fillColor("#000000").font("Helvetica-Bold").text("The question isn't: 'Can I afford the investment?'");
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
+        "The real question is: 'Am I willing to pay the price in time, energy, and sacrifice?'",
+        { width: pageWidth }
+      );
+      doc.moveDown(1.5);
+
+      doc.fontSize(11).fillColor(gold).font("Helvetica-Bold").text("Ready for the truth? Let's talk.", { align: "center" });
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#666666").font("Helvetica").text("Visit franchisefriend.net or schedule a consultation with Charles Stovall.", { align: "center" });
+
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      res.status(500).json({ success: false, error: "Failed to generate PDF" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

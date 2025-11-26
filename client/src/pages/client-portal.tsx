@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import { LogIn, AlertCircle } from "lucide-react";
+import { LogIn, AlertCircle, Download } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/lib/AuthContext";
@@ -59,8 +59,53 @@ export default function ClientPortal() {
         </div>
       </section>
 
-      <section className="py-16 bg-background min-h-[calc(100vh-200px)] flex items-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-md">
+      <section className="py-16 bg-background min-h-[calc(100vh-200px)]">
+        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
+            {/* Free Download */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <Card className="border-secondary/30 bg-secondary/5">
+                <CardHeader>
+                  <h3 className="text-xl font-serif font-bold text-primary flex items-center gap-2">
+                    <Download className="w-5 h-5" />
+                    Free Resource
+                  </h3>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-bold text-primary mb-2">The Reality of Business Ownership</h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      An honest guide setting real expectations about franchise and business ownership. Covers time commitment, financial realities, common mistakes, and lifestyle expectations.
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/api/download/business-reality-book';
+                      link.download = 'Business-Reality-Guide.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+                    data-testid="button-download-reality-guide"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download PDF
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Login Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +177,8 @@ export default function ClientPortal() {
               Don't have an account? <br />
               <span className="text-secondary">Reach out to Charles for an exclusive invitation</span>
             </p>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
