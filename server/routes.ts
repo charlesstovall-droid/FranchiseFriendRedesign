@@ -6,6 +6,8 @@ import { fromZodError } from "zod-validation-error";
 // @ts-ignore - pdfkit types not available
 import PDFDocument from "pdfkit";
 import nodemailer from "nodemailer";
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -45,6 +47,70 @@ function escapeXml(str: string = ""): string {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Configure passport for Google OAuth
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+    passport.use(
+      new GoogleStrategy(
+        {
+          clientID: process.env.GOOGLE_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          callbackURL: "/api/auth/google/callback",
+        },
+        (accessToken, refreshToken, profile, done) => {
+          const user = {
+            id: profile.id,
+            email: profile.emails?.[0]?.value,
+            name: profile.displayName,
+            picture: profile.photos?.[0]?.value,
+          };
+          return done(null, user);
+        }
+      )
+    );
+
+    passport.serializeUser((user: any, done) => done(null, user));
+    passport.deserializeUser((user: any, done) => done(null, user));
+
+    // Google OAuth routes
+    app.get(
+      "/api/auth/google",
+      passport.authenticate("google", { scope: ["profile", "email"] })
+    );
+
+    app.get(
+      "/api/auth/google/callback",
+      passport.authenticate("google", { failureRedirect: "/client-portal" }),
+      async (req: any, res: any) => {
+        try {
+          const email = req.user?.email;
+          if (!email) {
+            return res.redirect("/client-portal?error=no-email");
+          }
+
+          // Only allow Charles for now
+          if (email !== "charles@franchisefriend.net") {
+            return res.redirect("/client-portal?error=unauthorized");
+          }
+
+          // Store in session
+          if (req.session) {
+            req.session.memberId = "admin";
+            req.session.memberEmail = email;
+            req.session.memberName = req.user?.name || "Charles";
+          }
+
+          res.redirect("/members-admin");
+        } catch (error) {
+          console.error("OAuth callback error:", error);
+          res.redirect("/client-portal?error=callback-failed");
+        }
+      }
+    );
+  }
+
   // Auth routes
   app.post("/api/auth/login", async (req: any, res: any) => {
     try {

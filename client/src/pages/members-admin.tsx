@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import { Copy, Check, AlertCircle, Plus, X, Trash2 } from "lucide-react";
+import { Copy, Check, AlertCircle, Plus, X, Trash2, Mail } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
@@ -140,7 +140,24 @@ export default function MembersAdmin() {
   }
 
   if (!member || member.email !== "charles@franchisefriend.net") {
-    return null;
+    return (
+      <div className="min-h-screen bg-background text-foreground font-sans">
+        <Navbar />
+        <section className="py-24 bg-gradient-to-br from-primary via-primary/95 to-primary text-primary-foreground flex items-center justify-center">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h1 className="text-4xl font-serif font-bold mb-4">Member Admin Portal</h1>
+            <p className="text-lg text-primary-foreground/80 mb-8">Sign in with your Gmail account</p>
+            <a href="/api/auth/google">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold flex items-center gap-2" data-testid="button-login-google">
+                <Mail className="w-5 h-5" />
+                Login with Gmail
+              </Button>
+            </a>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    );
   }
 
   return (
