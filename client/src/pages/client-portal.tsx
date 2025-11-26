@@ -16,6 +16,9 @@ export default function ClientPortal() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [downloadEmail, setDownloadEmail] = useState("");
+  const [downloadLoading, setDownloadLoading] = useState(false);
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +48,36 @@ export default function ClientPortal() {
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setDownloadLoading(true);
+
+    try {
+      // Send thank you email
+      await fetch("/api/send-thank-you", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: downloadEmail }),
+      });
+
+      // Trigger PDF download
+      const link = document.createElement('a');
+      link.href = '/api/download/business-reality-book';
+      link.download = 'Business-Reality-Guide.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setDownloadSuccess(true);
+      setDownloadEmail("");
+      setTimeout(() => setDownloadSuccess(false), 3000);
+    } catch (err) {
+      console.error("Error:", err);
+    } finally {
+      setDownloadLoading(false);
     }
   };
 
@@ -82,21 +115,37 @@ export default function ClientPortal() {
                       An honest guide setting real expectations about franchise and business ownership. Covers time commitment, financial realities, common mistakes, and lifestyle expectations.
                     </p>
                   </div>
-                  <Button
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = '/api/download/business-reality-book';
-                      link.download = 'Business-Reality-Guide.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }}
-                    className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
-                    data-testid="button-download-reality-guide"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download PDF
-                  </Button>
+                  {downloadSuccess ? (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="p-3 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold text-center"
+                    >
+                      ✓ Check your email for the guide and a thank you message!
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleDownload} className="space-y-3">
+                      <Input
+                        type="email"
+                        value={downloadEmail}
+                        onChange={(e) => setDownloadEmail(e.target.value)}
+                        placeholder="your@email.com"
+                        required
+                        disabled={downloadLoading}
+                        data-testid="input-download-email"
+                        className="border-secondary/20"
+                      />
+                      <Button
+                        type="submit"
+                        disabled={downloadLoading || !downloadEmail}
+                        className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+                        data-testid="button-download-reality-guide"
+                      >
+                        <Download className="w-4 h-4 mr-2" />
+                        {downloadLoading ? "Sending..." : "Download PDF"}
+                      </Button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

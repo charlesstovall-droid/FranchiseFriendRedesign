@@ -5,6 +5,7 @@ import { insertLeadSchema, insertPodcastSchema, insertInvitationSchema } from "@
 import { fromZodError } from "zod-validation-error";
 // @ts-ignore - pdfkit types not available
 import PDFDocument from "pdfkit";
+import nodemailer from "nodemailer";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -425,6 +426,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Business Reality Book PDF endpoint
+  // Email thank you endpoint
+  app.post("/api/send-thank-you", async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email) {
+        return res.status(400).json({ success: false, error: "Email required" });
+      }
+
+      // Create test account for development - in production, use SendGrid/AWS SES/etc
+      let transporter;
+      if (process.env.EMAIL_SERVICE === "production") {
+        transporter = nodemailer.createTransport({
+          service: process.env.EMAIL_PROVIDER || "gmail",
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+          },
+        });
+      } else {
+        // Development: use Ethereal test email
+        const testAccount = await nodemailer.createTestAccount();
+        transporter = nodemailer.createTransport({
+          host: "smtp.ethereal.email",
+          port: 587,
+          secure: false,
+          auth: {
+            user: testAccount.user,
+            pass: testAccount.pass,
+          },
+        });
+      }
+
+      const mailOptions = {
+        from: 'noreply@franchisefriend.net',
+        to: email,
+        subject: 'Your Business Reality Guide + Thank You from Charles Stovall',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+            <h2 style="color: #1E2B42;">Thank You for Your Interest!</h2>
+            <p>Hi there,</p>
+            <p>Your copy of <strong>"The Reality of Business Ownership"</strong> is ready to download. This guide covers:</p>
+            <ul>
+              <li>The true time commitment (50-70+ hours per week)</li>
+              <li>Real financial realities and hidden costs</li>
+              <li>Common mistakes franchise owners make</li>
+              <li>Lifestyle expectations vs. reality</li>
+              <li>Critical questions to answer honestly</li>
+            </ul>
+            <p style="margin: 30px 0;">
+              <a href="https://franchisefriend.net/client-portal" style="background-color: #F3AE1B; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">Download Your Guide</a>
+            </p>
+            <p>This is the honest truth about business ownership—no sugarcoating, no promises of easy wealth.</p>
+            <p>If you're ready to have a real conversation about your franchise journey, <strong>let's talk.</strong></p>
+            <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px;">
+              Best regards,<br>
+              <strong>Charles Stovall</strong><br>
+              Franchise Friend<br>
+              <a href="https://franchisefriend.net" style="color: #F3AE1B; text-decoration: none;">franchisefriend.net</a>
+            </p>
+          </div>
+        `,
+      };
+
+      await transporter.sendMail(mailOptions);
+      res.json({ success: true, message: "Thank you email sent" });
+    } catch (error: any) {
+      console.error("Error sending email:", error);
+      // Don't fail the PDF download if email fails
+      res.json({ success: true, message: "PDF ready (email delivery skipped)" });
+    }
+  });
+
   app.get("/api/download/business-reality-book", (req, res) => {
     try {
       const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
