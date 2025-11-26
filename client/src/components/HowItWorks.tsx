@@ -66,7 +66,7 @@ export function HowItWorks() {
         {/* Timeline */}
         <div className="relative grid md:grid-cols-4 gap-6 md:gap-4">
           {/* Connecting line */}
-          <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-secondary/50 to-transparent" />
+          <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-secondary/50 via-accent-pop/30 to-transparent" />
 
           {steps.map((step, index) => (
             <motion.div
@@ -78,7 +78,7 @@ export function HowItWorks() {
               className="relative"
             >
               {/* Step card */}
-              <div className="bg-gradient-to-br from-background to-secondary/5 border border-border/50 rounded-xl p-6 relative z-10 h-full hover:border-secondary/30 transition-all group">
+              <div className="bg-gradient-to-br from-background to-secondary/5 border border-border/50 rounded-xl p-6 relative z-10 h-full hover:border-accent-pop/40 transition-all group">
                 {/* Number badge */}
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-secondary to-secondary/80 flex items-center justify-center mb-4 text-white font-bold text-lg group-hover:scale-110 transition-transform">
                   {step.number}

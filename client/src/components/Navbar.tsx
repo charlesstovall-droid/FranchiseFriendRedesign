@@ -20,7 +20,7 @@ export function Navbar() {
         <div className="flex items-center justify-between py-4 px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div className="w-9 h-9 bg-primary rounded flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 bg-primary rounded flex items-center justify-center flex-shrink-0 border border-accent-pop/30">
               <span className="font-serif font-bold text-primary-foreground text-xs">CS</span>
             </div>
             <div className="flex flex-col justify-center gap-1 min-w-0">
@@ -35,9 +35,10 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors whitespace-nowrap uppercase tracking-wide"
+                className="text-xs font-semibold text-muted-foreground hover:text-accent-pop transition-colors whitespace-nowrap uppercase tracking-wide relative"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-pop group-hover:w-full transition-all"></span>
               </a>
             ))}
             <Link href="/client-portal">
@@ -49,8 +50,8 @@ export function Navbar() {
                 Client Portal
               </Button>
             </Link>
-            <a href="#contact">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1">
+            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1">
                 Book Consultation
               </Button>
             </a>
@@ -95,8 +96,8 @@ export function Navbar() {
                   Client Portal
                 </Button>
               </Link>
-              <a href="#contact" className="w-full">
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+              <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
+                <Button className="w-full bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold">
                   Book a Consultation
                 </Button>
               </a>

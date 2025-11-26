@@ -26,7 +26,7 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pop/10 text-primary text-sm font-semibold mb-6 border border-accent-pop/20">
             <span className="w-2 h-2 rounded-full bg-accent-pop" />
-            Charleston, SC
+            Nationwide
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-primary leading-[1.1] mb-6">
