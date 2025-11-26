@@ -126,6 +126,14 @@ const googleReviews = [
     text: "Top-notch franchise consultant! Incredibly knowledgeable, guided me seamlessly through the process. A true expert who has a ton of first hand experience in the franchising world. Loved his honestly and feedback for the good, the bad, and the ugly parts of business. Highly recommended.",
     platform: "Google",
   },
+  {
+    author: "Parker Wishneff",
+    role: "Local Guide • 7 Reviews",
+    rating: 5,
+    date: "23 months ago",
+    text: "Charles proved to be the epitome of professionalism throughout our collaboration. From the inception of the idea to embark on a franchise journey to the moment I finalized my contract, he stood by my side as a valuable guide. Leveraging his extensive experience in franchises, he provided valuable insights to guide me in selecting the most suitable franchise. Additionally, he consistently addressed all my questions with intelligent and seasoned advice. I wholeheartedly recommend him to anyone committed to the serious endeavor of starting a franchise.",
+    platform: "Google",
+  },
 ];
 
 function StarRating({ rating }: { rating: number }) {
