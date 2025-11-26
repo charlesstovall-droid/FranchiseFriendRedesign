@@ -16,6 +16,7 @@ interface AuthContextType {
   member: Member | null;
   loading: boolean;
   isLoggedIn: boolean;
+  refetch: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -25,23 +26,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [, setLocation] = useLocation();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch("/api/auth/me");
-        if (response.ok) {
-          const data = await response.json();
-          if (data.success) {
-            setMember(data.member);
-          }
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("/api/auth/me", { credentials: "include" });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          setMember(data.member);
         }
-      } catch (err) {
-        console.error("Auth check failed:", err);
-      } finally {
-        setLoading(false);
+      } else {
+        setMember(null);
       }
-    };
+    } catch (err) {
+      console.error("Auth check failed:", err);
+      setMember(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     checkAuth();
   }, []);
 
@@ -51,6 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         member,
         loading,
         isLoggedIn: !!member,
+        refetch: checkAuth,
       }}
     >
       {children}

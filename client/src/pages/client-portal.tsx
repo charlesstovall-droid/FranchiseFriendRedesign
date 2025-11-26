@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 import { LogIn, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function ClientPortal() {
   const [, setLocation] = useLocation();
+  const { refetch } = useAuth();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,6 +25,7 @@ export default function ClientPortal() {
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
@@ -35,8 +38,9 @@ export default function ClientPortal() {
       }
 
       setSuccess(true);
-      // Redirect to Phase 1 after successful login
-      setTimeout(() => setLocation("/phase1"), 1500);
+      // Refresh auth context and redirect to Phase 1
+      await refetch();
+      setTimeout(() => setLocation("/phase1"), 500);
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {
