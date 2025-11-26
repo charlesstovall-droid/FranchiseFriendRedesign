@@ -183,38 +183,59 @@ export default function Phase1() {
           >
             <Card className="border-2 border-primary/20">
               <CardHeader>
-                <h2 className="text-2xl font-serif font-bold text-primary">What to Expect in Phase 1</h2>
+                <h2 className="text-2xl font-serif font-bold text-primary">Your Discovery Journey</h2>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="space-y-6">
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Phase 1 is about building <span className="font-semibold text-primary">momentum</span> and clarity. You'll engage in a guided discovery process designed to help you understand yourself—your values, strengths, and vision for your ideal day—and then align that with franchise opportunities that truly fit your goals.
+                </p>
+                
+                <div className="space-y-4">
                   <div className="flex gap-3">
-                    <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                      <span className="text-secondary font-bold">1</span>
+                    </div>
                     <div>
-                      <p className="font-semibold text-primary">Understand Your Profile</p>
-                      <p className="text-sm text-muted-foreground">Identify your investment range, skills, and business goals</p>
+                      <p className="font-semibold text-primary">Define Your Vision</p>
+                      <p className="text-sm text-muted-foreground">You'll complete your Ideal Day Blueprint, clarifying what success looks like for you personally and professionally. This becomes your north star throughout the process.</p>
                     </div>
                   </div>
+                  
                   <div className="flex gap-3">
-                    <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                      <span className="text-secondary font-bold">2</span>
+                    </div>
                     <div>
-                      <p className="font-semibold text-primary">Explore Opportunities</p>
-                      <p className="text-sm text-muted-foreground">Browse 247+ verified franchises across all investment categories</p>
+                      <p className="font-semibold text-primary">Learn & Discover</p>
+                      <p className="text-sm text-muted-foreground">Explore 247+ verified franchises across all investment categories. You'll learn how different models work and begin to see which ones align with your goals and lifestyle preferences.</p>
                     </div>
                   </div>
+                  
                   <div className="flex gap-3">
-                    <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                      <span className="text-secondary font-bold">3</span>
+                    </div>
                     <div>
-                      <p className="font-semibold text-primary">Get Initial Guidance</p>
-                      <p className="text-sm text-muted-foreground">Receive personalized recommendations based on your profile</p>
+                      <p className="font-semibold text-primary">Test Alignment</p>
+                      <p className="text-sm text-muted-foreground">As you learn about franchises, you'll continuously evaluate which ones fit your ideal day. This real-world testing helps you discover what actually works for you—not what sounds good on paper.</p>
                     </div>
                   </div>
+                  
                   <div className="flex gap-3">
-                    <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                      <span className="text-secondary font-bold">4</span>
+                    </div>
                     <div>
-                      <p className="font-semibold text-primary">Request Information</p>
-                      <p className="text-sm text-muted-foreground">Start conversations with franchisors that interest you</p>
+                      <p className="font-semibold text-primary">Build Momentum</p>
+                      <p className="text-sm text-muted-foreground">Each discovery moves you forward. By the end of Phase 1, you'll have momentum, clarity, and confidence about which opportunities deserve deeper exploration in the next phases.</p>
                     </div>
                   </div>
+                </div>
+                
+                <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-4 mt-6">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-semibold text-primary">Remember:</span> Momentum is everything. The more you engage in this discovery process, the clearer your path becomes. You're not just learning about franchises—you're discovering what's right for your unique situation.
+                  </p>
                 </div>
               </CardContent>
             </Card>
