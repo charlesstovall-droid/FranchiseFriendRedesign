@@ -18,15 +18,15 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between py-3 px-4">
+        <div className="flex items-center justify-between py-4 px-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-12 md:h-14">
             <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
-              <span className="font-serif font-bold text-primary-foreground text-base">CS</span>
+              <span className="font-serif font-bold text-primary-foreground text-sm">CS</span>
             </div>
-            <div className="flex flex-col gap-0.5 min-w-0">
-              <span className="font-serif font-bold text-base leading-none text-primary truncate">Charles Stovall</span>
-              <span className="text-[9px] uppercase tracking-widest text-secondary font-semibold leading-none">Franchise Friend</span>
+            <div className="flex flex-col justify-center gap-0.5 min-w-0 h-full">
+              <span className="font-serif font-bold text-sm leading-tight text-primary truncate">Charles Stovall</span>
+              <span className="text-[10px] uppercase tracking-wider text-secondary font-semibold leading-tight">Franchise Friend</span>
             </div>
           </Link>
 
@@ -36,7 +36,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+                className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors whitespace-nowrap uppercase tracking-wide"
               >
                 {link.name}
               </a>
@@ -44,14 +44,14 @@ export function Navbar() {
             <Link href="/client-portal">
               <Button 
                 variant="outline" 
-                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold text-xs uppercase tracking-wide h-9"
                 data-testid="button-client-portal"
               >
                 Client Portal
               </Button>
             </Link>
             <a href="#contact">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs uppercase tracking-wide h-9">
                 Book a Consultation
               </Button>
             </a>
