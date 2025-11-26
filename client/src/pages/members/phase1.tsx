@@ -130,7 +130,7 @@ export default function Phase1() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12 p-6 md:p-8 bg-secondary/5 border border-secondary/20 rounded-xl"
+            className="mb-12 p-6 md:p-8 bg-gradient-to-r from-secondary/5 to-accent-pop/5 border border-accent-pop/20 rounded-xl"
           >
             <h2 className="text-2xl font-serif font-bold mb-6 text-primary">Your Journey</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -347,7 +347,7 @@ export default function Phase1() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.55 }}
-            className="mb-12 p-8 bg-gradient-to-r from-secondary/10 to-secondary/5 border border-secondary/30 rounded-lg"
+            className="mb-12 p-8 bg-gradient-to-r from-accent-pop/5 to-accent-pop/10 border border-accent-pop/30 rounded-lg"
           >
             <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
               <div>
@@ -359,7 +359,7 @@ export default function Phase1() {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap">
+                <Button className="bg-accent-pop hover:bg-accent-pop/90 text-primary font-semibold whitespace-nowrap">
                   Schedule Consultation
                 </Button>
               </a>

@@ -9,6 +9,7 @@ export function Hero() {
       {/* Background abstract shapes */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-secondary/10 via-transparent to-transparent -skew-x-12 translate-x-1/4 z-0" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl z-0" />
+      <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-accent-pop/5 rounded-full blur-3xl z-0" />
       
       {/* Animated dots pattern */}
       <div className="absolute inset-0 opacity-30 z-0">
@@ -23,8 +24,8 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary-foreground text-sm font-semibold mb-6">
-            <span className="w-2 h-2 rounded-full bg-secondary" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pop/10 text-primary text-sm font-semibold mb-6 border border-accent-pop/20">
+            <span className="w-2 h-2 rounded-full bg-accent-pop" />
             Charleston, SC
           </div>
           

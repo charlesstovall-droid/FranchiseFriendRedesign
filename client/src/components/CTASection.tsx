@@ -8,6 +8,7 @@ export function CTASection() {
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="absolute top-10 right-10 w-72 h-72 bg-secondary rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-secondary rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-accent-pop rounded-full blur-3xl opacity-20" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -64,7 +65,7 @@ export function CTASection() {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold py-3 px-6 rounded-lg transition-all">
+                  <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold py-3 px-6 rounded-lg transition-all border-2 border-accent-pop/30 hover:border-accent-pop/50">
                     Book Your Free Consultation
                   </button>
                 </a>
