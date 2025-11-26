@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPodcastSchema, insertInvitationSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+// @ts-ignore - pdfkit types not available
 import PDFDocument from "pdfkit";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
@@ -290,7 +291,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const pageWidth = 612 - 2 * margin;
 
       // Helper to add ruled lines for writing
-      const addWritingLines = (y, height = 60, lineCount = 3) => {
+      const addWritingLines = (y: number, height = 60, lineCount = 3) => {
         const lineHeight = height / lineCount;
         for (let i = 0; i < lineCount; i++) {
           doc.moveTo(margin, y + i * lineHeight).lineTo(margin + pageWidth, y + i * lineHeight).stroke();

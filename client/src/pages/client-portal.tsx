@@ -106,11 +106,7 @@ export default function ClientPortal() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <Card>
+              <Card>
               <CardHeader>
                 <h2 className="text-2xl font-serif font-bold text-primary flex items-center gap-2">
                   <LogIn className="w-6 h-6" />
@@ -173,10 +169,10 @@ export default function ClientPortal() {
               </CardContent>
             </Card>
 
-            <p className="text-center text-sm text-muted-foreground mt-6">
-              Don't have an account? <br />
-              <span className="text-secondary">Reach out to Charles for an exclusive invitation</span>
-            </p>
+              <p className="text-center text-sm text-muted-foreground mt-6">
+                Don't have an account? <br />
+                <span className="text-secondary">Reach out to Charles for an exclusive invitation</span>
+              </p>
             </motion.div>
           </div>
         </div>
