@@ -18,20 +18,20 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between py-3 px-2">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center">
-              <span className="font-serif font-bold text-primary-foreground text-lg">CS</span>
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
+              <span className="font-serif font-bold text-primary-foreground text-base">CS</span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-lg leading-tight text-primary">Charles Stovall</span>
-              <span className="text-[10px] uppercase tracking-widest text-secondary font-semibold">Franchise Friend</span>
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <span className="font-serif font-bold text-base leading-none text-primary truncate">Charles Stovall</span>
+              <span className="text-[9px] uppercase tracking-widest text-secondary font-semibold leading-none">Franchise Friend</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 flex-shrink-0">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -59,10 +59,11 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-primary"
+            className="md:hidden p-2 text-primary flex-shrink-0 ml-2"
             onClick={() => setIsOpen(!isOpen)}
+            data-testid="button-mobile-menu"
           >
-            {isOpen ? <X /> : <Menu />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
