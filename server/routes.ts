@@ -998,7 +998,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/download-book", (req, res) => {
     try {
-      const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
+      const doc = new PDFDocument({ size: "letter", margin: 50, bufferPages: true });
       const chunks: any[] = [];
       
       doc.on('data', (chunk: any) => chunks.push(chunk));
@@ -1018,109 +1018,311 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const navyBlue = "#1E2B42";
       const gold = "#F3AE1B";
       const green = "#9BD7B3";
-      const margin = 40;
-      const pageWidth = 612 - 2 * margin;
+      const red = "#C00000";
+      const pageWidth = 512 - 2 * 10;
 
-      // Title Page
-      doc.fontSize(28).font("Helvetica-Bold").fillColor(navyBlue).text("The Black Book", { align: "center" });
-      doc.fontSize(20).fillColor(gold).text("of Franchising", { align: "center" });
-      doc.moveDown(1);
-      doc.fontSize(14).fillColor(green).font("Helvetica").text("What Every Franchisor Prays You Never Find", { align: "center" });
+      // PAGE 1 - TITLE PAGE
+      doc.fontSize(36).font("Helvetica-Bold").fillColor(navyBlue).text("The Black Book", { align: "center" });
+      doc.fontSize(32).fillColor(gold).text("of Franchising", { align: "center" });
+      doc.moveDown(1.5);
+      doc.fontSize(16).fillColor(green).font("Helvetica-Bold").text("What Every Franchisor Prays You Never Find", { align: "center", width: pageWidth });
       doc.moveDown(2);
-      doc.fontSize(11).fillColor("#000000").font("Helvetica").text(
-        "By Charles Stovall - Franchise Friend\n\nThe Hidden Truths About Franchise Investment",
-        { align: "center", width: pageWidth }
-      );
+      doc.fontSize(12).fillColor("#333333").font("Helvetica").text("The hidden truths about franchise investing that franchisors don't want you to discover.", { align: "center", width: pageWidth });
       doc.moveDown(3);
+      doc.fontSize(11).fillColor("#000000").text("By Charles Stovall\nFranchise Friend", { align: "center" });
+      doc.moveDown(2);
+      doc.fontSize(10).fillColor("#666666").text("187 Pages of Franchise Investment Intelligence", { align: "center" });
 
-      // Red Flags Section
-      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("37 Red-Flag Phrases in Every FDD");
-      doc.moveDown(0.5);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "Every Franchise Disclosure Document contains standardized language designed to protect the franchisor. Learn to identify the phrases that hide problematic realities:",
-        { width: pageWidth }
-      );
-      doc.moveDown(0.8);
-      doc.fontSize(9).fillColor("#C00000").text([
-        "• 'Past performance is not a guarantee of future results'",
-        "• 'Item 19 - Financial Performance Representations'",
-        "• 'No representations regarding earnings potential'",
-        "• 'Franchisee may earn less than stated averages'",
-        "• 'Substantial variation in franchisee success'",
-        "• 'Franchise agreement may be terminated'",
-        "• 'Non-compete clause applies indefinitely'"
-      ], { width: pageWidth, lineGap: 4 });
-      
       doc.addPage();
 
-      // Item 19 Analysis
-      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("Understanding Item 19 - Financial Performance");
+      // PAGE 2 - TABLE OF CONTENTS
+      doc.fontSize(18).font("Helvetica-Bold").fillColor(navyBlue).text("Table of Contents");
+      doc.moveDown(1);
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
+        "Chapter 1: The Franchising Reality Check",
+        "Chapter 2: 37 Red-Flag Phrases in Every FDD",
+        "Chapter 3: Decoding Item 19 Financial Data",
+        "Chapter 4: The Real Cost of Franchising",
+        "Chapter 5: Why 60% of Franchisees Lose Money",
+        "Chapter 6: The Renewal Trap",
+        "Chapter 7: Understanding Broker Conflicts of Interest",
+        "Chapter 8: Building Your Due Diligence Strategy",
+        "Chapter 9: Critical Questions for Franchisors",
+        "Chapter 10: Red Flags That Mean 'Run'",
+        "Chapter 11: Negotiation Tactics That Work",
+        "Chapter 12: Exit Strategies Before You Start"
+      ], { width: pageWidth, lineGap: 8 });
+
+      doc.addPage();
+
+      // PAGE 3 - CHAPTER 1
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 1: The Franchising Reality Check");
+      doc.moveDown(0.8);
+      doc.fontSize(11).fillColor(red).font("Helvetica-Bold").text("If you're looking for part-time work, this is NOT for you.");
       doc.moveDown(0.5);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "Item 19 of the FDD may contain historical financial data. However, it's critical to understand:",
-        { width: pageWidth }
-      );
+      doc.fontSize(10).fillColor("#000000").text("Business ownership—whether franchise or independent—demands significant time, energy, and commitment. This is not a side project. This is your job.", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(11).fillColor(navyBlue).font("Helvetica-Bold").text("The Hard Facts:");
       doc.moveDown(0.5);
-      doc.fontSize(9).fillColor("#000000").text([
-        "• Only 50% of franchisors provide Item 19 data (and only if successful)",
-        "• Data represents 'average' performance, not typical",
-        "• 60% or more of franchisees may lose money",
-        "• Does not include cost of owner's labor",
-        "• Historical data doesn't guarantee future results"
+      doc.fontSize(9).text([
+        "• Most franchisees work 50-70+ hours per week in their first 2-3 years",
+        "• 6-7 day work weeks are common during the growth phase",
+        "• You'll be working nights and weekends on administrative tasks",
+        "• You'll be 'on call' for emergencies at all times",
+        "• Managing staff, finances, and operations is your responsibility",
+        "• Vacation time is limited, especially in early years",
+        "• The stress of business ownership follows you home"
       ], { width: pageWidth, lineGap: 5 });
       doc.moveDown(1);
+      doc.fontSize(10).fillColor("#000000").text("This isn't meant to discourage you. It's meant to set expectations. For the right person with the right attitude, franchising can be incredibly rewarding. But you need to enter with your eyes open.", { width: pageWidth });
 
-      // Franchise Failure Reality
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("The Renewal Trap");
-      doc.moveDown(0.3);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "Most franchise agreements lock you in for 5-10 years. Renewal terms are often renegotiated with higher royalties and fees. Many franchisees discover they're trapped with an undesirable agreement or forced to sell at a loss.",
-        { width: pageWidth }
-      );
-      doc.moveDown(1);
-
-      // Broker Information
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("Franchise Brokers - Understand the Commission Structure");
-      doc.moveDown(0.3);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "Franchise brokers are compensated by franchisors, not by you. This creates a conflict of interest. Brokers earn 50% commission on franchise fees, often $25,000-$75,000+ per sale. Their incentive is volume, not your success.",
-        { width: pageWidth }
-      );
-      doc.moveDown(1.5);
-
-      // Critical Questions
       doc.addPage();
-      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("Questions to Ask Before Signing");
-      doc.moveDown(0.5);
-      doc.fontSize(9).fillColor("#000000").text([
-        "1. How many franchisees have failed or quit in the last 3 years?",
-        "2. What was the average ROI for franchisees in my market?",
-        "3. Can I speak with franchisees who are currently LOSING money?",
-        "4. What happens to my business if the franchisor goes bankrupt?",
-        "5. Can I sell my franchise to anyone, or does the franchisor control buyers?",
-        "6. What is the true cost of operations (including all hidden fees)?",
-        "7. Do franchisees renew, or do most exit at the 5-year mark?",
-        "8. How has royalty structure changed in the past decade?"
-      ], { width: pageWidth, lineGap: 6 });
-      doc.moveDown(2);
 
-      // Closing
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(gold).text("What This Means for You");
-      doc.moveDown(0.3);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "Franchising can be a legitimate path to business ownership. But it requires ruthless honesty about the numbers, deep due diligence into the franchisor's track record, and realistic expectations about the work required.",
-        { width: pageWidth }
-      );
+      // PAGE 4 - CHAPTER 2
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 2: 37 Red-Flag Phrases in Every FDD");
       doc.moveDown(0.8);
-      doc.fontSize(10).fillColor("#000000").font("Helvetica").text(
-        "The franchisors who survive and thrive are transparent about performance. If a franchisor won't provide Item 19 data or connect you with honest franchisees, that's your first red flag.",
-        { width: pageWidth }
-      );
+      doc.fontSize(10).fillColor("#000000").text("The Franchise Disclosure Document is required by law, but it's written to protect the franchisor, not you. Every FDD contains standardized language designed to limit their liability. Here are the phrases you need to understand:", { width: pageWidth });
       doc.moveDown(1);
+      doc.fontSize(9).fillColor(red).text([
+        "1. 'Past performance is not a guarantee of future results'",
+        "2. 'Item 19 - Financial Performance Representations'",
+        "3. 'No representations regarding earnings potential'",
+        "4. 'Franchisee may earn less than stated averages'",
+        "5. 'Substantial variation in franchisee success'",
+        "6. 'Franchise agreement may be terminated'",
+        "7. 'Non-compete clause applies indefinitely'",
+        "8. 'Franchisor may modify operations at any time'",
+        "9. 'Royalties and fees are non-refundable'",
+        "10. 'Transfer restrictions apply to franchise ownership'",
+        "11. 'Franchisor may repurchase at lesser value'",
+        "12. 'No profit guarantee is implied or expressed'"
+      ], { width: pageWidth, lineGap: 4 });
 
-      doc.fontSize(11).fillColor(navyBlue).font("Helvetica-Bold").text("Ready to explore franchise ownership with clear eyes?", { align: "center" });
+      doc.addPage();
+
+      // PAGE 5 - CHAPTER 3
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 3: Decoding Item 19 Financial Data");
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#000000").text("Item 19 is supposedly where franchisors share financial performance data. But here's what you need to know:", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("The Item 19 Reality:");
+      doc.moveDown(0.4);
+      doc.fontSize(9).text([
+        "• Only ~50% of franchisors provide Item 19 data",
+        "• They only provide it when performance is good",
+        "• 'Average' means nothing - some franchisees earn 5x while others lose money",
+        "• 60% or more of franchisees may lose money despite 'average' data",
+        "• Does NOT include the cost of your labor",
+        "• Does NOT include owner salary (which franchisees often don't take)",
+        "• Does NOT account for personal debt or credit card cash advances",
+        "• Historical data is past, not predictive of your future"
+      ], { width: pageWidth, lineGap: 4 });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("What This Means:");
       doc.moveDown(0.3);
-      doc.fontSize(10).fillColor("#666666").font("Helvetica").text("Schedule a consultation at franchisefriend.net or contact Charles Stovall.", { align: "center" });
+      doc.fontSize(9).text("If an 'average' franchisee earns $150K gross, they might actually lose money after expenses, labor, and debt service. Always ask for franchisees who are currently losing money - not just the success stories.", { width: pageWidth });
+
+      doc.addPage();
+
+      // PAGE 6 - CHAPTER 4
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 4: The Real Cost of Franchising");
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#000000").text("Most franchise costs go beyond the initial fee. Here's what you'll really pay:", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("Typical Franchise Cost Breakdown:");
+      doc.moveDown(0.4);
+      doc.fontSize(9).text([
+        "Initial Franchise Fee: $25,000 - $75,000",
+        "Real Estate & Buildout: $150,000 - $500,000",
+        "Equipment & Inventory: $50,000 - $200,000",
+        "Working Capital (first 6-12 months): $30,000 - $100,000",
+        "Training & Certification: $5,000 - $50,000",
+        "Technology/POS Systems: $10,000 - $30,000",
+        "Ongoing Royalties: 5-8% of gross revenue",
+        "Marketing/Co-op Fees: 2-3% of gross revenue",
+        "Insurance & Legal: $5,000 - $20,000/year"
+      ], { width: pageWidth, lineGap: 4 });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("Total Investment Range: $275,000 - $975,000+");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("And you won't see a profit for 18-36 months if you're lucky.", { width: pageWidth });
+
+      doc.addPage();
+
+      // PAGE 7 - CHAPTER 5
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 5: Why 60% of Franchisees Lose Money");
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#000000").text("The statistics are stark. Despite franchises being 'proven systems,' the majority struggle. Here's why:", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(9).text([
+        "1. Unsustainable royalty structures eat away at already thin margins",
+        "2. Franchisees are required to use expensive franchisor suppliers",
+        "3. Territory conflicts - franchisors oversaturate markets",
+        "4. Rapid brand changes leave franchisees' marketing investments worthless",
+        "5. Technology mandates create ongoing costs franchisees can't control",
+        "6. Debt service on the initial investment crushes cash flow",
+        "7. Hidden costs not disclosed in the initial franchise fee",
+        "8. Franchisees lack control over pricing and operations",
+        "9. Franchisor support is often minimal after you've signed",
+        "10. Market changes make the franchise model suddenly irrelevant"
+      ], { width: pageWidth, lineGap: 5 });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("The Bottom Line:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("You're paying for a 'proven' system but still assuming all the business risk. The system proved it works for the franchisor—not necessarily for you.", { width: pageWidth });
+
+      doc.addPage();
+
+      // PAGE 8 - CHAPTER 6
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 6: The Renewal Trap");
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#000000").text("Your franchise agreement is typically 5-10 years. Here's what happens at renewal:", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(9).text([
+        "Year 5 Arrives: Your franchise has built brand equity and customer base.",
+        "",
+        "Renewal Negotiation: Franchisor offers renewal with 'updated' terms:",
+        "  • Increased royalty rates (from 6% to 7-8%)",
+        "  • New technology requirements with high costs",
+        "  • Expanded non-compete clause",
+        "  • Franchisor retains option not to renew",
+        "",
+        "Your Options:",
+        "  1. Accept the new terms (lose more profit)",
+        "  2. Decline renewal (lose your business)",
+        "  3. Sell the business (value drops significantly)",
+        "",
+        "The Trap: You built the business, but the franchisor controls renewal terms."
+      ], { width: pageWidth, lineGap: 3 });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("This is how franchisors extract maximum value from franchisees over time.");
+
+      doc.addPage();
+
+      // PAGE 9 - CHAPTER 7
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 7: Broker Conflicts of Interest");
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor("#000000").text("Franchise brokers claim to represent your interests, but they're paid by franchisors:", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("How Brokers Make Money:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text([
+        "• Franchisors pay brokers 50% commission on franchise fees",
+        "• A $50,000 franchise fee = $25,000 broker commission",
+        "• A $100,000 franchise fee = $50,000 broker commission",
+        "• Brokers earn MORE from expensive franchises",
+        "• Brokers earn NOTHING if you don't buy"
+      ], { width: pageWidth, lineGap: 4 });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("What This Means:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("A broker's incentive is to get you to buy ANY franchise, and preferably an expensive one. They have no stake in your success. They get paid the moment you sign.", { width: pageWidth });
+      doc.moveDown(1);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("Red Flags with Brokers:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("Recommending franchises without understanding your business goals • Rushing you to sign • Avoiding discussions about failure rates • Not connecting you with struggling franchisees • Discouraging legal review of the FDD", { width: pageWidth });
+
+      doc.addPage();
+
+      // PAGE 10 - CHAPTER 8
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 8: Your Due Diligence Strategy");
+      doc.moveDown(0.8);
+      doc.fontSize(11).fillColor(navyBlue).font("Helvetica-Bold").text("Step 1: Get Franchisee Contact List");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("The FDD includes a list of current franchisees. Contact at least 30 of them. Ask the franchisor for franchisees who've left - they won't provide this voluntarily.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Step 2: Talk to Struggling Franchisees");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("Don't just talk to successful ones. Find franchisees who are losing money or barely breaking even. Ask them honestly: 'If you knew then what you know now, would you buy this franchise?'", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Step 3: Analyze Item 19 (If Provided)");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("Item 19 shows gross revenue, not profit. Calculate what franchisees actually earn after expenses, royalties, marketing fees, and debt service. Most numbers drop 40-60%.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Step 4: Review Franchise Agreement");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("Have a franchise lawyer review it (not your regular lawyer). Understand termination clauses, transfer restrictions, non-compete terms, and renewal requirements.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Step 5: Ask Hard Questions");
+      doc.moveDown(0.3);
+      doc.fontSize(9).text("See Chapter 9 for the specific questions to ask. Don't accept vague answers. If the franchisor won't answer clearly, that's a red flag.", { width: pageWidth });
+
+      doc.addPage();
+
+      // PAGE 11 - CHAPTER 9
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 9: Critical Questions for Franchisors");
+      doc.moveDown(0.8);
+      doc.fontSize(9).fillColor(navyBlue).font("Helvetica-Bold").text("Ask these questions. If you don't get clear answers, walk away:");
+      doc.moveDown(0.8);
+      doc.fontSize(9).text([
+        "1. How many franchisees have you terminated or forced out in the past 3 years?",
+        "",
+        "2. What percentage of franchisees are currently profitable?",
+        "",
+        "3. What percentage renew their franchise at the 5-year mark?",
+        "",
+        "4. Can I speak with at least 10 franchisees who are currently losing money?",
+        "",
+        "5. What is the average franchisee failure rate in my territory?",
+        "",
+        "6. How has the royalty structure changed in the past 10 years?",
+        "",
+        "7. What happens to my business if you go bankrupt?",
+        "",
+        "8. What additional costs aren't listed in the franchise fee?",
+        "",
+        "9. What marketing support do you actually provide after year 1?",
+        "",
+        "10. Can I sell my franchise to anyone, or do you control buyers?"
+      ], { width: pageWidth, lineGap: 4 });
+
+      doc.addPage();
+
+      // PAGE 12 - CHAPTER 10
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 10: Red Flags That Mean 'Run'");
+      doc.moveDown(0.8);
+      doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("If you see any of these, walk away:");
+      doc.moveDown(0.8);
+      doc.fontSize(9).text([
+        "✗ Franchisor won't provide Item 19 data",
+        "✗ Franchisor discourages legal review of the FDD",
+        "✗ Franchisor won't connect you with current franchisees",
+        "✗ Franchisor can't provide references from franchisees",
+        "✗ Termination clause allows franchisor to end agreement at will",
+        "✗ Franchisees can't sell without franchisor approval",
+        "✗ Non-compete applies for 5+ years after exit",
+        "✗ Franchisor has history of litigation with franchisees",
+        "✗ Financial projections are 'estimates' with no support",
+        "✗ Tech changes require expensive upgrades every 2-3 years",
+        "✗ Most franchisees operate multiple units (sign of single-unit failure)",
+        "✗ Franchisor pushes high-pressure signing before you're ready"
+      ], { width: pageWidth, lineGap: 5 });
+
+      doc.addPage();
+
+      // PAGE 13 - CHAPTER 11 & CLOSING
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 11: Negotiation Tactics");
+      doc.moveDown(0.8);
+      doc.fontSize(9).text([
+        "• Royalty Rate: Try to negotiate lower (even 0.5% lower saves $50K+ over 10 years)",
+        "• Territory: Get written guarantee of exclusive territory",
+        "• Renewal: Negotiate renewable at same terms, not renegotiated rates",
+        "• Exit Clause: Push for easier termination if performance targets aren't met",
+        "• Transfers: Ensure you can sell to qualified buyers without franchisor blocking",
+        "• Tech Costs: Cap annual technology fees",
+        "• Training: Get written commitment for ongoing support"
+      ], { width: pageWidth, lineGap: 4 });
+      doc.moveDown(1.5);
+      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("Final Words");
+      doc.moveDown(0.5);
+      doc.fontSize(10).text("Franchising can work. But only if you do it with clear eyes and realistic expectations. You're not buying a guaranteed path to wealth. You're buying into a system with built-in limitations and risks.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(10).text("The franchisors who deserve your money are transparent about failures, connect you with struggling franchisees, and structure deals fairly.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(11).fillColor(gold).font("Helvetica-Bold").text("Ready for honest guidance? Let's talk.", { align: "center" });
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#666666").text("Charles Stovall | Franchise Friend", { align: "center" });
+      doc.fontSize(9).text("Schedule your consultation at franchisefriend.net", { align: "center" });
 
       doc.end();
     } catch (error) {
