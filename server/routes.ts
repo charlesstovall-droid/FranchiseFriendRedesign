@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPodcastSchema, insertInvitationSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import PDFDocument from "pdfkit";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -270,6 +271,163 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating progress:", error);
       res.status(500).json({ success: false, error: "Failed to update progress" });
+    }
+  });
+
+  // Ideal Day Blueprint PDF endpoint
+  app.get("/api/download/ideal-day-blueprint", (req, res) => {
+    try {
+      const doc = new PDFDocument({ size: "letter", margin: 50 });
+      
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", "attachment; filename=Ideal-Day-Blueprint.pdf");
+      
+      doc.pipe(res);
+
+      // Title
+      doc.fontSize(24).font("Helvetica-Bold").text("Your Ideal Day Blueprint", { align: "center" });
+      doc.fontSize(12).font("Helvetica").text("A Guided Discovery Workbook", { align: "center" });
+      doc.moveDown(0.5);
+      doc.fontSize(10).fillColor("#666666").text("By Charles Stovall - Franchise Friend", { align: "center" });
+      doc.moveDown(2);
+
+      // Reset color
+      doc.fillColor("#000000");
+
+      // Introduction
+      doc.fontSize(14).font("Helvetica-Bold").text("Introduction");
+      doc.fontSize(11).font("Helvetica").text(
+        "Before exploring franchise opportunities, it's essential to understand what success truly means to you. This workbook guides you through discovering your ideal day—the lifestyle, schedule, environment, and impact you want to create.",
+        { align: "left" }
+      );
+      doc.moveDown(1);
+
+      // Section 1: Morning Routine
+      doc.fontSize(14).font("Helvetica-Bold").text("1. Your Morning Routine");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Reflect on how you'd like to start your day in an ideal franchise business.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• What time do you ideally wake up?",
+        "• How much time do you want before work begins?",
+        "• Where are you? (home office, commute, etc.)",
+        "• What activities energize you in the morning?",
+        "• How involved do you want to be daily vs. delegating?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // Section 2: Work Environment
+      doc.fontSize(14).font("Helvetica-Bold").text("2. Your Work Environment");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Describe the physical and cultural environment where you'll thrive.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• Will you work from home, an office, or be mobile?",
+        "• Do you prefer hands-on or managerial work?",
+        "• What's important: location, travel, team size?",
+        "• Quiet, fast-paced, creative, structured—what suits you?",
+        "• How much client/customer interaction do you want?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // Section 3: Skills & Strengths
+      doc.fontSize(14).font("Helvetica-Bold").text("3. Your Natural Strengths");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Identify what you do best and want to leverage.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• What are your top 3-5 natural talents?",
+        "• What past successes energize you most?",
+        "• Are you a people person, systems thinker, or problem-solver?",
+        "• What skills do you want to use daily?",
+        "• What business aspects do you want to avoid?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // New page
+      doc.addPage();
+
+      // Section 4: Financial Goals
+      doc.fontSize(14).font("Helvetica-Bold").text("4. Financial & Investment Picture");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Clarify your investment capacity and income expectations.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• What's your total investment range? ($, timeframe)",
+        "• How much profit do you need annually?",
+        "• Timeline to profitability: 6 months, 1 year, 3+ years?",
+        "• Will you be the operator or investor-owner?",
+        "• What's your risk tolerance?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // Section 5: Values & Impact
+      doc.fontSize(14).font("Helvetica-Bold").text("5. Your Values & Impact");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Define what matters most and the impact you want to make.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• What values are non-negotiable for you?",
+        "• What impact do you want? (community, customers, family)",
+        "• Industry preferences? (health, education, services, etc.)",
+        "• Do you want to grow a team or work solo?",
+        "• Legacy: What do you want to be remembered for?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // Section 6: Lifestyle Integration
+      doc.fontSize(14).font("Helvetica-Bold").text("6. Lifestyle Integration");
+      doc.fontSize(10).font("Helvetica-Oblique").text("Balance work with life outside the business.");
+      doc.fontSize(11).font("Helvetica").text([
+        "• Weekly schedule: how many days/hours working?",
+        "• Time for family, hobbies, personal growth?",
+        "• Vacation time you want annually?",
+        "• Flexibility for seasonal variations?",
+        "• Work-life balance priority: what's your ideal ratio?"
+      ], { align: "left", lineGap: 8 });
+      doc.moveDown(1);
+      doc.fontSize(10).text("Your reflection:", { font: "Helvetica-Oblique" });
+      doc.fontSize(10).rect(doc.x, doc.y, 450, 80).stroke();
+      doc.moveDown(5);
+
+      // New page
+      doc.addPage();
+
+      // Section 7: The Ideal Day Summary
+      doc.fontSize(16).font("Helvetica-Bold").text("Your Ideal Day Summary");
+      doc.fontSize(11).font("Helvetica").text(
+        "Using everything you've reflected on above, write a detailed description of your ideal day. Paint the picture—from morning to evening, including details about your environment, the people you interact with, the work you do, and how you feel at the end of the day.",
+        { align: "left", lineGap: 5 }
+      );
+      doc.moveDown(1);
+      doc.fontSize(11).rect(doc.x, doc.y, 450, 180).stroke();
+      doc.moveDown(12);
+
+      // Next Steps
+      doc.fontSize(14).font("Helvetica-Bold").text("Next Steps");
+      doc.fontSize(11).font("Helvetica").text([
+        "1. Complete this workbook thoughtfully—there are no right or wrong answers",
+        "2. Review your ideal day description and identify 3-5 key priorities",
+        "3. Share these insights with Charles during your discovery call",
+        "4. Use this as your guide to evaluate franchise opportunities",
+        "5. Revisit and refine your ideal day as you progress through the discovery process"
+      ], { align: "left", lineGap: 10 });
+      doc.moveDown(2);
+
+      doc.fontSize(10).fillColor("#666666").text(
+        "Ready to find your ideal franchise? Visit franchisefriend.net to explore 247+ verified opportunities.",
+        { align: "center" }
+      );
+
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      res.status(500).json({ success: false, error: "Failed to generate PDF" });
     }
   });
 

@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { CheckCircle, Circle, Zap, Target, TrendingUp, Award } from "lucide-react";
+import { CheckCircle, Circle, Zap, Target, TrendingUp, Award, Download } from "lucide-react";
 import { useState } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
 
@@ -40,6 +40,10 @@ export default function Phase1() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDownloadPDF = () => {
+    window.location.href = "/api/download/ideal-day-blueprint";
   };
 
   const tools = [
@@ -128,7 +132,17 @@ export default function Phase1() {
             transition={{ delay: 0.2 }}
             className="mb-12"
           >
-            <h2 className="text-3xl font-serif font-bold mb-8 text-primary">Discovery Tools</h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-serif font-bold text-primary">Discovery Tools</h2>
+              <Button
+                onClick={handleDownloadPDF}
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold flex items-center gap-2"
+                data-testid="button-download-ideal-day"
+              >
+                <Download className="w-4 h-4" />
+                Download Blueprint
+              </Button>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {tools.map((tool, index) => (
                 <motion.div
