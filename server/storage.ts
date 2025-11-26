@@ -71,7 +71,7 @@ export class DbStorage implements IStorage {
     return invitation;
   }
 
-  async redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member> {
+  async redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string; devPersonName?: string; devPersonEmail?: string; devPersonPhone?: string }>): Promise<Member> {
     const [member] = await db.insert(members).values({
       email,
       name,
@@ -83,6 +83,9 @@ export class DbStorage implements IStorage {
           memberId: member.id,
           name: brand.name,
           website: brand.website,
+          devPersonName: brand.devPersonName,
+          devPersonEmail: brand.devPersonEmail,
+          devPersonPhone: brand.devPersonPhone,
         });
       }
     }

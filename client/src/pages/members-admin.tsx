@@ -18,11 +18,20 @@ interface Invitation {
   createdAt: string;
 }
 
+interface Brand {
+  name: string;
+  website: string;
+  devPersonName: string;
+  devPersonEmail: string;
+  devPersonPhone: string;
+}
+
 export default function MembersAdmin() {
   const { member, loading } = useAuth();
   const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [brands, setBrands] = useState<Brand[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
@@ -48,6 +57,23 @@ export default function MembersAdmin() {
   const invitations: Invitation[] = invitationsData?.invitations || [];
   const pendingInvitations = invitations.filter(inv => !inv.isUsed);
 
+  const handleAddBrand = () => {
+    setBrands([
+      ...brands,
+      { name: "", website: "", devPersonName: "", devPersonEmail: "", devPersonPhone: "" }
+    ]);
+  };
+
+  const handleRemoveBrand = (index: number) => {
+    setBrands(brands.filter((_, i) => i !== index));
+  };
+
+  const handleBrandChange = (index: number, field: keyof Brand, value: string) => {
+    const updatedBrands = [...brands];
+    updatedBrands[index] = { ...updatedBrands[index], [field]: value };
+    setBrands(updatedBrands);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -58,7 +84,7 @@ export default function MembersAdmin() {
       const response = await fetch("/api/invitations/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name }),
+        body: JSON.stringify({ email, name, brands: brands.filter(b => b.name && b.website) }),
       });
 
       if (!response.ok) {
@@ -71,6 +97,7 @@ export default function MembersAdmin() {
       setGeneratedCode(data.invitation.invitationCode);
       setEmail("");
       setName("");
+      setBrands([]);
       refetch();
     } catch (error: any) {
       setSubmitMessage({ type: "error", text: error.message || "Failed to create invitation" });
@@ -175,6 +202,115 @@ export default function MembersAdmin() {
                         data-testid="input-member-name"
                         className="border-secondary/20"
                       />
+                    </div>
+
+                    <div className="border-t border-secondary/20 pt-6 mt-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <label className="block text-sm font-semibold text-primary">
+                          Franchise Brands (Optional)
+                        </label>
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={handleAddBrand}
+                          disabled={isSubmitting}
+                          className="flex items-center gap-1"
+                          data-testid="button-add-brand"
+                        >
+                          <Plus className="w-3 h-3" /> Add Brand
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {brands.map((brand, idx) => (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 bg-secondary/5 border border-secondary/20 rounded-lg space-y-3"
+                          >
+                            <div className="flex items-start justify-between">
+                              <h4 className="text-xs font-semibold text-primary/70">Brand #{idx + 1}</h4>
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleRemoveBrand(idx)}
+                                disabled={isSubmitting}
+                                className="h-5 w-5 p-0"
+                                data-testid={`button-remove-brand-${idx}`}
+                              >
+                                <X className="w-4 h-4 text-destructive" />
+                              </Button>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-xs font-semibold text-primary mb-1">
+                                  Brand Name
+                                </label>
+                                <Input
+                                  type="text"
+                                  value={brand.name}
+                                  onChange={(e) => handleBrandChange(idx, "name", e.target.value)}
+                                  placeholder="e.g., Subway"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-brand-name-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-xs font-semibold text-primary mb-1">
+                                  Website
+                                </label>
+                                <Input
+                                  type="text"
+                                  value={brand.website}
+                                  onChange={(e) => handleBrandChange(idx, "website", e.target.value)}
+                                  placeholder="https://example.com"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-brand-website-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="bg-background/50 p-3 rounded border border-secondary/10">
+                              <p className="text-xs font-semibold text-primary mb-2">Franchise Dev Person</p>
+                              <div className="grid gap-2">
+                                <Input
+                                  type="text"
+                                  value={brand.devPersonName}
+                                  onChange={(e) => handleBrandChange(idx, "devPersonName", e.target.value)}
+                                  placeholder="Name"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-dev-person-name-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                                <Input
+                                  type="email"
+                                  value={brand.devPersonEmail}
+                                  onChange={(e) => handleBrandChange(idx, "devPersonEmail", e.target.value)}
+                                  placeholder="Email"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-dev-person-email-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                                <Input
+                                  type="tel"
+                                  value={brand.devPersonPhone}
+                                  onChange={(e) => handleBrandChange(idx, "devPersonPhone", e.target.value)}
+                                  placeholder="Phone"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-dev-person-phone-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
 
                     <Button

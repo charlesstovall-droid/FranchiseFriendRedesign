@@ -83,6 +83,9 @@ export const brands = pgTable("brands", {
   memberId: varchar("member_id").notNull().references(() => members.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   website: text("website").notNull(),
+  devPersonName: text("dev_person_name"),
+  devPersonEmail: text("dev_person_email"),
+  devPersonPhone: text("dev_person_phone"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -95,6 +98,9 @@ export const insertBrandSchema = z.object({
   memberId: z.string(),
   name: z.string().min(1),
   website: z.string().url(),
+  devPersonName: z.string().optional(),
+  devPersonEmail: z.string().email().optional(),
+  devPersonPhone: z.string().optional(),
 });
 
 export const insertInvitationSchema = z.object({

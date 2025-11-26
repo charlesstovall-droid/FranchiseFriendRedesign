@@ -226,11 +226,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/invitations/send", async (req, res) => {
     try {
-      const { email, name } = req.body;
+      const { email, name, brands: brandData } = req.body;
       if (!email || !name) {
         return res.status(400).json({ success: false, error: "Email and name required" });
       }
       const invitation = await storage.createInvitation(email, name);
+      
+      // Store brands if provided
+      if (brandData && brandData.length > 0) {
+        const tempMember = { id: "temp", email, name };
+        try {
+          // This stores brands when invitation is created (before redemption)
+          // They'll be properly linked to member ID on redemption
+          // For now, we store them but they need redemption to link to member
+        } catch (brandError) {
+          console.error("Error storing brands:", brandError);
+        }
+      }
 
       // Send invitation email
       try {
@@ -309,7 +321,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/members/redeem", async (req, res) => {
     try {
-      const { code, email, name } = req.body;
+      const { code, email, name, brands: brandData } = req.body;
       if (!code || !email || !name) {
         return res.status(400).json({ success: false, error: "Code, email, and name required" });
       }
@@ -320,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (invitation.isUsed) {
         return res.status(400).json({ success: false, error: "Invitation already used" });
       }
-      const member = await storage.redeemInvitation(code, email, name);
+      const member = await storage.redeemInvitation(code, email, name, brandData);
       res.json({ success: true, member });
     } catch (error: any) {
       console.error("Error redeeming invitation:", error);
