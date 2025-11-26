@@ -231,6 +231,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, error: "Email and name required" });
       }
       const invitation = await storage.createInvitation(email, name);
+
+      // Send invitation email
+      try {
+        let transporter;
+        if (process.env.EMAIL_SERVICE === "production") {
+          transporter = nodemailer.createTransport({
+            service: process.env.EMAIL_PROVIDER || "gmail",
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD,
+            },
+          });
+        } else {
+          const testAccount = await nodemailer.createTestAccount();
+          transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false,
+            auth: {
+              user: testAccount.user,
+              pass: testAccount.pass,
+            },
+          });
+        }
+
+        const mailOptions = {
+          from: 'noreply@franchisefriend.net',
+          to: email,
+          subject: 'Your Exclusive Franchise Discovery Invitation - Charles Stovall',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              <h2 style="color: #1E2B42;">You're Invited to the Franchise Discovery Process</h2>
+              <p>Hi ${name},</p>
+              <p>Charles Stovall has invited you to access the exclusive Franchise Friend Client Portal—a personalized journey through franchise discovery with proven guidance and real-world insights.</p>
+              <p style="margin: 30px 0;">
+                <strong>Your Invitation Code:</strong><br>
+                <code style="background-color: #f5f5f5; padding: 15px; display: inline-block; font-size: 18px; font-weight: bold; border: 1px solid #ddd; border-radius: 4px; letter-spacing: 2px;">
+                  ${invitation.invitationCode}
+                </code>
+              </p>
+              <p style="margin: 30px 0;">
+                <a href="https://franchisefriend.net/client-portal" style="background-color: #F3AE1B; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">Access Your Portal</a>
+              </p>
+              <h3 style="color: #1E2B42; margin-top: 40px;">How to Get Started:</h3>
+              <ol style="color: #666;">
+                <li>Visit the Client Portal link above</li>
+                <li>Use your invitation code: <strong>${invitation.invitationCode}</strong></li>
+                <li>Complete your profile</li>
+                <li>Begin your guided franchise discovery journey</li>
+              </ol>
+              <p style="color: #666; font-size: 14px; margin-top: 30px;">
+                This invitation is exclusive to you. If you have any questions, reach out to Charles directly.
+              </p>
+              <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px;">
+                Best regards,<br>
+                <strong>Charles Stovall</strong><br>
+                Franchise Friend<br>
+                <a href="https://franchisefriend.net" style="color: #F3AE1B; text-decoration: none;">franchisefriend.net</a>
+              </p>
+            </div>
+          `,
+        };
+
+        await transporter.sendMail(mailOptions);
+      } catch (emailError) {
+        console.error("Error sending invitation email:", emailError);
+        // Don't fail the invitation creation if email fails
+      }
+
       res.json({ success: true, invitation });
     } catch (error: any) {
       console.error("Error creating invitation:", error);
