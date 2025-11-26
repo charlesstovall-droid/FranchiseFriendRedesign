@@ -45,10 +45,10 @@ export function Footer() {
           <div>
             <h3 className="font-serif font-bold text-lg mb-6 text-secondary">Resources</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Franchise 101</a></li>
+              <li><a href="/blog" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Latest Blog Posts</a></li>
+              <li><a href="/faq" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">FAQ</a></li>
               <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Financing Guide</a></li>
-              <li><a href="https://www.franchisefriend.net/blog" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Latest Blog Posts</a></li>
-              <li><a href="https://www.franchisefriend.net/blog/frequently-asked-questions-faq-about-franchising" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">FAQ</a></li>
+              <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Franchise 101</a></li>
             </ul>
           </div>
 
