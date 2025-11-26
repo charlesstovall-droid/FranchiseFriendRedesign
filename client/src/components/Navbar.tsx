@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CSLogo } from "./CSLogo";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +19,10 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between py-4 px-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <CSLogo size={40} />
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+            <div className="w-9 h-9 bg-primary rounded flex items-center justify-center flex-shrink-0">
+              <span className="font-serif font-bold text-primary-foreground text-xs">CS</span>
+            </div>
             <div className="flex flex-col justify-center gap-1 min-w-0">
               <span className="font-serif font-bold text-xs leading-none text-primary truncate">Charles Stovall</span>
               <span className="text-[8px] uppercase tracking-wider text-secondary font-semibold leading-none">Franchise Friend</span>
