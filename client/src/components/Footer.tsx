@@ -74,16 +74,20 @@ export function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/40">&copy; {new Date().getFullYear()} Charles Stovall. All rights reserved.</p>
-            {isAdmin && (
-              <button
-                onClick={() => setLocation("/members-admin")}
-                className="inline-flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
-                data-testid="link-member-admin"
-              >
-                <Settings className="w-4 h-4" />
-                Member Management
-              </button>
-            )}
+            <button
+              onClick={() => {
+                if (isAdmin) {
+                  setLocation("/members-admin");
+                } else {
+                  setLocation("/client-portal");
+                }
+              }}
+              className="inline-flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+              data-testid="link-member-admin"
+            >
+              <Settings className="w-4 h-4" />
+              {isAdmin ? "Member Management" : "Admin"}
+            </button>
           </div>
         </div>
       </div>
