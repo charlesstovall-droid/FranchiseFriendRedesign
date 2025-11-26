@@ -11,6 +11,7 @@ export interface IStorage {
   getPodcastById(id: string): Promise<Podcast | undefined>;
   deletePodcast(id: string): Promise<boolean>;
   createInvitation(email: string, name: string): Promise<Invitation>;
+  getAllInvitations(): Promise<Invitation[]>;
   getInvitationByCode(code: string): Promise<Invitation | undefined>;
   redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member>;
   getMemberByEmail(email: string): Promise<Member | undefined>;
@@ -59,6 +60,10 @@ export class DbStorage implements IStorage {
       invitationCode: code,
     }).returning();
     return invitation;
+  }
+
+  async getAllInvitations(): Promise<Invitation[]> {
+    return await db.select().from(invitations).orderBy(desc(invitations.createdAt));
   }
 
   async getInvitationByCode(code: string): Promise<Invitation | undefined> {

@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import FranchiseBrands from "@/pages/franchise-brands";
 import PodcastAdmin from "@/pages/podcast-admin";
+import MembersAdmin from "@/pages/members-admin";
 import PodcastsPage from "@/pages/podcasts";
 import BlackBook from "@/pages/black-book";
 import ClientPortal from "@/pages/client-portal";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/franchise-brands" component={FranchiseBrands} />
       <Route path="/podcasts" component={PodcastsPage} />
       <Route path="/podcast-admin" component={PodcastAdmin} />
+      <Route path="/members-admin" component={MembersAdmin} />
       <Route path="/black-book" component={BlackBook} />
       <Route path="/client-portal" component={ClientPortal} />
       <Route path="/phase1" component={Phase1} />

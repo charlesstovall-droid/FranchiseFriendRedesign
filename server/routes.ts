@@ -214,6 +214,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Member invitation routes
+  app.get("/api/invitations", async (req, res) => {
+    try {
+      const invitations = await storage.getAllInvitations();
+      res.json({ success: true, invitations });
+    } catch (error: any) {
+      console.error("Error fetching invitations:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   app.post("/api/invitations/send", async (req, res) => {
     try {
       const { email, name } = req.body;
