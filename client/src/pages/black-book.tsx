@@ -42,10 +42,8 @@ export default function BlackBook() {
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 max-w-3xl">
         {/* Back Link */}
-        <Link href="/">
-          <a className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-12 font-medium">
-            ← Back to Franchise Friend
-          </a>
+        <Link href="/" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-12 font-medium">
+          ← Back to Franchise Friend
         </Link>
 
         {!submitted ? (
@@ -208,12 +206,10 @@ export default function BlackBook() {
               In the meantime, Charles is ready to walk you through everything in the
               book—and answer the questions it raises.
             </p>
-            <Link href="/#contact">
-              <a className="inline-flex">
-                <Button className="bg-primary hover:bg-primary/90 h-12 px-8 font-semibold">
-                  Book a Consultation →
-                </Button>
-              </a>
+            <Link href="/#contact" className="inline-flex">
+              <Button className="bg-primary hover:bg-primary/90 h-12 px-8 font-semibold">
+                Book a Consultation →
+              </Button>
             </Link>
           </motion.div>
         )}
