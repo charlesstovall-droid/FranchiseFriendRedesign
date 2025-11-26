@@ -224,6 +224,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.delete("/api/invitations/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteInvitation(req.params.id);
+      if (!success) {
+        return res.status(404).json({ success: false, error: "Invitation not found" });
+      }
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error("Error deleting invitation:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   app.post("/api/invitations/send", async (req, res) => {
     try {
       const { email, name, brands: brandData } = req.body;

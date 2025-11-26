@@ -13,6 +13,7 @@ export interface IStorage {
   createInvitation(email: string, name: string): Promise<Invitation>;
   getAllInvitations(): Promise<Invitation[]>;
   getInvitationByCode(code: string): Promise<Invitation | undefined>;
+  deleteInvitation(id: string): Promise<boolean>;
   redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member>;
   getMemberByEmail(email: string): Promise<Member | undefined>;
   updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
@@ -69,6 +70,11 @@ export class DbStorage implements IStorage {
   async getInvitationByCode(code: string): Promise<Invitation | undefined> {
     const [invitation] = await db.select().from(invitations).where(eq(invitations.invitationCode, code));
     return invitation;
+  }
+
+  async deleteInvitation(id: string): Promise<boolean> {
+    const result = await db.delete(invitations).where(eq(invitations.id, id));
+    return result.rowCount > 0;
   }
 
   async redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string; devPersonName?: string; devPersonEmail?: string; devPersonPhone?: string }>): Promise<Member> {

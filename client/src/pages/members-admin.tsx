@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import { Copy, Check, AlertCircle, Plus, X } from "lucide-react";
+import { Copy, Check, AlertCircle, Plus, X, Trash2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
@@ -111,6 +111,21 @@ export default function MembersAdmin() {
       navigator.clipboard.writeText(generatedCode);
       setCopiedCode(true);
       setTimeout(() => setCopiedCode(false), 2000);
+    }
+  };
+
+  const handleDeleteInvitation = async (id: string) => {
+    try {
+      const response = await fetch(`/api/invitations/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        refetch();
+      } else {
+        console.error("Failed to delete invitation");
+      }
+    } catch (error) {
+      console.error("Error deleting invitation:", error);
     }
   };
 
@@ -378,12 +393,22 @@ export default function MembersAdmin() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.05 }}
-                          className="p-3 bg-secondary/5 border border-secondary/20 rounded-lg"
+                          className="p-3 bg-secondary/5 border border-secondary/20 rounded-lg flex items-start justify-between"
                         >
-                          <p className="text-sm font-semibold text-primary truncate">{inv.email}</p>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            Created {new Date(inv.createdAt).toLocaleDateString()}
-                          </p>
+                          <div className="flex-1">
+                            <p className="text-sm font-semibold text-primary truncate">{inv.email}</p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Created {new Date(inv.createdAt).toLocaleDateString()}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => handleDeleteInvitation(inv.id)}
+                            className="ml-2 p-1 hover:bg-destructive/20 rounded transition-colors flex-shrink-0"
+                            data-testid={`button-delete-invitation-${idx}`}
+                            title="Delete invitation"
+                          >
+                            <Trash2 className="w-4 h-4 text-destructive" />
+                          </button>
                         </motion.div>
                       ))
                     )}
