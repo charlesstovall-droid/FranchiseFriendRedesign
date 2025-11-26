@@ -2,9 +2,8 @@ import { type Server } from "node:http";
 
 import express, { type Express, type Request, Response, NextFunction } from "express";
 import session from "express-session";
-import connectPgSimple from "connect-pg-simple";
+import MemoryStore from "memorystore";
 import { registerRoutes } from "./routes";
-import { pool } from "./db";
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -32,18 +31,16 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: false }));
 
 // Session middleware
-const PgSession = connectPgSimple(session);
+const memStore = new MemoryStore({ checkPeriod: 86400000 });
 app.use(session({
-  store: new PgSession({
-    pool: pool,
-  }),
-  secret: process.env.SESSION_SECRET || "dev-secret-key",
+  store: memStore,
+  secret: process.env.SESSION_SECRET || "dev-secret-key-change-in-production",
   resave: false,
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'lax' as const,
     maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
   }
 }));
