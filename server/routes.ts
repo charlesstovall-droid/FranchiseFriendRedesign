@@ -353,6 +353,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/members/:memberId/brands", async (req, res) => {
+    try {
+      const brands = await storage.getBrandsByMemberId(req.params.memberId);
+      res.json({ success: true, brands });
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch brands" });
+    }
+  });
+
   app.post("/api/members/:email/progress", async (req, res) => {
     try {
       const { phase, complete } = req.body;

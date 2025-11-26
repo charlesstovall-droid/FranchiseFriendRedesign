@@ -3,16 +3,47 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { CheckCircle, Circle, Zap, Target, TrendingUp, Award, Download } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle, Circle, Zap, Target, TrendingUp, Award, Download, ExternalLink, Mail, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
+
+interface Brand {
+  id: string;
+  name: string;
+  website: string;
+  devPersonName?: string;
+  devPersonEmail?: string;
+  devPersonPhone?: string;
+}
 
 export default function Phase1() {
   const { member, loading: authLoading } = useProtectedRoute();
   const [, setLocation] = useLocation();
   const [isComplete, setIsComplete] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [brandsLoading, setBrandsLoading] = useState(true);
+
+  useEffect(() => {
+    if (member?.id) {
+      fetchBrands();
+    }
+  }, [member?.id]);
+
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch(`/api/members/${member?.id}/brands`);
+      if (response.ok) {
+        const data = await response.json();
+        setBrands(data.brands || []);
+      }
+    } catch (err) {
+      console.error("Error fetching brands:", err);
+    } finally {
+      setBrandsLoading(false);
+    }
+  };
 
   if (authLoading) {
     return (
@@ -127,6 +158,73 @@ export default function Phase1() {
               ))}
             </div>
           </motion.div>
+
+          {/* Your Franchise Brands */}
+          {brands.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="mb-12"
+            >
+              <h2 className="text-3xl font-serif font-bold text-primary mb-8">Your Target Franchise Brands</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {brands.map((brand, index) => (
+                  <motion.div
+                    key={brand.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 + index * 0.1 }}
+                  >
+                    <Card className="h-full border-2 border-secondary/20 hover:border-secondary/40 transition-all">
+                      <CardHeader>
+                        <h3 className="text-xl font-bold text-primary">{brand.name}</h3>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <a
+                          href={brand.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors text-sm"
+                          data-testid={`link-brand-website-${index}`}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Visit Website
+                        </a>
+                        
+                        {brand.devPersonName && (
+                          <div className="p-3 bg-secondary/5 rounded-lg space-y-2">
+                            <p className="text-xs font-semibold text-primary/70">Development Contact</p>
+                            <p className="font-semibold text-primary">{brand.devPersonName}</p>
+                            {brand.devPersonEmail && (
+                              <a
+                                href={`mailto:${brand.devPersonEmail}`}
+                                className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors text-sm"
+                                data-testid={`link-dev-email-${index}`}
+                              >
+                                <Mail className="w-4 h-4" />
+                                {brand.devPersonEmail}
+                              </a>
+                            )}
+                            {brand.devPersonPhone && (
+                              <a
+                                href={`tel:${brand.devPersonPhone}`}
+                                className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors text-sm"
+                                data-testid={`link-dev-phone-${index}`}
+                              >
+                                <Phone className="w-4 h-4" />
+                                {brand.devPersonPhone}
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
 
           {/* Discovery Tools */}
           <motion.div
