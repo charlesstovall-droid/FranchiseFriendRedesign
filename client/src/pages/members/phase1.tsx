@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { CheckCircle, Circle, Zap, Target, TrendingUp, Award, Download } from "lucide-react";
 import { useState } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
+import { useLocation } from "wouter";
 
 export default function Phase1() {
   const { member, loading: authLoading } = useProtectedRoute();
+  const [, setLocation] = useLocation();
   const [isComplete, setIsComplete] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +36,7 @@ export default function Phase1() {
       });
       if (response.ok) {
         setIsComplete(true);
+        setTimeout(() => setLocation("/phase2"), 1000);
       }
     } catch (err) {
       console.error("Error updating progress:", err);
