@@ -2,7 +2,6 @@ import { type Server } from "node:http";
 
 import express, { type Express, type Request, Response, NextFunction } from "express";
 import session from "express-session";
-import MemoryStore from "memorystore";
 import { registerRoutes } from "./routes";
 
 export function log(message: string, source = "express") {
@@ -31,9 +30,7 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: false }));
 
 // Session middleware
-const memStore = new MemoryStore({ checkPeriod: 86400000 });
 app.use(session({
-  store: memStore,
   secret: process.env.SESSION_SECRET || "dev-secret-key-change-in-production",
   resave: false,
   saveUninitialized: false,
