@@ -73,7 +73,7 @@ export default function Phase1() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="py-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
+      <section className="pt-24 pb-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
