@@ -1,4 +1,5 @@
 import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { CSLogo } from "./CSLogo";
 
 export function Footer() {
   return (
@@ -7,9 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-secondary rounded-sm flex items-center justify-center">
-                <span className="font-serif font-bold text-secondary-foreground text-lg">CS</span>
-              </div>
+              <CSLogo size={48} />
               <div className="flex flex-col">
                 <span className="font-serif font-bold text-lg leading-tight text-white">Charles Stovall</span>
                 <span className="text-[10px] uppercase tracking-widest text-secondary font-semibold">Franchise Friend</span>
