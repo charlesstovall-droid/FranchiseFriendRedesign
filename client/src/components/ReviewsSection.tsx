@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -143,6 +144,9 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export function ReviewsSection() {
+  const [showAll, setShowAll] = useState(false);
+  const reviewsToShow = showAll ? googleReviews : googleReviews.slice(0, 6);
+  
   const averageRating = (
     googleReviews.reduce((sum, review) => sum + review.rating, 0) /
     googleReviews.length
@@ -203,7 +207,7 @@ export function ReviewsSection() {
           
           <TabsContent value="all" className="space-y-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {googleReviews.map((review, index) => (
+              {reviewsToShow.map((review, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -249,7 +253,7 @@ export function ReviewsSection() {
           
           <TabsContent value="google" className="space-y-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {googleReviews.map((review, index) => (
+              {reviewsToShow.map((review, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -294,11 +298,22 @@ export function ReviewsSection() {
           </TabsContent>
         </Tabs>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-4">
+          {googleReviews.length > 6 && (
+            <Button 
+              onClick={() => setShowAll(!showAll)}
+              variant="outline" 
+              size="lg"
+              className="border-secondary/30 text-primary hover:bg-secondary/5"
+              data-testid="button-view-more-reviews"
+            >
+              {showAll ? "View Less" : `View More (${googleReviews.length - 6} more)`}
+            </Button>
+          )}
           <Button 
             variant="outline" 
             size="lg"
-            className="border-secondary/30 text-primary hover:bg-secondary/5"
+            className="border-secondary/30 text-primary hover:bg-secondary/5 block w-full"
             asChild
           >
             <a 
