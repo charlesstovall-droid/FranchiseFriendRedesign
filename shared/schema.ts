@@ -78,9 +78,23 @@ export const invitations = pgTable("invitations", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const brands = pgTable("brands", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  memberId: varchar("member_id").notNull().references(() => members.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  website: text("website").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertMemberSchema = z.object({
   email: z.string().email(),
   name: z.string().min(1),
+});
+
+export const insertBrandSchema = z.object({
+  memberId: z.string(),
+  name: z.string().min(1),
+  website: z.string().url(),
 });
 
 export const insertInvitationSchema = z.object({
@@ -90,3 +104,5 @@ export const insertInvitationSchema = z.object({
 export type InsertMember = z.infer<typeof insertMemberSchema>;
 export type Member = typeof members.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
+export type Brand = typeof brands.$inferSelect;
+export type InsertBrand = z.infer<typeof insertBrandSchema>;

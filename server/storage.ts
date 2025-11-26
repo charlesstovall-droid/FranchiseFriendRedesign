@@ -1,4 +1,4 @@
-import { type Lead, type InsertLead, leads, type Podcast, type InsertPodcast, podcasts, type Member, type Invitation, members, invitations } from "@shared/schema";
+import { type Lead, type InsertLead, leads, type Podcast, type InsertPodcast, podcasts, type Member, type Invitation, members, invitations, brands, type Brand, type InsertBrand } from "@shared/schema";
 import { db } from "../db";
 import { eq, desc } from "drizzle-orm";
 
@@ -12,9 +12,11 @@ export interface IStorage {
   deletePodcast(id: string): Promise<boolean>;
   createInvitation(email: string, name: string): Promise<Invitation>;
   getInvitationByCode(code: string): Promise<Invitation | undefined>;
-  redeemInvitation(code: string, email: string, name: string): Promise<Member>;
+  redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member>;
   getMemberByEmail(email: string): Promise<Member | undefined>;
   updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
+  getBrandsByMemberId(memberId: string): Promise<Brand[]>;
+  createBrand(brand: InsertBrand): Promise<Brand>;
 }
 
 export class DbStorage implements IStorage {
@@ -64,11 +66,21 @@ export class DbStorage implements IStorage {
     return invitation;
   }
 
-  async redeemInvitation(code: string, email: string, name: string): Promise<Member> {
+  async redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member> {
     const [member] = await db.insert(members).values({
       email,
       name,
     }).returning();
+    
+    if (brandData && brandData.length > 0) {
+      for (const brand of brandData) {
+        await db.insert(brands).values({
+          memberId: member.id,
+          name: brand.name,
+          website: brand.website,
+        });
+      }
+    }
     
     await db.update(invitations).set({
       isUsed: true,
@@ -93,6 +105,15 @@ export class DbStorage implements IStorage {
     } else if (phase === 4) {
       await db.update(members).set({ phase4Complete: complete }).where(eq(members.email, email));
     }
+  }
+
+  async getBrandsByMemberId(memberId: string): Promise<Brand[]> {
+    return await db.select().from(brands).where(eq(brands.memberId, memberId)).orderBy(brands.createdAt);
+  }
+
+  async createBrand(brand: InsertBrand): Promise<Brand> {
+    const [newBrand] = await db.insert(brands).values(brand).returning();
+    return newBrand;
   }
 }
 
