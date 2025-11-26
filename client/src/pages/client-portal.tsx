@@ -41,9 +41,16 @@ export default function ClientPortal() {
       }
 
       setSuccess(true);
-      // Refresh auth context and redirect to Phase 1
+      // Refresh auth context and redirect based on user
       await refetch();
-      setTimeout(() => setLocation("/phase1"), 500);
+      const redirectDelay = () => {
+        if (email === "charles@franchisefriend.net") {
+          setLocation("/members-admin");
+        } else {
+          setLocation("/phase1");
+        }
+      };
+      setTimeout(redirectDelay, 500);
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {

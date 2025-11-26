@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { Copy, Check, AlertCircle, Plus, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/lib/AuthContext";
+import { useLocation } from "wouter";
 
 interface Invitation {
   id: string;
@@ -17,12 +19,21 @@ interface Invitation {
 }
 
 export default function MembersAdmin() {
+  const { member, loading } = useAuth();
+  const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
+
+  // Check if user is authorized
+  useEffect(() => {
+    if (!loading && (!member || member.email !== "charles@franchisefriend.net")) {
+      setLocation("/client-portal");
+    }
+  }, [loading, member, setLocation]);
 
   // Fetch invitations
   const { data: invitationsData, refetch } = useQuery({
@@ -75,6 +86,20 @@ export default function MembersAdmin() {
       setTimeout(() => setCopiedCode(false), 2000);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-sans flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!member || member.email !== "charles@franchisefriend.net") {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">

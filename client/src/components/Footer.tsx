@@ -1,6 +1,12 @@
-import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin, Settings } from "lucide-react";
+import { useAuth } from "@/lib/AuthContext";
+import { useLocation } from "wouter";
 
 export function Footer() {
+  const { member } = useAuth();
+  const [, setLocation] = useLocation();
+  const isAdmin = member?.email === "charles@franchisefriend.net";
+
   return (
     <footer className="bg-primary text-primary-foreground pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
@@ -65,8 +71,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center text-sm text-primary-foreground/40">
-          <p>&copy; {new Date().getFullYear()} Charles Stovall. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-primary-foreground/40">&copy; {new Date().getFullYear()} Charles Stovall. All rights reserved.</p>
+            {isAdmin && (
+              <button
+                onClick={() => setLocation("/members-admin")}
+                className="inline-flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+                data-testid="link-member-admin"
+              >
+                <Settings className="w-4 h-4" />
+                Member Management
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </footer>
