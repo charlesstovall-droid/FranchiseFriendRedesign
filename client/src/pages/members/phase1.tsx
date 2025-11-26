@@ -45,26 +45,26 @@ export default function Phase1() {
   const tools = [
     {
       icon: Target,
-      title: "Franchise Matcher",
-      description: "Find franchises based on your investment range and business interests. Filter by industry, location, and growth potential.",
+      title: "Your Ideal Day Blueprint",
+      description: "Paint a picture of your ideal day. Let's explore what success looks like to you—your schedule, environment, and impact. This foundation guides everything we discover together.",
       status: "ready",
     },
     {
       icon: TrendingUp,
-      title: "Market Analysis",
-      description: "Analyze opportunities in your target markets. Compare franchise performance data and growth metrics.",
+      title: "Personal Business Profile",
+      description: "Reflect on your strengths, work style, and values. Understanding who you are helps us align you with franchise opportunities that complement your natural talents.",
       status: "ready",
     },
     {
       icon: Award,
-      title: "Top 200 Performers",
-      description: "Review our curated list of highest-rated franchises from Franchise Business Review and industry experts.",
+      title: "Investment & Lifestyle Goals",
+      description: "Clarify your investment range, time commitment, and desired lifestyle. These personal priorities shape which franchises make sense for your journey.",
       status: "ready",
     },
     {
       icon: Zap,
-      title: "Disclosure Documents",
-      description: "Request detailed FDD (Franchise Disclosure Document) and financial information directly from franchisors.",
+      title: "Explore Verified Franchises",
+      description: "Browse 247+ verified franchises that match your profile. I'll guide you through which opportunities align with your ideal day and goals.",
       status: "ready",
     },
   ];
