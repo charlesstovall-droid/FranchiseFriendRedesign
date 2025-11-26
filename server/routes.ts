@@ -279,11 +279,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/download/ideal-day-blueprint", (req, res) => {
     try {
       const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
+      const chunks: any[] = [];
       
-      res.setHeader("Content-Type", "application/pdf");
-      res.setHeader("Content-Disposition", "attachment; filename=Ideal-Day-Blueprint.pdf");
+      doc.on('data', (chunk) => chunks.push(chunk));
+      doc.on('end', () => {
+        const pdf = Buffer.concat(chunks);
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "attachment; filename=Ideal-Day-Blueprint.pdf");
+        res.setHeader("Content-Length", pdf.length);
+        res.send(pdf);
+      });
       
-      doc.pipe(res);
+      doc.on('error', (err) => {
+        console.error("PDF generation error:", err);
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      });
 
       const navyBlue = "#1E2B42";
       const gold = "#F3AE1B";
@@ -408,7 +418,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.end();
     } catch (error) {
       console.error("Error generating PDF:", error);
-      res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      }
     }
   });
 
@@ -416,11 +428,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/download/business-reality-book", (req, res) => {
     try {
       const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
+      const chunks: any[] = [];
       
-      res.setHeader("Content-Type", "application/pdf");
-      res.setHeader("Content-Disposition", "attachment; filename=Business-Reality-Guide.pdf");
+      doc.on('data', (chunk) => chunks.push(chunk));
+      doc.on('end', () => {
+        const pdf = Buffer.concat(chunks);
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "attachment; filename=Business-Reality-Guide.pdf");
+        res.setHeader("Content-Length", pdf.length);
+        res.send(pdf);
+      });
       
-      doc.pipe(res);
+      doc.on('error', (err) => {
+        console.error("PDF generation error:", err);
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      });
 
       const navyBlue = "#1E2B42";
       const gold = "#F3AE1B";
@@ -653,7 +675,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.end();
     } catch (error) {
       console.error("Error generating PDF:", error);
-      res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      }
     }
   });
 
