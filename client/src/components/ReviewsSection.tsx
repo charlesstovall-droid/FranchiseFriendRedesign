@@ -61,6 +61,38 @@ const googleReviews = [
     text: "I've always thought that I would be buying a Chick-Fil-A or Subway. Charles opened up so many more opportunities. I was enlightened by the process that took me through to ensure I was able to select the right franchise for me and my family. He always took a personalized approach with me and made sure my goals were in line with the Franchisor.",
     platform: "Google",
   },
+  {
+    author: "Maria Riffe",
+    role: "Local Guide • 5 Reviews",
+    rating: 5,
+    date: "11 weeks ago",
+    text: "Chuck is so very thorough and professional. I highly recommend working with him. He takes the time to educate and explain, in a way that is obvious he is passionate about his knowledge. Thank you again Chuck for your direction in helping us make the best business decision currently for my family and I.",
+    platform: "Google",
+  },
+  {
+    author: "DK Patel",
+    role: "Local Guide • 16 Reviews",
+    rating: 5,
+    date: "15 weeks ago",
+    text: "Excellent partner and guide in our journey into the Franchise world. We gained valuable exposure to what is suitable and received great advice to help address our concerns and anxiety as we prepared to take a significant step from the corporate world to Franchising. Reached the finish line together, but unfortunately, we had to pause due to the shifting political policies and economic uncertainties. Would recommend to friends and family.",
+    platform: "Google",
+  },
+  {
+    author: "Brandon Dunevant",
+    role: "Local Guide • 16 Reviews",
+    rating: 5,
+    date: "20 weeks ago",
+    text: "Charles was helpful pointing out some real potential pitfalls that we wouldn't have seen coming! Highly recommend getting him involved in any high stakes transaction!",
+    platform: "Google",
+  },
+  {
+    author: "Nate F",
+    role: "Local Guide • 10 Reviews",
+    rating: 5,
+    date: "28 weeks ago",
+    text: "Charles was fantastic to work with. He's incredibly knowledgeable about franchising, but what really stands out is how much he genuinely cares about helping you find the right fit. He's honest, professional, and patient throughout the entire process. I highly recommend him to anyone considering franchise ownership.",
+    platform: "Google",
+  },
 ];
 
 function StarRating({ rating }: { rating: number }) {
