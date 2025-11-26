@@ -4,9 +4,9 @@ import { ExternalLink } from "lucide-react";
 const mediaFeatures = [
   {
     outlet: "International Franchise Association",
-    title: "Franchise Due Diligence Checklist",
-    description: "Essential resources and step-by-step checklist for evaluating franchise opportunities before investing.",
-    link: "https://www.franchise.org/franchise-research-center/franchisee-toolkit",
+    title: "Franchise Due Diligence Resources",
+    description: "Essential resources and step-by-step guide for evaluating franchise opportunities before investing.",
+    link: "https://www.franchise.org/franchising-overview/diligence-in-franchising/",
     color: "from-blue-500/10 to-blue-600/5",
   },
   {
@@ -18,16 +18,16 @@ const mediaFeatures = [
   },
   {
     outlet: "Franchise Business Review",
-    title: "Best Franchises Ranked by Satisfaction",
-    description: "Data-driven ranking of highest-satisfaction franchises based on 40,000+ franchisee reviews and ratings.",
-    link: "https://www.franchisebusinessreview.com/rankings/best",
+    title: "Top 200 Franchises Ranked by Satisfaction",
+    description: "Data-driven ranking of 200 highest-satisfaction franchises based on 34,000+ franchisee reviews.",
+    link: "https://franchisebusinessreview.com/lists/top-200-franchises/",
     color: "from-green-500/10 to-green-600/5",
   },
   {
     outlet: "Small Business Administration",
-    title: "Starting a Franchise Business",
-    description: "Official SBA guide covering franchise fundamentals, financial planning, and regulatory requirements.",
-    link: "https://www.sba.gov/business-guide/launch-your-business/start-franchise",
+    title: "Buy an Existing Business or Franchise",
+    description: "Official SBA guide covering franchise fundamentals, financial planning, due diligence, and SBA loan options.",
+    link: "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise",
     color: "from-purple-500/10 to-purple-600/5",
   },
 ];
