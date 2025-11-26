@@ -25,7 +25,7 @@ export function Footer() {
               Personal guidance through the complexities of franchise ownership with honesty, integrity, and real-world experience.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Linkedin className="w-5 h-5" /></a>
+              <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Linkedin className="w-5 h-5" /></a>
               <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Twitter className="w-5 h-5" /></a>
               <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Facebook className="w-5 h-5" /></a>
             </div>
