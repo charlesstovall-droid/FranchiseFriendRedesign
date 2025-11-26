@@ -354,7 +354,7 @@ export default function Phase3() {
             </Card>
           </motion.div>
 
-          {/* Next Steps */}
+          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -365,14 +365,32 @@ export default function Phase3() {
               <h3 className="text-lg font-bold text-primary mb-1">Validation Complete?</h3>
               <p className="text-sm text-muted-foreground">Once you've validated with franchise owners and corporate, you're ready for Discovery Day—your final step before deciding.</p>
             </div>
-            <Button
-              onClick={handleMarkComplete}
-              disabled={loading || isComplete}
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
-              data-testid="button-complete-phase3"
-            >
-              {isComplete ? "✓ Phase 3 Complete" : "Complete Phase 3"}
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                onClick={() => setLocation("/phase2")}
+                variant="outline"
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                data-testid="button-previous-phase"
+              >
+                ← Previous Phase
+              </Button>
+              <Button
+                onClick={() => setLocation("/phase4")}
+                variant="outline"
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                data-testid="button-next-phase"
+              >
+                Next Phase →
+              </Button>
+              <Button
+                onClick={handleMarkComplete}
+                disabled={loading || isComplete}
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
+                data-testid="button-complete-phase3"
+              >
+                {isComplete ? "✓ Phase 3 Complete" : "Complete Phase 3"}
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>

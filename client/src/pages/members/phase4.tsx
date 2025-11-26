@@ -334,7 +334,7 @@ export default function Phase4() {
             </Card>
           </motion.div>
 
-          {/* Completion */}
+          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -345,14 +345,24 @@ export default function Phase4() {
               <h3 className="text-lg font-bold text-primary mb-1">Journey Complete</h3>
               <p className="text-sm text-muted-foreground">You've completed all four phases of discovery. You're ready to make your franchise decision with confidence.</p>
             </div>
-            <Button
-              onClick={handleMarkComplete}
-              disabled={loading || isComplete}
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
-              data-testid="button-complete-phase4"
-            >
-              {isComplete ? "✓ All Complete" : "Mark Complete"}
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                onClick={() => setLocation("/phase3")}
+                variant="outline"
+                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                data-testid="button-previous-phase"
+              >
+                ← Previous Phase
+              </Button>
+              <Button
+                onClick={handleMarkComplete}
+                disabled={loading || isComplete}
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
+                data-testid="button-complete-phase4"
+              >
+                {isComplete ? "✓ All Complete" : "Mark Complete"}
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
