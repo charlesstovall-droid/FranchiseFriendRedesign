@@ -412,6 +412,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, error: "Invitation already used" });
       }
       const member = await storage.redeemInvitation(code, email, name, brandData);
+      
+      // Send welcome email after redemption
+      try {
+        let transporter;
+        if (process.env.EMAIL_SERVICE === "production") {
+          transporter = nodemailer.createTransport({
+            service: process.env.EMAIL_PROVIDER || "gmail",
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD,
+            },
+          });
+        } else {
+          const testAccount = await nodemailer.createTestAccount();
+          transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false,
+            auth: {
+              user: testAccount.user,
+              pass: testAccount.pass,
+            },
+          });
+        }
+
+        const mailOptions = {
+          from: 'noreply@franchisefriend.net',
+          to: email,
+          subject: 'Welcome to Your Franchise Discovery Journey - Charles Stovall',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              <h2 style="color: #1E2B42;">Welcome to Franchise Friend, ${name}!</h2>
+              <p>Your account is now active and ready to explore franchise opportunities aligned with your goals.</p>
+              <p style="margin: 20px 0;">
+                <a href="https://franchisefriend.net/phase1" style="background-color: #F3AE1B; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">Access Your Discovery Portal</a>
+              </p>
+              <h3 style="color: #1E2B42; margin-top: 30px;">What's Next:</h3>
+              <ol style="color: #666;">
+                <li>Start Phase 1: Discovery - Begin understanding your ideal franchise lifestyle</li>
+                <li>Complete your Ideal Day Blueprint</li>
+                <li>Explore verified franchises that match your profile</li>
+                <li>Progress through Phases 2, 3, and 4 at your own pace</li>
+              </ol>
+              <p style="color: #666; font-size: 14px; margin-top: 30px;">
+                Questions? Reach out to Charles directly—I'm here to guide you through every step.
+              </p>
+              <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px;">
+                Best regards,<br>
+                <strong>Charles Stovall</strong><br>
+                Franchise Friend<br>
+                <a href="https://franchisefriend.net" style="color: #F3AE1B; text-decoration: none;">franchisefriend.net</a>
+              </p>
+            </div>
+          `,
+        };
+
+        await transporter.sendMail(mailOptions);
+      } catch (emailError) {
+        console.error("Error sending welcome email:", emailError);
+        // Don't fail if email fails - member account is already created
+      }
+
       res.json({ success: true, member });
     } catch (error: any) {
       console.error("Error redeeming invitation:", error);
