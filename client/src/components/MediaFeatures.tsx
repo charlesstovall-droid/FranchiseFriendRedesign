@@ -4,9 +4,9 @@ import { ExternalLink } from "lucide-react";
 const mediaFeatures = [
   {
     outlet: "International Franchise Association",
-    title: "Franchise Due Diligence Guide",
-    description: "Essential resources and checklist for evaluating franchise opportunities before investing.",
-    link: "https://www.franchise.org/resources",
+    title: "Franchise Due Diligence Checklist",
+    description: "Essential resources and step-by-step checklist for evaluating franchise opportunities before investing.",
+    link: "https://www.franchise.org/franchise-research-center/franchisee-toolkit",
     color: "from-blue-500/10 to-blue-600/5",
   },
   {
@@ -18,9 +18,9 @@ const mediaFeatures = [
   },
   {
     outlet: "Franchise Business Review",
-    title: "Top Franchises by Satisfaction",
-    description: "Data-driven analysis of highest-satisfaction franchises based on 40,000+ franchisee reviews and ratings.",
-    link: "https://www.franchisebusinessreview.com/best-franchises",
+    title: "Best Franchises Ranked by Satisfaction",
+    description: "Data-driven ranking of highest-satisfaction franchises based on 40,000+ franchisee reviews and ratings.",
+    link: "https://www.franchisebusinessreview.com/rankings/best",
     color: "from-green-500/10 to-green-600/5",
   },
   {
