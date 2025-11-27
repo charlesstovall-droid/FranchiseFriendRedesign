@@ -29,12 +29,11 @@ export default function BlackBook() {
     <div 
       className="min-h-screen bg-gradient-to-b from-primary/5 to-background"
       style={{
-        backgroundImage: 'url(/attached_assets/Charles-Stovall-Banner-Icon-Black_1764210061810.png)',
+        backgroundImage: 'url(/watermark.png)',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'bottom right',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '300px',
-        opacity: 1
+        backgroundSize: '300px'
       }}
     >
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 max-w-3xl">
