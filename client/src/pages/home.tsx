@@ -14,7 +14,16 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-secondary/30">
+    <div 
+      className="min-h-screen bg-background text-foreground font-sans selection:bg-secondary/30"
+      style={{
+        backgroundImage: 'url(/watermark.png)',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'bottom right',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '300px'
+      }}
+    >
       <Navbar />
       <main>
         <Hero />
