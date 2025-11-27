@@ -22,8 +22,7 @@ export default function Home() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '300px',
-        backgroundBlendMode: 'multiply',
-        opacity: 0.75
+        filter: 'grayscale(100%) opacity(10%)'
       }}
     >
       <Navbar />
