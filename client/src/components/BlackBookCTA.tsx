@@ -110,19 +110,24 @@ export function BlackBookCTA() {
               ))}
             </ul>
 
-            <p className="text-sm text-gray-400 mb-8">
-              Free PDF. Zero spam. Just the truth.
+            <p className="text-sm text-gray-400 mb-2">
+              Free 13+ page PDF guide. Zero spam. Just the truth.
             </p>
+            
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-bold mb-6 border border-red-500/20">
+              <span className="w-2 h-2 rounded-full bg-red-500" />
+              Revealed secrets franchisors don't want you to read
+            </div>
 
             <Link href="/black-book">
-              <Button className="bg-secondary hover:bg-secondary/90 text-primary font-bold text-lg h-12 px-8 group">
-                Get The Black Book
+              <Button className="bg-secondary hover:bg-secondary/90 text-primary font-bold text-lg h-12 px-8 group w-full">
+                Download Free Black Book Now
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
-            <p className="text-xs text-gray-500 mt-6">
-              Download instantly after providing your email
+            <p className="text-xs text-gray-500 mt-4 text-center">
+              Join 100+ franchise explorers who got the insider knowledge
             </p>
           </motion.div>
         </div>
