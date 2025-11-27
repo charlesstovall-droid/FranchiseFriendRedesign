@@ -31,10 +31,9 @@ export default function BlackBook() {
       style={{
         backgroundImage: 'url(/watermark.png)',
         backgroundAttachment: 'fixed',
-        backgroundPosition: 'bottom right',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '300px',
-        opacity: 0.98
+        backgroundSize: '300px'
       }}
     >
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 max-w-3xl">

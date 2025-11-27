@@ -19,7 +19,7 @@ export default function Home() {
       style={{
         backgroundImage: 'url(/watermark.png)',
         backgroundAttachment: 'fixed',
-        backgroundPosition: 'bottom right',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '300px'
       }}

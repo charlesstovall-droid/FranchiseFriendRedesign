@@ -1024,7 +1024,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const addWatermark = () => {
         try {
           const watermarkPath = "./attached_assets/Charles-Stovall-Banner-Icon-Black_1764210061810.png";
-          doc.image(watermarkPath, 350, 400, { width: 200, opacity: 0.04 });
+          doc.image(watermarkPath, 300, 360, { width: 200, opacity: 0.02 });
         } catch (err) {
           // Silently skip watermark if image not found
         }
