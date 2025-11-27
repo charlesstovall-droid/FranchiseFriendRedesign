@@ -33,7 +33,9 @@ export default function BlackBook() {
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '300px'
+        backgroundSize: '300px',
+        backgroundBlendMode: 'multiply',
+        opacity: 0.75
       }}
     >
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 max-w-3xl">

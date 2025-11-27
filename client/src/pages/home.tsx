@@ -21,7 +21,9 @@ export default function Home() {
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '300px'
+        backgroundSize: '300px',
+        backgroundBlendMode: 'multiply',
+        opacity: 0.75
       }}
     >
       <Navbar />
