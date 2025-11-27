@@ -26,19 +26,17 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Linkedin className="w-5 h-5" /></a>
-              <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Twitter className="w-5 h-5" /></a>
-              <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Facebook className="w-5 h-5" /></a>
             </div>
           </div>
 
           <div>
             <h3 className="font-serif font-bold text-lg mb-6 text-secondary">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#services" className="text-primary-foreground/70 hover:text-white transition-colors">Services</a></li>
-              <li><a href="#podcast" className="text-primary-foreground/70 hover:text-white transition-colors">Podcast</a></li>
-              <li><a href="#testimonials" className="text-primary-foreground/70 hover:text-white transition-colors">Success Stories</a></li>
-              <li><a href="#about" className="text-primary-foreground/70 hover:text-white transition-colors">About Charles</a></li>
+              <li><a href="/" className="text-primary-foreground/70 hover:text-white transition-colors">Home</a></li>
+              <li><a href="/#services" className="text-primary-foreground/70 hover:text-white transition-colors">Services</a></li>
+              <li><a href="/podcasts" className="text-primary-foreground/70 hover:text-white transition-colors">Podcast</a></li>
+              <li><a href="/#reviews" className="text-primary-foreground/70 hover:text-white transition-colors">Success Stories</a></li>
+              <li><a href="/#about" className="text-primary-foreground/70 hover:text-white transition-colors">About Charles</a></li>
             </ul>
           </div>
 
@@ -47,8 +45,8 @@ export function Footer() {
             <ul className="space-y-3">
               <li><a href="/blog" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Latest Blog Posts</a></li>
               <li><a href="/faq" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">FAQ</a></li>
-              <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Financing Guide</a></li>
-              <li><a href="#" className="text-primary-foreground/70 hover:text-white transition-colors">Franchise 101</a></li>
+              <li><a href="/black-book" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Black Book</a></li>
+              <li><a href="/franchise-brands" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Franchise Brands</a></li>
             </ul>
           </div>
 
