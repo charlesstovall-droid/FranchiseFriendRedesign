@@ -26,7 +26,17 @@ export default function BlackBook() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
+    <div 
+      className="min-h-screen bg-gradient-to-b from-primary/5 to-background"
+      style={{
+        backgroundImage: 'url(/attached_assets/Charles-Stovall-Banner-Icon-Black_1764210061810.png)',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'bottom right',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '300px',
+        opacity: 1
+      }}
+    >
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 max-w-3xl">
         {/* Back Link */}
         <Link href="/" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-12 font-medium">

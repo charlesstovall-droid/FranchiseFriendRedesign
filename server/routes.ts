@@ -1020,8 +1020,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const green = "#9BD7B3";
       const red = "#C00000";
       const pageWidth = 512 - 2 * 10;
+      
+      const addWatermark = () => {
+        try {
+          const watermarkPath = "./attached_assets/Charles-Stovall-Banner-Icon-Black_1764210061810.png";
+          doc.image(watermarkPath, 350, 400, { width: 200, opacity: 0.08 });
+        } catch (err) {
+          // Silently skip watermark if image not found
+        }
+      };
 
       // PAGE 1 - TITLE PAGE
+      addWatermark();
       doc.fontSize(36).font("Helvetica-Bold").fillColor(navyBlue).text("The Black Book", { align: "center" });
       doc.fontSize(32).fillColor(gold).text("of Franchising", { align: "center" });
       doc.moveDown(1.5);
@@ -1034,6 +1044,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(10).fillColor("#666666").text("187 Pages of Franchise Investment Intelligence", { align: "center" });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 2 - TABLE OF CONTENTS
       doc.fontSize(18).font("Helvetica-Bold").fillColor(navyBlue).text("Table of Contents");
@@ -1054,6 +1065,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ], { width: pageWidth, lineGap: 8 });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 3 - CHAPTER 1
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 1: The Franchising Reality Check");
@@ -1077,6 +1089,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(10).fillColor("#000000").text("This isn't meant to discourage you. It's meant to set expectations. For the right person with the right attitude, franchising can be incredibly rewarding. But you need to enter with your eyes open.", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 4 - CHAPTER 2
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 2: 37 Red-Flag Phrases in Every FDD");
@@ -1099,6 +1112,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ], { width: pageWidth, lineGap: 4 });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 5 - CHAPTER 3
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 3: Decoding Item 19 Financial Data");
@@ -1123,6 +1137,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).text("If an 'average' franchisee earns $150K gross, they might actually lose money after expenses, labor, and debt service. Always ask for franchisees who are currently losing money - not just the success stories.", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 6 - CHAPTER 4
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 4: The Real Cost of Franchising");
@@ -1148,6 +1163,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).text("And you won't see a profit for 18-36 months if you're lucky.", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 7 - CHAPTER 5
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 5: Why 60% of Franchisees Lose Money");
@@ -1172,6 +1188,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).text("You're paying for a 'proven' system but still assuming all the business risk. The system proved it works for the franchisor—not necessarily for you.", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 8 - CHAPTER 6
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 6: The Renewal Trap");
@@ -1198,6 +1215,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).fillColor(red).font("Helvetica-Bold").text("This is how franchisors extract maximum value from franchisees over time.");
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 9 - CHAPTER 7
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 7: Broker Conflicts of Interest");
@@ -1223,6 +1241,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).text("Recommending franchises without understanding your business goals • Rushing you to sign • Avoiding discussions about failure rates • Not connecting you with struggling franchisees • Discouraging legal review of the FDD", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 10 - CHAPTER 8
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 8: Your Due Diligence Strategy");
@@ -1248,6 +1267,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(9).text("See Chapter 9 for the specific questions to ask. Don't accept vague answers. If the franchisor won't answer clearly, that's a red flag.", { width: pageWidth });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 11 - CHAPTER 9
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 9: Critical Questions for Franchisors");
@@ -1277,6 +1297,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ], { width: pageWidth, lineGap: 4 });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 12 - CHAPTER 10
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 10: Red Flags That Mean 'Run'");
@@ -1299,6 +1320,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ], { width: pageWidth, lineGap: 5 });
 
       doc.addPage();
+      addWatermark();
 
       // PAGE 13 - CHAPTER 11 & CLOSING
       doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 11: Negotiation Tactics");
