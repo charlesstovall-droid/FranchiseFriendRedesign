@@ -44,7 +44,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-lg leading-relaxed">
-            60% of franchisees lose money. Most don't discover red flags until it's too late. Charles Stovall helps you avoid the traps, find the right opportunity, and build lasting wealth through franchise ownership.
+            I've guided 100+ franchisees to find their perfect opportunity using insider knowledge and rigorous due diligence. Skip the confusion, avoid costly mistakes, and find a franchise that's truly right for you.
           </p>
           
           <p className="text-base text-muted-foreground/80 mb-8 max-w-lg leading-relaxed font-semibold">
