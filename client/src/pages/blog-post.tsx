@@ -1105,18 +1105,18 @@ export default function BlogPost() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="pt-24 pb-8 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+      <section className="pt-32 pb-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <a href="/blog" className="inline-flex items-center gap-2 text-accent-pop hover:text-accent-pop/80 mb-6 transition-colors">
+            <a href="/blog" className="inline-flex items-center justify-center gap-2 text-accent-pop hover:text-accent-pop/80 mb-8 transition-colors">
               <ChevronLeft className="w-4 h-4" />
               Back to Blog
             </a>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{post.title}</h1>
-            <div className="flex items-center gap-4 text-primary-foreground/70">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-8">{post.title}</h1>
+            <div className="flex items-center justify-center gap-4 text-primary-foreground/70">
               <span>{post.date}</span>
               <span>•</span>
               <span>By {post.author}</span>

@@ -134,14 +134,14 @@ export default function Blog() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="pt-24 pb-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="pt-32 pb-20 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
+        <div className="container mx-auto px-4 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Franchise Insights & Resources</h1>
-            <p className="text-lg text-primary-foreground/80 max-w-2xl">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">Franchise Insights & Resources</h1>
+            <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
               Expert articles and guides to help you navigate the franchise ownership journey with confidence.
             </p>
           </motion.div>
@@ -157,7 +157,7 @@ export default function Blog() {
             transition={{ delay: 0.1 }}
             className="mb-12"
           >
-            <h3 className="text-lg font-bold text-primary mb-4">Filter by Category</h3>
+            <h3 className="text-2xl font-bold text-primary mb-6">Filter by Category</h3>
             <div className="flex flex-wrap gap-2">
               <Button
                 onClick={() => setSelectedCategory(null)}
