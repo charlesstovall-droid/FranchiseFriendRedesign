@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Play, Headphones } from "lucide-react";
-import podcastImage from "@assets/generated_images/abstract_concept_of_business_growth_and_strategy.png";
 
 export function PodcastSection() {
   return (
@@ -14,9 +13,10 @@ export function PodcastSection() {
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-square max-w-md mx-auto lg:mr-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
               <img 
-                src={podcastImage} 
+                src="/podcast-artwork.png" 
                 alt="The Charles Stovall Podcast" 
-                className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
+                data-testid="img-podcast-artwork"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
