@@ -66,7 +66,7 @@ If you answered yes to these questions, franchising might be worth a closer look
   },
   "create-business-plan": {
     title: "How to Create a Business Plan",
-    date: "February 12, 2025",
+    date: "February 10, 2025",
     author: "Charles Stovall",
     content: `A solid business plan is the backbone of franchise success. Whether you're new to business ownership or already seasoned, having a clear roadmap transforms vague dreams into actionable strategies. Let's walk through exactly how to build a business plan that sets you up for success.
 
