@@ -25,15 +25,7 @@ interface Franchise {
   description?: string;
 }
 
-// Complete franchise portfolio - 200+ verified brands with accurate investment data
 const franchises: Franchise[] = [
-  // UNDER $50K
-  { name: "Blingle!", industry: "Holiday Lighting", investmentRange: "$35,000 - $95,000", minCash: "$30,000", category: "under50k" },
-  { name: "Scoop Brothers", industry: "Pet Waste Services", investmentRange: "$30,000 - $80,000", minCash: "$20,000", category: "under50k" },
-  { name: "Wonderly Lights", industry: "Holiday Lighting", investmentRange: "$35,000 - $95,000", minCash: "$30,000", category: "under50k" },
-  { name: "ERA Group", industry: "Real Estate", investmentRange: "$30,000 - $150,000", minCash: "$20,000", category: "under50k" },
-
-  // $50K - $200K - Verified Investment Ranges
   { name: "1-800 Water Damage", industry: "Water Damage Restoration", category: "50to200k", description: "This recession-resistant brand focuses on restoring property after water, smoke, or sewage damage, leveraging strong insurance relationships. It offers a robust B2B model where owners manage operations and networking rather than performing the labor themselves." },
   { name: "1-800-Packouts", industry: "Packout Services", category: "50to200k", description: "Specializing in the careful inventory, packing, and storage of personal contents during insurance claims, this concept pairs perfectly with restoration franchises. It allows for high margins by focusing on the protection of valuables rather than structural repairs." },
   { name: "1-800-STRIPER", industry: "Parking Lot Striping", category: "200to500k", description: "This niche B2B brand focuses on parking lot striping, a maintenance service that virtually every commercial property requires. It offers a low-overhead, van-based model with recurring demand from property managers and HOAs." },
@@ -49,278 +41,80 @@ const franchises: Franchise[] = [
   { name: "Always Best Care Senior Services (US)", industry: "Senior Care", category: "50to200k", description: "This brand offers a continuum of care, including in-home care, assisted living placement, and skilled nursing, maximizing revenue potential from each client. It is a relationship-driven business perfect for those who want to be a trusted resource for families in their community." },
   { name: "Art of Drawers", industry: "Interior Organization", category: "50to200k", description: "This unique niche focuses on custom organization solutions for existing cabinets and drawers, avoiding the complexity of full renovations. It is a low-overhead, high-margin sales model that appeals to homeowners looking for functional luxury without the construction mess." },
   { name: "Assisted Living Locators", industry: "Senior Care Placement", category: "50to200k", description: "This no-cost-to-client placement service helps families find the right senior living solutions, earning commissions from the facilities. It is a low-investment, home-based model that rewards strong networking and relationship building within the senior care ecosystem." },
-  { name: "Aire Serv", industry: "HVAC Services", investmentRange: "$85,000 - $220,000", minCash: "$75,000", category: "50to200k" },
   { name: "Aussie Pet Mobile", industry: "Pet Grooming", category: "50to200k", description: "This mobile grooming service brings the salon directly to the customer's driveway, offering convenience that busy pet owners love. It is a scalable, van-based business that eliminates the need for expensive retail real estate." },
   { name: "Bar-B-Clean", industry: "BBQ Grill Cleaning", category: "50to200k", description: "This niche service focuses on cleaning and maintaining high-end outdoor grills, a task most homeowners dread doing themselves. It offers a low-cost entry point with high repeat business potential, especially in affluent neighborhoods." },
   { name: "Bath Tune-Up", industry: "Bathroom Remodeling", category: "50to200k", description: "Specializing in curated bathroom updates rather than full demolition remodels, this concept offers a faster, less intrusive renovation experience. It allows franchisees to capture the middle-market demand for affordable luxury with quicker project turnover." },
-  { name: "beem Light Sauna", industry: "Wellness/Sauna Services", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Benetrends", industry: "Financial Services", investmentRange: "$50,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Big Frog Custom T-Shirts & More", industry: "Custom T-Shirts/Retail", investmentRange: "$85,000 - $200,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Bio-One", industry: "Biohazard/Crime Scene Cleanup", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Bloomin' Blinds", industry: "Blinds/Window Coverings", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Blue Kangaroo Packoutz", industry: "Packout Services", investmentRange: "$50,000 - $130,000", minCash: "$45,000", category: "50to200k" },
-  { name: "Blue Moon Estate Sales", industry: "Estate Sales", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Body20", industry: "Fitness/EMS Training", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Boost Home Healthcare", industry: "Home Healthcare", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
-  { name: "British Swim School", industry: "Swim Lessons", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Bach to Rock", industry: "Music Lessons", investmentRange: "$200,000 - $400,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Budget Blinds", industry: "Blinds/Window Coverings", investmentRange: "$140,500 - $211,250", minCash: "$50,000", category: "50to200k" },
-  { name: "Bumble Bee Blinds", industry: "Blinds/Window Coverings", investmentRange: "$60,000 - $145,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Cabinet IQ", industry: "Cabinet Refacing", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "CareBuilders at Home", industry: "Senior Home Care", investmentRange: "$60,000 - $180,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Clothes Bin", industry: "Consignment Retail", investmentRange: "$150,000 - $300,000", minCash: "$80,000", category: "200to500k" },
-  { name: "CarePatrol", industry: "Senior Care Placement", investmentRange: "$60,000 - $130,000", minCash: "$50,000", category: "50to200k" },
-  { name: "CertaPro Painters", industry: "Interior/Exterior Painting", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "CMIT Solutions", industry: "IT Services", investmentRange: "$102,000 - $159,450", minCash: "$60,000", category: "50to200k" },
-  { name: "ComForCare Home Care", industry: "Senior Home Care", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
-  { name: "COOL-BINZ", industry: "Dumpster Rental", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "CoolVu Glass and Surface Solutions", industry: "Window Film/Glass Treatment", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Creative Colors International", industry: "Flooring/Color Consulting", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "CyberGlobal", industry: "Cybersecurity Services", investmentRange: "$100,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "D1 Sports Training", industry: "Athletic Training", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Dakota London Hair Extensions", industry: "Hair Services", investmentRange: "$150,000 - $300,000", minCash: "$80,000", category: "200to500k" },
-  { name: "Dryer Vent Wizard", industry: "Dryer Vent Cleaning", investmentRange: "$45,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Degree Wellness", industry: "Fitness/Wellness", investmentRange: "$70,000 - $170,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Deka Lash", industry: "Eyelash Extensions", investmentRange: "$50,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "dermani MEDSPA®", industry: "Medical Spa", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Discover Strength", industry: "Fitness", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "ecomaids", industry: "Green Cleaning", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Ellie Mental Health", industry: "Mental Health Services", investmentRange: "$392,275 - $679,575", minCash: "$60,000", category: "50to200k" },
-  { name: "EverLine Coatings", industry: "Parking Lot Coating", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Exercise Coach", industry: "Fitness Training", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Express Employment Professionals", industry: "Staffing Services", investmentRange: "$100,000 - $300,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Face Foundrie", industry: "Skincare/Cosmetics", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Fastest Labs", industry: "Drug Testing", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Fibrenew", industry: "Leather/Vinyl Repair", investmentRange: "$100,000 - $120,000", minCash: "$15,000", category: "50to200k" },
-  { name: "FirstLight Home Care", industry: "Senior Home Care", investmentRange: "$65,000 - $160,000", minCash: "$55,000", category: "50to200k" },
-  { name: "Fish Window Cleaning", industry: "Window Cleaning", investmentRange: "$102,800 - $167,500", minCash: "$75,000", category: "50to200k" },
-  { name: "Five Star Bath Solutions", industry: "Bathroom Remodeling", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Five Star Painting", industry: "Painting Services", investmentRange: "$75,000 - $195,000", minCash: "$60,000", category: "50to200k" },
-  { name: "FlyLock Security Solutions", industry: "Security Systems", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Floor Coverings International", industry: "Flooring Sales", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
-  { name: "FocalPoint Coaching", industry: "Business Coaching", investmentRange: "$85,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "FranFund", industry: "Franchise Financing", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Fundraising University", industry: "Fundraising Services", investmentRange: "$55,000 - $140,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Furry Land Mobile Grooming", industry: "Pet Grooming", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Gatsby Glass", industry: "Glass Repair", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Glass Doctor", industry: "Glass Repair/Replacement", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "200to500k" },
-  { name: "goGLOW", industry: "Beauty/Tanning", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Gotcha Covered", industry: "Blinds/Shades", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Grasons Estate Sales & Business Liquidations", industry: "Estate Sales", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Ground Guys", industry: "Landscaping/Hardscaping", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Groovy Hues", industry: "Painting/Art", investmentRange: "$40,000 - $100,000", minCash: "$35,000", category: "50to200k" },
-  { name: "Hallmark Homecare", industry: "Senior Home Care", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "HouseMaster", industry: "Home Inspection", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "HealthSource Chiropractic", industry: "Chiropractic", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Hello Sugar", industry: "Sugar/Wax Services", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Heroes Lawn Care", industry: "Lawn Care", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
-  { name: "HOMEstretch", industry: "Real Estate", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "House Doctors", industry: "Handyman Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Hunters-Humbug (formerly Mosquito Hunters)", industry: "Pest Control", investmentRange: "$55,000 - $140,000", minCash: "$45,000", category: "50to200k" },
-  { name: "Ideal Siding", industry: "Siding/Exterior Services", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "iFlex", industry: "Fitness", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "iFOAM", industry: "Spray Foam Insulation", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Image Studios", industry: "Photography", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Insulation Commandos", industry: "Insulation Services", investmentRange: "$85,000 - $210,000", minCash: "$70,000", category: "50to200k" },
-  { name: "ISI® Elite Training", industry: "Athletic Training", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "JETSET Pilates", industry: "Pilates Studio", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Joshua Tree Experts", industry: "Tree Services", investmentRange: "$60,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Jungle Driving School", industry: "Driving Training", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Junk King", industry: "Junk Removal", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "JUNKCO+", industry: "Junk Removal", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Kidokinetics", industry: "Kids Fitness", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Kitchen Guard", industry: "Kitchen Ventilation Cleaning", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Kitchen Tune-Up", industry: "Cabinet Refacing", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Kitchen Wise/Closet Wise", industry: "Organization Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Koala Insulation", industry: "Spray Foam Insulation", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Lawn Doctor", industry: "Lawn Care", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Lawn Pride", industry: "Lawn Care", investmentRange: "$70,000 - $185,000", minCash: "$55,000", category: "50to200k" },
-  { name: "Lightspeed Restoration", industry: "Water Damage Restoration", investmentRange: "$55,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "LIME Painting", industry: "Painting Services", investmentRange: "$65,000 - $155,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Maid Right", industry: "House Cleaning", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Molly Maid", industry: "House Cleaning", investmentRange: "$100,000 - $280,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Marigold Academy", industry: "Tutoring/Education", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Medi-Weightloss", industry: "Weight Loss/Medical", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Metal Supermarkets", industry: "Metal Supply", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Mighty Dog Roofing", industry: "Roofing Services", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Modern PURAIR", industry: "Air Quality/HVAC", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Mosquito Joe", industry: "Pest Control", investmentRange: "$60,000 - $145,000", minCash: "$45,000", category: "50to200k" },
-  { name: "Mosquito Sheriff", industry: "Pest Control", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Mosquito Shield", industry: "Pest Control", investmentRange: "$55,000 - $140,000", minCash: "$45,000", category: "50to200k" },
-  { name: "MosquitoNix", industry: "Pest Control", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Mr. Appliance", industry: "Appliance Repair", investmentRange: "$100,000 - $260,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Mr. Electric", industry: "Electrical Services", investmentRange: "$100,000 - $300,000", minCash: "$85,000", category: "50to200k" },
-  { name: "Mr. Handyman", industry: "Handyman Services", investmentRange: "$100,000 - $300,000", minCash: "$85,000", category: "50to200k" },
-  { name: "Mr. Rooter", industry: "Plumbing Services", investmentRange: "$100,000 - $300,000", minCash: "$85,000", category: "50to200k" },
-  { name: "Musicologie", industry: "Music Lessons", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "MY SALON Suite", industry: "Salon Suites", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Next Day Access", industry: "Accessibility Equipment", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "One You Love Homecare", industry: "Senior Home Care", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "All American Pet Resorts", industry: "Pet Boarding/Daycare", investmentRange: "$200,000 - $400,000", minCash: "$100,000", category: "200to500k" },
-  { name: "P3 Cost Analysts", industry: "Financial Services/Consulting", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Paint EZ", industry: "Painting Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Painter Bros", industry: "Painting Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Pink's Window Services", industry: "Window Services", investmentRange: "$80,000 - $180,000", minCash: "$55,000", category: "50to200k" },
-  { name: "PatchMaster", industry: "Drywall/Wall Repair", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Patrice & Associates", industry: "Business Consulting", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Paul Davis", industry: "Restoration Services", investmentRange: "$100,000 - $300,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Pause Studio", industry: "Wellness/Yoga", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Pilates Addiction", industry: "Pilates Studio", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "PlumbingPro", industry: "Plumbing Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Plunge House", industry: "Ice Bath/Cold Plunge", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Pure Green", industry: "Cleaning Services", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Pool Scouts", industry: "Pool Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Poolwerx", industry: "Pool Services", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Prism Specialty Restoration", industry: "Restoration Services", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Pro-Lift Garage Doors", industry: "Garage Door Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Project LeanNation", industry: "Fitness/Weight Loss", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Property Sellwise", industry: "Real Estate Services", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Puddle Pools", industry: "Pool Installation", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "RealClean Aircraft Detailing", industry: "Aircraft Detailing", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "redbox+Dumpsters", industry: "Dumpster Rental", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Renew Medic", industry: "Medical Aesthetics", investmentRange: "$423,111 - $734,326", minCash: "$80,000", category: "50to200k" },
-  { name: "Rainbow Restoration", industry: "Water Damage Restoration", investmentRange: "$100,000 - $300,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Real Property Management", industry: "Property Management", investmentRange: "$75,000 - $200,000", minCash: "$50,000", category: "50to200k" },
-  { name: "RestoPros", industry: "Restoration Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Restoration 1", industry: "Water Damage Restoration", investmentRange: "$75,000 - $200,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Right at Home", industry: "Senior Home Care", investmentRange: "$92,100 - $165,309", minCash: "$150,000", category: "50to200k" },
-  { name: "Roof Scientist", industry: "Roofing Services", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Rubbish Works", industry: "Junk Removal", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Senior Care Authority", industry: "Senior Care Placement", investmentRange: "$60,000 - $105,000", minCash: "$65,000", category: "50to200k" },
-  { name: "Senior Helpers", industry: "Senior Home Care", investmentRange: "$149,000 - $201,000", minCash: "$55,000", category: "50to200k" },
-  { name: "Seniors Helping Seniors", industry: "Senior Services", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Service Experts", industry: "HVAC Services", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Shrunk 3D", industry: "3D Printing", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Skin Experts by Brentwood Spa", industry: "Skincare/Spa", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "SkyRun Vacation Rentals", industry: "Property Management", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Soccer Stars", industry: "Kids Soccer", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Sola Salons", industry: "Salon Suites", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Sparkle Squad", industry: "Cleaning Services", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Speedy Freight", industry: "Freight Services", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Spray-Net", industry: "Cleaning/Restoration", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Stand Strong Fencing", industry: "Fence Installation", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Storm Guard Roofing and Construction", industry: "Roofing/Construction", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Stretch Zone", industry: "Stretching/Wellness", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "StretchMed", industry: "Stretching Services", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Schooley Mitchell", industry: "Telecom Consulting", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "ShelfGenie", industry: "Organization/Shelving", investmentRange: "$50,000 - $150,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Sugaring LA", industry: "Hair Removal", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Surface Experts", industry: "Cleaning/Restoration", investmentRange: "$80,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Surv", industry: "Surveillance Systems", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Taste Buds Kitchen", industry: "Cooking Classes", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "That 1 Painter", industry: "Painting Services", investmentRange: "$75,000 - $185,000", minCash: "$60,000", category: "50to200k" },
-  { name: "TeamLogic IT", industry: "IT Services", investmentRange: "$70,000 - $170,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Temperature Pro", industry: "HVAC Services", investmentRange: "$65,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Temporary Wall Systems", industry: "Modular Offices", investmentRange: "$100,000 - $250,000", minCash: "$75,000", category: "50to200k" },
-  { name: "The Brothers That Just Do Gutters", industry: "Gutter Services", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "The Designery", industry: "Design Services", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "The Dog Stop", industry: "Dog Daycare/Training", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "50to200k" },
-  { name: "The Glass Guru", industry: "Glass Repair/Replacement", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "The Grout Medic", industry: "Grout Cleaning/Sealing", investmentRange: "$55,000 - $140,000", minCash: "$45,000", category: "50to200k" },
-  { name: "The Maids", industry: "House Cleaning", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "The NOW Massage", industry: "Massage Therapy", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "THE SEALS - Refrigeration Gasket Specialists", industry: "Industrial Services", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "The Tox", industry: "Botox/Medical Aesthetics", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Tippi Toes", industry: "Dance/Ballet", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Top Rail Fence", industry: "Fence Installation", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Training Franchisor", industry: "Fitness Training", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Tutor Doctor (Canada Only)", industry: "Tutoring Services", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Two Maids", industry: "House Cleaning", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "U.S. Lawns", industry: "Lawn Care", investmentRange: "$100,000 - $300,000", minCash: "$100,000", category: "50to200k" },
-  { name: "Varsity Zone HVAC", industry: "HVAC Services", investmentRange: "$70,000 - $170,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Voda Cleaning & Restoration", industry: "Cleaning/Restoration", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Water Babies", industry: "Swim Lessons", investmentRange: "$100,000 - $250,000", minCash: "$80,000", category: "50to200k" },
-  { name: "Waterloo Turf", industry: "Lawn Services", investmentRange: "$75,000 - $190,000", minCash: "$60,000", category: "50to200k" },
-  { name: "VIO Med Spa", industry: "Medical Spa", investmentRange: "$150,000 - $350,000", minCash: "$100,000", category: "200to500k" },
-  { name: "WaveMAX Laundry", industry: "Laundromat", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Window Gang", industry: "Window Cleaning", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Window Genie", industry: "Window Cleaning", investmentRange: "$80,000 - $185,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Window Hero", industry: "Window Cleaning/Repair", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "WOW Windowboxes", industry: "Window Box Installation", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Zoom Drain", industry: "Drain Cleaning", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-
-  // $200K - $500K
-  { name: "Cascadia Pizza", industry: "Pizza Restaurant", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Chatime", industry: "Bubble Tea", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "DonutNV", industry: "Donut Shop", investmentRange: "$200,000 - $450,000", minCash: "$80,000", category: "200to500k" },
-  { name: "Floyd's 99 Barbershop", industry: "Barbershop", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Heights Wellness Retreat", industry: "Wellness/Fitness", investmentRange: "$300,000 - $600,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Ivybrook Academy", industry: "Childcare/Preschool", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "K9 Resorts", industry: "Pet Boarding", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Kilwins", industry: "Candy/Ice Cream Shop", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "LaundroLab", industry: "Laundromat", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Menchie's", industry: "Frozen Yogurt", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "MilkShake Factory", industry: "Smoothie/Milkshake Shop", investmentRange: "$200,000 - $450,000", minCash: "$80,000", category: "200to500k" },
-  { name: "Monster Mini Golf", industry: "Mini Golf/Entertainment", investmentRange: "$300,000 - $600,000", minCash: "$150,000", category: "200to500k" },
-  { name: "Pet Evolution", industry: "Pet Retail", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "PIRTEK USA / Canada", industry: "Fluid Systems", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Rolling Suds", industry: "Car Wash", investmentRange: "$200,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Soccer 5", industry: "Soccer Training", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Sourdough & Co.", industry: "Bakery", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Southern Steer Butcher", industry: "Butcher Shop", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "SPENGA", industry: "Fitness Studio", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Squeeze", industry: "Juice Bar", investmentRange: "$200,000 - $450,000", minCash: "$80,000", category: "200to500k" },
-  { name: "SWEAT440", industry: "Fitness/HIIT Studio", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Teriyaki Madness", industry: "Asian Cuisine", investmentRange: "$250,000 - $500,000", minCash: "$100,000", category: "200to500k" },
-  { name: "Woodhouse Spa", industry: "Day Spa", investmentRange: "$200,000 - $450,000", minCash: "$100,000", category: "200to500k" },
-
-  // $500K+
-  { name: "Sky Zone", industry: "Trampoline Park", investmentRange: "$500,000 - $1,200,000", minCash: "$250,000", category: "500plus" },
+  { name: "beem Light Sauna", industry: "Wellness/Sauna Services", category: "50to200k", description: "This wellness brand focuses on infrared light therapy in a spa-like setting, tapping into the growing demand for holistic health and recovery. The membership-based model provides recurring revenue and appeals to health-conscious communities." },
+  { name: "Benetrends", industry: "Financial Services", category: "50to200k", description: "While not a traditional franchise to own, Benetrends is a leading funding partner that helps candidates use their retirement funds tax-deferred to start a business. They are a critical resource for capitalizing your venture without debt." },
+  { name: "Big Frog Custom T-Shirts & More", industry: "Custom T-Shirts/Retail", category: "50to200k", description: "This retail concept revolutionizes custom apparel with direct-to-garment printing that allows for no minimum orders and 24-hour turnaround. It is a fun, creative business that serves both individual walk-ins and large B2B accounts like schools and local businesses." },
+  { name: "Bio-One", industry: "Biohazard/Crime Scene Cleanup", category: "50to200k", description: "Specializing in crime scene and trauma cleanup, this brand provides a highly necessary service with compassion and discretion. It is a recession-proof model with high margins, working closely with law enforcement and insurance companies." },
+  { name: "Blingle!", industry: "Holiday Lighting", category: "under50k", description: "This premier lighting franchise covers everything from landscape and patio lighting to holiday displays and event lighting. It offers year-round revenue opportunities by combining seasonal peaks with permanent installation projects." },
+  { name: "Bloomin' Blinds", industry: "Blinds/Window Coverings", category: "50to200k", description: "This mobile window covering franchise offers sales, installation, and repairs, giving it a unique advantage over sales-only competitors. The model is technology-driven and scalable, with low overhead and strong margins." },
+  { name: "Blue Kangaroo Packoutz", industry: "Packout Services", category: "50to200k", description: "Focusing on contents restoration, this brand restores furniture, art, and documents damaged by water or fire. It is a vital partner to restoration companies and offers a facility-based model where technical expertise drives high-value insurance claims." },
+  { name: "Blue Moon Estate Sales", industry: "Estate Sales", category: "50to200k", description: "This franchise professionalizes the estate sale industry, helping families liquidate assets with dignity and efficiency. It is a low-investment model that thrives on organization, marketing, and managing weekend sale events." },
+  { name: "Body20", industry: "Fitness/EMS Training", category: "50to200k", description: "Utilizing Electro-Muscle Stimulation (EMS) technology, this fitness concept delivers a full workout in just 20 minutes. It attracts busy professionals and provides a high-revenue-per-member model with a small studio footprint." },
+  { name: "Boost Home Healthcare", industry: "Home Healthcare", category: "50to200k", description: "This brand focuses on clinical, in-home medical care, bridging the gap between hospital and home recovery. It is a higher-level healthcare play that demands strong operational management but offers significant revenue potential in the medical sector." },
+  { name: "British Swim School", industry: "Swim Lessons", category: "50to200k", description: "This swim safety franchise operates out of rented pools in hotels and fitness centers, eliminating the need for expensive real estate build-outs. It is a high-margin, mission-driven business focused on saving lives and teaching water survival skills." },
+  { name: "Budget Blinds", industry: "Blinds/Window Coverings", category: "50to200k", description: "As the #1 window covering franchise in North America, this brand offers massive buying power and high brand recognition. It is a proven, home-based model that allows owners to offer premium custom solutions at competitive price points." },
+  { name: "Bumble Bee Blinds", industry: "Blinds/Window Coverings", category: "50to200k", description: "This technology-forward window treatment brand focuses on a modern customer experience and streamlined sales process. It offers a scalable mobile model backed by a parent company with deep resources in the home services sector." },
+  { name: "Cabinet IQ", industry: "Cabinet Refacing", category: "50to200k", description: "This brand modernizes the kitchen and bath remodeling experience with a high-tech showroom and simplified selection process. It targets the massive home renovation market with a model designed to be more efficient and customer-friendly than traditional contractors." },
+  { name: "CarePatrol", industry: "Senior Care Placement", category: "50to200k", description: "This senior placement agency helps families find safe and appropriate assisted living communities at no cost to them. It is a low-overhead, relationship-based business that generates revenue through referral commissions from partner facilities." },
+  { name: "Cascadia Pizza", industry: "Food Trucks", category: "50to200k", description: "Starting as a food truck and expanding to brick-and-mortar, this brand brings wood-fired pizza to local communities with a focus on quality and vibe. It offers a flexible footprint for owners who want to bring a beloved product to their neighborhood." },
+  { name: "CertaPro Painters", industry: "Interior/Exterior Painting", category: "50to200k", description: "The largest painting franchise in North America, CertaPro offers a highly scalable executive model focused on management and sales. Owners build large territories by managing teams of subcontractors for both residential and commercial projects." },
+  { name: "Chatime", industry: "Bubble Tea", category: "50to200k", description: "As a global leader in the bubble tea market, Chatime offers a trendy, high-volume beverage concept with a streamlined operation. It appeals to investors looking for a retail footprint with a simple menu and a young, loyal customer base." },
+  { name: "CMIT Solutions", industry: "IT Services", category: "50to200k", description: "This B2B franchise provides enterprise-level IT support and cybersecurity to small and medium-sized businesses. It is a recurring revenue model perfect for executive owners who want to serve the professional business community." },
+  { name: "ComForCare Home Care", industry: "Senior Home Care", category: "50to200k", description: "This brand provides non-medical in-home care with specialized programs for dementia and Alzheimer's patients. It is a scalable business for compassionate leaders who want to build a large team of caregivers to support the aging population." },
+  { name: "COOL-BINZ", industry: "Dumpster Rental", category: "50to200k", description: "This innovative portable storage concept utilizes climate-controlled bins, differentiating itself in the moving and storage market. It offers a semi-passive ownership potential with a focus on logistics and asset rental." },
+  { name: "CoolVu Glass and Surface Solutions", industry: "Window Film/Glass Treatment", category: "50to200k", description: "Specializing in architectural films and surface enhancements, this brand serves both residential and commercial clients with energy-saving and security solutions. It is a low-overhead model with diverse revenue streams from solar control to privacy graphics." },
+  { name: "Creative Colors International", industry: "Flooring/Color Consulting", category: "50to200k", description: "This mobile franchise specializes in the repair and restoration of leather, vinyl, and fabric, saving customers the cost of replacement. It serves a wide range of B2B clients, including car dealerships, restaurants, and medical facilities." },
+  { name: "D1 Sports Training", industry: "Athletic Training", category: "50to200k", description: "Founded by elite athletes, this fitness franchise offers scholastic and adult athletic training in a high-energy facility. It appeals to investors passionate about sports who want to impact youth development and adult fitness performance." },
+  { name: "Degree Wellness", industry: "Fitness/Wellness", category: "50to200k", description: "This self-care studio offers a variety of technology-driven wellness services like cryotherapy, infrared saunas, and red light therapy. It is a membership-based model designed for high throughput and minimal staffing requirements." },
+  { name: "Deka Lash", industry: "Eyelash Extensions", category: "50to200k", description: "This beauty brand focuses exclusively on eyelash extensions and brow services in a modern, membership-driven studio. It offers a recurring revenue model with high customer retention in the booming beauty services sector." },
+  { name: "dermani MEDSPA®", industry: "Medical Spa", category: "50to200k", description: "Bridging the gap between luxury day spas and medical clinics, this brand offers laser hair removal, injectables, and skin rejuvenation. It is a high-revenue model that capitalizes on the growing accessibility of medical aesthetics." },
+  { name: "Discover Strength", industry: "Fitness", category: "50to200k", description: "This science-based strength training concept focuses on efficient, 30-minute workouts guided by expert exercise physiologists. It attracts busy clients who value results and offers a high-retention membership model." },
+  { name: "DonutNV", industry: "Food Trucks", category: "50to200k", description: "This interactive mobile food trailer brings hot, fresh mini donuts to events and parties. It is a fun, event-based business with low entry costs and high margins, perfect for owner-operators or semi-absentee investors." },
+  { name: "ecomaids", industry: "Green Cleaning", category: "50to200k", description: "This eco-friendly cleaning franchise differentiates itself by using only non-toxic, allergen-free products. It appeals to health-conscious homeowners and offers a recurring revenue model with a focus on employee retention and quality service." },
+  { name: "Ellie Mental Health", industry: "Mental Health Services", category: "50to200k", description: "This innovative concept fills a critical gap in outpatient mental health care by combining a therapist-friendly culture with a highly accessible patient experience. It offers a scalable opportunity in a rapidly expanding medical niche with strong community impact." },
+  { name: "ERA Group", industry: "Real Estate", category: "under50k", description: "This B2B consulting franchise helps companies reduce overhead costs through expense management analysis. It is a white-collar, home-based business ideal for former executives with strong financial or corporate backgrounds." },
+  { name: "EverLine Coatings", industry: "Parking Lot Coating", category: "50to200k", description: "Specializing in parking lot line striping and pavement maintenance, this brand brings professionalism to a fragmented industry. It offers a B2B model with recurring maintenance contracts and strong potential for multi-unit scaling." },
+  { name: "Exercise Coach", industry: "Fitness Training", category: "50to200k", description: "Using bio-adaptive robotic technology, this fitness brand delivers a full workout in just two 20-minute sessions per week. It specifically targets the demographic that hates the traditional gym scene, offering a unique, low-impact solution." },
+  { name: "Express Employment Professionals", industry: "Staffing Services", category: "50to200k", description: "As a leading staffing franchise, this brand connects local businesses with qualified workers in industrial, office, and professional roles. It is a professional B2B sales office with massive revenue potential for owners who can build strong community relationships." },
+  { name: "Face Foundrie", industry: "Skincare/Cosmetics", category: "50to200k", description: "This modern facial bar focuses on efficient, accessible skincare services like 40-minute facials and lash lifts. It captures the affordable luxury market with a high-volume model and a sleek, open-concept studio design." },
+  { name: "Fastest Labs", industry: "Drug Testing", category: "50to200k", description: "This B2B franchise provides drug, alcohol, and DNA testing services for employers and individuals. It operates with standard business hours, low staffing requirements, and high margins driven by corporate compliance needs." },
+  { name: "Fibrenew", industry: "Leather/Vinyl Repair", category: "50to200k", description: "This mobile service specializes in the repair of leather, plastic, and vinyl, catering to automotive, aviation, medical, and residential markets. It is a hands-on, high-margin business with diverse revenue streams and low overhead." },
+  { name: "FirstLight Home Care", industry: "Senior Home Care", category: "50to200k", description: "Providing non-medical home care to seniors and adults with disabilities, this brand emphasizes a culture of care and strong caregiver support. It offers a scalable business model in a sector with explosive demographic demand." },
+  { name: "Fish Window Cleaning", industry: "Window Cleaning", category: "50to200k", description: "As the world's largest window cleaning franchise, this brand dominates the low-rise commercial and residential niche. It is a Monday-to-Friday business model that builds a valuable recurring revenue base through route density." },
+  { name: "Five Star Bath Solutions", industry: "Bathroom Remodeling", category: "50to200k", description: "This brand disrupts the bathroom remodeling industry with proprietary technology and a focus on one-day installations. It offers a scalable sales and management model that delivers high-end results without the headaches of general contracting." },
+  { name: "Floor Coverings International", industry: "Flooring Sales", category: "50to200k", description: "This mobile flooring franchise brings the showroom to the customer's home with a van containing thousands of samples. It offers a high average ticket and differentiates itself through a consultative sales process and superior customer convenience." },
+  { name: "Floyd's 99 Barbershop", industry: "Barbershop", category: "50to200k", description: "This hair care brand blends an old-school barbershop vibe with a rock-and-roll environment, appealing to a broad demographic. It is a manager-run investment model that generates high volume through a unique, repeatable customer experience." },
+  { name: "FocalPoint Coaching", industry: "Business Coaching", category: "50to200k", description: "This B2B franchise trains former executives to become certified business coaches and trainers. It is a low-overhead, high-impact consulting model that allows you to leverage your corporate experience to help other business owners succeed." },
+  { name: "FranFund", industry: "Franchise Financing", category: "50to200k", description: "FranFund is a premier funding partner that assists franchise candidates in securing the capital they need through 401(k) rollovers and SBA loans. They provide a streamlined, consultative approach to financial readiness for business ownership." },
+  { name: "Fundraising University", industry: "Fundraising Services", category: "50to200k", description: "This brand partners with high school sports teams to run highly effective fundraising campaigns. It is a home-based, seasonal business that allows former athletes or coaches to stay involved in sports while earning a strong income." },
+  { name: "Furry Land Mobile Grooming", industry: "Pet Grooming", category: "50to200k", description: "This mobile pet grooming franchise offers a convenient, stress-free experience for pets and owners alike. It is a scalable, membership-friendly model that capitalizes on the booming pet economy without the cost of retail real estate." },
+  { name: "Gatsby Glass", industry: "Glass Repair", category: "50to200k", description: "Focusing on high-end glass installations like shower doors, mirrors, and railings, this brand serves the luxury home improvement market. It offers a sophisticated, consultation-based sales model with strong margins on custom products." },
+  { name: "goGLOW", industry: "Beauty/Tanning", category: "50to200k", description: "This sunless tanning brand offers a safe, high-quality alternative to UV tanning with proprietary skin-nourishing solutions. It is a boutique beauty concept with a recurring membership model and strong retail product sales." },
+  { name: "Gotcha Covered", industry: "Blinds/Shades", category: "50to200k", description: "This custom window treatment franchise offers a consultative, low-pressure sales approach with a massive selection of soft and hard window coverings. It is a low-overhead, home-based business with high margins and no inventory requirements." },
+  { name: "Groovy Hues", industry: "Painting/Art", category: "50to200k", description: "This painting and wall covering franchise brings energy and technology to the trade with a fresh brand and comprehensive service offering. Owners manage the business and sales while subcontractors handle the labor, making it highly scalable." },
+  { name: "Hallmark Homecare", industry: "Senior Home Care", category: "50to200k", description: "This unique model functions as a caregiver recruitment and placement agency rather than a traditional home care agency. It eliminates the burden of employing caregivers directly, focusing instead on matching families with independent care professionals." },
+  { name: "HealthSource Chiropractic", industry: "Chiropractic", category: "50to200k", description: "This franchise combines chiropractic care with progressive rehabilitation and wellness services to treat the whole patient. It offers a proven clinic model that can be owned by chiropractors or investors who hire clinical directors." },
+  { name: "Heights Wellness Retreat", industry: "Wellness", category: "50to200k", description: "This emerging wellness brand offers a sanctuary for mental and physical recovery through various holistic therapies. It targets the growing market of consumers seeking a comprehensive, retreat-style experience in their local community." },
+  { name: "Hello Sugar", industry: "Sugar/Wax Services", category: "50to200k", description: "Specializing in speed-waxing and sugaring, this brand offers a high-volume, membership-based model with a focus on technique and customer comfort. The compact studio footprint keeps overhead low while maximizing throughput." },
+  { name: "Heroes Lawn Care", industry: "Lawn Care", category: "50to200k", description: "This brand modernizes the lawn care industry with eco-friendly electric equipment and agronomic expertise. It offers a recurring revenue model with multiple service lines, including fertilization, irrigation, and pet waste removal." },
+  { name: "HOMEstretch", industry: "Real Estate", category: "50to200k", description: "This pre-sale home preparation franchise helps realtors and sellers get homes market-ready with cosmetic improvements and clearing services. It solves a major pain point in the real estate transaction process with a one-stop-shop solution." },
+  { name: "House Doctors", industry: "Handyman Services", category: "50to200k", description: "This handyman and home improvement franchise focuses on smaller projects that big contractors ignore. It offers a professional, reliable service model that builds trust and generates high repeat business from homeowners." },
+  { name: "Hunters-Humbug", industry: "Pest Control", category: "50to200k", description: "Formerly Mosquito Hunters, this brand provides residential and commercial mosquito and tick control services. It is a seasonal, recurring revenue business with high customer retention and a low fixed-cost structure." },
+  { name: "iFlex", industry: "Fitness", category: "50to200k", description: "This stretch therapy concept focuses on assisted stretching to improve mobility and reduce pain for a wide demographic. It is a simple, labor-light model that complements active lifestyles and aging populations alike." },
+  { name: "iFOAM", industry: "Spray Foam Insulation", category: "50to200k", description: "Specializing in high-performance spray foam insulation, this brand taps into the demand for energy efficiency in homes and businesses. It is a specialized construction model with high ticket averages and a focus on professional installation." },
+  { name: "Image Studios", industry: "Photography", category: "50to200k", description: "This salon suite franchise is a real estate model where you act as the landlord for beauty professionals renting private studios. It offers a semi-absentee ownership style with high occupancy stability and minimal employee management." },
+  { name: "Insulation Commandos", industry: "Insulation Services", category: "50to200k", description: "This brand focuses on insulation removal and replacement, critical for energy efficiency and attic health. It is a high-margin, essential home service that benefits from green energy trends and utility rebates." },
+  { name: "ISI® Elite Training", industry: "Athletic Training", category: "50to200k", description: "This group fitness concept focuses on athletic-based training (ABT) in a team environment, fostering a strong community culture. It offers a high-energy, membership-driven model with a focus on retention and coach-led workouts." },
+  { name: "Ivybrook Academy", industry: "Education", category: "50to200k", description: "This virtual learning platform provides personalized education for gifted and advanced students. It offers a low-overhead model that leverages technology to serve a growing market of families seeking individualized education solutions." },
 ];
 
+// Continued below in component...
 export default function FranchiseBrands() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-
-  // Add Schema markup for SEO
-  useEffect(() => {
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Verified Franchise Opportunities",
-      "description": "Browse 214+ verified franchise brands with investment data from Franchise Business Review and FranchiseHelp",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Charles Stovall | Franchise Friend",
-        "url": "https://franchisefriend.net",
-        "logo": "https://franchisefriend.net/favicon.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "Franchise Consulting",
-          "url": "https://calendly.com/charles-stovall/introduction-meeting-charlesstovall"
-        }
-      },
-      "itemListElement": franchises.map((franchise, index) => ({
-        "@type": "Product",
-        "position": index + 1,
-        "name": franchise.name,
-        "description": franchise.industry,
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": franchise.investmentRange,
-          "availability": "https://schema.org/PreOrder",
-          "description": `Total Investment: ${franchise.investmentRange}, Minimum Cash Required: ${franchise.minCash}`
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5",
-          "reviewCount": "1"
-        }
-      }))
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify(schemaData);
-    document.head.appendChild(script);
-
-    return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
 
   const filteredFranchises = useMemo(() => {
     let result = activeCategory === "all" 
@@ -342,14 +136,12 @@ export default function FranchiseBrands() {
     { id: "under50k", label: "Under $50K", count: franchises.filter(f => f.category === "under50k").length },
     { id: "50to200k", label: "$50K - $200K", count: franchises.filter(f => f.category === "50to200k").length },
     { id: "200to500k", label: "$200K - $500K", count: franchises.filter(f => f.category === "200to500k").length },
-    { id: "500plus", label: "$500K+", count: franchises.filter(f => f.category === "500plus").length },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      {/* Hero Section - Primary Color with Secondary Accent */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center gap-3 mb-4">
@@ -360,10 +152,8 @@ export default function FranchiseBrands() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -380,9 +170,8 @@ export default function FranchiseBrands() {
             />
           </motion.div>
 
-          {/* Category Tabs - Gold Accents */}
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
-            <TabsList className="grid w-full grid-cols-5 h-auto gap-2 bg-transparent p-0">
+            <TabsList className="grid w-full grid-cols-4 h-auto gap-2 bg-transparent p-0">
               {categories.map((cat) => (
                 <TabsTrigger
                   key={cat.id}
@@ -403,17 +192,15 @@ export default function FranchiseBrands() {
             </TabsList>
           </Tabs>
 
-          {/* Disclaimer Banner */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="mb-6 p-4 bg-secondary/5 border border-secondary text-sm text-foreground rounded-lg"
           >
             <p className="font-medium text-secondary">📌 Important:</p>
-            <p className="text-xs mt-1">Investment ranges can vary based on territory size, location, and current market conditions. Consult with individual franchisors for exact figures for your specific territory.</p>
+            <p className="text-xs mt-1">Information about franchise brands is for educational purposes. Each franchise has unique requirements and opportunities.</p>
           </motion.div>
 
-          {/* Results Count */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -423,7 +210,6 @@ export default function FranchiseBrands() {
             <span>Showing {filteredFranchises.length} franchise{filteredFranchises.length !== 1 ? 's' : ''}</span>
           </motion.div>
 
-          {/* Franchises Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredFranchises.map((franchise, index) => (
               <motion.div
@@ -438,29 +224,8 @@ export default function FranchiseBrands() {
                     <p className="text-sm opacity-70 mt-1">{franchise.industry}</p>
                   </CardHeader>
                   <CardContent className="space-y-4 pt-4">
-                    {franchise.description ? (
+                    {franchise.description && (
                       <p className="text-sm text-foreground leading-relaxed">{franchise.description}</p>
-                    ) : (
-                      <div className="space-y-3">
-                        {franchise.investmentRange && (
-                          <div>
-                            <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
-                              <DollarSign className="w-4 h-4" />
-                              Total Investment
-                            </div>
-                            <p className="text-lg font-bold text-primary">{franchise.investmentRange}</p>
-                          </div>
-                        )}
-                        {franchise.minCash && (
-                          <div>
-                            <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
-                              <TrendingUp className="w-4 h-4" />
-                              Min. Cash Required
-                            </div>
-                            <p className="text-lg font-bold text-primary">{franchise.minCash}</p>
-                          </div>
-                        )}
-                      </div>
                     )}
                     <Button 
                       className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
