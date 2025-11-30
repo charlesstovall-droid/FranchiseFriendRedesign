@@ -1,0 +1,636 @@
+[
+  {
+    "brand_name": "1-800 Water Damage",
+    "description": "This recession-resistant brand focuses on restoring property after water, smoke, or sewage damage, leveraging strong insurance relationships. It offers a robust B2B model where owners manage operations and networking rather than performing the labor themselves."
+  },
+  {
+    "brand_name": "1-800-Packouts",
+    "description": "Specializing in the careful inventory, packing, and storage of personal contents during insurance claims, this concept pairs perfectly with restoration franchises. It allows for high margins by focusing on the protection of valuables rather than structural repairs."
+  },
+  {
+    "brand_name": "1-800-STRIPER",
+    "description": "This niche B2B brand focuses on parking lot striping, a maintenance service that virtually every commercial property requires. It offers a low-overhead, van-based model with recurring demand from property managers and HOAs."
+  },
+  {
+    "brand_name": "2nd Family",
+    "description": "This senior care franchise differentiates itself with a tech-forward approach to care coordination and a highly rigorous caregiver vetting process. It is ideal for owners who want to combine compassionate community service with a scalable, systems-driven business model."
+  },
+  {
+    "brand_name": "360° Painting",
+    "description": "Operating in the massive home improvement sector, this executive model focuses on managing subcontractors for residential and commercial painting projects. It allows owners to scale a business through sales and project management without ever needing to pick up a paintbrush."
+  },
+  {
+    "brand_name": "4Ever Young",
+    "description": "Positioned at the intersection of wellness and beauty, this brand offers anti-aging and vitality services ranging from hormone replacement to aesthetics. It appeals to investors looking to capitalize on the booming demand for preventative health and self-care."
+  },
+  {
+    "brand_name": "76 Fence",
+    "description": "This brand professionalizes the fencing industry with a focus on high-quality installations and modern customer service. The model is built for scalability, allowing owners to manage crews and tap into the consistent residential and commercial demand for privacy and security."
+  },
+  {
+    "brand_name": "Accelerated Waste Solutions",
+    "description": "Combining bulk junk removal with nightly doorstep trash collection for apartments, this brand offers dual revenue streams. It is a tech-enabled waste management play that secures long-term B2B contracts for recurring monthly revenue."
+  },
+  {
+    "brand_name": "Ace Handyman Services",
+    "description": "Backed by the trusted Ace Hardware brand, this franchise brings reliability and professionalism to the fragmented home repair market. Owners benefit from immediate brand recognition and a model focused on small-project volume that keeps repeat customers coming back."
+  },
+  {
+    "brand_name": "All Dogs Unleashed",
+    "description": "This comprehensive pet care facility combines dog training, boarding, and daycare into a single high-ticket service model. It appeals to dog lovers who want a facility-based business with multiple revenue centers and high average transaction values."
+  },
+  {
+    "brand_name": "All Dry",
+    "description": "Focused on water damage restoration and mold remediation, this brand offers a simplified, mobile service model with quick turnaround times. It is designed for owners seeking a high-margin, recession-proof business that helps homeowners in critical times of need."
+  },
+  {
+    "brand_name": "Alloy Personal Training",
+    "description": "This fitness concept focuses on small group personal training, offering the customized attention of private coaching at a more accessible price point. The model generates high revenue per square foot and fosters strong member retention through community and results."
+  },
+  {
+    "brand_name": "Always Best Care Senior Services (US)",
+    "description": "This brand offers a continuum of care, including in-home care, assisted living placement, and skilled nursing, maximizing revenue potential from each client. It is a relationship-driven business perfect for those who want to be a trusted resource for families in their community."
+  },
+  {
+    "brand_name": "Art of Drawers",
+    "description": "This unique niche focuses on custom organization solutions for existing cabinets and drawers, avoiding the complexity of full renovations. It is a low-overhead, high-margin sales model that appeals to homeowners looking for functional luxury without the construction mess."
+  },
+  {
+    "brand_name": "Assisted Living Locators",
+    "description": "This no-cost-to-client placement service helps families find the right senior living solutions, earning commissions from the facilities. It is a low-investment, home-based model that rewards strong networking and relationship building within the senior care ecosystem."
+  },
+  {
+    "brand_name": "Aussie Pet Mobile",
+    "description": "This mobile grooming service brings the salon directly to the customer's driveway, offering convenience that busy pet owners love. It is a scalable, van-based business that eliminates the need for expensive retail real estate."
+  },
+  {
+    "brand_name": "Bar-B-Clean",
+    "description": "This niche service focuses on cleaning and maintaining high-end outdoor grills, a task most homeowners dread doing themselves. It offers a low-cost entry point with high repeat business potential, especially in affluent neighborhoods."
+  },
+  {
+    "brand_name": "Bath Tune-Up",
+    "description": "Specializing in curated bathroom updates rather than full demolition remodels, this concept offers a faster, less intrusive renovation experience. It allows franchisees to capture the middle-market demand for affordable luxury with quicker project turnover."
+  },
+  {
+    "brand_name": "beem Light Sauna",
+    "description": "This wellness brand focuses on infrared light therapy in a spa-like setting, tapping into the growing demand for holistic health and recovery. The membership-based model provides recurring revenue and appeals to health-conscious communities."
+  },
+  {
+    "brand_name": "Benetrends",
+    "description": "While not a traditional franchise to own, Benetrends is a leading funding partner that helps candidates use their retirement funds tax-deferred to start a business. They are a critical resource for capitalizing your venture without debt."
+  },
+  {
+    "brand_name": "Big Frog Custom T-Shirts & More",
+    "description": "This retail concept revolutionizes custom apparel with direct-to-garment printing that allows for no minimum orders and 24-hour turnaround. It is a fun, creative business that serves both individual walk-ins and large B2B accounts like schools and local businesses."
+  },
+  {
+    "brand_name": "Bio-One",
+    "description": "Specializing in crime scene and trauma cleanup, this brand provides a highly necessary service with compassion and discretion. It is a recession-proof model with high margins, working closely with law enforcement and insurance companies."
+  },
+  {
+    "brand_name": "Blingle!",
+    "description": "This premier lighting franchise covers everything from landscape and patio lighting to holiday displays and event lighting. It offers year-round revenue opportunities by combining seasonal peaks with permanent installation projects."
+  },
+  {
+    "brand_name": "Bloomin' Blinds",
+    "description": "This mobile window covering franchise offers sales, installation, and repairs, giving it a unique advantage over sales-only competitors. The model is technology-driven and scalable, with low overhead and strong margins."
+  },
+  {
+    "brand_name": "Blue Kangaroo Packoutz",
+    "description": "Focusing on contents restoration, this brand restores furniture, art, and documents damaged by water or fire. It is a vital partner to restoration companies and offers a facility-based model where technical expertise drives high-value insurance claims."
+  },
+  {
+    "brand_name": "Blue Moon Estate Sales",
+    "description": "This franchise professionalizes the estate sale industry, helping families liquidate assets with dignity and efficiency. It is a low-investment model that thrives on organization, marketing, and managing weekend sale events."
+  },
+  {
+    "brand_name": "Body20",
+    "description": "Utilizing Electro-Muscle Stimulation (EMS) technology, this fitness concept delivers a full workout in just 20 minutes. It attracts busy professionals and provides a high-revenue-per-member model with a small studio footprint."
+  },
+  {
+    "brand_name": "Boost Home Healthcare",
+    "description": "This brand focuses on clinical, in-home medical care, bridging the gap between hospital and home recovery. It is a higher-level healthcare play that demands strong operational management but offers significant revenue potential in the medical sector."
+  },
+  {
+    "brand_name": "British Swim School",
+    "description": "This swim safety franchise operates out of rented pools in hotels and fitness centers, eliminating the need for expensive real estate build-outs. It is a high-margin, mission-driven business focused on saving lives and teaching water survival skills."
+  },
+  {
+    "brand_name": "Budget Blinds",
+    "description": "As the #1 window covering franchise in North America, this brand offers massive buying power and high brand recognition. It is a proven, home-based model that allows owners to offer premium custom solutions at competitive price points."
+  },
+  {
+    "brand_name": "Bumble Bee Blinds",
+    "description": "This technology-forward window treatment brand focuses on a modern customer experience and streamlined sales process. It offers a scalable mobile model backed by a parent company with deep resources in the home services sector."
+  },
+  {
+    "brand_name": "Cabinet IQ",
+    "description": "This brand modernizes the kitchen and bath remodeling experience with a high-tech showroom and simplified selection process. It targets the massive home renovation market with a model designed to be more efficient and customer-friendly than traditional contractors."
+  },
+  {
+    "brand_name": "CarePatrol",
+    "description": "This senior placement agency helps families find safe and appropriate assisted living communities at no cost to them. It is a low-overhead, relationship-based business that generates revenue through referral commissions from partner facilities."
+  },
+  {
+    "brand_name": "Cascadia Pizza",
+    "description": "Starting as a food truck and expanding to brick-and-mortar, this brand brings wood-fired pizza to local communities with a focus on quality and vibe. It offers a flexible footprint for owners who want to bring a beloved product to their neighborhood."
+  },
+  {
+    "brand_name": "CertaPro Painters",
+    "description": "The largest painting franchise in North America, CertaPro offers a highly scalable executive model focused on management and sales. Owners build large territories by managing teams of subcontractors for both residential and commercial projects."
+  },
+  {
+    "brand_name": "Chatime",
+    "description": "As a global leader in the bubble tea market, Chatime offers a trendy, high-volume beverage concept with a streamlined operation. It appeals to investors looking for a retail footprint with a simple menu and a young, loyal customer base."
+  },
+  {
+    "brand_name": "CMIT Solutions",
+    "description": "This B2B franchise provides enterprise-level IT support and cybersecurity to small and medium-sized businesses. It is a recurring revenue model perfect for executive owners who want to serve the professional business community."
+  },
+  {
+    "brand_name": "ComForCare Home Care",
+    "description": "This brand provides non-medical in-home care with specialized programs for dementia and Alzheimer's patients. It is a scalable business for compassionate leaders who want to build a large team of caregivers to support the aging population."
+  },
+  {
+    "brand_name": "COOL-BINZ",
+    "description": "This innovative portable storage concept utilizes climate-controlled bins, differentiating itself in the moving and storage market. It offers a semi-passive ownership potential with a focus on logistics and asset rental."
+  },
+  {
+    "brand_name": "CoolVu Glass and Surface Solutions",
+    "description": "Specializing in architectural films and surface enhancements, this brand serves both residential and commercial clients with energy-saving and security solutions. It is a low-overhead model with diverse revenue streams from solar control to privacy graphics."
+  },
+  {
+    "brand_name": "Creative Colors International",
+    "description": "This mobile franchise specializes in the repair and restoration of leather, vinyl, and fabric, saving customers the cost of replacement. It serves a wide range of B2B clients, including car dealerships, restaurants, and medical facilities."
+  },
+  {
+    "brand_name": "D1 Sports Training",
+    "description": "Founded by elite athletes, this fitness franchise offers scholastic and adult athletic training in a high-energy facility. It appeals to investors passionate about sports who want to impact youth development and adult fitness performance."
+  },
+  {
+    "brand_name": "Degree Wellness",
+    "description": "This self-care studio offers a variety of technology-driven wellness services like cryotherapy, infrared saunas, and red light therapy. It is a membership-based model designed for high throughput and minimal staffing requirements."
+  },
+  {
+    "brand_name": "Deka Lash",
+    "description": "This beauty brand focuses exclusively on eyelash extensions and brow services in a modern, membership-driven studio. It offers a recurring revenue model with high customer retention in the booming beauty services sector."
+  },
+  {
+    "brand_name": "dermani MEDSPA®",
+    "description": "Bridging the gap between luxury day spas and medical clinics, this brand offers laser hair removal, injectables, and skin rejuvenation. It is a high-revenue model that capitalizes on the growing accessibility of medical aesthetics."
+  },
+  {
+    "brand_name": "Discover Strength",
+    "description": "This science-based strength training concept focuses on efficient, 30-minute workouts guided by expert exercise physiologists. It attracts busy clients who value results and offers a high-retention membership model."
+  },
+  {
+    "brand_name": "DonutNV",
+    "description": "This interactive mobile food trailer brings hot, fresh mini donuts to events and parties. It is a fun, event-based business with low entry costs and high margins, perfect for owner-operators or semi-absentee investors."
+  },
+  {
+    "brand_name": "ecomaids",
+    "description": "This eco-friendly cleaning franchise differentiates itself by using only non-toxic, allergen-free products. It appeals to health-conscious homeowners and offers a recurring revenue model with a focus on employee retention and quality service."
+  },
+  {
+    "brand_name": "Ellie Mental Health",
+    "description": "This innovative concept fills a critical gap in outpatient mental health care by combining a therapist-friendly culture with a highly accessible patient experience. It offers a scalable opportunity in a rapidly expanding medical niche with strong community impact."
+  },
+  {
+    "brand_name": "ERA Group",
+    "description": "This B2B consulting franchise helps companies reduce overhead costs through expense management analysis. It is a white-collar, home-based business ideal for former executives with strong financial or corporate backgrounds."
+  },
+  {
+    "brand_name": "EverLine Coatings",
+    "description": "Specializing in parking lot line striping and pavement maintenance, this brand brings professionalism to a fragmented industry. It offers a B2B model with recurring maintenance contracts and strong potential for multi-unit scaling."
+  },
+  {
+    "brand_name": "Exercise Coach",
+    "description": "Using bio-adaptive robotic technology, this fitness brand delivers a full workout in just two 20-minute sessions per week. It specifically targets the demographic that hates the traditional gym scene, offering a unique, low-impact solution."
+  },
+  {
+    "brand_name": "Express Employment Professionals",
+    "description": "As a leading staffing franchise, this brand connects local businesses with qualified workers in industrial, office, and professional roles. It is a professional B2B sales office with massive revenue potential for owners who can build strong community relationships."
+  },
+  {
+    "brand_name": "Face Foundrie",
+    "description": "This modern facial bar focuses on efficient, accessible skincare services like 40-minute facials and lash lifts. It captures the 'affordable luxury' market with a high-volume model and a sleek, open-concept studio design."
+  },
+  {
+    "brand_name": "Fastest Labs",
+    "description": "This B2B franchise provides drug, alcohol, and DNA testing services for employers and individuals. It operates with standard business hours, low staffing requirements, and high margins driven by corporate compliance needs."
+  },
+  {
+    "brand_name": "Fibrenew",
+    "description": "This mobile service specializes in the repair of leather, plastic, and vinyl, catering to automotive, aviation, medical, and residential markets. It is a hands-on, high-margin business with diverse revenue streams and low overhead."
+  },
+  {
+    "brand_name": "FirstLight Home Care",
+    "description": "Providing non-medical home care to seniors and adults with disabilities, this brand emphasizes a culture of care and strong caregiver support. It offers a scalable business model in a sector with explosive demographic demand."
+  },
+  {
+    "brand_name": "Fish Window Cleaning",
+    "description": "As the world's largest window cleaning franchise, this brand dominates the low-rise commercial and residential niche. It is a Monday-to-Friday business model that builds a valuable recurring revenue base through route density."
+  },
+  {
+    "brand_name": "Five Star Bath Solutions",
+    "description": "This brand disrupts the bathroom remodeling industry with proprietary technology and a focus on one-day installations. It offers a scalable sales and management model that delivers high-end results without the headaches of general contracting."
+  },
+  {
+    "brand_name": "Floor Coverings International",
+    "description": "This mobile flooring franchise brings the showroom to the customer's home with a van containing thousands of samples. It offers a high average ticket and differentiates itself through a consultative sales process and superior customer convenience."
+  },
+  {
+    "brand_name": "Floyd's 99 Barbershop",
+    "description": "This hair care brand blends an old-school barbershop vibe with a rock-and-roll environment, appealing to a broad demographic. It is a manager-run investment model that generates high volume through a unique, repeatable customer experience."
+  },
+  {
+    "brand_name": "FocalPoint Coaching",
+    "description": "This B2B franchise trains former executives to become certified business coaches and trainers. It is a low-overhead, high-impact consulting model that allows you to leverage your corporate experience to help other business owners succeed."
+  },
+  {
+    "brand_name": "FranFund",
+    "description": "FranFund is a premier funding partner that assists franchise candidates in securing the capital they need through 401(k) rollovers and SBA loans. They provide a streamlined, consultative approach to financial readiness for business ownership."
+  },
+  {
+    "brand_name": "Fundraising University",
+    "description": "This brand partners with high school sports teams to run highly effective fundraising campaigns. It is a home-based, seasonal business that allows former athletes or coaches to stay involved in sports while earning a strong income."
+  },
+  {
+    "brand_name": "Furry Land Mobile Grooming",
+    "description": "This mobile pet grooming franchise offers a convenient, stress-free experience for pets and owners alike. It is a scalable, membership-friendly model that capitalizes on the booming pet economy without the cost of retail real estate."
+  },
+  {
+    "brand_name": "Gatsby Glass",
+    "description": "Focusing on high-end glass installations like shower doors, mirrors, and railings, this brand serves the luxury home improvement market. It offers a sophisticated, consultation-based sales model with strong margins on custom products."
+  },
+  {
+    "brand_name": "goGLOW",
+    "description": "This sunless tanning brand offers a safe, high-quality alternative to UV tanning with proprietary skin-nourishing solutions. It is a boutique beauty concept with a recurring membership model and strong retail product sales."
+  },
+  {
+    "brand_name": "Gotcha Covered",
+    "description": "This custom window treatment franchise offers a consultative, low-pressure sales approach with a massive selection of soft and hard window coverings. It is a low-overhead, home-based business with high margins and no inventory requirements."
+  },
+  {
+    "brand_name": "Groovy Hues",
+    "description": "This painting and wall covering franchise brings energy and technology to the trade with a fresh brand and comprehensive service offering. Owners manage the business and sales while subcontractors handle the labor, making it highly scalable."
+  },
+  {
+    "brand_name": "Hallmark Homecare",
+    "description": "This unique model functions as a caregiver recruitment and placement agency rather than a traditional home care agency. It eliminates the burden of employing caregivers directly, focusing instead on matching families with independent care professionals."
+  },
+  {
+    "brand_name": "HealthSource Chiropractic",
+    "description": "This franchise combines chiropractic care with progressive rehabilitation and wellness services to treat the whole patient. It offers a proven clinic model that can be owned by chiropractors or investors who hire clinical directors."
+  },
+  {
+    "brand_name": "Heights Wellness Retreat",
+    "description": "This emerging wellness brand offers a sanctuary for mental and physical recovery through various holistic therapies. It targets the growing market of consumers seeking a comprehensive, retreat-style experience in their local community."
+  },
+  {
+    "brand_name": "Hello Sugar",
+    "description": "Specializing in speed-waxing and sugaring, this brand offers a high-volume, membership-based model with a focus on technique and customer comfort. The compact studio footprint keeps overhead low while maximizing throughput."
+  },
+  {
+    "brand_name": "Heroes Lawn Care",
+    "description": "This brand modernizes the lawn care industry with eco-friendly electric equipment and agronomic expertise. It offers a recurring revenue model with multiple service lines, including fertilization, irrigation, and pet waste removal."
+  },
+  {
+    "brand_name": "HOMEstretch",
+    "description": "This pre-sale home preparation franchise helps realtors and sellers get homes market-ready with cosmetic improvements and clearing services. It solves a major pain point in the real estate transaction process with a one-stop-shop solution."
+  },
+  {
+    "brand_name": "House Doctors",
+    "description": "This handyman and home improvement franchise focuses on smaller projects that big contractors ignore. It offers a professional, reliable service model that builds trust and generates high repeat business from homeowners."
+  },
+  {
+    "brand_name": "Hunters-Humbug",
+    "description": "Formerly Mosquito Hunters, this brand provides residential and commercial mosquito and tick control services. It is a seasonal, recurring revenue business with high customer retention and a low fixed-cost structure."
+  },
+  {
+    "brand_name": "iFlex",
+    "description": "This stretch therapy concept focuses on assisted stretching to improve mobility and reduce pain for a wide demographic. It is a simple, labor-light model that complements active lifestyles and aging populations alike."
+  },
+  {
+    "brand_name": "iFOAM",
+    "description": "Specializing in high-performance spray foam insulation, this brand taps into the demand for energy efficiency in homes and businesses. It is a specialized construction model with high ticket averages and a focus on professional installation."
+  },
+  {
+    "brand_name": "Image Studios",
+    "description": "This salon suite franchise is a real estate model where you act as the landlord for beauty professionals renting private studios. It offers a semi-absentee ownership style with high occupancy stability and minimal employee management."
+  },
+  {
+    "brand_name": "Insulation Commandos",
+    "description": "This brand focuses on insulation removal and replacement, critical for energy efficiency and attic health. It is a high-margin, essential home service that benefits from green energy trends and utility rebates."
+  },
+  {
+    "brand_name": "ISI® Elite Training",
+    "description": "This group fitness concept focuses on athletic-based training (ABT) in a team environment, fostering a strong community culture. It offers a high-energy, membership-driven model with a focus on retention and coach-led workouts."
+  },
+  {
+    "brand_name": "Ivybrook Academy",
+    "description": "This half-day preschool franchise offers a balanced curriculum without the operational complexity of full-day daycare. It appeals to educators and investors who want to impact early childhood education while maintaining work-life balance."
+  },
+  {
+    "brand_name": "JETSET Pilates",
+    "description": "This modern Pilates brand offers a high-intensity, music-driven workout on custom reformers. It targets the luxury fitness market with a boutique studio model that emphasizes community and results."
+  },
+  {
+    "brand_name": "Joshua Tree Experts",
+    "description": "This comprehensive tree care franchise offers pruning, removal, and plant health care services. It is a high-ticket, essential service model that requires specialized equipment but delivers substantial margins."
+  },
+  {
+    "brand_name": "Jungle Driving School",
+    "description": "This brand professionalizes driver education with a fun, engaging curriculum and modern fleet. It serves a constant stream of new teen drivers, offering a recession-resistant service with steady demand."
+  },
+  {
+    "brand_name": "JUNKCO+",
+    "description": "This junk removal franchise offers a straightforward service for residential and commercial clutter clearing. It is a scalable, logistics-based business with opportunities for recycling and donation revenue streams."
+  },
+  {
+    "brand_name": "K9 Resorts",
+    "description": "This luxury pet hotel franchise offers premium boarding and daycare services in a 5-star resort environment. It is a high-investment, high-return model that appeals to affluent pet owners who want the best for their dogs."
+  },
+  {
+    "brand_name": "Kidokinetics",
+    "description": "This mobile sports and fitness program brings physical education to schools, daycares, and parks. It is a low-cost, mission-driven business that promotes healthy lifestyles for children through fun, non-competitive activities."
+  },
+  {
+    "brand_name": "Kilwins",
+    "description": "This beloved confectionery franchise is famous for its in-store crafted chocolates, fudge, and ice cream. It offers a sensory retail experience that becomes a destination in tourist areas and lifestyle centers."
+  },
+  {
+    "brand_name": "Kitchen Guard",
+    "description": "Specializing in commercial kitchen cleaning and maintenance, this brand serves the restaurant and hospitality industry. It offers a B2B compliance-driven service with recurring contracts for exhaust hood cleaning and other critical tasks."
+  },
+  {
+    "brand_name": "Kitchen Tune-Up",
+    "description": "This brand offers five distinct ways to update a kitchen, from simple wood reconditioning to custom cabinetry. It appeals to a wide range of budgets, allowing owners to capture more leads and complete projects faster than traditional remodelers."
+  },
+  {
+    "brand_name": "Kitchen Wise/Closet Wise",
+    "description": "This dual-concept franchise focuses on intelligent storage solutions for kitchens, pantries, and closets. It is a high-margin, consultative sales model that helps homeowners maximize their existing space with premium organizers."
+  },
+  {
+    "brand_name": "Koala Insulation",
+    "description": "This mobile insulation franchise services both residential and commercial properties with spray foam, blown-in, and batt insulation. It is a scalable, high-ticket business that capitalizes on energy efficiency awareness."
+  },
+  {
+    "brand_name": "LaundroLab",
+    "description": "This brand is modernizing the laundromat industry with clean, tech-enabled, and safe community spaces. It offers a semi-absentee investment model with consistent cash flow and high asset value."
+  },
+  {
+    "brand_name": "Lawn Doctor",
+    "description": "With over 50 years of experience, this brand leads the lawn care industry with proprietary equipment and high customer retention. It offers a recurring revenue model with high margins and a strong focus on agronomic science."
+  },
+  {
+    "brand_name": "Lightspeed Restoration",
+    "description": "This 24/7 restoration franchise focuses on rapid response to water and fire damage, leveraging a national network. It is a high-demand, recession-resistant business that works closely with insurance carriers."
+  },
+  {
+    "brand_name": "LIME Painting",
+    "description": "This brand targets the high-end residential and commercial painting market, specializing in custom estates and complex coatings. It is a low-overhead, high-ticket executive model for owners who want to serve an affluent clientele."
+  },
+  {
+    "brand_name": "Maid Right",
+    "description": "This residential cleaning franchise offers a recurring revenue model with a focus on non-toxic, hospital-grade cleaning standards. Owners manage the business and marketing while empowering cleaning teams to deliver consistent quality."
+  },
+  {
+    "brand_name": "Marigold Academy",
+    "description": "This childcare franchise focuses on early childhood education with a proprietary curriculum and a nurturing environment. It offers a stable, high-demand service that supports working families and shapes future generations."
+  },
+  {
+    "brand_name": "Medi-Weightloss",
+    "description": "This physician-supervised weight loss franchise offers evidence-based programs and proprietary supplements. It is a high-margin medical model that addresses the obesity epidemic with a clinically proven approach."
+  },
+  {
+    "brand_name": "Menchie's",
+    "description": "As a global leader in self-serve frozen yogurt, Menchie's offers a fun, family-friendly guest experience. It is a simple-to-operate retail model that focuses on community engagement and smiles."
+  },
+  {
+    "brand_name": "Metal Supermarkets",
+    "description": "This B2B franchise is the world's largest supplier of small-quantity metals, serving a diverse customer base of manufacturers and hobbyists. It is a Monday-to-Friday brick-and-mortar business with high average transaction values."
+  },
+  {
+    "brand_name": "Mighty Dog Roofing",
+    "description": "This roofing and exterior franchise differentiates itself with technology like drone inspections and a customer-first approach. It offers a scalable sales and project management model in a high-ticket, essential industry."
+  },
+  {
+    "brand_name": "MilkShake Factory",
+    "description": "This premium dessert brand elevates the milkshake experience with high-quality ingredients and a stunning retail presentation. It is a treat-focused concept with a streamlined menu and strong social media appeal."
+  },
+  {
+    "brand_name": "Modern PURAIR",
+    "description": "This indoor air quality franchise specializes in furnace and air duct cleaning with a clearly branded, professional approach. It offers a recurring B2B and B2C service model with proprietary technology and strong margins."
+  },
+  {
+    "brand_name": "Monster Mini Golf",
+    "description": "This indoor family entertainment center features glow-in-the-dark mini golf, arcades, and party rooms. It is an experience-driven business that generates revenue through walk-ins, birthday parties, and corporate events."
+  },
+  {
+    "brand_name": "Mosquito Sheriff",
+    "description": "This pest control franchise uses an all-natural, non-toxic formula to control mosquitoes and ticks. It appeals to eco-conscious homeowners and offers a seasonal, recurring revenue model with low start-up costs."
+  },
+  {
+    "brand_name": "Mosquito Shield",
+    "description": "This brand focuses exclusively on residential mosquito and tick control with proprietary treatment blends. It creates a recurring revenue stream through seasonal contracts and boasts high customer retention rates."
+  },
+  {
+    "brand_name": "MosquitoNix",
+    "description": "Offering both misting systems and barrier treatments, this brand provides comprehensive mosquito control solutions. It serves a premium market with high-value installations and recurring service revenue."
+  },
+  {
+    "brand_name": "Musicologie",
+    "description": "This music education franchise creates a welcoming community for students of all ages and skill levels. It offers a membership-based model with a focus on high-quality instruction and a delightful lesson experience."
+  },
+  {
+    "brand_name": "MY SALON Suite",
+    "description": "This franchise offers fully equipped salon suites for beauty professionals to own their own business. It is a semi-absentee, real estate-focused model with high occupancy rates and minimal management requirements."
+  },
+  {
+    "brand_name": "Next Day Access",
+    "description": "This brand provides accessibility and mobility solutions like wheelchair ramps and stairlifts for residential and commercial properties. It serves an aging population with essential products that allow people to age safely in place."
+  },
+  {
+    "brand_name": "One You Love Homecare",
+    "description": "This senior care franchise offers comprehensive personal care and companion services to help seniors remain independent. It is a relationship-driven business that combines operational support with a compassionate mission."
+  },
+  {
+    "brand_name": "P3 Cost Analysts",
+    "description": "This B2B home-based franchise helps businesses audit and reduce their utility and telecom expenses. It offers a high-yield, residual income model where you earn a share of the savings you find for your clients."
+  },
+  {
+    "brand_name": "Paint EZ",
+    "description": "This painting franchise simplifies the process for homeowners with easy scheduling and transparent pricing. It offers a low-overhead model focused on managing painting crews and delivering a hassle-free customer experience."
+  },
+  {
+    "brand_name": "Painter Bros",
+    "description": "This brand handles a wide variety of general contracting and painting work, often sourcing leads through national facility maintenance platforms. It offers a high-volume model with diverse revenue streams across commercial and residential sectors."
+  },
+  {
+    "brand_name": "PatchMaster",
+    "description": "Specializing in small drywall repairs that large contractors avoid, this niche brand is a hit with homeowners and plumbers. It is a low-cost, mobile business with high margins and a steady stream of small, quick jobs."
+  },
+  {
+    "brand_name": "Patrice & Associates",
+    "description": "As a leading hospitality recruiting franchise, this brand connects restaurants and hotels with top-tier management talent. It is a home-based, flexible business that rewards strong networking and sales skills."
+  },
+  {
+    "brand_name": "Paul Davis",
+    "description": "This heritage brand is a leader in insurance restoration, handling large-scale fire, water, and mold damage. It offers a robust, high-volume business model backed by deep relationships with major insurance carriers."
+  },
+  {
+    "brand_name": "Pause Studio",
+    "description": "This modern wellness franchise focuses on recovery and rejuvenation services like float tanks, cold plunges, and IV drips. It appeals to the high-performance lifestyle market with a membership model that promotes regular usage."
+  },
+  {
+    "brand_name": "Pet Evolution",
+    "description": "This pet wellness franchise combines high-quality nutrition retail with grooming and self-wash stations. It targets health-conscious pet owners who treat their animals as family, offering multiple revenue streams under one roof."
+  },
+  {
+    "brand_name": "Pilates Addiction",
+    "description": "This studio concept offers accessible, reformer-based Pilates classes in a welcoming environment. It focuses on the physical and mental benefits of Pilates, utilizing a membership model to build a loyal community."
+  },
+  {
+    "brand_name": "PIRTEK USA / Canada",
+    "description": "This B2B franchise specializes in emergency hydraulic hose replacement, a critical service for construction, manufacturing, and transport industries. It offers a high-margin, recession-resistant model with 24/7 demand."
+  },
+  {
+    "brand_name": "PlumbingPro",
+    "description": "This brand brings a modern, customer-service-focused approach to the essential plumbing trade. It offers a scalable model for owners to manage licensed plumbers and capture a share of the massive home services market."
+  },
+  {
+    "brand_name": "Plunge House",
+    "description": "Focusing on contrast therapy (sauna and cold plunge), this wellness concept offers a communal, social recovery experience. It is a streamlined, low-labor model that taps into the booming trend of deliberate cold exposure."
+  },
+  {
+    "brand_name": "Pool Scouts",
+    "description": "This pool cleaning and maintenance franchise brings professionalism and technology to a fragmented market. It offers a recurring revenue model with high route density potential in warm-weather climates."
+  },
+  {
+    "brand_name": "Poolwerx",
+    "description": "This global brand combines mobile pool service with retail supply stores, capturing revenue from both service and product sales. It offers a mature, multi-channel business model with strong support and purchasing power."
+  },
+  {
+    "brand_name": "Prism Specialty Restoration",
+    "description": "This niche restoration brand focuses on recovering electronics, art, textiles, and documents for insurance claims. It is a high-margin, B2B service that partners with general restoration contractors to handle specialized items."
+  },
+  {
+    "brand_name": "Pro-Lift Garage Doors",
+    "description": "This franchise specializes in the repair and installation of residential and commercial garage doors. It is a high-ticket, essential service model that benefits from the constant wear and tear of moving parts."
+  },
+  {
+    "brand_name": "Project LeanNation",
+    "description": "Combining prepared meal retail with nutritional coaching, this brand helps clients achieve their health goals through food. It creates a recurring revenue stream as clients subscribe to weekly meal plans supported by in-store guidance."
+  },
+  {
+    "brand_name": "Property Sellwise",
+    "description": "This real estate concept focuses on helping homeowners sell their properties efficiently, often with value-add services. It offers a unique angle in the property market for investors with a background in real estate or sales."
+  },
+  {
+    "brand_name": "Puddle Pools",
+    "description": "This brand focuses on residential pool cleaning and repair, ensuring backyard oases remain swimmable year-round. It is a route-based service model that provides steady, recurring income."
+  },
+  {
+    "brand_name": "RealClean Aircraft Detailing",
+    "description": "This niche franchise provides premium detailing services for private and corporate aircraft. It serves an affluent clientele and operates in a high-value sector with specialized training and high margins."
+  },
+  {
+    "brand_name": "redbox+Dumpsters",
+    "description": "This innovative waste management brand combines a dumpster with a portable toilet in one unit, streamlining job sites for contractors. It offers a high-margin, asset-based B2B model with a unique competitive advantage."
+  },
+  {
+    "brand_name": "Renew Medic",
+    "description": "This brand focuses on cabinet restoration and renewal, particularly for insurance claims involving fire or water damage. It is a specialized niche that offers a cost-effective alternative to full replacement for insurers and homeowners."
+  },
+  {
+    "brand_name": "RestoPros",
+    "description": "Specializing in water damage, mold, and fire restoration, this brand focuses on rapid emergency response. It offers a recession-proof business model driven by insurance claims and the necessity of property protection."
+  },
+  {
+    "brand_name": "Restoration 1",
+    "description": "As a leading brand in the restoration industry, Restoration 1 handles water, fire, and mold remediation with a focus on empathy and speed. It is a high-demand, recession-resistant franchise with a proven system for handling insurance work."
+  },
+  {
+    "brand_name": "Right at Home",
+    "description": "This global home care franchise provides in-home care and assistance to seniors and adults with disabilities. It offers a scalable, mission-driven business model in a sector with massive demographic tailwinds."
+  },
+  {
+    "brand_name": "Rolling Suds",
+    "description": "This power washing franchise targets both residential and commercial clients with a high-capacity cleaning system. It offers a scalable, low-overhead model that can handle large jobs faster than the competition."
+  },
+  {
+    "brand_name": "Roof Scientist",
+    "description": "This brand brings a technical and scientific approach to roof restoration and replacement. It differentiates itself through rigorous inspections and data-driven solutions, appealing to homeowners who value expertise."
+  },
+  {
+    "brand_name": "Rubbish Works",
+    "description": "This junk removal franchise emphasizes eco-friendly disposal, recycling, and donation. It offers a B2B and B2C service model that helps customers clear clutter while minimizing landfill impact."
+  },
+  {
+    "brand_name": "Scoop Brothers",
+    "description": "This pet waste removal franchise offers a simple, necessary service for dog owners and commercial properties. It is a low-entry-cost, recurring revenue model built on keeping yards and communities clean."
+  },
+  {
+    "brand_name": "Senior Care Authority",
+    "description": "This consulting franchise helps families navigate the complex world of senior living options and elder care resources. It is a low-overhead, home-based business that generates revenue through placement commissions and consulting fees."
+  },
+  {
+    "brand_name": "Senior Helpers",
+    "description": "Specializing in Alzheimer's, dementia, and Parkinson's care, this brand provides high-quality in-home assistance. It offers a robust business model with specialized training programs that set it apart in the senior care market."
+  },
+  {
+    "brand_name": "Seniors Helping Seniors",
+    "description": "This unique care model matches active seniors as caregivers for less active seniors, creating a peer-to-peer support system. It offers a differentiated approach that fosters deep companionship and reduces caregiver turnover."
+  },
+  {
+    "brand_name": "Service Experts",
+    "description": "This HVAC and plumbing franchise offers essential home services with a focus on technical expertise and reliability. It is a high-revenue model that benefits from the constant need for heating, cooling, and plumbing maintenance."
+  },
+  {
+    "brand_name": "Shrunk 3D",
+    "description": "This innovative mobile brand creates 3D printed statues of people and pets using a high-tech scanning booth. It is a fun, event-based business that offers a unique, personalized product with high viral potential."
+  },
+  {
+    "brand_name": "Skin Experts by Brentwood Spa",
+    "description": "This beauty franchise makes high-end skincare accessible with a membership model for facials and aesthetic treatments. It offers a recurring revenue stream and focuses on using clean, effective products."
+  },
+  {
+    "brand_name": "Sky Zone",
+    "description": "As the originator of the trampoline park, Sky Zone offers a massive indoor active entertainment experience. It is a high-volume, destination business that generates revenue through admissions, parties, and memberships."
+  },
+  {
+    "brand_name": "SkyRun Vacation Rentals",
+    "description": "This property management franchise uses technology to help second-home owners manage short-term vacation rentals. It is a low-overhead, location-flexible business that taps into the booming travel and Airbnb economy."
+  },
+  {
+    "brand_name": "Soccer 5",
+    "description": "This franchise builds and operates small-sided soccer fields for pickup games, leagues, and tournaments. It capitalizes on the global popularity of soccer with a facility-based model that maximizes field utilization."
+  },
+  {
+    "brand_name": "Soccer Stars",
+    "description": "This youth sports franchise offers soccer classes and camps for children, focusing on skill building and fun. It is a low-investment, mobile model that operates in schools and parks, creating a steady stream of young participants."
+  },
+  {
+    "brand_name": "Sola Salons",
+    "description": "The leader in the salon suite concept, Sola offers a real estate model where you rent private studios to beauty professionals. It is a simple, scalable landlord business with high stability and low management overhead."
+  },
+  {
+    "brand_name": "Sourdough & Co.",
+    "description": "This fast-casual dining brand is famous for its soups and sandwiches served in signature sourdough bread bowls. It offers a simple, high-quality menu that appeals to lunch and dinner crowds looking for comfort food."
+  },
+  {
+    "brand_name": "Southern Steer Butcher",
+    "description": "This neighborhood butcher shop franchise brings back the old-school experience of high-quality meats and personalized service. It offers a retail model with high customer loyalty and a focus on premium, locally sourced products."
+  },
+  {
+    "brand_name": "Sparkle Squad",
+    "description": "This window cleaning franchise brightens homes and businesses with professional, reliable service. It offers a low-overhead, scalable model with recurring demand for seasonal cleaning."
+  },
+  {
+    "brand_name": "Speedy Freight",
+    "description": "This B2B logistics franchise specializes in same-day courier and express freight services. It is a low-asset, high-margin management model where you coordinate drivers and vehicles to solve urgent shipping problems."
+  },
+  {
+    "brand_name": "SPENGA",
+    "description": "This boutique fitness concept combines spin, strength, and yoga into one 60-minute workout. It targets fitness enthusiasts who want a balanced, all-in-one routine in a premium
