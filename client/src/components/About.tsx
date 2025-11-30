@@ -50,7 +50,7 @@ export function About() {
                   Work With Charles
                 </Button>
               </a>
-              <a href="mailto:CStovall@FranChoice.com">
+              <a href="mailto:cstovall@franchoice.com">
                 <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 px-8 h-12 text-base">
                   Send Email
                 </Button>
