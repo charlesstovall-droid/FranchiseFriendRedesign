@@ -24,31 +24,21 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="flex gap-2 mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pop/10 text-primary text-sm font-semibold border border-accent-pop/20">
-              <span className="w-2 h-2 rounded-full bg-accent-pop" />
-              Nationwide
-            </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-600 text-sm font-semibold border border-red-500/20">
-              <span className="w-2 h-2 rounded-full bg-red-500" />
-              Limited Availability
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pop/10 text-primary text-sm font-semibold mb-6 border border-accent-pop/20">
+            <span className="w-2 h-2 rounded-full bg-accent-pop" />
+            Nationwide
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-primary leading-[1.1] mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80">
-              Don't Make the Wrong Franchise Choice
+              Charles Stovall
             </span>
             <br />
-            <span className="text-3xl md:text-4xl lg:text-5xl text-secondary">Get Expert Guidance</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl">Your Franchise Friend</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-lg leading-relaxed">
-            I've guided 100+ franchisees to find their perfect opportunity using insider knowledge and rigorous due diligence. Skip the confusion, avoid costly mistakes, and find a franchise that's truly right for you.
-          </p>
-          
-          <p className="text-base text-muted-foreground/80 mb-8 max-w-lg leading-relaxed font-semibold">
-            Over 100 clients successfully placed. 10+ years of insider knowledge. Let's find YOUR perfect fit.
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
+            I guide people to franchise ownership with expertise, insight, and inside knowledge—helping you find the right opportunity, secure funding, and build lasting success.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -68,15 +58,15 @@ export function Hero() {
           <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-secondary" />
-              <span>Avoid FDD red flags & franchise traps</span>
+              <span>Expert Guidance on Franchise Selection</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-secondary" />
-              <span>Discover opportunities most brokers never show you</span>
+              <span>Financial Planning & Funding Strategies</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-secondary" />
-              <span>Secure funding & negotiate better terms</span>
+              <span>Exclusive Market Opportunities</span>
             </div>
           </div>
         </motion.div>

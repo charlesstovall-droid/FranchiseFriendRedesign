@@ -19,7 +19,6 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBanner />
-        <BlackBookCTA />
         <HowItWorks />
         <Features />
         <MediaFeatures />
@@ -27,6 +26,7 @@ export default function Home() {
         <PodcastSection />
         <About />
         <MeetCharlesFamily />
+        <BlackBookCTA />
         <CTASection />
       </main>
       <Footer />
