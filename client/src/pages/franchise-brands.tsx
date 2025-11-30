@@ -462,7 +462,6 @@ export default function FranchiseBrands() {
                         )}
                       </div>
                     )}
-                    </div>
                     <Button 
                       className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
                       onClick={() => window.open("https://calendly.com/charles-stovall/introduction-meeting-charlesstovall", "_blank")}
