@@ -19,9 +19,10 @@ import {
 interface Franchise {
   name: string;
   industry: string;
-  investmentRange: string;
-  minCash: string;
+  investmentRange?: string;
+  minCash?: string;
   category: string;
+  description?: string;
 }
 
 // Complete franchise portfolio - 200+ verified brands with accurate investment data
@@ -33,25 +34,25 @@ const franchises: Franchise[] = [
   { name: "ERA Group", industry: "Real Estate", investmentRange: "$30,000 - $150,000", minCash: "$20,000", category: "under50k" },
 
   // $50K - $200K - Verified Investment Ranges
-  { name: "1-800 Water Damage", industry: "Water Damage Restoration", investmentRange: "$170,000 - $294,000", minCash: "$75,000", category: "50to200k" },
-  { name: "1-800-Packouts", industry: "Packout Services", investmentRange: "$45,000 - $120,000", minCash: "$40,000", category: "50to200k" },
-  { name: "1-800-STRIPER", industry: "Parking Lot Striping", investmentRange: "$300,000 - $500,000", minCash: "$150,000", category: "200to500k" },
-  { name: "2nd Family", industry: "Senior Care", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "360° Painting", industry: "Painting Services", investmentRange: "$132,350 - $196,000", minCash: "$50,000", category: "50to200k" },
-  { name: "4Ever Young", industry: "Medical Spa/Anti-Aging", investmentRange: "$80,000 - $200,000", minCash: "$75,000", category: "50to200k" },
-  { name: "76 Fence", industry: "Fence Installation", investmentRange: "$55,000 - $140,000", minCash: "$45,000", category: "50to200k" },
-  { name: "Accelerated Waste Solutions", industry: "Waste Management", investmentRange: "$75,000 - $200,000", minCash: "$70,000", category: "50to200k" },
-  { name: "Ace Handyman Services", industry: "Handyman Services", investmentRange: "$60,000 - $160,000", minCash: "$50,000", category: "50to200k" },
-  { name: "All Dogs Unleashed", industry: "Dog Training", investmentRange: "$50,000 - $130,000", minCash: "$40,000", category: "50to200k" },
-  { name: "All Dry", industry: "Water Damage Restoration", investmentRange: "$86,949 - $275,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Alloy Personal Training", industry: "Fitness", investmentRange: "$60,000 - $150,000", minCash: "$50,000", category: "50to200k" },
-  { name: "Always Best Care Senior Services (US)", industry: "Senior Care", investmentRange: "$70,000 - $180,000", minCash: "$60,000", category: "50to200k" },
-  { name: "Art of Drawers", industry: "Interior Organization", investmentRange: "$50,000 - $140,000", minCash: "$40,000", category: "50to200k" },
-  { name: "Assisted Living Locators", industry: "Senior Care Placement", investmentRange: "$55,000 - $130,000", minCash: "$45,000", category: "50to200k" },
+  { name: "1-800 Water Damage", industry: "Water Damage Restoration", category: "50to200k", description: "This recession-resistant brand focuses on restoring property after water, smoke, or sewage damage, leveraging strong insurance relationships. It offers a robust B2B model where owners manage operations and networking rather than performing the labor themselves." },
+  { name: "1-800-Packouts", industry: "Packout Services", category: "50to200k", description: "Specializing in the careful inventory, packing, and storage of personal contents during insurance claims, this concept pairs perfectly with restoration franchises. It allows for high margins by focusing on the protection of valuables rather than structural repairs." },
+  { name: "1-800-STRIPER", industry: "Parking Lot Striping", category: "200to500k", description: "This niche B2B brand focuses on parking lot striping, a maintenance service that virtually every commercial property requires. It offers a low-overhead, van-based model with recurring demand from property managers and HOAs." },
+  { name: "2nd Family", industry: "Senior Care", category: "50to200k", description: "This senior care franchise differentiates itself with a tech-forward approach to care coordination and a highly rigorous caregiver vetting process. It is ideal for owners who want to combine compassionate community service with a scalable, systems-driven business model." },
+  { name: "360° Painting", industry: "Painting Services", category: "50to200k", description: "Operating in the massive home improvement sector, this executive model focuses on managing subcontractors for residential and commercial painting projects. It allows owners to scale a business through sales and project management without ever needing to pick up a paintbrush." },
+  { name: "4Ever Young", industry: "Medical Spa/Anti-Aging", category: "50to200k", description: "Positioned at the intersection of wellness and beauty, this brand offers anti-aging and vitality services ranging from hormone replacement to aesthetics. It appeals to investors looking to capitalize on the booming demand for preventative health and self-care." },
+  { name: "76 Fence", industry: "Fence Installation", category: "50to200k", description: "This brand professionalizes the fencing industry with a focus on high-quality installations and modern customer service. The model is built for scalability, allowing owners to manage crews and tap into the consistent residential and commercial demand for privacy and security." },
+  { name: "Accelerated Waste Solutions", industry: "Waste Management", category: "50to200k", description: "Combining bulk junk removal with nightly doorstep trash collection for apartments, this brand offers dual revenue streams. It is a tech-enabled waste management play that secures long-term B2B contracts for recurring monthly revenue." },
+  { name: "Ace Handyman Services", industry: "Handyman Services", category: "50to200k", description: "Backed by the trusted Ace Hardware brand, this franchise brings reliability and professionalism to the fragmented home repair market. Owners benefit from immediate brand recognition and a model focused on small-project volume that keeps repeat customers coming back." },
+  { name: "All Dogs Unleashed", industry: "Dog Training", category: "50to200k", description: "This comprehensive pet care facility combines dog training, boarding, and daycare into a single high-ticket service model. It appeals to dog lovers who want a facility-based business with multiple revenue centers and high average transaction values." },
+  { name: "All Dry", industry: "Water Damage Restoration", category: "50to200k", description: "Focused on water damage restoration and mold remediation, this brand offers a simplified, mobile service model with quick turnaround times. It is designed for owners seeking a high-margin, recession-proof business that helps homeowners in critical times of need." },
+  { name: "Alloy Personal Training", industry: "Fitness", category: "50to200k", description: "This fitness concept focuses on small group personal training, offering the customized attention of private coaching at a more accessible price point. The model generates high revenue per square foot and fosters strong member retention through community and results." },
+  { name: "Always Best Care Senior Services (US)", industry: "Senior Care", category: "50to200k", description: "This brand offers a continuum of care, including in-home care, assisted living placement, and skilled nursing, maximizing revenue potential from each client. It is a relationship-driven business perfect for those who want to be a trusted resource for families in their community." },
+  { name: "Art of Drawers", industry: "Interior Organization", category: "50to200k", description: "This unique niche focuses on custom organization solutions for existing cabinets and drawers, avoiding the complexity of full renovations. It is a low-overhead, high-margin sales model that appeals to homeowners looking for functional luxury without the construction mess." },
+  { name: "Assisted Living Locators", industry: "Senior Care Placement", category: "50to200k", description: "This no-cost-to-client placement service helps families find the right senior living solutions, earning commissions from the facilities. It is a low-investment, home-based model that rewards strong networking and relationship building within the senior care ecosystem." },
   { name: "Aire Serv", industry: "HVAC Services", investmentRange: "$85,000 - $220,000", minCash: "$75,000", category: "50to200k" },
-  { name: "Aussie Pet Mobile", industry: "Pet Grooming", investmentRange: "$167,325 - $208,650", minCash: "$200,000", category: "50to200k" },
-  { name: "Bar-B-Clean", industry: "BBQ Grill Cleaning", investmentRange: "$40,000 - $100,000", minCash: "$35,000", category: "50to200k" },
-  { name: "Bath Tune-Up", industry: "Bathroom Remodeling", investmentRange: "$80,000 - $200,000", minCash: "$70,000", category: "50to200k" },
+  { name: "Aussie Pet Mobile", industry: "Pet Grooming", category: "50to200k", description: "This mobile grooming service brings the salon directly to the customer's driveway, offering convenience that busy pet owners love. It is a scalable, van-based business that eliminates the need for expensive retail real estate." },
+  { name: "Bar-B-Clean", industry: "BBQ Grill Cleaning", category: "50to200k", description: "This niche service focuses on cleaning and maintaining high-end outdoor grills, a task most homeowners dread doing themselves. It offers a low-cost entry point with high repeat business potential, especially in affluent neighborhoods." },
+  { name: "Bath Tune-Up", industry: "Bathroom Remodeling", category: "50to200k", description: "Specializing in curated bathroom updates rather than full demolition remodels, this concept offers a faster, less intrusive renovation experience. It allows franchisees to capture the middle-market demand for affordable luxury with quicker project turnover." },
   { name: "beem Light Sauna", industry: "Wellness/Sauna Services", investmentRange: "$75,000 - $180,000", minCash: "$60,000", category: "50to200k" },
   { name: "Benetrends", industry: "Financial Services", investmentRange: "$50,000 - $120,000", minCash: "$40,000", category: "50to200k" },
   { name: "Big Frog Custom T-Shirts & More", industry: "Custom T-Shirts/Retail", investmentRange: "$85,000 - $200,000", minCash: "$75,000", category: "50to200k" },
@@ -437,21 +438,30 @@ export default function FranchiseBrands() {
                     <p className="text-sm opacity-70 mt-1">{franchise.industry}</p>
                   </CardHeader>
                   <CardContent className="space-y-4 pt-4">
-                    <div className="space-y-3">
-                      <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
-                          <DollarSign className="w-4 h-4" />
-                          Total Investment
-                        </div>
-                        <p className="text-lg font-bold text-primary">{franchise.investmentRange}</p>
+                    {franchise.description ? (
+                      <p className="text-sm text-foreground leading-relaxed">{franchise.description}</p>
+                    ) : (
+                      <div className="space-y-3">
+                        {franchise.investmentRange && (
+                          <div>
+                            <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
+                              <DollarSign className="w-4 h-4" />
+                              Total Investment
+                            </div>
+                            <p className="text-lg font-bold text-primary">{franchise.investmentRange}</p>
+                          </div>
+                        )}
+                        {franchise.minCash && (
+                          <div>
+                            <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
+                              <TrendingUp className="w-4 h-4" />
+                              Min. Cash Required
+                            </div>
+                            <p className="text-lg font-bold text-primary">{franchise.minCash}</p>
+                          </div>
+                        )}
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2 text-sm font-semibold mb-1 text-secondary">
-                          <TrendingUp className="w-4 h-4" />
-                          Min. Cash Required
-                        </div>
-                        <p className="text-lg font-bold text-primary">{franchise.minCash}</p>
-                      </div>
+                    )}
                     </div>
                     <Button 
                       className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"

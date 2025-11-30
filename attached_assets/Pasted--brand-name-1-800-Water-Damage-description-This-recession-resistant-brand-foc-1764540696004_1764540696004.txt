@@ -1,0 +1,73 @@
+[
+  {
+    "brand_name": "1-800 Water Damage",
+    "description": "This recession-resistant brand focuses on restoring property after water, smoke, or sewage damage, leveraging strong insurance relationships. It offers a robust B2B model where owners manage operations and networking rather than performing the labor themselves."
+  },
+  {
+    "brand_name": "1-800-Packouts",
+    "description": "Specializing in the careful inventory, packing, and storage of personal contents during insurance claims, this concept pairs perfectly with restoration franchises. It allows for high margins by focusing on the protection of valuables rather than structural repairs."
+  },
+  {
+    "brand_name": "1-800-STRIPER",
+    "description": "This niche B2B brand focuses on parking lot striping, a maintenance service that virtually every commercial property requires. It offers a low-overhead, van-based model with recurring demand from property managers and HOAs."
+  },
+  {
+    "brand_name": "2nd Family",
+    "description": "This senior care franchise differentiates itself with a tech-forward approach to care coordination and a highly rigorous caregiver vetting process. It is ideal for owners who want to combine compassionate community service with a scalable, systems-driven business model."
+  },
+  {
+    "brand_name": "360° Painting",
+    "description": "Operating in the massive home improvement sector, this executive model focuses on managing subcontractors for residential and commercial painting projects. It allows owners to scale a business through sales and project management without ever needing to pick up a paintbrush."
+  },
+  {
+    "brand_name": "4Ever Young",
+    "description": "Positioned at the intersection of wellness and beauty, this brand offers anti-aging and vitality services ranging from hormone replacement to aesthetics. It appeals to investors looking to capitalize on the booming demand for preventative health and self-care."
+  },
+  {
+    "brand_name": "76 Fence",
+    "description": "This brand professionalizes the fencing industry with a focus on high-quality installations and modern customer service. The model is built for scalability, allowing owners to manage crews and tap into the consistent residential and commercial demand for privacy and security."
+  },
+  {
+    "brand_name": "Accelerated Waste Solutions",
+    "description": "Combining bulk junk removal with nightly doorstep trash collection for apartments, this brand offers dual revenue streams. It is a tech-enabled waste management play that secures long-term B2B contracts for recurring monthly revenue."
+  },
+  {
+    "brand_name": "Ace Handyman Services",
+    "description": "Backed by the trusted Ace Hardware brand, this franchise brings reliability and professionalism to the fragmented home repair market. Owners benefit from immediate brand recognition and a model focused on small-project volume that keeps repeat customers coming back."
+  },
+  {
+    "brand_name": "All Dogs Unleashed",
+    "description": "This comprehensive pet care facility combines dog training, boarding, and daycare into a single high-ticket service model. It appeals to dog lovers who want a facility-based business with multiple revenue centers and high average transaction values."
+  },
+  {
+    "brand_name": "All Dry",
+    "description": "Focused on water damage restoration and mold remediation, this brand offers a simplified, mobile service model with quick turnaround times. It is designed for owners seeking a high-margin, recession-proof business that helps homeowners in critical times of need."
+  },
+  {
+    "brand_name": "Alloy Personal Training",
+    "description": "This fitness concept focuses on small group personal training, offering the customized attention of private coaching at a more accessible price point. The model generates high revenue per square foot and fosters strong member retention through community and results."
+  },
+  {
+    "brand_name": "Always Best Care Senior Services (US)",
+    "description": "This brand offers a continuum of care, including in-home care, assisted living placement, and skilled nursing, maximizing revenue potential from each client. It is a relationship-driven business perfect for those who want to be a trusted resource for families in their community."
+  },
+  {
+    "brand_name": "Art of Drawers",
+    "description": "This unique niche focuses on custom organization solutions for existing cabinets and drawers, avoiding the complexity of full renovations. It is a low-overhead, high-margin sales model that appeals to homeowners looking for functional luxury without the construction mess."
+  },
+  {
+    "brand_name": "Assisted Living Locators",
+    "description": "This no-cost-to-client placement service helps families find the right senior living solutions, earning commissions from the facilities. It is a low-investment, home-based model that rewards strong networking and relationship building within the senior care ecosystem."
+  },
+  {
+    "brand_name": "Aussie Pet Mobile",
+    "description": "This mobile grooming service brings the salon directly to the customer's driveway, offering convenience that busy pet owners love. It is a scalable, van-based business that eliminates the need for expensive retail real estate."
+  },
+  {
+    "brand_name": "Bar-B-Clean",
+    "description": "This niche service focuses on cleaning and maintaining high-end outdoor grills, a task most homeowners dread doing themselves. It offers a low-cost entry point with high repeat business potential, especially in affluent neighborhoods."
+  },
+  {
+    "brand_name": "Bath Tune-Up",
+    "description": "Specializing in curated bathroom updates rather than full demolition remodels, this concept offers a faster, less intrusive renovation experience. It allows franchisees to capture the middle-market demand for affordable luxury with quicker project turnover."
+  },
