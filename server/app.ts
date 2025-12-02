@@ -2,7 +2,11 @@ import { type Server } from "node:http";
 
 import express, { type Express, type Request, Response, NextFunction } from "express";
 import session from "express-session";
+import ConnectPgSimple from "connect-pg-simple";
+import pg from "pg";
 import { registerRoutes } from "./routes";
+
+const { Pool } = pg;
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -29,8 +33,19 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// Session middleware
+// Create PostgreSQL pool for sessions
+const pgPool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+const PgSession = ConnectPgSimple(session);
+
+// Session middleware with PostgreSQL store
 app.use(session({
+  store: new PgSession({
+    pool: pgPool,
+    tableName: 'session',
+  }),
   secret: process.env.SESSION_SECRET || "dev-secret-key-change-in-production",
   resave: false,
   saveUninitialized: false,
