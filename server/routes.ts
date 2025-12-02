@@ -147,6 +147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         req.session.memberId = member.id;
         req.session.memberEmail = member.email;
         req.session.memberName = member.name;
+        req.session.isAdmin = false;
         await new Promise<void>((resolve) => {
           req.session.save((err: any) => {
             if (err) console.error("Session save error:", err);
