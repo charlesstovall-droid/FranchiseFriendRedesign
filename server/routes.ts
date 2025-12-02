@@ -126,6 +126,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
           req.session.memberEmail = email;
           req.session.memberName = "Charles Stovall";
           req.session.isAdmin = true;
+          await new Promise<void>((resolve) => {
+            req.session.save((err: any) => {
+              if (err) console.error("Session save error:", err);
+              resolve();
+            });
+          });
         }
         return res.json({ success: true, member: { id: "admin", email, name: "Charles Stovall", isAdmin: true } });
       }
@@ -141,6 +147,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         req.session.memberId = member.id;
         req.session.memberEmail = member.email;
         req.session.memberName = member.name;
+        await new Promise<void>((resolve) => {
+          req.session.save((err: any) => {
+            if (err) console.error("Session save error:", err);
+            resolve();
+          });
+        });
       }
 
       res.json({ success: true, member });
