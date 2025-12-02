@@ -341,11 +341,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Store brands if provided
       if (brandData && brandData.length > 0) {
-        const tempMember = { id: "temp", email, name };
         try {
-          // This stores brands when invitation is created (before redemption)
-          // They'll be properly linked to member ID on redemption
-          // For now, we store them but they need redemption to link to member
+          const member = await storage.getMemberByEmail(email);
+          if (member) {
+            for (const brand of brandData) {
+              await storage.createBrand({
+                memberId: member.id,
+                name: brand.name,
+                website: brand.website,
+                devPersonName: brand.devPersonName,
+                devPersonEmail: brand.devPersonEmail,
+                devPersonPhone: brand.devPersonPhone,
+              });
+            }
+          }
         } catch (brandError) {
           console.error("Error storing brands:", brandError);
         }

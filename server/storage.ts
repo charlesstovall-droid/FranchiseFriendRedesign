@@ -56,6 +56,18 @@ export class DbStorage implements IStorage {
 
   async createInvitation(email: string, name: string): Promise<Invitation> {
     const code = Math.random().toString(36).substring(2, 15).toUpperCase();
+    
+    // Check if member already exists
+    const existingMember = await db.select().from(members).where(eq(members.email, email));
+    
+    // Create member if doesn't exist
+    if (!existingMember.length) {
+      await db.insert(members).values({
+        email,
+        name,
+      });
+    }
+    
     const [invitation] = await db.insert(invitations).values({
       email,
       invitationCode: code,
