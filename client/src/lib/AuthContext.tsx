@@ -5,11 +5,12 @@ interface Member {
   id: string;
   email: string;
   name: string;
-  phase1Complete: boolean;
-  phase2Complete: boolean;
-  phase3Complete: boolean;
-  phase4Complete: boolean;
-  createdAt: string;
+  phase1Complete?: boolean;
+  phase2Complete?: boolean;
+  phase3Complete?: boolean;
+  phase4Complete?: boolean;
+  createdAt?: string;
+  isAdmin?: boolean;
 }
 
 interface AuthContextType {

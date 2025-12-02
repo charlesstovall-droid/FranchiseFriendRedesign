@@ -119,6 +119,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, error: "Email required" });
       }
 
+      // Check if admin
+      if (email === "charles@franchisefriend.net") {
+        if (req.session) {
+          req.session.memberId = "admin";
+          req.session.memberEmail = email;
+          req.session.memberName = "Charles Stovall";
+          req.session.isAdmin = true;
+        }
+        return res.json({ success: true, member: { id: "admin", email, name: "Charles Stovall", isAdmin: true } });
+      }
+
       // Check if member exists
       const member = await storage.getMemberByEmail(email);
       if (!member) {
@@ -156,6 +167,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       if (!req.session?.memberEmail) {
         return res.status(401).json({ success: false, error: "Not logged in" });
+      }
+
+      // Check if admin
+      if (req.session.isAdmin || req.session.memberId === "admin") {
+        return res.json({ success: true, member: { id: "admin", email: req.session.memberEmail, name: req.session.memberName, isAdmin: true } });
       }
 
       const member = await storage.getMemberByEmail(req.session.memberEmail);
