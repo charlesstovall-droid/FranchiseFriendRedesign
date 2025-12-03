@@ -21,6 +21,7 @@ interface Invitation {
 interface Brand {
   name: string;
   website: string;
+  logoUrl?: string;
   devPersonName: string;
   devPersonEmail: string;
   devPersonPhone: string;

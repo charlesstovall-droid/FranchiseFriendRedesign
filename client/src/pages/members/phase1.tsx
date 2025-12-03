@@ -12,6 +12,7 @@ interface Brand {
   id: string;
   name: string;
   website: string;
+  logoUrl?: string;
   devPersonName?: string;
   devPersonEmail?: string;
   devPersonPhone?: string;
@@ -178,7 +179,22 @@ export default function Phase1() {
                   >
                     <Card className="h-full border-2 border-secondary/20 hover:border-secondary/40 transition-all">
                       <CardHeader>
-                        <h3 className="text-xl font-bold text-primary">{brand.name}</h3>
+                        <div className="flex items-center gap-4">
+                          {brand.logoUrl && (
+                            <div className="w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2 border border-secondary/10 flex items-center justify-center">
+                              <img 
+                                src={brand.logoUrl} 
+                                alt={`${brand.name} logo`}
+                                className="w-full h-full object-contain"
+                                data-testid={`img-brand-logo-${index}`}
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                }}
+                              />
+                            </div>
+                          )}
+                          <h3 className="text-xl font-bold text-primary">{brand.name}</h3>
+                        </div>
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <a
