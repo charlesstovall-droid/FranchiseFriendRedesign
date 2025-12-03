@@ -538,10 +538,9 @@ export default function MembersAdmin() {
                       <h4 className="text-sm font-semibold text-primary mb-3">Brands</h4>
                       <div className="space-y-3">
                         {editingBrands.map((b, idx) => (
-                          <div key={b.id} className="p-3 bg-secondary/5 rounded border border-secondary/20 space-y-2">
-                            <div className="flex justify-between items-start">
+                          <div key={b.id || idx} className="p-3 bg-secondary/5 rounded border border-secondary/20 space-y-2">
+                            <div className="flex justify-between items-start gap-2">
                               <Input
-                                size="sm"
                                 value={b.name}
                                 onChange={(e) => {
                                   const updated = [...editingBrands];
@@ -555,13 +554,12 @@ export default function MembersAdmin() {
                                 size="sm"
                                 variant="ghost"
                                 onClick={() => deleteMemberBrand(b.id || "", idx)}
-                                className="ml-2 h-8 w-8 p-0"
+                                className="ml-2 h-8 w-8 p-0 flex-shrink-0"
                               >
                                 <X className="w-4 h-4 text-destructive" />
                               </Button>
                             </div>
                             <Input
-                              size="sm"
                               value={b.website}
                               onChange={(e) => {
                                 const updated = [...editingBrands];
@@ -569,6 +567,16 @@ export default function MembersAdmin() {
                                 setEditingBrands(updated);
                               }}
                               placeholder="Website URL"
+                              className="border-secondary/20 text-sm"
+                            />
+                            <Input
+                              value={b.logoUrl || ""}
+                              onChange={(e) => {
+                                const updated = [...editingBrands];
+                                updated[idx].logoUrl = e.target.value;
+                                setEditingBrands(updated);
+                              }}
+                              placeholder="Logo URL"
                               className="border-secondary/20 text-sm"
                             />
                           </div>
