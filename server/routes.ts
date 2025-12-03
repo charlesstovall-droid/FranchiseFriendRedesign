@@ -532,6 +532,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/members", async (req, res) => {
+    try {
+      const members = await storage.getAllMembers();
+      res.json({ success: true, members });
+    } catch (error) {
+      console.error("Error fetching members:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch members" });
+    }
+  });
+
   app.get("/api/members/:memberId/brands", async (req, res) => {
     try {
       const brands = await storage.getBrandsByMemberId(req.params.memberId);
@@ -539,6 +549,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching brands:", error);
       res.status(500).json({ success: false, error: "Failed to fetch brands" });
+    }
+  });
+
+  app.put("/api/members/:id", async (req, res) => {
+    try {
+      const { name } = req.body;
+      if (!name) {
+        return res.status(400).json({ success: false, error: "Name required" });
+      }
+      const member = await storage.updateMember(req.params.id, name);
+      if (!member) {
+        return res.status(404).json({ success: false, error: "Member not found" });
+      }
+      res.json({ success: true, member });
+    } catch (error) {
+      console.error("Error updating member:", error);
+      res.status(500).json({ success: false, error: "Failed to update member" });
+    }
+  });
+
+  app.put("/api/brands/:id", async (req, res) => {
+    try {
+      const { name, website, logoUrl, devPersonName, devPersonEmail, devPersonPhone } = req.body;
+      const updateData: any = {};
+      if (name) updateData.name = name;
+      if (website) updateData.website = website;
+      if (logoUrl !== undefined) updateData.logoUrl = logoUrl;
+      if (devPersonName !== undefined) updateData.devPersonName = devPersonName;
+      if (devPersonEmail !== undefined) updateData.devPersonEmail = devPersonEmail;
+      if (devPersonPhone !== undefined) updateData.devPersonPhone = devPersonPhone;
+      
+      const brand = await storage.updateBrand(req.params.id, updateData);
+      if (!brand) {
+        return res.status(404).json({ success: false, error: "Brand not found" });
+      }
+      res.json({ success: true, brand });
+    } catch (error) {
+      console.error("Error updating brand:", error);
+      res.status(500).json({ success: false, error: "Failed to update brand" });
+    }
+  });
+
+  app.delete("/api/brands/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteBrand(req.params.id);
+      if (!success) {
+        return res.status(404).json({ success: false, error: "Brand not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting brand:", error);
+      res.status(500).json({ success: false, error: "Failed to delete brand" });
     }
   });
 

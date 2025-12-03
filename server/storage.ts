@@ -16,9 +16,14 @@ export interface IStorage {
   deleteInvitation(id: string): Promise<boolean>;
   redeemInvitation(code: string, email: string, name: string, brandData?: Array<{ name: string; website: string }>): Promise<Member>;
   getMemberByEmail(email: string): Promise<Member | undefined>;
+  getMemberById(id: string): Promise<Member | undefined>;
+  getAllMembers(): Promise<Member[]>;
+  updateMember(id: string, name: string): Promise<Member | undefined>;
   updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
   getBrandsByMemberId(memberId: string): Promise<Brand[]>;
   createBrand(brand: InsertBrand): Promise<Brand>;
+  updateBrand(id: string, brand: Partial<InsertBrand>): Promise<Brand | undefined>;
+  deleteBrand(id: string): Promise<boolean>;
 }
 
 export class DbStorage implements IStorage {
@@ -140,6 +145,30 @@ export class DbStorage implements IStorage {
   async createBrand(brand: InsertBrand): Promise<Brand> {
     const [newBrand] = await db.insert(brands).values(brand).returning();
     return newBrand;
+  }
+
+  async getMemberById(id: string): Promise<Member | undefined> {
+    const [member] = await db.select().from(members).where(eq(members.id, id));
+    return member;
+  }
+
+  async getAllMembers(): Promise<Member[]> {
+    return await db.select().from(members).orderBy(desc(members.createdAt));
+  }
+
+  async updateMember(id: string, name: string): Promise<Member | undefined> {
+    const [member] = await db.update(members).set({ name }).where(eq(members.id, id)).returning();
+    return member;
+  }
+
+  async updateBrand(id: string, brandData: Partial<InsertBrand>): Promise<Brand | undefined> {
+    const [brand] = await db.update(brands).set(brandData).where(eq(brands.id, id)).returning();
+    return brand;
+  }
+
+  async deleteBrand(id: string): Promise<boolean> {
+    const result = await db.delete(brands).where(eq(brands.id, id));
+    return result.rowCount > 0;
   }
 }
 

@@ -19,12 +19,21 @@ interface Invitation {
 }
 
 interface Brand {
+  id?: string;
   name: string;
   website: string;
   logoUrl?: string;
   devPersonName: string;
   devPersonEmail: string;
   devPersonPhone: string;
+  memberId?: string;
+}
+
+interface Member {
+  id: string;
+  email: string;
+  name: string;
+  createdAt?: string;
 }
 
 export default function MembersAdmin() {
@@ -37,6 +46,8 @@ export default function MembersAdmin() {
   const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
+  const [editingMember, setEditingMember] = useState<Member | null>(null);
+  const [editingBrands, setEditingBrands] = useState<Brand[]>([]);
 
   // Check if user is authorized
   useEffect(() => {
@@ -45,12 +56,21 @@ export default function MembersAdmin() {
     }
   }, [loading, member, setLocation]);
 
-  // Fetch invitations
+  // Fetch invitations and members
   const { data: invitationsData, refetch } = useQuery({
     queryKey: ["invitations"],
     queryFn: async () => {
       const response = await fetch("/api/invitations");
       if (!response.ok) throw new Error("Failed to fetch invitations");
+      return response.json();
+    },
+  });
+
+  const { data: membersData } = useQuery({
+    queryKey: ["members"],
+    queryFn: async () => {
+      const response = await fetch("/api/members");
+      if (!response.ok) throw new Error("Failed to fetch members");
       return response.json();
     },
   });
@@ -61,8 +81,59 @@ export default function MembersAdmin() {
   const handleAddBrand = () => {
     setBrands([
       ...brands,
-      { name: "", website: "", devPersonName: "", devPersonEmail: "", devPersonPhone: "" }
+      { name: "", website: "", logoUrl: "", devPersonName: "", devPersonEmail: "", devPersonPhone: "" }
     ]);
+  };
+
+  const startEditingMember = async (m: Member) => {
+    try {
+      const brandsRes = await fetch(`/api/members/${m.id}/brands`);
+      if (brandsRes.ok) {
+        const data = await brandsRes.json();
+        setEditingBrands(data.brands || []);
+      }
+    } catch (err) {
+      console.error("Error loading brands:", err);
+    }
+    setEditingMember(m);
+  };
+
+  const saveMemberEdit = async () => {
+    if (!editingMember) return;
+    try {
+      const updateRes = await fetch(`/api/members/${editingMember.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: editingMember.name }),
+      });
+      if (!updateRes.ok) throw new Error("Failed to update member");
+
+      // Update brands
+      for (const brand of editingBrands) {
+        if (brand.id) {
+          await fetch(`/api/brands/${brand.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(brand),
+          });
+        }
+      }
+      
+      setEditingMember(null);
+      setEditingBrands([]);
+      refetch();
+    } catch (err: any) {
+      setSubmitMessage({ type: "error", text: err.message });
+    }
+  };
+
+  const deleteMemberBrand = async (brandId: string, index: number) => {
+    try {
+      await fetch(`/api/brands/${brandId}`, { method: "DELETE" });
+      setEditingBrands(editingBrands.filter((_, i) => i !== index));
+    } catch (err) {
+      console.error("Error deleting brand:", err);
+    }
   };
 
   const handleRemoveBrand = (index: number) => {
@@ -307,6 +378,20 @@ export default function MembersAdmin() {
                                   className="border-secondary/20 text-sm"
                                 />
                               </div>
+                              <div className="col-span-2">
+                                <label className="block text-xs font-semibold text-primary mb-1">
+                                  Logo URL
+                                </label>
+                                <Input
+                                  type="text"
+                                  value={brand.logoUrl || ""}
+                                  onChange={(e) => handleBrandChange(idx, "logoUrl", e.target.value)}
+                                  placeholder="https://example.com/logo.png"
+                                  disabled={isSubmitting}
+                                  data-testid={`input-brand-logo-${idx}`}
+                                  className="border-secondary/20 text-sm"
+                                />
+                              </div>
                             </div>
 
                             <div className="bg-background/50 p-3 rounded border border-secondary/10">
@@ -390,7 +475,7 @@ export default function MembersAdmin() {
               </Card>
             </motion.div>
 
-            {/* Pending Invitations */}
+            {/* Members List & Edit */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -398,41 +483,117 @@ export default function MembersAdmin() {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Pending Invitations</CardTitle>
+                  <CardTitle className="text-lg">Active Members</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {pendingInvitations.length === 0 ? (
-                      <p className="text-sm text-muted-foreground text-center py-4">No pending invitations</p>
+                    {!membersData?.members?.length ? (
+                      <p className="text-sm text-muted-foreground text-center py-4">No members yet</p>
                     ) : (
-                      pendingInvitations.map((inv, idx) => (
+                      membersData.members.map((m: Member, idx: number) => (
                         <motion.div
-                          key={inv.id}
+                          key={m.id}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.05 }}
                           className="p-3 bg-secondary/5 border border-secondary/20 rounded-lg flex items-start justify-between"
                         >
                           <div className="flex-1">
-                            <p className="text-sm font-semibold text-primary truncate">{inv.email}</p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Created {new Date(inv.createdAt).toLocaleDateString()}
-                            </p>
+                            <p className="text-sm font-semibold text-primary truncate">{m.name}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{m.email}</p>
                           </div>
-                          <button
-                            onClick={() => handleDeleteInvitation(inv.id)}
-                            className="ml-2 p-1 hover:bg-destructive/20 rounded transition-colors flex-shrink-0"
-                            data-testid={`button-delete-invitation-${idx}`}
-                            title="Delete invitation"
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => startEditingMember(m)}
+                            className="ml-2 flex-shrink-0"
+                            data-testid={`button-edit-member-${idx}`}
                           >
-                            <Trash2 className="w-4 h-4 text-destructive" />
-                          </button>
+                            Edit
+                          </Button>
                         </motion.div>
                       ))
                     )}
                   </div>
                 </CardContent>
               </Card>
+
+              {editingMember && (
+                <Card className="mt-4 border-secondary">
+                  <CardHeader>
+                    <CardTitle className="text-lg">Edit Member: {editingMember.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-primary mb-2">Name</label>
+                      <Input
+                        type="text"
+                        value={editingMember.name}
+                        onChange={(e) => setEditingMember({...editingMember, name: e.target.value})}
+                        className="border-secondary/20"
+                      />
+                    </div>
+
+                    <div className="border-t border-secondary/20 pt-4">
+                      <h4 className="text-sm font-semibold text-primary mb-3">Brands</h4>
+                      <div className="space-y-3">
+                        {editingBrands.map((b, idx) => (
+                          <div key={b.id} className="p-3 bg-secondary/5 rounded border border-secondary/20 space-y-2">
+                            <div className="flex justify-between items-start">
+                              <Input
+                                size="sm"
+                                value={b.name}
+                                onChange={(e) => {
+                                  const updated = [...editingBrands];
+                                  updated[idx].name = e.target.value;
+                                  setEditingBrands(updated);
+                                }}
+                                placeholder="Brand name"
+                                className="flex-1 border-secondary/20 text-sm"
+                              />
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => deleteMemberBrand(b.id || "", idx)}
+                                className="ml-2 h-8 w-8 p-0"
+                              >
+                                <X className="w-4 h-4 text-destructive" />
+                              </Button>
+                            </div>
+                            <Input
+                              size="sm"
+                              value={b.website}
+                              onChange={(e) => {
+                                const updated = [...editingBrands];
+                                updated[idx].website = e.target.value;
+                                setEditingBrands(updated);
+                              }}
+                              placeholder="Website URL"
+                              className="border-secondary/20 text-sm"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 border-t border-secondary/20 pt-4">
+                      <Button
+                        onClick={saveMemberEdit}
+                        className="flex-1 bg-secondary hover:bg-secondary/90"
+                      >
+                        Save Changes
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => setEditingMember(null)}
+                        className="flex-1"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </motion.div>
           </div>
         </div>
