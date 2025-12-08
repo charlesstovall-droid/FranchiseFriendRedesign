@@ -42,12 +42,28 @@ export function PodcastSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 px-8">
-                Listen to Episodes
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12">
-                View All Topics
-              </Button>
+              <a href="https://www.franchisefriend.net/podcast" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 px-8 w-full">
+                  Listen to Episodes
+                </Button>
+              </a>
+              <div className="flex gap-2 flex-1">
+                <a href="https://open.spotify.com/search/your%20franchise%20friend" target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
+                    Spotify
+                  </Button>
+                </a>
+                <a href="https://podcasts.apple.com/us/podcast/your-franchise-friend/id1500000000" target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
+                    Apple
+                  </Button>
+                </a>
+                <a href="https://www.youtube.com/@YourFranchiseFriend" target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
+                    YouTube
+                  </Button>
+                </a>
+              </div>
             </div>
             
             <div className="mt-12 pt-8 border-t border-white/10 flex gap-8">

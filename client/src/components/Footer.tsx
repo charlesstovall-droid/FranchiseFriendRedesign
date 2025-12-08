@@ -1,4 +1,4 @@
-import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin, Settings } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin, Settings, Music, Radio } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
 
@@ -25,7 +25,9 @@ export function Footer() {
               Personal guidance through the complexities of franchise ownership with honesty, integrity, and real-world experience.
             </p>
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors"><Linkedin className="w-5 h-5" /></a>
+              <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors" title="Instagram" data-testid="link-instagram"><Facebook className="w-5 h-5" /></a>
+              <a href="https://x.com/chuckstovall" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors" title="Twitter/X" data-testid="link-twitter"><Twitter className="w-5 h-5" /></a>
+              <a href="https://www.linkedin.com/in/charles-stovall/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-secondary transition-colors" title="LinkedIn" data-testid="link-linkedin"><Linkedin className="w-5 h-5" /></a>
             </div>
           </div>
 
