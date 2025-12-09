@@ -121,8 +121,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Check if admin
       if (email === "charles@franchisefriend.net") {
+        // Get admin's actual member record if it exists
+        const adminMember = await storage.getMemberByEmail(email);
+        const adminId = adminMember?.id || "admin";
+        
+        // Update last login for admin if they have a database record
+        if (adminMember) {
+          await storage.updateMemberLastLogin(adminMember.id);
+        }
+        
         if (req.session) {
-          req.session.memberId = "admin";
+          req.session.memberId = adminId;
           req.session.memberEmail = email;
           req.session.memberName = "Charles Stovall";
           req.session.isAdmin = true;
@@ -133,7 +142,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             });
           });
         }
-        return res.json({ success: true, member: { id: "admin", email, name: "Charles Stovall", isAdmin: true } });
+        return res.json({ success: true, member: { id: adminId, email, name: "Charles Stovall", isAdmin: true } });
       }
 
       // Check if member exists

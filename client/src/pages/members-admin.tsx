@@ -67,7 +67,7 @@ export default function MembersAdmin() {
     },
   });
 
-  const { data: membersData } = useQuery({
+  const { data: membersData, refetch: refetchMembers } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
       const response = await fetch("/api/members");
@@ -75,6 +75,11 @@ export default function MembersAdmin() {
       return response.json();
     },
   });
+
+  // Refetch members when page loads to ensure fresh data
+  useEffect(() => {
+    refetchMembers();
+  }, [refetchMembers]);
 
   const invitations: Invitation[] = invitationsData?.invitations || [];
   const pendingInvitations = invitations.filter(inv => !inv.isUsed);
