@@ -34,6 +34,7 @@ interface Member {
   email: string;
   name: string;
   createdAt?: string;
+  lastLogin?: string;
 }
 
 export default function MembersAdmin() {
@@ -501,6 +502,11 @@ export default function MembersAdmin() {
                           <div className="flex-1">
                             <p className="text-sm font-semibold text-primary truncate">{m.name}</p>
                             <p className="text-xs text-muted-foreground mt-1">{m.email}</p>
+                            {m.lastLogin && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Last login: {new Date(m.lastLogin).toLocaleDateString()} {new Date(m.lastLogin).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                              </p>
+                            )}
                           </div>
                           <Button
                             size="sm"
