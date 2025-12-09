@@ -33,6 +33,7 @@ interface Member {
   id: string;
   email: string;
   name: string;
+  lastLogin?: string | Date;
   createdAt?: string;
 }
 
