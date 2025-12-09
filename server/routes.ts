@@ -142,6 +142,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ success: false, error: "No account found with this email. Please contact Charles for an invitation." });
       }
 
+      // Update last login time
+      const updatedMember = await storage.updateMemberLastLogin(member.id);
+
       // Store member info in session
       if (req.session) {
         req.session.memberId = member.id;
@@ -156,7 +159,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      res.json({ success: true, member });
+      res.json({ success: true, member: updatedMember || member });
     } catch (error) {
       console.error("Error logging in:", error);
       res.status(500).json({ success: false, error: "Login failed" });

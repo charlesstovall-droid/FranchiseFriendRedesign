@@ -20,6 +20,7 @@ export interface IStorage {
   getAllMembers(): Promise<Member[]>;
   updateMember(id: string, name: string): Promise<Member | undefined>;
   updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
+  updateMemberLastLogin(id: string): Promise<Member | undefined>;
   getBrandsByMemberId(memberId: string): Promise<Brand[]>;
   createBrand(brand: InsertBrand): Promise<Brand>;
   updateBrand(id: string, brand: Partial<InsertBrand>): Promise<Brand | undefined>;
@@ -158,6 +159,11 @@ export class DbStorage implements IStorage {
 
   async updateMember(id: string, name: string): Promise<Member | undefined> {
     const [member] = await db.update(members).set({ name }).where(eq(members.id, id)).returning();
+    return member;
+  }
+
+  async updateMemberLastLogin(id: string): Promise<Member | undefined> {
+    const [member] = await db.update(members).set({ lastLogin: new Date() }).where(eq(members.id, id)).returning();
     return member;
   }
 
