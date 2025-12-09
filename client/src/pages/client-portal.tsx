@@ -44,25 +44,14 @@ export default function ClientPortal() {
         return;
       }
 
-      // Verify the session is set by checking auth
-      const authCheck = await fetch("/api/auth/me", {
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!authCheck.ok) {
-        setLoading(false);
-        setError("Session failed. Please try again.");
-        return;
-      }
-
+      // Login successful - set success state and redirect
       setSuccess(true);
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
       
-      // Redirect after session is verified
+      // Redirect to dashboard
       setTimeout(() => {
         window.location.href = redirectPath;
-      }, 500);
+      }, 800);
       
     } catch (err) {
       setLoading(false);
