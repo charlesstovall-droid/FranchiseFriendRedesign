@@ -29,7 +29,6 @@ export default function ClientPortal() {
     setLoading(true);
 
     try {
-      console.log("Logging in with email:", email);
       const response = await fetch("/api/auth/login", {
         method: "POST",
         credentials: "include",
@@ -38,7 +37,6 @@ export default function ClientPortal() {
       });
 
       const data = await response.json();
-      console.log("Login response:", data);
 
       if (!response.ok) {
         setLoading(false);
@@ -46,18 +44,27 @@ export default function ClientPortal() {
         return;
       }
 
+      // Verify the session is set by checking auth
+      const authCheck = await fetch("/api/auth/me", {
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!authCheck.ok) {
+        setLoading(false);
+        setError("Session failed. Please try again.");
+        return;
+      }
+
       setSuccess(true);
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
-      console.log("Redirecting to:", redirectPath);
       
-      // Use direct redirect
+      // Redirect after session is verified
       setTimeout(() => {
-        console.log("Executing redirect...");
         window.location.href = redirectPath;
-      }, 1000);
+      }, 500);
       
     } catch (err) {
-      console.error("Login error:", err);
       setLoading(false);
       setError("An error occurred. Please try again.");
     }
