@@ -276,9 +276,6 @@ export default function Phase1() {
                         </div>
                         <div className="flex-1">
                           <h3 className="text-xl font-bold text-primary">{tool.title}</h3>
-                          <span className="inline-block mt-1 px-2 py-1 bg-secondary/20 text-secondary text-xs font-semibold rounded">
-                            {tool.status === "ready" ? "✓ Ready to Use" : "Coming Soon"}
-                          </span>
                         </div>
                       </div>
                     </CardHeader>
