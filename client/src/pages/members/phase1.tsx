@@ -102,8 +102,8 @@ export default function Phase1() {
     },
     {
       icon: Zap,
-      title: "Explore Verified Franchises",
-      description: "Browse 247+ verified franchises that match your profile. I'll guide you through which opportunities align with your ideal day and goals.",
+      title: "Deep Dive into Your Brands",
+      description: "Explore the target franchise brands I've selected for you. Dive deep into each opportunity to understand how they align with your ideal day and investment goals.",
       status: "ready",
     },
   ];
