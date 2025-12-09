@@ -185,8 +185,8 @@ export default function Phase2() {
                       <span className="text-secondary font-bold">1</span>
                     </div>
                     <div>
-                      <p className="font-semibold text-primary">Select Franchises to Evaluate</p>
-                      <p className="text-sm text-muted-foreground">Evaluate the target franchise brands assigned to you. These have been specifically selected to match your profile and goals.</p>
+                      <p className="font-semibold text-primary">Narrow Your Focus</p>
+                      <p className="text-sm text-muted-foreground">At this phase, you'll consider which brands to explore deeper. You may remove one or more brands to focus on one or two concepts that truly resonate with you.</p>
                     </div>
                   </div>
                   
