@@ -21,8 +21,6 @@ interface Brand {
 export default function Phase1() {
   const { member, loading: authLoading } = useProtectedRoute();
   const [, setLocation] = useLocation();
-  const [isComplete, setIsComplete] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [brandsLoading, setBrandsLoading] = useState(true);
 
@@ -55,27 +53,6 @@ export default function Phase1() {
       </div>
     );
   }
-
-  const handleMarkComplete = async () => {
-    if (!member) return;
-    
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/members/${member.email}/progress`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phase: 1, complete: true }),
-      });
-      if (response.ok) {
-        setIsComplete(true);
-        setTimeout(() => setLocation("/phase2"), 1000);
-      }
-    } catch (err) {
-      console.error("Error updating progress:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleDownloadIdealDay = () => {
     window.location.href = "/api/download/ideal-day-blueprint";
@@ -150,7 +127,9 @@ export default function Phase1() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: item.phase * 0.1 }}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center cursor-pointer hover:opacity-75 transition-opacity"
+                  onClick={() => setLocation(`/phase${item.phase}`)}
+                  data-testid={`button-phase-${item.phase}`}
                 >
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${
                     item.phase === 1 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'

@@ -11,8 +11,6 @@ import { useLocation } from "wouter";
 export default function Phase2() {
   const { member, loading: authLoading } = useProtectedRoute();
   const [, setLocation] = useLocation();
-  const [isComplete, setIsComplete] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   if (authLoading) {
     return (
@@ -23,27 +21,6 @@ export default function Phase2() {
       </div>
     );
   }
-
-  const handleMarkComplete = async () => {
-    if (!member) return;
-    
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/members/${member.email}/progress`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phase: 2, complete: true }),
-      });
-      if (response.ok) {
-        setIsComplete(true);
-        setTimeout(() => setLocation("/phase3"), 1000);
-      }
-    } catch (err) {
-      console.error("Error updating progress:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const tools = [
     {
@@ -110,7 +87,9 @@ export default function Phase2() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: item.phase * 0.1 }}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center cursor-pointer hover:opacity-75 transition-opacity"
+                  onClick={() => setLocation(`/phase${item.phase}`)}
+                  data-testid={`button-phase-${item.phase}`}
                 >
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${
                     item.phase === 2 ? 'bg-secondary text-secondary-foreground' : item.phase < 2 ? 'bg-secondary/40 text-secondary-foreground' : 'bg-muted text-muted-foreground'
@@ -257,14 +236,6 @@ export default function Phase2() {
                 data-testid="button-next-phase"
               >
                 Next Phase →
-              </Button>
-              <Button
-                onClick={handleMarkComplete}
-                disabled={loading || isComplete}
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
-                data-testid="button-complete-phase2"
-              >
-                {isComplete ? "✓ Phase 2 Complete" : "Complete Phase 2"}
               </Button>
             </div>
           </motion.div>
