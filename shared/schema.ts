@@ -66,7 +66,6 @@ export const members = pgTable("members", {
   phase2Complete: boolean("phase_2_complete").default(false),
   phase3Complete: boolean("phase_3_complete").default(false),
   phase4Complete: boolean("phase_4_complete").default(false),
-  lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

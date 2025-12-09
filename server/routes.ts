@@ -195,9 +195,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ success: false, error: "Session invalid" });
       }
 
-      // Update last login
-      await storage.updateMemberLastLogin(req.session.memberEmail);
-
       res.json({ success: true, member });
     } catch (error) {
       console.error("Error fetching current user:", error);

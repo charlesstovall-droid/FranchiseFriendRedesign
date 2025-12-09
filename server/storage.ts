@@ -20,7 +20,6 @@ export interface IStorage {
   getAllMembers(): Promise<Member[]>;
   updateMember(id: string, name: string): Promise<Member | undefined>;
   updateMemberProgress(email: string, phase: number, complete: boolean): Promise<void>;
-  updateMemberLastLogin(email: string): Promise<void>;
   getBrandsByMemberId(memberId: string): Promise<Brand[]>;
   createBrand(brand: InsertBrand): Promise<Brand>;
   updateBrand(id: string, brand: Partial<InsertBrand>): Promise<Brand | undefined>;
@@ -137,10 +136,6 @@ export class DbStorage implements IStorage {
     } else if (phase === 4) {
       await db.update(members).set({ phase4Complete: complete }).where(eq(members.email, email));
     }
-  }
-
-  async updateMemberLastLogin(email: string): Promise<void> {
-    await db.update(members).set({ lastLogin: new Date() }).where(eq(members.email, email));
   }
 
   async getBrandsByMemberId(memberId: string): Promise<Brand[]> {
