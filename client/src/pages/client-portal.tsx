@@ -44,14 +44,16 @@ export default function ClientPortal() {
         return;
       }
 
-      // Login successful - set success state and redirect
       setSuccess(true);
-      const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
       
-      // Redirect to dashboard
+      // Refresh auth context to update member data
+      await refetch();
+      
+      // Navigate using router
+      const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
       setTimeout(() => {
-        window.location.href = redirectPath;
-      }, 800);
+        setLocation(redirectPath);
+      }, 300);
       
     } catch (err) {
       setLoading(false);
