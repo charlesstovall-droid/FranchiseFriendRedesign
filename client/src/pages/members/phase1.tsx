@@ -177,7 +177,7 @@ export default function Phase1() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 + index * 0.1 }}
                   >
-                    <Card className="h-full border-2 border-secondary/20 hover:border-secondary/40 transition-all bg-slate-900/40">
+                    <Card className="h-full border-2 border-secondary/30 hover:border-secondary/50 transition-all bg-gradient-to-br from-primary via-primary/90 to-primary/95">
                       <CardHeader>
                         <div className="flex items-center gap-4">
                           {brand.logoUrl && (
@@ -193,7 +193,7 @@ export default function Phase1() {
                               />
                             </div>
                           )}
-                          <h3 className="text-xl font-bold text-primary">{brand.name}</h3>
+                          <h3 className="text-xl font-bold text-secondary">{brand.name}</h3>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-4">
@@ -209,13 +209,13 @@ export default function Phase1() {
                         </a>
                         
                         {brand.devPersonName && (
-                          <div className="p-3 bg-secondary/5 rounded-lg space-y-2">
-                            <p className="text-xs font-semibold text-primary/70">Development Contact</p>
-                            <p className="font-semibold text-primary">{brand.devPersonName}</p>
+                          <div className="p-3 bg-accent-pop/20 rounded-lg space-y-2 border border-accent-pop/30">
+                            <p className="text-xs font-semibold text-accent-pop/80">Development Contact</p>
+                            <p className="font-semibold text-accent-pop">{brand.devPersonName}</p>
                             {brand.devPersonEmail && (
                               <a
                                 href={`mailto:${brand.devPersonEmail}`}
-                                className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors text-sm"
+                                className="flex items-center gap-2 text-accent-pop hover:text-accent-pop/80 transition-colors text-sm"
                                 data-testid={`link-dev-email-${index}`}
                               >
                                 <Mail className="w-4 h-4" />
@@ -225,7 +225,7 @@ export default function Phase1() {
                             {brand.devPersonPhone && (
                               <a
                                 href={`tel:${brand.devPersonPhone}`}
-                                className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors text-sm"
+                                className="flex items-center gap-2 text-accent-pop hover:text-accent-pop/80 transition-colors text-sm"
                                 data-testid={`link-dev-phone-${index}`}
                               >
                                 <Phone className="w-4 h-4" />
