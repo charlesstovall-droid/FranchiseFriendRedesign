@@ -77,8 +77,12 @@ export default function Phase1() {
     }
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadIdealDay = () => {
     window.location.href = "/api/download/ideal-day-blueprint";
+  };
+
+  const handleDownloadExplorationGuide = () => {
+    window.location.href = "/api/download/phase1-exploration-guide";
   };
 
   const tools = [
@@ -251,14 +255,24 @@ export default function Phase1() {
           >
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl font-serif font-bold text-primary">Discovery Tools</h2>
-              <Button
-                onClick={handleDownloadPDF}
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold flex items-center gap-2"
-                data-testid="button-download-ideal-day"
-              >
-                <Download className="w-4 h-4" />
-                Download Blueprint
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={handleDownloadIdealDay}
+                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold flex items-center gap-2"
+                  data-testid="button-download-ideal-day"
+                >
+                  <Download className="w-4 h-4" />
+                  Ideal Day Blueprint
+                </Button>
+                <Button
+                  onClick={handleDownloadExplorationGuide}
+                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold flex items-center gap-2"
+                  data-testid="button-download-exploration-guide"
+                >
+                  <Download className="w-4 h-4" />
+                  Exploration Guide
+                </Button>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {tools.map((tool, index) => (

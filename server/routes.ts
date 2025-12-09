@@ -777,6 +777,138 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Phase 1 Exploration Guide PDF endpoint
+  app.get("/api/download/phase1-exploration-guide", (req, res) => {
+    try {
+      const doc = new PDFDocument({ size: "letter", margin: 40, bufferPages: true });
+      const chunks: any[] = [];
+      
+      doc.on('data', (chunk) => chunks.push(chunk));
+      doc.on('end', () => {
+        const pdf = Buffer.concat(chunks);
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "attachment; filename=Phase-1-Exploration-Guide.pdf");
+        res.setHeader("Content-Length", pdf.length);
+        res.send(pdf);
+      });
+      
+      doc.on('error', (err: any) => {
+        console.error("PDF generation error:", err);
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      });
+
+      const navyBlue = "#1E2B42";
+      const gold = "#F3AE1B";
+      const margin = 50;
+      const pageWidth = 612 - 2 * margin;
+
+      const addSectionHeader = (title: string) => {
+        doc.rect(margin - 10, doc.y - 2, pageWidth + 20, 25).fill("#F5F5F5");
+        doc.fontSize(13).font("Helvetica-Bold").fillColor(navyBlue).text(title, margin, doc.y + 5);
+        doc.moveDown(1.8);
+      };
+
+      // Title Page
+      doc.fontSize(32).font("Helvetica-Bold").fillColor(navyBlue).text("Phase 1 Exploration Guide", { align: "center" });
+      doc.moveDown(0.2);
+      doc.fontSize(15).font("Helvetica").fillColor(gold).text("Deep Dive into Your Franchise Brands", { align: "center" });
+      doc.moveDown(0.1);
+      doc.fontSize(11).fillColor("#999999").text("By Charles Stovall - Franchise Friend", { align: "center" });
+      doc.moveDown(2);
+
+      doc.strokeColor("#CCCCCC").lineWidth(1).moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
+      doc.moveDown(1.5);
+
+      doc.fontSize(11).fillColor("#333333").font("Helvetica").text(
+        "Now that you've defined your ideal day and personal priorities, it's time to explore your target franchise brands in depth. This guide walks you through the key areas to investigate with each franchisor, helping you gather the information needed to make an informed evaluation.",
+        { align: "left", width: pageWidth, lineGap: 4 }
+      );
+      doc.moveDown(2);
+
+      // Section 1
+      addSectionHeader("1. Get to Know the Company");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Understand the founders' vision and the company's track record.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Who are the founders and what inspired them to franchise?\n• How many successful franchisees do they have?\n• What are the company's core values and culture?\n• What's their track record of helping locations succeed?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.2);
+
+      // Section 2
+      addSectionHeader("2. The Business Model (Owner's Perspective)");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Understand what your day-to-day role will look like.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• What does the owner actually do day-to-day?\n• How do they acquire and retain customers?\n• What are the critical skills to succeed in this franchise?\n• What separates top performers from average owners?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.2);
+
+      // Section 3
+      addSectionHeader("3. The Customer & Market");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Validate there's real demand and customer value.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Who is the typical customer?\n• What specific problems does this business solve?\n• Why do customers choose this franchise over competitors?\n• Is this a sustainable, long-term business model?\n• How is pricing structured? Is it competitive?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.2);
+
+      // Section 4
+      addSectionHeader("4. Support, Training & Infrastructure");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Assess the support systems and resources available to you.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• What initial training is provided and how long does it last?\n• What ongoing support do they offer franchisees?\n• What software and technology systems are included?\n• How accessible and responsive is corporate support?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.2);
+
+      // Section 5
+      addSectionHeader("5. Financial Snapshot");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Understand the investment required and unit economics.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Total startup costs (franchise fee, equipment, initial inventory, marketing)?\n• Recommended working capital?\n• Typical timeline to break-even and positive cash flow?\n• What are typical revenues and profit margins for mature units?\n• What ongoing fees (royalties, marketing fund, etc.) should you expect?\n• How are most franchisees funding their investment?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.2);
+
+      doc.addPage();
+
+      // Section 6
+      addSectionHeader("6. Territory & Growth Potential");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Explore opportunities in your target area.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Do they have operating locations in your area?\n• What specific territories are available?\n• What's the potential for multi-unit ownership down the road?\n• Are there any protected territories or competing franchisees?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.5);
+
+      // Section 7
+      addSectionHeader("7. Questions for the Franchisor Representative");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Vet the person and team helping you through the process.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• How long have you worked with this company?\n• How many franchisees have you helped bring on?\n• Which franchisees you've brought in have been most successful?\n• Can you connect me with 5-10 owners I can speak with directly?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.5);
+
+      // Section 8
+      addSectionHeader("Key Information You'll Need");
+      doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Be ready to share your story and priorities when they ask.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("✓ Your ideal day blueprint and top 3-5 priorities\n✓ Your investment range and financing capability\n✓ Your skills, background, and what you want to be doing\n✓ Your comfort level with marketing, managing people, and following systems\n✓ Why you're interested in this specific business\n✓ Your location preferences and territory interests", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(1.5);
+
+      // Next Steps
+      addSectionHeader("Your Exploration Action Plan");
+      doc.fontSize(9).font("Helvetica").fillColor("#333333").text([
+        "1. Review the Franchise Disclosure Document (FDD) provided by the franchisor",
+        "2. Schedule calls with corporate representatives to dive deeper into each area",
+        "3. Take detailed notes on their responses—look for consistency and transparency",
+        "4. Request referrals to current franchisees (ideally both successful and struggling owners)",
+        "5. Compile your findings and identify any red flags or concerns",
+        "6. Move forward to Phase 2: Evaluation to validate everything with actual owners"
+      ], { width: pageWidth, lineGap: 5 });
+
+      doc.moveDown(2);
+      doc.fontSize(9).fillColor("#666666").text(
+        "Ready to deepen your exploration? Schedule a call with Charles to discuss what you've learned: calendly.com/charles-stovall/intro",
+        { align: "center", width: pageWidth, lineGap: 2 }
+      );
+
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      }
+    }
+  });
+
   // Business Reality Book PDF endpoint
   // Email thank you endpoint
   app.post("/api/send-thank-you", async (req, res) => {
