@@ -44,13 +44,9 @@ export default function ClientPortal() {
         return;
       }
 
-      // Login successful - redirect to appropriate page
+      // Login successful - do a hard redirect to reload page with session
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
-      
-      // Navigate using router with a small delay to ensure session is set
-      setTimeout(() => {
-        setLocation(redirectPath);
-      }, 200);
+      window.location.href = redirectPath;
       
     } catch (err) {
       setLoading(false);
