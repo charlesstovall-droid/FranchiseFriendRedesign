@@ -22,6 +22,7 @@ export default function ClientPortal() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setError("");
     setLoading(true);
 
@@ -36,27 +37,24 @@ export default function ClientPortal() {
       const data = await response.json();
 
       if (!response.ok) {
+        setLoading(false);
         setError(data.error || "Login failed. Please check your email and try again.");
         return;
       }
 
-      setSuccess(true);
-      
-      // Redirect immediately based on email
-      setTimeout(() => {
-        if (email === "charles@franchisefriend.net") {
-          setLocation("/members-admin");
-        } else {
-          setLocation("/phase1");
-        }
-      }, 500);
-      
-      // Refresh auth context in background
+      // Refresh auth context first
       await refetch();
+      
+      // Then redirect
+      setSuccess(true);
+      const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
+      setTimeout(() => {
+        setLocation(redirectPath);
+      }, 300);
+      
     } catch (err) {
-      setError("An error occurred. Please try again.");
-    } finally {
       setLoading(false);
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -182,7 +180,7 @@ export default function ClientPortal() {
                     <p className="text-muted-foreground">Redirecting to your dashboard...</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleLogin} className="space-y-4">
+                  <div className="space-y-4">
                     {error && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
@@ -207,6 +205,11 @@ export default function ClientPortal() {
                         disabled={loading}
                         data-testid="input-email"
                         className="border-secondary/20"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !loading && email) {
+                            handleLogin({ preventDefault: () => {}, stopPropagation: () => {} } as any);
+                          }
+                        }}
                       />
                     </div>
 
@@ -215,14 +218,14 @@ export default function ClientPortal() {
                     </p>
 
                     <Button
-                      type="submit"
+                      onClick={() => handleLogin({ preventDefault: () => {}, stopPropagation: () => {} } as any)}
                       disabled={loading || !email}
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                       data-testid="button-login"
                     >
                       {loading ? "Logging in..." : "Log In"}
                     </Button>
-                  </form>
+                  </div>
                 )}
               </CardContent>
             </Card>
