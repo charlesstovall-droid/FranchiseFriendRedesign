@@ -41,15 +41,18 @@ export default function ClientPortal() {
       }
 
       setSuccess(true);
-      // Refresh auth context and redirect based on user
-      await refetch();
       
       // Redirect immediately based on email
-      if (email === "charles@franchisefriend.net") {
-        setLocation("/members-admin");
-      } else {
-        setLocation("/phase1");
-      }
+      setTimeout(() => {
+        if (email === "charles@franchisefriend.net") {
+          setLocation("/members-admin");
+        } else {
+          setLocation("/phase1");
+        }
+      }, 500);
+      
+      // Refresh auth context in background
+      await refetch();
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {
