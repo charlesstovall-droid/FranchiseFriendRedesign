@@ -370,14 +370,6 @@ export default function Phase3() {
               >
                 Next Phase →
               </Button>
-              <Button
-                onClick={handleMarkComplete}
-                disabled={loading || isComplete}
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold whitespace-nowrap"
-                data-testid="button-complete-phase3"
-              >
-                {isComplete ? "✓ Phase 3 Complete" : "Complete Phase 3"}
-              </Button>
             </div>
           </motion.div>
         </div>
