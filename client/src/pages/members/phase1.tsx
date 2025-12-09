@@ -177,7 +177,7 @@ export default function Phase1() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 + index * 0.1 }}
                   >
-                    <Card className="h-full border-2 border-secondary/20 hover:border-secondary/40 transition-all">
+                    <Card className="h-full border-2 border-secondary/20 hover:border-secondary/40 transition-all bg-slate-900/40">
                       <CardHeader>
                         <div className="flex items-center gap-4">
                           {brand.logoUrl && (
