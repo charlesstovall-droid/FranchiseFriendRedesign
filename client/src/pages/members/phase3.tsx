@@ -326,13 +326,22 @@ export default function Phase3() {
                     <div>
                       <p className="font-semibold text-primary">Brandon Lusk</p>
                       <p className="text-sm text-muted-foreground">Funding Consultant at Benetrends</p>
+                      <a
+                        href="https://www.benetrends.com/brandon-lusk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-secondary hover:text-secondary/80 transition-colors font-semibold mt-1 inline-block"
+                        data-testid="link-brandon-calendar"
+                      >
+                        Schedule with Brandon →
+                      </a>
                     </div>
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
                     Brandon specializes in helping franchise candidates understand their financing options and structure the best deal for their situation. He'll answer your questions about SBA loans, alternative financing, and what to expect throughout the process.
                   </p>
                   <a
-                    href="mailto:blusk@benetrends.com?subject=Schedule Funding Consultation for Franchise Investment&body=Hi Brandon,%0A%0AI'm in Phase 3 of my franchise discovery journey and would like to schedule a consultation to discuss funding options for my franchise investment.%0A%0AHere's your calendar link: https://www.benetrends.com/brandon-lusk%0A%0ALooking forward to connecting!%0A%0AThank you"
+                    href="mailto:blusk@benetrends.com?subject=Franchise Funding Consultation&body=Hi Brandon,%0A%0AI'm working with Charles Stovall on my franchise discovery journey and would love to discuss my financing options and what I might expect as I move forward.%0A%0AI'd like to understand the different paths available to me—SBA loans, alternative financing, and what total investment I should plan for.%0A%0AThank you for your time!%0A%0ABest regards"
                     className="inline-block"
                   >
                     <Button
@@ -340,7 +349,7 @@ export default function Phase3() {
                       data-testid="button-email-funding-consultant"
                     >
                       <Mail className="w-4 h-4 mr-2" />
-                      Schedule Funding Consultation
+                      Email Brandon About Funding
                     </Button>
                   </a>
                 </div>
