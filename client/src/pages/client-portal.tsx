@@ -20,13 +20,16 @@ export default function ClientPortal() {
   const [downloadLoading, setDownloadLoading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleLogin = async (e?: any) => {
+    if (e) {
+      e.preventDefault?.();
+      e.stopPropagation?.();
+    }
     setError("");
     setLoading(true);
 
     try {
+      console.log("Logging in with email:", email);
       const response = await fetch("/api/auth/login", {
         method: "POST",
         credentials: "include",
@@ -35,6 +38,7 @@ export default function ClientPortal() {
       });
 
       const data = await response.json();
+      console.log("Login response:", data);
 
       if (!response.ok) {
         setLoading(false);
@@ -42,18 +46,18 @@ export default function ClientPortal() {
         return;
       }
 
-      // Set success message
       setSuccess(true);
-      
-      // Determine redirect path
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
+      console.log("Redirecting to:", redirectPath);
       
-      // Redirect after a short delay
+      // Use direct redirect
       setTimeout(() => {
+        console.log("Executing redirect...");
         window.location.href = redirectPath;
-      }, 500);
+      }, 1000);
       
     } catch (err) {
+      console.error("Login error:", err);
       setLoading(false);
       setError("An error occurred. Please try again.");
     }
@@ -219,10 +223,14 @@ export default function ClientPortal() {
                     </p>
 
                     <Button
-                      onClick={() => handleLogin({ preventDefault: () => {}, stopPropagation: () => {} } as any)}
+                      onClick={(e) => {
+                        console.log("Login button clicked");
+                        handleLogin(e);
+                      }}
                       disabled={loading || !email}
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                       data-testid="button-login"
+                      type="button"
                     >
                       {loading ? "Logging in..." : "Log In"}
                     </Button>
