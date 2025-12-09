@@ -29,21 +29,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkAuth = async () => {
     try {
+      // Try to get session from server first
       const response = await fetch("/api/auth/me", { credentials: "include" });
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
           setMember(data.member);
+          // Clear localStorage backup since we have a valid session
+          localStorage.removeItem("franchiseFriendUser");
+          setLoading(false);
+          return;
         }
-      } else {
-        setMember(null);
       }
     } catch (err) {
       console.error("Auth check failed:", err);
-      setMember(null);
-    } finally {
-      setLoading(false);
     }
+    
+    // Fallback: check localStorage for member data
+    const savedUser = localStorage.getItem("franchiseFriendUser");
+    if (savedUser) {
+      try {
+        setMember(JSON.parse(savedUser));
+        setLoading(false);
+        return;
+      } catch (parseErr) {
+        console.error("Failed to parse saved user:", parseErr);
+        localStorage.removeItem("franchiseFriendUser");
+      }
+    }
+    
+    // No session or saved user found
+    setMember(null);
+    setLoading(false);
   };
 
   useEffect(() => {

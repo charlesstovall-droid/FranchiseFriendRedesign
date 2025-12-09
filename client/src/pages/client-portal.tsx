@@ -44,6 +44,9 @@ export default function ClientPortal() {
         return;
       }
 
+      // Store member data in localStorage as backup
+      localStorage.setItem("franchiseFriendUser", JSON.stringify(data.member));
+      
       // Login successful - do a hard redirect to reload page with session
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
       window.location.href = redirectPath;
