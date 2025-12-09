@@ -640,122 +640,132 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const navyBlue = "#1E2B42";
       const gold = "#F3AE1B";
-      const margin = 40;
+      const margin = 50;
       const pageWidth = 612 - 2 * margin;
 
-      // Helper to add ruled lines for writing
-      const addWritingLines = (y: number, height = 60, lineCount = 3) => {
+      // Helper to add section header with background
+      const addSectionHeader = (title: string) => {
+        doc.rect(margin - 10, doc.y - 2, pageWidth + 20, 25).fill("#F5F5F5");
+        doc.fontSize(13).font("Helvetica-Bold").fillColor(navyBlue).text(title, margin, doc.y + 5);
+        doc.moveDown(1.8);
+      };
+
+      // Helper to add ruled lines for writing with better spacing
+      const addWritingLines = (height = 60, lineCount = 3) => {
         const lineHeight = height / lineCount;
         for (let i = 0; i < lineCount; i++) {
-          doc.moveTo(margin, y + i * lineHeight).lineTo(margin + pageWidth, y + i * lineHeight).stroke();
+          doc.moveTo(margin, doc.y + i * lineHeight).lineTo(margin + pageWidth, doc.y + i * lineHeight).stroke();
         }
-        return y + height;
+        doc.moveDown(height / 72 + 0.3);
       };
 
       // Page 1: Title & Introduction
-      doc.fontSize(28).font("Helvetica-Bold").fillColor(navyBlue).text("Your Ideal Day Blueprint", { align: "center" });
-      doc.fontSize(14).font("Helvetica").fillColor(gold).text("A Guided Discovery Workbook", { align: "center" });
-      doc.moveDown(0.3);
-      doc.fontSize(10).fillColor("#666666").text("By Charles Stovall - Franchise Friend", { align: "center" });
+      doc.fontSize(32).font("Helvetica-Bold").fillColor(navyBlue).text("Your Ideal Day Blueprint", { align: "center" });
+      doc.moveDown(0.2);
+      doc.fontSize(15).font("Helvetica").fillColor(gold).text("A Guided Discovery Workbook", { align: "center" });
+      doc.moveDown(0.1);
+      doc.fontSize(11).fillColor("#999999").text("By Charles Stovall - Franchise Friend", { align: "center" });
+      doc.moveDown(2);
+
+      // Divider line
+      doc.strokeColor("#CCCCCC").lineWidth(1).moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
       doc.moveDown(1.5);
 
-      doc.fontSize(11).fillColor("#000000").font("Helvetica").text(
+      doc.fontSize(11).fillColor("#333333").font("Helvetica").text(
         "Before exploring franchise opportunities, it's essential to understand what success truly means to you. This workbook guides you through discovering your ideal day—the lifestyle, schedule, environment, and impact you want to create.",
-        { align: "left", width: pageWidth }
+        { align: "left", width: pageWidth, lineGap: 4 }
       );
-      doc.moveDown(1.2);
+      doc.moveDown(2);
 
       // Section 1
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("1. Your Morning Routine");
+      addSectionHeader("1. Your Morning Routine");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Reflect on how you'd like to start your day in an ideal franchise business.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• What time do you wake up?  • How much time before work begins?  • Work from home, office, or mobile?\n• What activities energize you?  • How hands-on vs. delegated?", { width: pageWidth });
-      doc.moveDown(0.4);
-      let y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(3);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• What time do you wake up?     • How much time before work begins?\n• Work from home, office, or mobile?     • What activities energize you?\n• How hands-on vs. delegated?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(0.5);
 
       // Section 2
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("2. Your Work Environment");
+      addSectionHeader("2. Your Work Environment");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Describe where and how you'll thrive professionally.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• Physical space (office, home, mobile)?  • Hands-on or managerial?  • Team size preferences?\n• Pace & culture (quiet, fast-paced, creative)?  • Client interaction level?", { width: pageWidth });
-      doc.moveDown(0.4);
-      y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(3);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Physical space (office, home, mobile)?     • Hands-on or managerial?\n• Team size preferences?     • Pace & culture (quiet, fast-paced, creative)?\n• Client interaction level?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(0.5);
 
       // Section 3
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("3. Your Natural Strengths");
+      addSectionHeader("3. Your Natural Strengths");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Identify what you do best and want to use daily.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• Top 3-5 natural talents?  • What past successes energize you?\n• Are you people-focused, systems-oriented, or problem-solver?  • What to avoid?", { width: pageWidth });
-      doc.moveDown(0.4);
-      y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(2.5);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Top 3-5 natural talents?     • What past successes energize you?\n• Are you people-focused, systems-oriented, or problem-solver?\n• What should you avoid?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(1);
 
       // New page
       doc.addPage();
 
       // Section 4
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("4. Financial & Investment Picture");
+      addSectionHeader("4. Financial & Investment Picture");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Clarify your investment capacity and income expectations.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• Total investment range & timeframe?  • Annual profit needed?  • Timeline to profitability?\n• Operator or investor-owner?  • Your risk tolerance?", { width: pageWidth });
-      doc.moveDown(0.4);
-      y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(3);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Total investment range & timeframe?     • Annual profit needed?\n• Timeline to profitability?     • Operator or investor-owner?\n• Your risk tolerance?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(1.5);
 
       // Section 5
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("5. Your Values & Impact");
+      addSectionHeader("5. Your Values & Impact");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Define what matters most and the impact you want to make.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• Non-negotiable values?  • Desired impact (community, family, customers)?\n• Industry preferences?  • Solo or team?  • Your legacy?", { width: pageWidth });
-      doc.moveDown(0.4);
-      y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(3);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Non-negotiable values?     • Desired impact (community, family, customers)?\n• Industry preferences?     • Solo or team?\n• Your legacy?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(1.5);
 
       // Section 6
-      doc.fontSize(12).font("Helvetica-Bold").fillColor(navyBlue).text("6. Lifestyle Integration");
+      addSectionHeader("6. Lifestyle Integration");
       doc.fontSize(9).font("Helvetica").fillColor("#666666").text("Balance work with your personal life.", { width: pageWidth });
-      doc.moveDown(0.3);
-      doc.fontSize(9).fillColor("#000000").text("• Days/hours per week working?  • Family, hobbies, personal growth time?\n• Annual vacation desired?  • Seasonal flexibility?  • Ideal work-life ratio?", { width: pageWidth });
-      doc.moveDown(0.4);
-      y = addWritingLines(doc.y, 50, 2);
-      doc.moveDown(2);
+      doc.moveDown(0.5);
+      doc.fontSize(9).fillColor("#333333").text("• Days/hours per week working?     • Family, hobbies, personal growth time?\n• Annual vacation desired?     • Seasonal flexibility?\n• Ideal work-life ratio?", { width: pageWidth, lineGap: 2 });
+      doc.moveDown(0.8);
+      addWritingLines(50, 2);
+      doc.moveDown(1);
 
       // New page
       doc.addPage();
 
       // Section 7: Ideal Day Summary
-      doc.fontSize(14).font("Helvetica-Bold").fillColor(navyBlue).text("Your Ideal Day Summary");
-      doc.moveDown(0.5);
-      doc.fontSize(9).font("Helvetica").fillColor("#000000").text(
+      addSectionHeader("Your Ideal Day Summary");
+      doc.fontSize(10).font("Helvetica").fillColor("#666666").text(
         "Write a detailed description of your ideal day. Paint the picture from morning to evening—your environment, the people you interact with, the work you do, and how you feel at the end of the day.",
-        { width: pageWidth }
+        { width: pageWidth, lineGap: 3 }
       );
-      doc.moveDown(0.5);
+      doc.moveDown(1);
       
-      for (let i = 0; i < 10; i++) {
-        doc.moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
-        doc.moveDown(0.28);
+      for (let i = 0; i < 12; i++) {
+        doc.strokeColor("#333333").lineWidth(0.5).moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
+        doc.moveDown(0.35);
       }
       
       doc.moveDown(1.5);
 
       // Next Steps & Closing
-      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Next Steps");
-      doc.moveDown(0.3);
-      doc.fontSize(9).font("Helvetica").fillColor("#000000").text([
+      addSectionHeader("Next Steps");
+      doc.fontSize(9).font("Helvetica").fillColor("#333333").text([
         "1. Complete this workbook thoughtfully—there are no right or wrong answers",
         "2. Identify 3-5 key priorities from your ideal day vision",
         "3. Share these insights with Charles during your discovery call",
         "4. Use this as your guide when evaluating franchise opportunities",
         "5. Revisit and refine as you progress through the discovery process"
-      ], { width: pageWidth, lineGap: 4 });
+      ], { width: pageWidth, lineGap: 5 });
 
-      doc.moveDown(1);
+      doc.moveDown(1.5);
       doc.fontSize(9).fillColor("#666666").text(
-        "Ready to find your ideal franchise? Visit franchisefriend.net to explore 247+ verified opportunities.",
-        { align: "center", width: pageWidth }
+        "Ready to take the next step? Schedule a consultation at calendly.com/charles-stovall/intro",
+        { align: "center", width: pageWidth, lineGap: 2 }
       );
 
       doc.end();
