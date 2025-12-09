@@ -42,15 +42,16 @@ export default function ClientPortal() {
         return;
       }
 
-      // Refresh auth context first
-      await refetch();
-      
-      // Then redirect
+      // Set success message
       setSuccess(true);
+      
+      // Determine redirect path
       const redirectPath = email === "charles@franchisefriend.net" ? "/members-admin" : "/phase1";
+      
+      // Redirect after a short delay
       setTimeout(() => {
-        setLocation(redirectPath);
-      }, 300);
+        window.location.href = redirectPath;
+      }, 500);
       
     } catch (err) {
       setLoading(false);
