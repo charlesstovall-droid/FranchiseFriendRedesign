@@ -324,7 +324,7 @@ export default function Phase1() {
                     </div>
                     <div>
                       <p className="font-semibold text-primary">Learn & Discover</p>
-                      <p className="text-sm text-muted-foreground">Explore 247+ verified franchises across all investment categories. You'll learn how different models work and begin to see which ones align with your goals and lifestyle preferences.</p>
+                      <p className="text-sm text-muted-foreground">Explore the target franchise brands I've selected specifically for you. You'll learn how each model works and evaluate which ones align with your goals and lifestyle preferences.</p>
                     </div>
                   </div>
                   

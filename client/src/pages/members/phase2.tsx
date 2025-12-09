@@ -186,7 +186,7 @@ export default function Phase2() {
                     </div>
                     <div>
                       <p className="font-semibold text-primary">Select Franchises to Evaluate</p>
-                      <p className="text-sm text-muted-foreground">Choose 3-5 franchises from our 247+ verified opportunities that caught your attention. These are your candidates.</p>
+                      <p className="text-sm text-muted-foreground">Evaluate the target franchise brands assigned to you. These have been specifically selected to match your profile and goals.</p>
                     </div>
                   </div>
                   
