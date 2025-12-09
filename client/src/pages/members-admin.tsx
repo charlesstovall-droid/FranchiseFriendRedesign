@@ -504,13 +504,15 @@ export default function MembersAdmin() {
                           transition={{ delay: idx * 0.05 }}
                           className="p-3 bg-secondary/5 border border-secondary/20 rounded-lg flex items-start justify-between"
                         >
-                          <div className="flex-1">
-                            <p className="text-sm font-semibold text-primary truncate">{m.name}</p>
-                            <p className="text-xs text-muted-foreground mt-1">{m.email}</p>
-                            {m.lastLogin && (
-                              <p className="text-xs text-muted-foreground/70 mt-0.5">
-                                Last login: {new Date(m.lastLogin).toLocaleDateString()} {new Date(m.lastLogin).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-primary">{m.name}</p>
+                            <p className="text-xs text-muted-foreground">{m.email}</p>
+                            {m.lastLogin ? (
+                              <p className="text-xs text-secondary/60 font-medium mt-1.5">
+                                Last login: {new Date(m.lastLogin).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} at {new Date(m.lastLogin).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </p>
+                            ) : (
+                              <p className="text-xs text-muted-foreground/50 mt-1.5">Never logged in</p>
                             )}
                           </div>
                           <Button
