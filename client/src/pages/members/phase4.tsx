@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Zap, Target, TrendingUp, Award, Calendar, Users, CheckCircle as CheckCircleIcon, Briefcase } from "lucide-react";
+import { Zap, Target, TrendingUp, Award, Calendar, Users, CheckCircle as CheckCircleIcon, Briefcase, Download } from "lucide-react";
 import { useState } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
 
@@ -21,6 +21,10 @@ export default function Phase4() {
       </div>
     );
   }
+
+  const handleDownloadChecklist = () => {
+    window.location.href = "/api/download/final-decision-checklist";
+  };
 
   const handleMarkComplete = async () => {
     if (!member) return;
@@ -155,7 +159,17 @@ export default function Phase4() {
             transition={{ delay: 0.2 }}
             className="mb-12"
           >
-            <h2 className="text-3xl font-serif font-bold mb-8 text-primary">Discovery Day Resources</h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-serif font-bold text-primary">Discovery Day Resources</h2>
+              <Button
+                onClick={handleDownloadChecklist}
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold flex items-center gap-2"
+                data-testid="button-download-final-checklist"
+              >
+                <Download className="w-4 h-4" />
+                Final Decision Checklist
+              </Button>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {tools.map((tool, index) => (
                 <motion.div

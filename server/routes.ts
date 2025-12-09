@@ -942,6 +942,161 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Final Decision Checklist PDF endpoint
+  app.get("/api/download/final-decision-checklist", (req, res) => {
+    try {
+      const doc = new PDFDocument({ size: "letter", margin: 45, bufferPages: true });
+      const chunks: any[] = [];
+      
+      doc.on('data', (chunk) => chunks.push(chunk));
+      doc.on('end', () => {
+        const pdf = Buffer.concat(chunks);
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "attachment; filename=Final-Decision-Checklist.pdf");
+        res.setHeader("Content-Length", pdf.length);
+        res.send(pdf);
+      });
+      
+      doc.on('error', (err: any) => {
+        console.error("PDF generation error:", err);
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      });
+
+      const navyBlue = "#1E2B42";
+      const gold = "#F3AE1B";
+      const margin = 45;
+      const pageWidth = 612 - 2 * margin;
+
+      const addSectionHeader = (title: string) => {
+        doc.rect(margin - 10, doc.y - 2, pageWidth + 20, 22).fill(navyBlue);
+        doc.fontSize(12).font("Helvetica-Bold").fillColor(gold).text(title, margin, doc.y + 4);
+        doc.moveDown(1.4);
+      };
+
+      // Title Page
+      doc.fontSize(36).font("Helvetica-Bold").fillColor(navyBlue).text("Final Decision Checklist", { align: "center" });
+      doc.moveDown(0.3);
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(gold).text("Your Franchise Investment Decision Framework", { align: "center" });
+      doc.moveDown(0.3);
+      doc.fontSize(11).fillColor("#666666").text("By Charles Stovall - Franchise Friend", { align: "center" });
+      doc.moveDown(1);
+
+      doc.strokeColor(gold).lineWidth(2).moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
+      doc.moveDown(0.8);
+
+      doc.fontSize(11).font("Helvetica").fillColor("#333333").text(
+        "You've completed your research, validation, and Discovery Day. Now it's time to make your final decision. This checklist helps you evaluate whether this franchise truly aligns with your ideal day, goals, and values.",
+        { width: pageWidth, align: "left", lineGap: 3 }
+      );
+      doc.moveDown(1.2);
+
+      // Section 1
+      addSectionHeader("1. Does This Franchise Fit Your Ideal Day?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Evaluate alignment with your personal vision.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ Daily schedule matches what I want (hours, location, work type)", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I can maintain the work-life balance I defined", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ The business model leverages my natural strengths", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I can see myself doing this long-term", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ The lifestyle supports my family and personal goals", { width: pageWidth });
+      doc.moveDown(1);
+
+      // Section 2
+      addSectionHeader("2. Does the Financial Picture Make Sense?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Verify numbers align with your investment capacity.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ Total startup costs are within my budget", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I have adequate working capital beyond initial investment", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Timeline to profitability is realistic and acceptable", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Projected revenues and margins are believable", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ All fees (royalties, marketing, etc.) are clear and reasonable", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Financing options work for my situation", { width: pageWidth });
+      doc.moveDown(1);
+
+      // Section 3
+      addSectionHeader("3. Is the Franchisor a Trustworthy Partner?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Assess the relationship and support system.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ Corporate leadership and team are competent and honest", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Support systems are responsive and genuinely helpful", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Training is comprehensive and ongoing", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ They provide marketing/tech/operational support as promised", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Track record shows franchisee success and support", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Communication style and values align with mine", { width: pageWidth });
+      doc.moveDown(1);
+
+      // Section 4
+      addSectionHeader("4. Are the Franchisees Satisfied?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Validate reality through owner experiences.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ Majority of franchisees I spoke with are profitable", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ They would make the same investment decision again", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ They feel supported by corporate when issues arise", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Their day-to-day reality matches corporate promises", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Even struggling owners don't regret the decision", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Growth/multi-unit opportunities are real", { width: pageWidth });
+      doc.moveDown(1);
+
+      doc.addPage();
+
+      // Section 5
+      addSectionHeader("5. Does This Align With My Values?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Ensure cultural and values fit.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ The industry and business model align with my values", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I'm comfortable with the product/service quality standards", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ The community of franchisees feels supportive and collaborative", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Corporate culture reflects the values I care about", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I feel good about the impact I'll make in my community", { width: pageWidth });
+      doc.moveDown(1.2);
+
+      // Section 6
+      addSectionHeader("6. Have I Done Due Diligence?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Confirm all essential homework is complete.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ I reviewed the Franchise Disclosure Document thoroughly", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I had an attorney review the franchise agreement", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I had an accountant review the financials", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I spoke with at least 5-10 current franchisees", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I spoke with at least one former franchisee", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ Item 19 financial data makes sense for my market", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I've confirmed territory availability in my area", { width: pageWidth });
+      doc.moveDown(1.2);
+
+      // Section 7
+      addSectionHeader("7. Am I Ready to Commit?");
+      doc.fontSize(10).font("Helvetica-Bold").fillColor(navyBlue).text("Final personal readiness check.", { width: pageWidth });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("☐ I'm mentally ready for the responsibility and risk", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ My family/support system is on board with this decision", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I understand what success requires from me", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I'm not rushing into this for the wrong reasons", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I'm excited and energized about this opportunity", { width: pageWidth });
+      doc.fontSize(10).fillColor("#333333").text("☐ I trust my gut feeling about this franchise", { width: pageWidth });
+      doc.moveDown(1.5);
+
+      // Final section
+      doc.strokeColor(gold).lineWidth(1.5).moveTo(margin, doc.y).lineTo(margin + pageWidth, doc.y).stroke();
+      doc.moveDown(0.8);
+
+      doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Ready to Move Forward?", { align: "center" });
+      doc.moveDown(0.4);
+      doc.fontSize(10).fillColor("#333333").text("If you've checked the majority of these boxes, you're ready to move forward.", { align: "center", width: pageWidth });
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor("#333333").text("If concerns remain, revisit those areas with corporate or franchisees.", { align: "center", width: pageWidth });
+      doc.moveDown(0.3);
+      doc.fontSize(10).fillColor(gold).text("Next step: Schedule a call with Charles to discuss your decision.", { align: "center" });
+      doc.fontSize(10).fillColor(gold).text("calendly.com/charles-stovall/intro", { align: "center" });
+
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, error: "Failed to generate PDF" });
+      }
+    }
+  });
+
   // Business Reality Book PDF endpoint
   // Email thank you endpoint
   app.post("/api/send-thank-you", async (req, res) => {
