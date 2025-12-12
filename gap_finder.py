@@ -1,0 +1,123 @@
+import requests
+import pandas as pd
+import time
+
+# --- CONFIGURATION SECTION ---
+# Get your keys here:
+# Google Places: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+# Census: https://api.census.gov/data/key_signup.html
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY_HERE"
+CENSUS_API_KEY = "YOUR_CENSUS_API_KEY_HERE"
+
+# What are we looking for?
+TARGET_KEYWORD = "Coffee Shop"  # e.g., "Gym", "HVAC", "Senior Care"
+TARGET_STATE = "25" # FIPS code for MA (Example). 45 is SC. See: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696
+
+# --- PART 1: GET CENSUS DATA (DEMAND) ---
+def get_census_data(state_fips):
+    """
+    Fetches population and median income for all zip codes (ZCTA) in a state.
+    Variables:
+    - B01001_001E: Total Population
+    - B19013_001E: Median Household Income
+    """
+    base_url = "https://api.census.gov/data/2021/acs/acs5"
+    params = {
+        "get": "NAME,B01001_001E,B19013_001E",
+        "for": "zip code tabulation area:*",
+        "in": f"state:{state_fips}",
+        "key": CENSUS_API_KEY
+    }
+    
+    print(f"📡 Fetching Census data for State FIPS: {state_fips}...")
+    response = requests.get(base_url, params=params)
+    
+    if response.status_code != 200:
+        print("Error fetching Census data:", response.text)
+        return []
+    
+    data = response.json()
+    # Skip header row [0] and process data
+    formatted_data = []
+    for row in data[1:]:
+        formatted_data.append({
+            "Zip Code": row[3],
+            "Population": int(row[1]),
+            "Median Income": int(row[2]) if row[2] and int(row[2]) > 0 else 0
+        })
+    
+    return formatted_data
+
+# --- PART 2: GET GOOGLE PLACES DATA (SUPPLY) ---
+def get_business_count(zip_code, keyword):
+    """
+    Uses Google Places Text Search to count businesses matching the keyword in a zip code.
+    """
+    url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
+    query = f"{keyword} in {zip_code}"
+    params = {
+        "query": query,
+        "key": GOOGLE_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    results = response.json().get('results', [])
+    
+    # Google returns max 20 per page, but for "Gap Analysis" 
+    # we just need to know if it's saturated (20+) or empty (0-5).
+    # To save API costs, we won't paginate for this MVP.
+    return len(results)
+
+# --- PART 3: THE MAIN ENGINE ---
+def main():
+    # 1. Get Demographics
+    census_data = get_census_data(TARGET_STATE)
+    if not census_data:
+        return
+
+    # Filter for viable markets (e.g., Pop > 10k to save Google API credits)
+    viable_zips = [z for z in census_data if z['Population'] > 10000]
+    print(f"🔍 Found {len(viable_zips)} viable zip codes with >10k pop.")
+
+    results = []
+    
+    # 2. Loop through a small sample first (Top 10 zips) to test
+    # WARNING: Each loop costs money on Google API.
+    for i, data in enumerate(viable_zips[:10]): 
+        zip_code = data['Zip Code']
+        print(f"[{i+1}/{len(viable_zips[:10])}] Scanning {zip_code} for '{TARGET_KEYWORD}'...")
+        
+        competitor_count = get_business_count(zip_code, TARGET_KEYWORD)
+        
+        # 3. The "Secret Sauce" Metric
+        # Avoid division by zero
+        if competitor_count == 0:
+            opportunity_score = data['Population'] # Infinite opportunity
+        else:
+            opportunity_score = round(data['Population'] / competitor_count)
+
+        results.append({
+            "Zip Code": zip_code,
+            "Market": f"Zip {zip_code}",
+            "Niche": TARGET_KEYWORD,
+            "Population": data['Population'],
+            "Median Income": data['Median Income'],
+            "Competitors": competitor_count,
+            "Opportunity Score": opportunity_score, # People per Competitor
+            "Verdict": "🔥 UNDERSERVED" if opportunity_score > 5000 else "saturated"
+        })
+        
+        # Be nice to the API
+        time.sleep(1)
+
+    # 4. Export for Programmatic SEO
+    df = pd.DataFrame(results)
+    df = df.sort_values(by="Opportunity Score", ascending=False)
+    
+    csv_filename = "franchise_opportunities.csv"
+    df.to_csv(csv_filename, index=False)
+    print(f"\n✅ SUCCESS: Data saved to {csv_filename}")
+    print("Next Step: Upload this CSV to your Replit Frontend to generate pages.")
+
+if __name__ == "__main__":
+    main()
