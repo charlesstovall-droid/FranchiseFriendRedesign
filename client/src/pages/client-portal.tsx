@@ -112,9 +112,9 @@ export default function ClientPortal() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-bold text-primary mb-2">The Reality of Business Ownership</h4>
+                    <h4 className="font-bold text-primary mb-2">The Business Reality Guide (187 Pages)</h4>
                     <p className="text-sm text-muted-foreground mb-4">
-                      An honest guide setting real expectations about franchise and business ownership. Covers time commitment, financial realities, common mistakes, and lifestyle expectations.
+                      Arm yourself with insider knowledge. Discover the 37 red-flag phrases in every FDD, understand Item 19 data, expose broker conflicts, learn from real exits (8-figure winners AND lessons from failures), uncover silent million-dollar brands, and get the scripts that make franchisors open up on Discovery Day.
                     </p>
                   </div>
                   {downloadSuccess ? (
