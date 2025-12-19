@@ -1108,6 +1108,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Business Reality Book PDF endpoint
   // Email thank you endpoint
+  // Book request endpoint
+  app.post("/api/request-book", async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email) {
+        return res.status(400).json({ success: false, error: "Email required" });
+      }
+
+      // Send email to Charles notifying him of the book request
+      try {
+        let transporter;
+        if (process.env.EMAIL_SERVICE === "production") {
+          transporter = nodemailer.createTransport({
+            service: process.env.EMAIL_PROVIDER || "gmail",
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD,
+            },
+          });
+        } else {
+          const testAccount = await nodemailer.createTestAccount();
+          transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false,
+            auth: {
+              user: testAccount.user,
+              pass: testAccount.pass,
+            },
+          });
+        }
+
+        const mailOptions = {
+          from: 'noreply@franchisefriend.net',
+          to: process.env.EMAIL_USER || 'charles@franchisefriend.net',
+          subject: 'New Book Request from franchisefriend.net',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              <h2 style="color: #1E2B42;">New Book Request</h2>
+              <p>Someone has requested "The Reality of Business Ownership" guide:</p>
+              <p style="margin: 20px 0;">
+                <strong>Email:</strong> ${email}
+              </p>
+              <p style="color: #666; font-size: 14px;">
+                Please send them a copy of the guide at your convenience.
+              </p>
+            </div>
+          `,
+        };
+
+        await transporter.sendMail(mailOptions);
+      } catch (emailError) {
+        console.error("Error sending book request email:", emailError);
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error processing book request:", error);
+      res.status(500).json({ success: false, error: "Failed to process request" });
+    }
+  });
+
   app.post("/api/send-thank-you", async (req, res) => {
     try {
       const { email } = req.body;

@@ -62,20 +62,16 @@ export default function ClientPortal() {
     setDownloadLoading(true);
 
     try {
-      // Send thank you email
-      await fetch("/api/send-thank-you", {
+      // Request the book from Charles
+      const response = await fetch("/api/request-book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: downloadEmail }),
       });
 
-      // Trigger PDF download
-      const link = document.createElement('a');
-      link.href = '/api/download/business-reality-book';
-      link.download = 'Business-Reality-Guide.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      if (!response.ok) {
+        throw new Error("Failed to request book");
+      }
 
       setDownloadSuccess(true);
       setDownloadEmail("");
@@ -127,7 +123,7 @@ export default function ClientPortal() {
                       animate={{ opacity: 1 }}
                       className="p-3 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold text-center"
                     >
-                      ✓ Check your email for the guide and a thank you message!
+                      ✓ Thank you! Charles will send you the guide shortly.
                     </motion.div>
                   ) : (
                     <form onSubmit={handleDownload} className="space-y-3">
@@ -148,7 +144,7 @@ export default function ClientPortal() {
                         data-testid="button-download-reality-guide"
                       >
                         <Download className="w-4 h-4 mr-2" />
-                        {downloadLoading ? "Sending..." : "Download PDF"}
+                        {downloadLoading ? "Requesting..." : "Request Book"}
                       </Button>
                     </form>
                   )}
