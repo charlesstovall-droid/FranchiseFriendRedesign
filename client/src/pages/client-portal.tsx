@@ -129,13 +129,13 @@ export default function ClientPortal() {
                       <div className="p-4 bg-secondary/5 rounded-lg border border-secondary/20">
                         <p className="text-xs font-semibold text-primary mb-3">Inside this 187-page guide:</p>
                         <ul className="text-xs text-muted-foreground space-y-2">
-                          <li>• The 37 red-flag phrases buried in every FDD</li>
-                          <li>• Franchises where 60%+ of owners lost money (Item 19 receipts)</li>
-                          <li>• The 'renewal trap' that locks you in forever</li>
-                          <li>• How brokers collect 6-figure checks to mislead you</li>
-                          <li>• Real exits: who made 8 figures… and who walked away broke</li>
-                          <li>• The silent million-dollar brands that never advertise</li>
-                          <li>• Scripts that make franchisors sweat on Discovery Day</li>
+                          <li>• How to read and interpret FDD language like an insider</li>
+                          <li>• Financial analysis: which franchises deliver strong returns and why</li>
+                          <li>• Master renewal agreements and long-term contract negotiations</li>
+                          <li>• Understand broker incentives and build trust-based relationships</li>
+                          <li>• Case studies: what separates 8-figure winners from the rest</li>
+                          <li>• Discover high-performing franchises flying under the radar</li>
+                          <li>• The power questions that lead to transparent, honest conversations</li>
                         </ul>
                       </div>
                     </motion.div>
