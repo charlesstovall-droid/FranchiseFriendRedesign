@@ -53,7 +53,7 @@ export default function BlackBook() {
               </h1>
             </motion.div>
             <p className="text-xl text-muted-foreground font-semibold">
-              What every franchisor prays you never find
+              The insider's guide to making confident franchise decisions
             </p>
           </div>
 
@@ -86,13 +86,13 @@ export default function BlackBook() {
             </h2>
             <ul className="space-y-4">
               {[
-                "The 37 red-flag phrases buried in every FDD",
-                "Franchises where 60%+ of owners lost money (Item 19 receipts)",
-                "The 'renewal trap' that locks you in forever",
-                "How brokers collect 6-figure checks to mislead you",
-                "Real exits: who made 8 figures… and who walked away broke",
-                "The silent million-dollar brands that never advertise",
-                "Scripts that make franchisors sweat on Discovery Day",
+                "How to read and interpret FDD language like an insider",
+                "Financial analysis: which franchises deliver strong returns and why",
+                "Master renewal agreements and long-term contract negotiations",
+                "Understand broker incentives and build trust-based relationships",
+                "Case studies: what separates 8-figure winners from the rest",
+                "Discover high-performing franchises flying under the radar",
+                "The power questions that lead to transparent, honest conversations",
               ].map((item, index) => (
                 <motion.li
                   key={index}
@@ -138,8 +138,8 @@ export default function BlackBook() {
 
           <p className="text-center text-muted-foreground text-sm">
             <span className="font-semibold">Why Charles created this:</span> Because
-            if you're going to invest your life and fortune into a franchise, you
-            deserve to know what nobody's telling you.
+            when you're investing your life and fortune into a franchise, you deserve
+            expert guidance and insider knowledge to make the best decision.
           </p>
         </motion.div>
       </div>
