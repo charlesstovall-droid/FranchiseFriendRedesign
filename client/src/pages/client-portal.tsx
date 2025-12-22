@@ -114,7 +114,7 @@ export default function ClientPortal() {
                   <div>
                     <h4 className="font-bold text-primary mb-2">The Business Reality Guide (187 Pages)</h4>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Arm yourself with insider knowledge. Discover the 37 red-flag phrases in every FDD, understand Item 19 data, expose broker conflicts, learn from real exits (8-figure winners AND lessons from failures), uncover silent million-dollar brands, and get the scripts that make franchisors open up on Discovery Day.
+                      Learn how to evaluate franchises like an insider. Master reading FDD documents, decode financial data, find the silent million-dollar brands, study what separates 8-figure winners from the rest, and get the exact questions that lead to transparent conversations with franchisors. Make confident decisions backed by real data.
                     </p>
                   </div>
                   {downloadSuccess ? (
