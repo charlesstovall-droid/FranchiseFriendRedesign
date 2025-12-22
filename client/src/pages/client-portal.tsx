@@ -121,9 +121,23 @@ export default function ClientPortal() {
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="p-3 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold text-center"
+                      className="space-y-3"
                     >
-                      ✓ Thank you! Charles will send you the guide shortly.
+                      <div className="p-3 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold text-center">
+                        ✓ Thank you! Charles will send you the guide shortly.
+                      </div>
+                      <div className="p-4 bg-secondary/5 rounded-lg border border-secondary/20">
+                        <p className="text-xs font-semibold text-primary mb-3">Inside this 187-page guide:</p>
+                        <ul className="text-xs text-muted-foreground space-y-2">
+                          <li>• The 37 red-flag phrases buried in every FDD</li>
+                          <li>• Franchises where 60%+ of owners lost money (Item 19 receipts)</li>
+                          <li>• The 'renewal trap' that locks you in forever</li>
+                          <li>• How brokers collect 6-figure checks to mislead you</li>
+                          <li>• Real exits: who made 8 figures… and who walked away broke</li>
+                          <li>• The silent million-dollar brands that never advertise</li>
+                          <li>• Scripts that make franchisors sweat on Discovery Day</li>
+                        </ul>
+                      </div>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleDownload} className="space-y-3">
