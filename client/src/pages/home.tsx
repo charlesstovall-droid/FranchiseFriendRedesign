@@ -10,7 +10,6 @@ import { About } from "@/components/About";
 import { MeetCharlesFamily } from "@/components/MeetCharlesFamily";
 import { BlackBookCTA } from "@/components/BlackBookCTA";
 import { CTASection } from "@/components/CTASection";
-import { ExpertServices } from "@/components/ExpertServices";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -29,7 +28,6 @@ export default function Home() {
         <MeetCharlesFamily />
         <BlackBookCTA />
         <CTASection />
-        <ExpertServices />
       </main>
       <Footer />
     </div>

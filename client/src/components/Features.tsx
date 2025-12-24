@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Lightbulb, TrendingUp, Wallet, Search, Compass, Target } from "lucide-react";
+import { Lightbulb, TrendingUp, Wallet, Search, Compass, Target, Scale, BarChart3, Shield, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -32,6 +33,33 @@ const services = [
     icon: Target,
     title: "Success Coaching",
     description: "From initial research to opening day, I provide the mentorship you need to launch with confidence.",
+  },
+];
+
+const expertServices = [
+  {
+    icon: Scale,
+    title: "Expert Witness & Litigation Support",
+    description: "Technical advisory for legal counsel involved in franchise disputes. I provide unbiased analysis on Standard of Care, FDD disclosures, and operational negligence.",
+    bullets: ["Standard of Care Opinions", "Territory Encroachment", "Earnings Verification"],
+    price: "Retainers from $3,500",
+    cta: "Inquire for Case Review",
+  },
+  {
+    icon: BarChart3,
+    title: "Commercial Due Diligence (PE/M&A)",
+    description: "'Boots on the ground' operational auditing for Private Equity. I validate quality of earnings and operational health before you close the deal.",
+    bullets: ["Unit-Level Economics Audit", "Franchisee Sentiment Interviews", "Red Flag Stress Testing"],
+    price: "Project Min. $5,000",
+    cta: "Request Deal Capabilities",
+  },
+  {
+    icon: Shield,
+    title: "Strategic Deal Assurance",
+    description: "For buyers who need certainty. I act as an independent auditor to verify territory data and site feasibility before you sign an LOI.",
+    bullets: ["Site & Lease Feasibility", "SBA Loan Package Optimization", "Off-Market Resale Hunting"],
+    price: "Packages start at $1,500",
+    cta: "Secure Your Investment",
   },
 ];
 
@@ -80,6 +108,70 @@ export function Features() {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        {/* Expert Services Section */}
+        <div className="mt-20 pt-20 border-t border-secondary/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h3 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4">
+              Expert Professional Services
+            </h3>
+            <p className="text-lg text-muted-foreground">
+              For legal counsel, private equity, and institutional buyers
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+            {expertServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: (services.length + index) * 0.1 }}
+                  className="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="mb-6">
+                      <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-secondary" />
+                      </div>
+                    </div>
+
+                    <h4 className="text-xl font-serif font-bold text-primary mb-3">
+                      {service.title}
+                    </h4>
+
+                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed flex-grow">
+                      {service.description}
+                    </p>
+
+                    <ul className="space-y-2 mb-8">
+                      {service.bullets.map((bullet, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-secondary font-bold mt-1">•</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mb-6 pt-6 border-t border-secondary/10">
+                      <p className="text-sm font-semibold text-primary">
+                        {service.price}
+                      </p>
+                    </div>
+
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group">
+                      {service.cta}
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
