@@ -49,7 +49,7 @@ const expertServices = [
     icon: Shield,
     title: "Strategic Deal Assurance",
     description: "For buyers who need certainty. I act as an independent auditor to verify territory data and site feasibility before you sign an LOI.",
-    bullets: ["Site & Lease Feasibility", "SBA Loan Package Optimization", "Off-Market Resale Hunting"],
+    bullets: ["Site & Lease Feasibility", "Navigate SBA Pitfalls", "Existing Opportunity Evaluation"],
     price: "Packages start at $1,500",
     cta: "Secure Your Investment",
   },
