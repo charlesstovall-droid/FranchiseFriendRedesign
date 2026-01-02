@@ -9,6 +9,7 @@ import { PodcastSection } from "@/components/PodcastSection";
 import { About } from "@/components/About";
 import { MeetCharlesFamily } from "@/components/MeetCharlesFamily";
 import { ResaleOpportunities } from "@/components/ResaleOpportunities";
+import { BusinessEvaluation } from "@/components/BusinessEvaluation";
 import { BlackBookCTA } from "@/components/BlackBookCTA";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -28,6 +29,7 @@ export default function Home() {
         <About />
         <MeetCharlesFamily />
         <ResaleOpportunities />
+        <BusinessEvaluation />
         <BlackBookCTA />
         <CTASection />
       </main>
