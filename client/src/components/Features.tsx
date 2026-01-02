@@ -38,14 +38,6 @@ const services = [
 
 const expertServices = [
   {
-    icon: Scale,
-    title: "Expert Witness & Litigation Support",
-    description: "Technical advisory for legal counsel involved in franchise disputes. I provide unbiased analysis on Standard of Care, FDD disclosures, and operational negligence.",
-    bullets: ["Standard of Care Opinions", "Territory Encroachment", "Earnings Verification"],
-    price: "Retainers from $3,500",
-    cta: "Inquire for Case Review",
-  },
-  {
     icon: BarChart3,
     title: "Commercial Due Diligence (PE/M&A)",
     description: "'Boots on the ground' operational auditing for Private Equity. I validate quality of earnings and operational health before you close the deal.",
