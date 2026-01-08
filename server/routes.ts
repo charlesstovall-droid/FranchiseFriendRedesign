@@ -581,6 +581,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/brands", async (req, res) => {
+    try {
+      const { memberId, name, website, devPersonName, devPersonEmail, devPersonPhone } = req.body;
+      if (!memberId || !name || !website) {
+        return res.status(400).json({ success: false, error: "Member ID, name, and website required" });
+      }
+      const brand = await storage.createBrand({
+        memberId,
+        name,
+        website,
+        devPersonName,
+        devPersonEmail,
+        devPersonPhone,
+      });
+      res.json({ success: true, brand });
+    } catch (error) {
+      console.error("Error creating brand:", error);
+      res.status(500).json({ success: false, error: "Failed to create brand" });
+    }
+  });
+
   app.put("/api/brands/:id", async (req, res) => {
     try {
       const { name, website, logoUrl, devPersonName, devPersonEmail, devPersonPhone } = req.body;

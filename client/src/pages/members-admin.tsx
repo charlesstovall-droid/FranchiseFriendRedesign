@@ -104,6 +104,13 @@ export default function MembersAdmin() {
     setEditingMember(m);
   };
 
+  const addBrandToExistingMember = () => {
+    setEditingBrands([
+      ...editingBrands,
+      { name: "", website: "", logoUrl: "", devPersonName: "", devPersonEmail: "", devPersonPhone: "", memberId: editingMember?.id }
+    ]);
+  };
+
   const saveMemberEdit = async () => {
     if (!editingMember) return;
     try {
@@ -114,13 +121,19 @@ export default function MembersAdmin() {
       });
       if (!updateRes.ok) throw new Error("Failed to update member");
 
-      // Update brands
+      // Update or Create brands
       for (const brand of editingBrands) {
         if (brand.id) {
           await fetch(`/api/brands/${brand.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(brand),
+          });
+        } else if (brand.name && brand.website) {
+          await fetch(`/api/brands`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...brand, memberId: editingMember.id }),
           });
         }
       }
@@ -131,6 +144,12 @@ export default function MembersAdmin() {
     } catch (err: any) {
       setSubmitMessage({ type: "error", text: err.message });
     }
+  };
+
+  const handleEditingBrandChange = (index: number, field: keyof Brand, value: string) => {
+    const updatedBrands = [...editingBrands];
+    updatedBrands[index] = { ...updatedBrands[index], [field]: value };
+    setEditingBrands(updatedBrands);
   };
 
   const deleteMemberBrand = async (brandId: string, index: number) => {
@@ -548,7 +567,18 @@ export default function MembersAdmin() {
                     </div>
 
                     <div className="border-t border-secondary/20 pt-4">
-                      <h4 className="text-sm font-semibold text-primary mb-3">Brands</h4>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-sm font-semibold text-primary">Brands</h4>
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={addBrandToExistingMember}
+                          className="h-7 text-xs flex items-center gap-1"
+                        >
+                          <Plus className="w-3 h-3" /> Add Brand
+                        </Button>
+                      </div>
                       <div className="space-y-3">
                         {editingBrands.map((b, idx) => (
                           <div key={b.id || idx} className="p-3 bg-secondary/5 rounded border border-secondary/20 space-y-2">
@@ -563,14 +593,25 @@ export default function MembersAdmin() {
                                 placeholder="Brand name"
                                 className="flex-1 border-secondary/20 text-sm"
                               />
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                onClick={() => deleteMemberBrand(b.id || "", idx)}
-                                className="ml-2 h-8 w-8 p-0 flex-shrink-0"
-                              >
-                                <X className="w-4 h-4 text-destructive" />
-                              </Button>
+                              {b.id ? (
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => deleteMemberBrand(b.id!, idx)}
+                                  className="ml-2 h-8 w-8 p-0 flex-shrink-0"
+                                >
+                                  <Trash2 className="w-4 h-4 text-destructive" />
+                                </Button>
+                              ) : (
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => setEditingBrands(editingBrands.filter((_, i) => i !== idx))}
+                                  className="ml-2 h-8 w-8 p-0 flex-shrink-0"
+                                >
+                                  <X className="w-4 h-4 text-muted-foreground" />
+                                </Button>
+                              )}
                             </div>
                             <Input
                               value={b.website}
@@ -582,16 +623,38 @@ export default function MembersAdmin() {
                               placeholder="Website URL"
                               className="border-secondary/20 text-sm"
                             />
-                            <Input
-                              value={b.logoUrl || ""}
-                              onChange={(e) => {
-                                const updated = [...editingBrands];
-                                updated[idx].logoUrl = e.target.value;
-                                setEditingBrands(updated);
-                              }}
-                              placeholder="Logo URL"
-                              className="border-secondary/20 text-sm"
-                            />
+                            <div className="grid grid-cols-3 gap-2">
+                              <Input
+                                placeholder="Dev Name"
+                                value={b.devPersonName}
+                                onChange={(e) => {
+                                  const updated = [...editingBrands];
+                                  updated[idx].devPersonName = e.target.value;
+                                  setEditingBrands(updated);
+                                }}
+                                className="h-8 text-xs border-secondary/20"
+                              />
+                              <Input
+                                placeholder="Dev Email"
+                                value={b.devPersonEmail}
+                                onChange={(e) => {
+                                  const updated = [...editingBrands];
+                                  updated[idx].devPersonEmail = e.target.value;
+                                  setEditingBrands(updated);
+                                }}
+                                className="h-8 text-xs border-secondary/20"
+                              />
+                              <Input
+                                placeholder="Dev Phone"
+                                value={b.devPersonPhone}
+                                onChange={(e) => {
+                                  const updated = [...editingBrands];
+                                  updated[idx].devPersonPhone = e.target.value;
+                                  setEditingBrands(updated);
+                                }}
+                                className="h-8 text-xs border-secondary/20"
+                              />
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -606,7 +669,10 @@ export default function MembersAdmin() {
                       </Button>
                       <Button
                         variant="outline"
-                        onClick={() => setEditingMember(null)}
+                        onClick={() => {
+                          setEditingMember(null);
+                          setEditingBrands([]);
+                        }}
                         className="flex-1"
                       >
                         Cancel
