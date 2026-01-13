@@ -15,10 +15,26 @@ export async function serveStatic(app: Express, server: Server) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Serve static files with caching headers for performance
+  app.use(express.static(distPath, {
+    maxAge: '1d', // Cache static assets for 1 day
+    etag: true,
+    lastModified: true,
+    setHeaders: (res, filePath) => {
+      // Set longer cache for assets with hashed filenames
+      if (filePath.includes('/assets/')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+      // Set shorter cache for HTML to ensure updates are seen
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+    }
+  }));
 
-  // fall through to index.html if the file doesn't exist
+  // fall through to index.html if the file doesn't exist (SPA routing)
   app.use("*", (_req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

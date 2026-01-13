@@ -3,6 +3,7 @@ import { type Server } from "node:http";
 import express, { type Express, type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import ConnectPgSimple from "connect-pg-simple";
+import compression from "compression";
 import pg from "pg";
 import { registerRoutes } from "./routes";
 
@@ -20,6 +21,35 @@ export function log(message: string, source = "express") {
 }
 
 export const app = express();
+
+// Enable compression for all responses
+app.use(compression());
+
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
+// Force HTTPS in production
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(301, `https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
+// Health check endpoint for Replit deployments
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
+app.get('/_health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 declare module 'http' {
   interface IncomingMessage {
