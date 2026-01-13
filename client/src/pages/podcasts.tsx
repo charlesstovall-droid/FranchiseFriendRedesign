@@ -53,7 +53,24 @@ export default function PodcastsPage() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
 
-      {/* JSON-LD for Podcast Episodes */}
+      {/* JSON-LD for Podcast Series and Episodes */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "PodcastSeries",
+          "@id": "https://charlesstovall.com/podcasts#series",
+          "name": "Charles Stovall's Franchise Friend Podcast",
+          "description": "Expert insights on franchise consulting, business strategy, and entrepreneurship from certified franchise consultant Charles Stovall",
+          "url": "https://charlesstovall.com/podcasts",
+          "author": {
+            "@type": "Person",
+            "name": "Charles Stovall",
+            "url": "https://charlesstovall.com"
+          },
+          "image": "https://charlesstovall.com/podcast-artwork.png",
+          "webFeed": "https://charlesstovall.com/api/podcast/rss"
+        })}
+      </script>
       {podcasts.length > 0 && (
         <script type="application/ld+json">
           {JSON.stringify({
@@ -65,12 +82,19 @@ export default function PodcastsPage() {
               "item": {
                 "@type": "PodcastEpisode",
                 "name": p.title,
-                "description": p.description,
-                "url": `https://charlesstovall.com/podcast/${p.id}`,
+                "description": p.description || "Franchise consulting insights from Charles Stovall",
+                "url": `https://charlesstovall.com/podcasts#episode-${p.id}`,
                 "datePublished": p.publishedAt,
+                "duration": p.duration ? `PT${Math.floor(p.duration / 60)}M${p.duration % 60}S` : undefined,
+                "image": p.artworkUrl || "https://charlesstovall.com/podcast-artwork.png",
+                "partOfSeries": {
+                  "@type": "PodcastSeries",
+                  "@id": "https://charlesstovall.com/podcasts#series"
+                },
                 "associatedMedia": {
-                  "@type": "MediaObject",
-                  "contentUrl": p.audioUrl
+                  "@type": "AudioObject",
+                  "contentUrl": p.audioUrl,
+                  "encodingFormat": "audio/mpeg"
                 }
               }
             }))

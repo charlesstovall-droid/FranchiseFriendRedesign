@@ -14,7 +14,7 @@ export function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-secondary/10">
                <img 
                 src={charlesPhoto} 
-                alt="Charles Stovall - Certified Franchise Consultant based in Baton Rouge, helping entrepreneurs find the right opportunity" 
+                alt="Charles Stovall - Certified Franchise Consultant based in Charleston SC, helping entrepreneurs find the right opportunity" 
                 className="w-full h-auto object-cover"
               />
             </div>

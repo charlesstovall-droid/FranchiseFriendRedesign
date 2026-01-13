@@ -46,9 +46,10 @@ function escapeXml(str: string = ""): string {
     .replace(/'/g, "&apos;");
 }
 
+export async function registerRoutes(app: Express): Promise<Server> {
   // Dynamic Sitemap
   app.get("/sitemap.xml", async (req, res) => {
-    const podcasts = await storage.getPodcasts();
+    const podcasts = await storage.getAllPodcasts();
     const podcastUrls = podcasts.map(p => `
   <url>
     <loc>https://charlesstovall.com/podcast/${p.id}</loc>
@@ -84,6 +85,7 @@ function escapeXml(str: string = ""): string {
   app.get("/home", (req, res) => {
     res.redirect(301, "/");
   });
+
   // Configure passport for Google OAuth
   app.use(passport.initialize());
   app.use(passport.session());
@@ -1891,8 +1893,6 @@ function escapeXml(str: string = ""): string {
       }
     }
   });
-
-  const httpServer = createServer(app);
 
   const httpServer = createServer(app);
 
