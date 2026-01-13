@@ -69,10 +69,20 @@ function escapeXml(str: string = ""): string {
     <lastmod>2026-01-13</lastmod>
     <changefreq>weekly</changefreq>
   </url>
+  <url>
+    <loc>https://charlesstovall.com/home</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
   ${podcastUrls}
 </urlset>`;
     res.header('Content-Type', 'application/xml');
     res.send(sitemap);
+  });
+
+  // Redirect /home to /
+  app.get("/home", (req, res) => {
+    res.redirect(301, "/");
   });
   // Configure passport for Google OAuth
   app.use(passport.initialize());
@@ -1881,6 +1891,8 @@ function escapeXml(str: string = ""): string {
       }
     }
   });
+
+  const httpServer = createServer(app);
 
   const httpServer = createServer(app);
 

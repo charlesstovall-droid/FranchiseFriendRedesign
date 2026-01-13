@@ -53,6 +53,31 @@ export default function PodcastsPage() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />
 
+      {/* JSON-LD for Podcast Episodes */}
+      {podcasts.length > 0 && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": podcasts.map((p, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "item": {
+                "@type": "PodcastEpisode",
+                "name": p.title,
+                "description": p.description,
+                "url": `https://charlesstovall.com/podcast/${p.id}`,
+                "datePublished": p.publishedAt,
+                "associatedMedia": {
+                  "@type": "MediaObject",
+                  "contentUrl": p.audioUrl
+                }
+              }
+            }))
+          })}
+        </script>
+      )}
+
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-primary via-primary/95 to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6">
@@ -159,7 +184,7 @@ export default function PodcastsPage() {
                           {podcast.artworkUrl ? (
                             <img
                               src={podcast.artworkUrl}
-                              alt={podcast.title}
+                              alt={`Charles Stovall Podcast: ${podcast.title} - Expert franchise insights and advice`}
                               className="w-full h-full object-cover rounded-lg"
                               data-testid={`img-artwork-${podcast.id}`}
                             />
