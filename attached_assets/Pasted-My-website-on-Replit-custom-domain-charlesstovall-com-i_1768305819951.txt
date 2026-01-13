@@ -1,0 +1,24 @@
+My website on Replit (custom domain: charlesstovall.com) is a franchise consulting site with pages like homepage, /podcast, /phase2due-diligence, and podcast episodes (e.g., /jen-olson). It's experiencing 503 Service Unavailable errors for external users/crawlers (but loads locally), 404 routing issues in Google indexing (e.g., /home), and needs SEO enhancements to reach a perfect score.
+
+Provide exact, step-by-step instructions and code snippets to fix and optimize, assuming a React or Next.js setup (update if needed for my framework). Include Replit-specific commands for deployment.
+
+1. Diagnose and fix 503 errors: Ensure server listens on process.env.PORT || 3000, prevent app idling with keep-alive pings, verify custom domain DNS (CNAME to repl.co), enforce HTTPS redirection, and check for SSL cert issues. Add error handling to return 200 on root.
+
+2. Resolve 404 routing: Fix paths in router (e.g., map /home to /, ensure /podcast and episodes route correctly). Remove or 301 redirect broken URLs. Generate a dynamic sitemap.xml listing all pages.
+
+3. Implement core SEO improvements:
+   - Add meta tags to all pages: title (e.g., "Charles Stovall - Expert Franchise Consulting in Baton Rouge"), description (150 chars, keywords: franchise consulting, franchise discovery, top franchises 2026), robots (index,follow), canonical (self URL).
+   - Add Open Graph/Twitter cards for social sharing (og:title, og:description, og:image).
+   - Ensure alt text on all images (e.g., <img src="podcast-guest.jpg" alt="Charles Stovall with franchise guest on podcast">).
+   - Add JSON-LD schema: LocalBusiness (with name "Charles Stovall Franchise Friend", address in Baton Rouge/Brussels, phone, email) and PodcastEpisode for each episode (with name, description, audio URL).
+
+4. Optimize performance and crawlability:
+   - Minify JS/CSS/HTML, compress images with tools like sharp or in code.
+   - Enable server-side rendering (SSR) if client-side only, to help crawlers.
+   - Add responsive design: <meta name="viewport" content="width=device-width, initial-scale=1"> and media queries.
+   - Create robots.txt allowing / and disallowing /admin if any.
+   - Add internal links: E.g., from homepage to /podcast and episodes.
+
+5. Advanced content tweaks: Suggest code to generate FAQ sections or blog stubs with keywords like "franchise due diligence checklist".
+
+After changes, provide commands to redeploy and test: Run the app, check preview URL, and verify global access. Ensure all code is error-free and SEO-best-practice compliant for Google in 2026.

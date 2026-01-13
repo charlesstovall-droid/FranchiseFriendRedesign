@@ -79,7 +79,7 @@ export function Hero() {
         >
           <img 
             src={charlesPhoto} 
-            alt="Charles Stovall - Your Franchise Friend" 
+            alt="Charles Stovall, Baton Rouge Franchise Consultant - Your Franchise Friend providing guided discovery and due diligence" 
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />

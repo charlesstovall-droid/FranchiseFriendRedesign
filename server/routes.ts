@@ -46,7 +46,34 @@ function escapeXml(str: string = ""): string {
     .replace(/'/g, "&apos;");
 }
 
-export async function registerRoutes(app: Express): Promise<Server> {
+  // Dynamic Sitemap
+  app.get("/sitemap.xml", async (req, res) => {
+    const podcasts = await storage.getPodcasts();
+    const podcastUrls = podcasts.map(p => `
+  <url>
+    <loc>https://charlesstovall.com/podcast/${p.id}</loc>
+    <lastmod>${new Date(p.publishedAt).toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>`).join("");
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://charlesstovall.com/</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://charlesstovall.com/podcasts</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  ${podcastUrls}
+</urlset>`;
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+  });
   // Configure passport for Google OAuth
   app.use(passport.initialize());
   app.use(passport.session());
