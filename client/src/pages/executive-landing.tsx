@@ -124,7 +124,7 @@ export default function ExecutiveLanding() {
                       Meet Your Advisor: Charles Stovall
                     </h4>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you navigate the due diligence process to find the perfect "Semi-Absentee" or "Owner-Operator" match for your lifestyle. Let's build your exit strategy together.
+                      As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you navigate the due diligence process to find the perfect match for your lifestyle. Let's build your exit strategy together.
                     </p>
                   </div>
                 </div>
