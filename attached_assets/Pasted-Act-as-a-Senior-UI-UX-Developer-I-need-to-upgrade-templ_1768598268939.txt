@@ -1,0 +1,35 @@
+Act as a Senior UI/UX Developer. I need to upgrade `templates/executive_landing.html` to improve conversion rates and Google Ads compliance.
+
+**Instruction:**
+Keep all existing sections. Only INSERT new sections in the specific locations described below. Use Tailwind CSS for all styling.
+
+**1. INSERT "Authority Bar" (Trust Signals):**
+* **Location:** Immediately **AFTER** the Hero Section (the top section) and **BEFORE** the "Problem" section.
+* **Design:** A narrow strip with a very light gray background (`bg-gray-50`).
+* **Content:**
+    * Centered text in a subtle gray font: "TRUSTED EXPERTISE IN FRANCHISE CONSULTING"
+    * Below that, a centered row of 3 text badges (simulating logos) using bold, dark text: "15+ Years Experience"  |  "500+ Concepts Vetted"  |  "$0 Cost to Candidates"
+
+**2. INSERT "Who This Is For" (The Filter):**
+* **Location:** Immediately **AFTER** the "Problem/Agitation" section and **BEFORE** the "Meet Your Advisor" section.
+* **Design:** A simple two-column section (white background).
+* **Content:**
+    * **Left Column (Green Check Icon):** "PERFECT FOR: Executives looking to replace $150k+ income & Investors seeking semi-absentee models."
+    * **Right Column (Red X Icon):** "NOT FOR: Those seeking hourly employment or 'no money down' schemes."
+
+**3. INSERT "FAQ" (Objection Handling):**
+* **Location:** Immediately **AFTER** the "Lead Form" section.
+* **Design:** Simple text block, centered.
+* **Content:**
+    * **Q:** "Does this cost me money?"
+    * **A:** "No. My services are 100% free to you. I am paid by the franchisor only if we find a match, similar to an executive recruiter."
+
+**4. INSERT Footer (Compliance - CRITICAL):**
+* **Location:** At the very bottom of the page.
+* **Design:** Dark background (`bg-gray-900`), white text, small font.
+* **Content:**
+    * "© 2026 Charles Stovall Consulting. All Rights Reserved."
+    * Add a link that says "Privacy Policy" (Link to `#` for now).
+
+**Technical Note:**
+Ensure all new sections are mobile-responsive (stacking vertically on small screens). Do not delete the existing form or hero content.
