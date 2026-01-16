@@ -105,29 +105,30 @@ export default function ExecutiveLanding() {
           </div>
 
           <div className="space-y-6">
-            {/* Meet Your Advisor Section */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                <div className="w-24 h-24 bg-gray-300 rounded-full flex-shrink-0" />
-                <div className="text-center sm:text-left">
-                  <h3 className="text-lg font-bold text-[#1E2B42] mb-2">
-                    Meet Your Advisor: Charles Stovall
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you navigate the due diligence process to find the perfect "Semi-Absentee" or "Owner-Operator" match for your lifestyle. Let's build your exit strategy together.
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Lead Form */}
             <div className="bg-white rounded-2xl p-8 shadow-2xl">
               <h3 className="text-2xl font-serif font-bold text-[#1E2B42] mb-2 text-center">
                 Request Your Free Consultation
               </h3>
-            <p className="text-gray-600 text-center mb-6">
-              Discover franchise opportunities matched to your goals
-            </p>
+              
+              {/* Meet Your Advisor Section */}
+              <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                  <img 
+                    src="/charles-headshot.jpeg" 
+                    alt="Charles Stovall" 
+                    className="w-24 h-24 rounded-full object-cover flex-shrink-0"
+                  />
+                  <div className="text-center sm:text-left">
+                    <h4 className="text-base font-bold text-[#1E2B42] mb-1">
+                      Meet Your Advisor: Charles Stovall
+                    </h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you navigate the due diligence process to find the perfect "Semi-Absentee" or "Owner-Operator" match for your lifestyle. Let's build your exit strategy together.
+                    </p>
+                  </div>
+                </div>
+              </div>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
