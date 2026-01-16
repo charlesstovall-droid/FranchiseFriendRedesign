@@ -275,6 +275,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             general: "General Contact",
             newsletter: "Newsletter Signup",
             "black-book": "Black Book Download",
+            "executive-ad": "Executive Ad Landing Page",
           };
 
           const mailOptions = {

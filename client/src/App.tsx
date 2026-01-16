@@ -19,6 +19,8 @@ import Phase1 from "@/pages/members/phase1";
 import Phase2 from "@/pages/members/phase2";
 import Phase3 from "@/pages/members/phase3";
 import Phase4 from "@/pages/members/phase4";
+import ExecutiveLanding from "@/pages/executive-landing";
+import ThankYouAd from "@/pages/thank-you-ad";
 
 function Router() {
   return (
@@ -37,6 +39,8 @@ function Router() {
       <Route path="/phase2" component={Phase2} />
       <Route path="/phase3" component={Phase3} />
       <Route path="/phase4" component={Phase4} />
+      <Route path="/executive-access" component={ExecutiveLanding} />
+      <Route path="/thank-you-ad" component={ThankYouAd} />
       <Route component={NotFound} />
     </Switch>
   );
