@@ -257,6 +257,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
+      
+      // Send email notification to Charles
+      try {
+        let transporter;
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+          transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD,
+            },
+          });
+
+          const leadTypeLabels: Record<string, string> = {
+            consultation: "Free Consultation Request",
+            general: "General Contact",
+            newsletter: "Newsletter Signup",
+            "black-book": "Black Book Download",
+          };
+
+          const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: "CStovall@FranChoice.com",
+            subject: `New Lead: ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+                <h2 style="color: #1E2B42;">New Lead Received</h2>
+                <p><strong>Type:</strong> ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}</p>
+                <p><strong>Name:</strong> ${validatedData.name}</p>
+                <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
+                ${validatedData.phone ? `<p><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>` : ""}
+                ${validatedData.message ? `<p><strong>Message:</strong></p><p style="background: #f5f5f5; padding: 15px; border-radius: 4px;">${validatedData.message}</p>` : ""}
+                <p style="color: #666; font-size: 14px; margin-top: 30px;">
+                  Received: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })}
+                </p>
+              </div>
+            `,
+          };
+
+          await transporter.sendMail(mailOptions);
+        }
+      } catch (emailError) {
+        console.error("Error sending lead notification email:", emailError);
+        // Don't fail the lead creation if email fails
+      }
+      
       res.json({ success: true, lead });
     } catch (error: any) {
       if (error.name === "ZodError") {
