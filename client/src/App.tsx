@@ -42,10 +42,10 @@ function Router() {
       <Route path="/phase2" component={Phase2} />
       <Route path="/phase3" component={Phase3} />
       <Route path="/phase4" component={Phase4} />
-      <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/executive-access/process" component={ExecutiveProcess} />
       <Route path="/executive-access/about" component={ExecutiveAbout} />
       <Route path="/executive-access/investment" component={ExecutiveInvestment} />
+      <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
       <Route component={NotFound} />
     </Switch>
