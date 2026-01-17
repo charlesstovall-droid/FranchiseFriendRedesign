@@ -20,6 +20,9 @@ import Phase2 from "@/pages/members/phase2";
 import Phase3 from "@/pages/members/phase3";
 import Phase4 from "@/pages/members/phase4";
 import ExecutiveLanding from "@/pages/executive-landing";
+import ExecutiveProcess from "@/pages/executive-process";
+import ExecutiveAbout from "@/pages/executive-about";
+import ExecutiveInvestment from "@/pages/executive-investment";
 import ThankYouAd from "@/pages/thank-you-ad";
 
 function Router() {
@@ -40,6 +43,9 @@ function Router() {
       <Route path="/phase3" component={Phase3} />
       <Route path="/phase4" component={Phase4} />
       <Route path="/executive-access" component={ExecutiveLanding} />
+      <Route path="/executive-access/process" component={ExecutiveProcess} />
+      <Route path="/executive-access/about" component={ExecutiveAbout} />
+      <Route path="/executive-access/investment" component={ExecutiveInvestment} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
       <Route component={NotFound} />
     </Switch>

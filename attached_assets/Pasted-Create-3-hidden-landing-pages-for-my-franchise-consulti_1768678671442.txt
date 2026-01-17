@@ -1,0 +1,68 @@
+Create 3 hidden landing pages for my franchise consulting business that match the exact style of my main page at charlesstovall.com/executive-access. These pages are for Google Ads sitelinks and should NOT be linked from my main navigation or sitemap.
+
+**DESIGN REQUIREMENTS:**
+- Match the exact look, feel, fonts, colors, and layout of my executive-access page
+- Same header/logo styling
+- Same CTA button style (booking a call)
+- Same footer
+- Professional, clean, executive-focused design
+- Mobile responsive
+- Each page should have a clear Calendly CTA button: https://calendly.com/charles-stovall/intro
+
+**PAGE 1: /executive-access/process** (Our Vetting Process)
+Content focus:
+- Headline: "How We Find Your Perfect Franchise Match"
+- Explain my 4-step vetting process:
+  1. Discovery Call - Understanding your goals, lifestyle, investment level
+  2. Franchise Matching - I screen 4,000+ brands to find fits for YOU
+  3. Brand Introductions - Connect you directly with franchise development teams
+  4. Due Diligence Support - Guide you through validation and decisions
+- Emphasize: "I do the heavy lifting so you don't waste time on bad fits"
+- Mention: "No cost to you - franchises pay my fee"
+- CTA: "Start Your Discovery Call"
+
+**PAGE 2: /executive-access/about** (Meet Your Consultant)
+Content focus:
+- Headline: "Your Franchise Advisor: Charles Stovall"
+- My background/credibility:
+  - 15+ years in franchise consulting
+  - Helped 500+ executives transition to business ownership
+  - Specialize in semi-absentee and executive-level franchise models
+  - Based in Charleston, SC but work with clients nationwide
+- My philosophy: "I'm not here to sell you a franchise. I'm here to help you find the RIGHT franchise for YOUR goals."
+- Trust builders: "Free, confidential consultation. No pressure. No obligation."
+- CTA: "Schedule Your Free Intro Call"
+
+**PAGE 3: /executive-access/investment** (Investment Opportunities) 
+*[Replacing "Replace Your Salary" which Google flagged]*
+Content focus:
+- Headline: "Executive-Level Franchise Investment Opportunities"
+- Target audience: Corporate executives and investors with $150K+ liquid capital
+- Types of models I specialize in:
+  - Semi-absentee franchises (keep your job while building equity)
+  - Manager-run business models
+  - Multi-unit investment opportunities
+  - Recession-resistant service franchises
+- Emphasize: "Build wealth through business ownership without quitting your day job"
+- Income potential framing: "Many of my clients build portfolio businesses generating $200K-$500K+ annually"
+- CTA: "Explore Your Options - Book a Call"
+
+**TECHNICAL REQUIREMENTS:**
+- Add meta robots tag: <meta name="robots" content="noindex, nofollow"> (hide from search engines)
+- Do NOT add these pages to any sitemap
+- Do NOT link these from main navigation
+- Each page should be standalone but consistent in branding
+- Fast loading, optimized images
+- Include standard tracking pixels/Google Analytics if present on main site
+
+**FILE STRUCTURE:**
+/executive-access/process.html (or /process if using routes)
+/executive-access/about.html (or /about if using routes)  
+/executive-access/investment.html (or /investment if using routes)
+
+**CTA BUTTON ON ALL PAGES:**
+- Text: "Book Your Free Consultation"
+- Link: https://calendly.com/charles-stovall/intro
+- Style: Same as main executive-access page CTA button
+
+Please generate the complete code for all 3 pages.
