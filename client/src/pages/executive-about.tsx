@@ -12,8 +12,8 @@ export default function ExecutiveAbout() {
 
   const credentials = [
     { icon: Briefcase, text: "15+ years in franchise consulting" },
-    { icon: Users, text: "Helped 500+ executives transition to business ownership" },
-    { icon: Shield, text: "Specialize in executive-level franchise models" },
+    { icon: Users, text: "Helped 500+ people achieve their dream of business ownership" },
+    { icon: Shield, text: "Personalized guidance through your franchise journey" },
     { icon: MapPin, text: "Based in Charleston, SC — work with clients nationwide" },
   ];
 

@@ -13,23 +13,23 @@ export default function ExecutiveInvestment() {
   const models = [
     {
       icon: Clock,
-      title: "Semi-Absentee Franchises",
-      description: "Keep your executive position while building equity in a business. Invest 10-15 hours per week to oversee operations."
+      title: "Flexible Ownership Models",
+      description: "Find a franchise that fits your lifestyle—whether you want hands-on involvement or prefer to oversee operations."
     },
     {
       icon: Building2,
       title: "Manager-Run Business Models",
-      description: "Hire a team to run day-to-day operations while you focus on strategic growth and investment returns."
+      description: "Build a team to handle daily operations while you focus on the vision and growth of your business."
     },
     {
       icon: TrendingUp,
-      title: "Multi-Unit Investment Opportunities",
-      description: "Build a portfolio of franchise locations to maximize revenue potential and create generational wealth."
+      title: "Growth-Focused Opportunities",
+      description: "Explore franchise models designed for expansion and long-term business building."
     },
     {
       icon: Shield,
-      title: "Recession-Resistant Service Franchises",
-      description: "Essential services that perform well in any economy—from restoration to senior care to B2B services."
+      title: "Proven Service Franchises",
+      description: "Essential services that help communities—from restoration to senior care to professional services."
     },
   ];
 
@@ -50,7 +50,7 @@ export default function ExecutiveInvestment() {
               <span className="text-[#D4AF37]">Franchise Investment Opportunities</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Build wealth through business ownership without quitting your day job.
+              Explore your path to business ownership with expert guidance.
             </p>
           </div>
 
@@ -85,14 +85,14 @@ export default function ExecutiveInvestment() {
             </div>
           </div>
 
-          {/* Income Potential */}
+          {/* Dream Achievement */}
           <div className="bg-white/5 backdrop-blur rounded-xl p-8 border border-white/10 mb-12">
             <div className="flex items-start gap-4">
               <CheckCircle className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
               <div>
-                <h3 className="text-xl font-serif font-bold text-white mb-2">Build a Portfolio Business</h3>
+                <h3 className="text-xl font-serif font-bold text-white mb-2">Realize Your Dream of Business Ownership</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Many of my clients build portfolio businesses generating <span className="text-[#D4AF37] font-semibold">$200K-$500K+ annually</span> while maintaining their executive careers. The key is finding the right model for your goals and lifestyle.
+                  I help you find the right franchise that aligns with your goals, values, and desired lifestyle. The key is discovering the perfect match for who you are and what you want to achieve.
                 </p>
               </div>
             </div>
