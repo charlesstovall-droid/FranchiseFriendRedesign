@@ -38,160 +38,161 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 4,
-    title: "Placeholder Post 4",
+    title: "The Rise of Service-Based Franchises",
     date: "2026-01-04",
     category: "Trends",
-    slug: "placeholder-post-4",
-    excerpt: "Excerpt for post 4 goes here.",
+    slug: "rise-of-service-based-franchises",
+    excerpt: "Why service-based franchise models are gaining momentum in the current economy.",
     content: "Full content goes here..."
   },
   {
     id: 5,
-    title: "Placeholder Post 5",
+    title: "Financing Your Franchise Dream",
     date: "2026-01-03",
     category: "Financials",
-    slug: "placeholder-post-5",
-    excerpt: "Excerpt for post 5 goes here.",
+    slug: "financing-your-franchise-dream",
+    excerpt: "Explore different funding options and strategies for your franchise investment.",
     content: "Full content goes here..."
   },
   {
     id: 6,
-    title: "Placeholder Post 6",
+    title: "Building a Lifestyle You Love Through Franchising",
     date: "2026-01-02",
     category: "Lifestyle",
-    slug: "placeholder-post-6",
-    excerpt: "Excerpt for post 6 goes here.",
+    slug: "building-lifestyle-through-franchising",
+    excerpt: "How franchise ownership can help you design the life you've always wanted.",
     content: "Full content goes here..."
   },
   {
     id: 7,
-    title: "Placeholder Post 7",
+    title: "Emerging Industries in Franchising",
     date: "2026-01-01",
     category: "Trends",
-    slug: "placeholder-post-7",
-    excerpt: "Excerpt for post 7 goes here.",
+    slug: "emerging-industries-franchising",
+    excerpt: "New sectors and industries opening up exciting franchise opportunities.",
     content: "Full content goes here..."
   },
   {
     id: 8,
-    title: "Placeholder Post 8",
+    title: "SBA Loans for Franchise Buyers",
     date: "2025-12-28",
     category: "Financials",
-    slug: "placeholder-post-8",
-    excerpt: "Excerpt for post 8 goes here.",
+    slug: "sba-loans-franchise-buyers",
+    excerpt: "How to navigate SBA lending programs for your franchise purchase.",
     content: "Full content goes here..."
   },
   {
     id: 9,
-    title: "Placeholder Post 9",
+    title: "From Corporate to Franchise Owner",
     date: "2025-12-25",
     category: "Lifestyle",
-    slug: "placeholder-post-9",
-    excerpt: "Excerpt for post 9 goes here.",
+    slug: "corporate-to-franchise-owner",
+    excerpt: "Stories and insights from professionals who made the leap to franchise ownership.",
     content: "Full content goes here..."
   },
   {
     id: 10,
-    title: "Placeholder Post 10",
+    title: "Technology Trends Shaping Franchising",
     date: "2025-12-20",
     category: "Trends",
-    slug: "placeholder-post-10",
-    excerpt: "Excerpt for post 10 goes here.",
+    slug: "technology-trends-franchising",
+    excerpt: "How technology is transforming franchise operations and customer experience.",
     content: "Full content goes here..."
   },
   {
     id: 11,
-    title: "Placeholder Post 11",
+    title: "Understanding Franchise Disclosure Documents",
     date: "2025-12-15",
     category: "Financials",
-    slug: "placeholder-post-11",
-    excerpt: "Excerpt for post 11 goes here.",
+    slug: "understanding-fdd",
+    excerpt: "A beginner's guide to reading and understanding franchise disclosure documents.",
     content: "Full content goes here..."
   },
   {
     id: 12,
-    title: "Placeholder Post 12",
+    title: "Family-Friendly Franchise Ownership",
     date: "2025-12-10",
     category: "Lifestyle",
-    slug: "placeholder-post-12",
-    excerpt: "Excerpt for post 12 goes here.",
+    slug: "family-friendly-franchise-ownership",
+    excerpt: "How to involve your family in your franchise journey and build together.",
     content: "Full content goes here..."
   },
   {
     id: 13,
-    title: "Placeholder Post 13",
+    title: "Multi-Unit Ownership Strategies",
     date: "2025-12-05",
     category: "Trends",
-    slug: "placeholder-post-13",
-    excerpt: "Excerpt for post 13 goes here.",
+    slug: "multi-unit-ownership-strategies",
+    excerpt: "The growing trend of multi-unit franchise ownership and how to plan for it.",
     content: "Full content goes here..."
   },
   {
     id: 14,
-    title: "Placeholder Post 14",
+    title: "Franchise ROI Expectations",
     date: "2025-12-01",
     category: "Financials",
-    slug: "placeholder-post-14",
-    excerpt: "Excerpt for post 14 goes here.",
+    slug: "franchise-roi-expectations",
+    excerpt: "Setting realistic expectations for your franchise investment returns.",
     content: "Full content goes here..."
   },
   {
     id: 15,
-    title: "Placeholder Post 15",
+    title: "The Mindset of Successful Franchise Owners",
     date: "2025-11-25",
     category: "Lifestyle",
-    slug: "placeholder-post-15",
-    excerpt: "Excerpt for post 15 goes here.",
+    slug: "mindset-successful-franchise-owners",
+    excerpt: "Mental habits and attitudes that set thriving franchise owners apart.",
     content: "Full content goes here..."
   },
   {
     id: 16,
-    title: "Placeholder Post 16",
+    title: "Home Services Franchises on the Rise",
     date: "2025-11-20",
     category: "Trends",
-    slug: "placeholder-post-16",
-    excerpt: "Excerpt for post 16 goes here.",
+    slug: "home-services-franchises-rise",
+    excerpt: "Why home services continue to be a hot sector in franchising.",
     content: "Full content goes here..."
   },
   {
     id: 17,
-    title: "Placeholder Post 17",
+    title: "Hidden Costs in Franchise Ownership",
     date: "2025-11-15",
     category: "Financials",
-    slug: "placeholder-post-17",
-    excerpt: "Excerpt for post 17 goes here.",
+    slug: "hidden-costs-franchise-ownership",
+    excerpt: "What to look out for beyond the initial franchise fee.",
     content: "Full content goes here..."
   },
   {
     id: 18,
-    title: "Placeholder Post 18",
+    title: "Time Freedom Through Franchise Ownership",
     date: "2025-11-10",
     category: "Lifestyle",
-    slug: "placeholder-post-18",
-    excerpt: "Excerpt for post 18 goes here.",
+    slug: "time-freedom-franchise-ownership",
+    excerpt: "How owning a franchise can give you more control over your schedule.",
     content: "Full content goes here..."
   },
   {
     id: 19,
-    title: "Placeholder Post 19",
+    title: "Sustainability Trends in Franchising",
     date: "2025-11-05",
     category: "Trends",
-    slug: "placeholder-post-19",
-    excerpt: "Excerpt for post 19 goes here.",
+    slug: "sustainability-trends-franchising",
+    excerpt: "How eco-conscious practices are becoming a competitive advantage in franchising.",
     content: "Full content goes here..."
   },
   {
     id: 20,
-    title: "Placeholder Post 20",
+    title: "Exit Strategies for Franchise Owners",
     date: "2025-11-01",
     category: "Financials",
-    slug: "placeholder-post-20",
-    excerpt: "Excerpt for post 20 goes here.",
+    slug: "exit-strategies-franchise-owners",
+    excerpt: "Planning your exit from day one to maximize your franchise investment.",
     content: "Full content goes here..."
   }
 ];
 
 export const categories = ["All", "Trends", "Financials", "Lifestyle"] as const;
+export type Category = typeof categories[number];
 
 export function getLatestPosts(count: number = 3): BlogPost[] {
   return [...blogPosts]
@@ -206,4 +207,12 @@ export function getPostsByCategory(category: string): BlogPost[] {
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find(post => post.slug === slug);
+}
+
+export function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
