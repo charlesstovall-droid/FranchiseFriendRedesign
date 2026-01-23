@@ -2,7 +2,7 @@ export interface BlogPost {
   id: number;
   title: string;
   date: string;
-  category: "Trends" | "Financials" | "Lifestyle";
+  category: "Strategy" | "Trends" | "Financials" | "Lifestyle";
   slug: string;
   excerpt: string;
   content: string;
@@ -11,187 +11,187 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "Top Franchise Trends for 2026",
+    title: "2026 Franchise Outlook: Why \"Boring\" Businesses Are Winning Big",
+    slug: "2026-franchise-outlook-boring-businesses",
+    category: "Strategy",
     date: "2026-01-15",
-    category: "Trends",
-    slug: "top-franchise-trends-2026",
-    excerpt: "Discover the emerging franchise opportunities and industry shifts shaping the business landscape in 2026.",
-    content: "Full content goes here..."
+    excerpt: "Everyone wants the sexy tech franchise, but the real money in 2026 is in waste management, restoration, and cleaning. Here is why recession-resistance is the new 'hot.'",
+    content: "<p>If you are looking for glamour, go to Hollywood. If you are looking for cash flow, look at the stuff nobody else wants to do. In 2026, while 'sexy' tech concepts are battling market volatility, the boring businesses—restoration, waste management, and commercial cleaning—are quietly printing money.</p><p>Why? Because they are essential. When the economy tightens, people might skip the $15 smoothie, but they cannot ignore a flooded basement or a full dumpster. These 'unsexy' models often have lower entry costs, higher margins, and significantly stickier customers. In my consulting practice, I am steering more clients toward these recession-resistant heavyweights. Don't buy a franchise to look cool at a cocktail party; buy one that funds the cocktail party.</p>"
   },
   {
     id: 2,
-    title: "Understanding Franchise Investment Costs",
-    date: "2026-01-10",
-    category: "Financials",
-    slug: "understanding-franchise-investment-costs",
-    excerpt: "A comprehensive guide to the financial considerations when evaluating franchise opportunities.",
-    content: "Full content goes here..."
+    title: "The \"Semi-Absentee\" Myth: What 20 Hours a Week Actually Looks Like",
+    slug: "semi-absentee-franchise-myth",
+    category: "Strategy",
+    date: "2026-01-20",
+    excerpt: "Passive income is a lie. Managed income is the truth. Let's break down the reality of keeping your day job while building a franchise.",
+    content: "<p>Let's clear the air: 'Passive income' in franchising is a myth sold by brokers who want a quick commission. There is no such thing as a business that runs itself from Day 1. The correct term is 'Semi-Absentee' or 'Manager-Run,' and even that requires grit.</p><p>If you plan to keep your corporate job while launching a franchise in 2026, you need to understand the trade-off. You aren't trading time for money; you are trading <i>capital</i> for time. You will need to hire a higher-salary manager immediately. Your role isn't operations; it's accountability. You are managing the manager. If you aren't willing to dedicate 15-20 hours a week to KPIs, leadership calls, and putting out fires, you aren't an investor—you're a liability to your own business.</p>"
   },
   {
     id: 3,
-    title: "Work-Life Balance as a Franchise Owner",
-    date: "2026-01-05",
-    category: "Lifestyle",
-    slug: "work-life-balance-franchise-owner",
-    excerpt: "How successful franchise owners maintain balance while building their dream business.",
-    content: "Full content goes here..."
+    title: "Don't Buy a Job: The Difference Between an Owner and an Operator",
+    slug: "owner-vs-operator-franchise",
+    category: "Strategy",
+    date: "2026-01-25",
+    excerpt: "If you're scrubbing the floors, you didn't buy a business; you bought a low-paying job. Here is how to scale to Executive status.",
+    content: "<p>I see it all the time: a high-level executive buys a franchise to escape the grind, only to end up working the front counter because they wanted to 'save money' on labor. That is not a business; that is a job with a buy-in fee.</p><p>The goal of franchising should be scalability. When we look at FDDs (Franchise Disclosure Documents), we need to look for models that support an 'Executive' structure. Does the margin allow for a General Manager? Is the training designed for you to teach others, or for you to do it yourself? If you want to build wealth, you need to be working <i>on</i> the business, not <i>in</i> it. If you can't leave for a week without the place burning down, you haven't bought freedom—you've bought a cage.</p>"
   },
   {
     id: 4,
-    title: "The Rise of Service-Based Franchises",
-    date: "2026-01-04",
+    title: "The \"Silver Tsunami\" is Here: Why Senior Care is the Decade's Safest Bet",
+    slug: "senior-care-franchise-trends-2026",
     category: "Trends",
-    slug: "rise-of-service-based-franchises",
-    excerpt: "Why service-based franchise models are gaining momentum in the current economy.",
-    content: "Full content goes here..."
+    date: "2026-02-01",
+    excerpt: "By 2030, all Boomers will be 65+. The demand for non-medical home care is literally impossible to meet right now.",
+    content: "<p>The numbers don't lie. We are living through the 'Silver Tsunami.' Every day, 10,000 Americans turn 65, and in 2026, the oldest Boomers are hitting their 80s. The healthcare system cannot handle the volume, which means the private sector <i>must</i> step in.</p><p>Senior care franchises are no longer just about nursing; they are about 'aging in place.' This includes non-medical companionship, home modifications, and specialized dementia care. It is an operationally complex business that requires high emotional intelligence, but the demand is virtually infinite. If you want a business that is recession-proof, AI-proof, and serves a genuine community need, this is the sector to watch.</p>"
   },
   {
     id: 5,
-    title: "Financing Your Franchise Dream",
-    date: "2026-01-03",
-    category: "Financials",
-    slug: "financing-your-franchise-dream",
-    excerpt: "Explore different funding options and strategies for your franchise investment.",
-    content: "Full content goes here..."
+    title: "Franchise Resales vs. New Territory: Why Buying Used Might Be Your Best Move",
+    slug: "franchise-resales-vs-new-territory",
+    category: "Strategy",
+    date: "2026-02-05",
+    excerpt: "Why struggle through permitting and construction when you can buy cash flow on Day 1? Analyzing the 2026 trend of resale opportunities.",
+    content: "<p>Building a new territory is exciting, but it's also a grind. You deal with construction delays, permitting nightmares (looking at you, Mount Pleasant), and zero revenue for months. In 2026, a massive opportunity is emerging: Resales.</p><p>Many early franchisees from the 2010s are looking to retire. They have established staff, existing cash flow, and a known customer base. You aren't buying a projection; you're buying a tax return. Yes, you might pay a premium over the franchise fee, but you are buying speed. I help clients analyze these deals to ensure they aren't buying a sinking ship, but rather a solid vessel that just needs a new captain.</p>"
   },
   {
     id: 6,
-    title: "Building a Lifestyle You Love Through Franchising",
-    date: "2026-01-02",
-    category: "Lifestyle",
-    slug: "building-lifestyle-through-franchising",
-    excerpt: "How franchise ownership can help you design the life you've always wanted.",
-    content: "Full content goes here..."
+    title: "AI Isn't Replacing Franchisees, It's Supercharging Them",
+    slug: "ai-in-franchising-2026",
+    category: "Trends",
+    date: "2026-02-10",
+    excerpt: "You don't need to be a tech wizard. You just need a franchisor who is. How AI is automating the 'boring' stuff.",
+    content: "<p>Relax, the robots aren't coming for your franchise license. But they <i>are</i> coming for your administrative headaches. In 2026, the best franchisors are integrating AI into their ops in ways that give you your life back.</p><p>We are seeing AI tools that handle lead follow-up via text within seconds, automated scheduling bots that fill your calendar, and predictive ordering systems that manage inventory so you don't have to count boxes. As a consultant, I evaluate franchisors based on their tech stack. If they are still running on spreadsheets and hope, they are already behind. You want a partner that uses technology to make you a more efficient owner, not a busier one.</p>"
   },
   {
     id: 7,
-    title: "Emerging Industries in Franchising",
-    date: "2026-01-01",
+    title: "The Rise of \"Med-Tail\": Why Wellness Franchises Are Taking Over Strip Malls",
+    slug: "med-tail-wellness-franchise-trends",
     category: "Trends",
-    slug: "emerging-industries-franchising",
-    excerpt: "New sectors and industries opening up exciting franchise opportunities.",
-    content: "Full content goes here..."
+    date: "2026-02-15",
+    excerpt: "Retail is changing. People won't drive for socks, but they will drive for IV drips, Pilates, and cryotherapy.",
+    content: "<p>Amazon killed the video store and the bookstore, but it can't kill the yoga studio or the IV drip clinic. Welcome to the era of 'Med-Tail'—medical and wellness services in retail settings.</p><p>In 2026, high-net-worth individuals view health as an asset class. They are spending heavily on longevity: cryotherapy, infrared saunas, assisted stretching, and Pilates. These models are attractive because they are membership-based (recurring revenue) and require a small real estate footprint. Private equity is pouring money into this space for a reason. If you want a high-engagement, community-focused business, Med-Tail is the frontrunner.</p>"
   },
   {
     id: 8,
-    title: "SBA Loans for Franchise Buyers",
-    date: "2025-12-28",
-    category: "Financials",
-    slug: "sba-loans-franchise-buyers",
-    excerpt: "How to navigate SBA lending programs for your franchise purchase.",
-    content: "Full content goes here..."
+    title: "Pet Economy 2026: It's Not Just Grooming Anymore",
+    slug: "pet-franchise-industry-trends",
+    category: "Trends",
+    date: "2026-02-20",
+    excerpt: "People are having fewer kids and more dogs. The 'Fur Baby' economy is recession-proof and booming.",
+    content: "<p>I love my dog Brody, and like most owners, I spend more on him than I probably should. That is exactly why the pet industry is bulletproof. Even in a recession, people will switch to generic cereal before they switch their dog's food.</p><p>But 2026 isn't just about grooming vans. We are seeing a surge in specialized pet services: mobile veterinary clinics, high-end doggy daycares with webcams, and even organic pet nutrition stores. The 'humanization' of pets is complete. Franchise concepts that cater to pet parents who view their animals as children are seeing massive year-over-year growth. It is a feel-good business with serious margins.</p>"
   },
   {
     id: 9,
-    title: "From Corporate to Franchise Owner",
-    date: "2025-12-25",
-    category: "Lifestyle",
-    slug: "corporate-to-franchise-owner",
-    excerpt: "Stories and insights from professionals who made the leap to franchise ownership.",
-    content: "Full content goes here..."
+    title: "Home Services 2.0: The \"Do It For Me\" Generation",
+    slug: "home-services-franchise-growth",
+    category: "Trends",
+    date: "2026-02-25",
+    excerpt: "Millennials own homes now, but they don't own tools. The massive opportunity in niche home services is here.",
+    content: "<p>There is a massive generational shift happening in home ownership. Millennials now own the homes, but unlike previous generations, they generally don't own the tools—or the desire—to fix them. They are the 'Do It For Me' generation.</p><p>This has exploded the market for niche home services. I'm not just talking about plumbers; I'm talking about dryer vent cleaning, garage organization, mosquito control, and artificial turf installation. These are businesses with low overhead and high tickets. The customer is willing to pay a premium for professionalism, communication, and speed—three things the 'Chuck in a truck' usually lacks. This is where franchising shines.</p>"
   },
   {
     id: 10,
-    title: "Technology Trends Shaping Franchising",
-    date: "2025-12-20",
+    title: "The \"Experience Economy\": Why Eat-ertainment is Crushing Traditional Dining",
+    slug: "eatertainment-franchise-trends",
     category: "Trends",
-    slug: "technology-trends-franchising",
-    excerpt: "How technology is transforming franchise operations and customer experience.",
-    content: "Full content goes here..."
+    date: "2026-03-01",
+    excerpt: "Food isn't enough. People want an activity with their burger. The rise of pickleball bars, golf simulators, and axe throwing.",
+    content: "<p>The traditional casual dining restaurant is struggling. Why? because if I just want food, I'll DoorDash it. If I'm going out, I want an experience.</p><p>Enter 'Eat-ertainment.' This is the fusion of high-quality food and beverage with social gaming—think Topgolf, pickleball concepts, or high-end simulators. These venues drive massive dwell times and check averages because people aren't just eating; they're playing. While these require a higher initial investment (Capex), the returns on successful units are staggering. In 2026, people are prioritizing experiences over goods, and this sector is capturing that spend.</p>"
   },
   {
     id: 11,
-    title: "Understanding Franchise Disclosure Documents",
-    date: "2025-12-15",
+    title: "Interest Rates & SBA Loans in 2026: The New Normal",
+    slug: "sba-loans-interest-rates-2026",
     category: "Financials",
-    slug: "understanding-fdd",
-    excerpt: "A beginner's guide to reading and understanding franchise disclosure documents.",
-    content: "Full content goes here..."
+    date: "2026-03-05",
+    excerpt: "The days of free money are gone. Here is how to structure a deal that still makes sense today.",
+    content: "<p>Let's talk about the elephant in the room: the cost of capital. The days of 3% interest rates are in the rearview mirror. In 2026, we are operating in a new normal, and your business plan has to account for it.</p><p>Does this mean you shouldn't borrow? No. Leverage is still a powerful tool. But it means the <i>unit economics</i> of the franchise matter more than ever. A business with thin margins might have worked in 2021; it won't work today. When I help clients navigate SBA 7(a) loans, we are looking for strong Item 19s (Financial Performance Representations) that show the cash flow can service the debt <i>and</i> pay you. If the numbers don't work at 8% or 9%, walk away.</p>"
   },
   {
     id: 12,
-    title: "Family-Friendly Franchise Ownership",
-    date: "2025-12-10",
-    category: "Lifestyle",
-    slug: "family-friendly-franchise-ownership",
-    excerpt: "How to involve your family in your franchise journey and build together.",
-    content: "Full content goes here..."
+    title: "Rolling Your 401k into a Franchise: Smart Move or Suicide Mission?",
+    slug: "robs-401k-franchise-funding",
+    category: "Financials",
+    date: "2026-03-10",
+    excerpt: "You can buy a business tax-free using ROBS (Rollovers as Business Startups), but should you? A balanced look.",
+    content: "<p>I get asked about ROBS (Rollovers as Business Startups) constantly. It allows you to use your 401k or IRA to fund a business without paying early withdrawal penalties or taxes. It sounds like magic, but it carries risk.</p><p>On the pro side: You start debt-free. No interest payments to the bank means you break even faster. On the con side: You are betting your nest egg. If the business fails, you lose your income <i>and</i> your retirement. My advice? It depends on your timeline. If you are 30, you have time to recover. If you are 60, be careful. I usually recommend a hybrid approach—inject enough equity to get the loan, but keep some chips off the table.</p>"
   },
   {
     id: 13,
-    title: "Multi-Unit Ownership Strategies",
-    date: "2025-12-05",
-    category: "Trends",
-    slug: "multi-unit-ownership-strategies",
-    excerpt: "The growing trend of multi-unit franchise ownership and how to plan for it.",
-    content: "Full content goes here..."
+    title: "Private Equity in Franchising: Friend or Foe?",
+    slug: "private-equity-franchise-ownership",
+    category: "Financials",
+    date: "2026-03-15",
+    excerpt: "What happens when a big PE firm buys your franchisor? The 2026 trend of 'Platform' brands.",
+    content: "<p>Franchising is consolidating. In 2026, many brands are owned by massive Private Equity 'Platform' companies that own 10, 20, or 30 different brands (like Neighborly or Xponential). Is this good for you?</p><p>It's a double-edged sword. The 'Friend' side: PE brings money, better software, national marketing power, and purchasing leverage that a mom-and-pop franchisor can't match. The 'Foe' side: They are ruthless about royalties and compliance. You become a number on a spreadsheet. When I consult with you, we look at <i>who</i> owns the brand. We want a parent company that invests in franchisee success, not just one that strips value to flip the brand in 5 years.</p>"
   },
   {
     id: 14,
-    title: "Franchise ROI Expectations",
-    date: "2025-12-01",
+    title: "The True Cost of Entry: Reading Between the Lines of \"Initial Investment\"",
+    slug: "franchise-initial-investment-hidden-costs",
     category: "Financials",
-    slug: "franchise-roi-expectations",
-    excerpt: "Setting realistic expectations for your franchise investment returns.",
-    content: "Full content goes here..."
+    date: "2026-03-20",
+    excerpt: "The FDD says $150k. I say you need $200k. Here is why you need more working capital than you think.",
+    content: "<p>Item 7 of the FDD lists the 'Estimated Initial Investment.' Key word: <i>Estimated</i>. And frankly, it's often underestimated.</p><p>The FDD usually covers the first 3 months of operations. But what if you don't break even until month 9? That gap is where businesses die. I always tell my clients to have a 'sleep at night' buffer. If the FDD says you need $150k, I want you to have access to $200k. You need working capital for marketing ramp-up, unexpected delays, and sustaining your personal life while the business grows. Never undercapitalized a startup; it's the fastest way to fail.</p>"
   },
   {
     id: 15,
-    title: "The Mindset of Successful Franchise Owners",
-    date: "2025-11-25",
-    category: "Lifestyle",
-    slug: "mindset-successful-franchise-owners",
-    excerpt: "Mental habits and attitudes that set thriving franchise owners apart.",
-    content: "Full content goes here..."
+    title: "Multi-Unit Ownership: The Wealth-Building Cheat Code",
+    slug: "multi-unit-franchise-benefits",
+    category: "Financials",
+    date: "2026-03-25",
+    excerpt: "One unit buys you a job. Three units buy you freedom. The strategy of scaling to afford a General Manager.",
+    content: "<p>If you only want to open one location, you might as well stay in corporate America. The real wealth in franchising—and the real time freedom—comes from Multi-Unit ownership.</p><p>Here is the math: A single unit might profit $80k. That's a nice salary, but you have to work for it. Three units might profit $240k. Now, you can afford to pay a rockstar District Manager $80k to run everything, and you still keep $160k while doing a fraction of the work. This is the 'Cheat Code.' We design your territory strategy from Day 1 to ensure you have the room to scale to 3-5 units. That is how you build an asset, not just an income.</p>"
   },
   {
     id: 16,
-    title: "Home Services Franchises on the Rise",
-    date: "2025-11-20",
-    category: "Trends",
-    slug: "home-services-franchises-rise",
-    excerpt: "Why home services continue to be a hot sector in franchising.",
-    content: "Full content goes here..."
+    title: "Grit Over Glamour: The One Trait Every Successful Franchisee Has",
+    slug: "grit-successful-franchise-owner-trait",
+    category: "Lifestyle",
+    date: "2026-04-01",
+    excerpt: "I've seen smart people fail and average people make millions. The difference is grit.",
+    content: "<p>I have placed hundreds of people in franchises. I've seen Ivy League MBAs fail, and I've seen guys who barely finished high school build empires. What is the difference? It isn't IQ. It's Grit.</p><p>The first year of business ownership is a punch in the mouth. Construction will be delayed. Employees will quit on their first day. Marketing won't work instantly. The successful owners are the ones who don't panic. They problem-solve. They have the resilience to push through the 'Valley of Despair' to get to the profitability on the other side. If you are looking for easy, buy a lottery ticket. If you are willing to embrace the suck for a year to live like a king for a lifetime, let's talk.</p>"
   },
   {
     id: 17,
-    title: "Hidden Costs in Franchise Ownership",
-    date: "2025-11-15",
-    category: "Financials",
-    slug: "hidden-costs-franchise-ownership",
-    excerpt: "What to look out for beyond the initial franchise fee.",
-    content: "Full content goes here..."
+    title: "Building a Legacy: Franchising as a Family Business",
+    slug: "franchising-family-business-legacy",
+    category: "Lifestyle",
+    date: "2026-04-05",
+    excerpt: "Teaching your kids about P&Ls at the dinner table beats an allowance any day. Involving family in the business.",
+    content: "<p>My 'Why' is my family—Whitney, Penn, and Beckham. Franchising offers a unique opportunity to build something that isn't just for you, but for them.</p><p>I have clients who employ their teenagers to handle social media or front desk work. It teaches them responsibility, financial literacy, and the value of a dollar in a way a classroom never could. Plus, there are potential tax benefits to employing family members (ask your CPA). Franchising allows you to build a transferable asset. You aren't just leaving your kids money; you're leaving them a cash-flowing engine. That is a legacy.</p>"
   },
   {
     id: 18,
-    title: "Time Freedom Through Franchise Ownership",
-    date: "2025-11-10",
+    title: "The \"Corporate Refugee\" Guide: Transitioning from CEO to Franchisee",
+    slug: "corporate-refugee-franchise-transition",
     category: "Lifestyle",
-    slug: "time-freedom-franchise-ownership",
-    excerpt: "How owning a franchise can give you more control over your schedule.",
-    content: "Full content goes here..."
+    date: "2026-04-10",
+    excerpt: "You're used to a corner office and a secretary. Are you ready to wear all the hats? Managing the ego check.",
+    content: "<p>I work with a lot of 'Corporate Refugees'—high-level execs burnt out on the boardroom politics. They have the skills, but they often struggle with the 'Ego Check.'</p><p>In your corporate job, if the printer broke, you called IT. In your franchise, <i>you</i> are IT. You are also HR, Sales, and sometimes the Janitor. The transition requires a mental shift from 'delegating everything' to 'servant leadership.' The most successful corporate refugees are the ones who treat their entry-level employees with the same respect they treated their board members. You have to be willing to get your hands dirty to earn the respect of your team.</p>"
   },
   {
     id: 19,
-    title: "Sustainability Trends in Franchising",
-    date: "2025-11-05",
-    category: "Trends",
-    slug: "sustainability-trends-franchising",
-    excerpt: "How eco-conscious practices are becoming a competitive advantage in franchising.",
-    content: "Full content goes here..."
+    title: "Location, Location, Location? In 2026, Maybe Not.",
+    slug: "mobile-franchise-vs-brick-and-mortar",
+    category: "Lifestyle",
+    date: "2026-04-15",
+    excerpt: "Why 'Service-Based' and 'Mobile' franchises are beating Brick-and-Mortar on ROI in 2026.",
+    content: "<p>The old adage 'Location, Location, Location' applies to retail, but retail is expensive. The rent in prime centers in Mount Pleasant or Austin is astronomical. In 2026, smart money is looking at <i>Mobile</i> and <i>Service-Based</i> models.</p><p>Why? No lease. No build-out. No landlord. You can launch in 60 days instead of 9 months. Your 'location' is your van and your digital footprint. These businesses often have much higher ROI percentages because the initial investment is so much lower. Don't let the lack of a storefront fool you; some of the wealthiest franchisees I know operate out of a home office and a fleet of trucks.</p>"
   },
   {
     id: 20,
-    title: "Exit Strategies for Franchise Owners",
-    date: "2025-11-01",
-    category: "Financials",
-    slug: "exit-strategies-franchise-owners",
-    excerpt: "Planning your exit from day one to maximize your franchise investment.",
-    content: "Full content goes here..."
+    title: "Why I Became a Franchise Consultant (And Why I Don't \"Sell\" Anything)",
+    slug: "why-franchise-friend-consultant",
+    category: "Lifestyle",
+    date: "2026-04-20",
+    excerpt: "I'm not here to sell you a franchise. I'm here to stop you from buying the wrong one. The 'Franchise Friend' mission.",
+    content: "<p>I named my business 'Franchise Friend' for a reason. The industry is full of salespeople who will tell you whatever you want to hear to close a deal. That's not me.</p><p>I view my role as a gatekeeper. I'm not here to sell you a franchise; I'm here to educate you so you can make a decision that changes your life for the better. Sometimes, the best advice I give is 'Don't buy this.' I have skin in the game—I'm a business owner, a dad, and a guy who values reputation over a quick buck. My success is defined by your success three years from now, not by the check I get today. Let's find the right fit, together.</p>"
   }
 ];
 
-export const categories = ["All", "Trends", "Financials", "Lifestyle"] as const;
+export const categories = ["All", "Strategy", "Trends", "Financials", "Lifestyle"] as const;
 export type Category = typeof categories[number];
 
 export function getLatestPosts(count: number = 3): BlogPost[] {

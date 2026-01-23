@@ -78,11 +78,10 @@ export default function BlogPost() {
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 {post.excerpt}
               </p>
-              <div className="border-t border-border pt-6">
-                <p className="text-muted-foreground whitespace-pre-line">
-                  {post.content}
-                </p>
-              </div>
+              <div 
+                className="border-t border-border pt-6 prose prose-lg max-w-none text-foreground [&_p]:mb-4 [&_p]:leading-relaxed [&_i]:italic"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
             </div>
           </motion.article>
           
