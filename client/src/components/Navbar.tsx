@@ -11,7 +11,7 @@ export function Navbar() {
     { name: "Services", href: "#services" },
     { name: "Brands", href: "/franchise-brands" },
     { name: "About", href: "#about" },
-    { name: "Resales", href: "#resales" },
+    { name: "Insights", href: "/blog" },
   ];
 
   return (
