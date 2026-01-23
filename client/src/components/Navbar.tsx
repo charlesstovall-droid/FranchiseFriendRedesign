@@ -47,7 +47,7 @@ export function Navbar() {
                 className="border-secondary text-secondary hover:bg-secondary/10 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1"
                 data-testid="button-client-portal"
               >
-                Client Portal
+                Candidate Portal
               </Button>
             </Link>
             <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
@@ -93,7 +93,7 @@ export function Navbar() {
                   variant="outline" 
                   className="w-full border-secondary text-secondary hover:bg-secondary/10 font-semibold"
                 >
-                  Client Portal
+                  Candidate Portal
                 </Button>
               </Link>
               <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
