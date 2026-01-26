@@ -291,7 +291,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             </div>
           `,
         });
-        console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - ID: ${result.data?.id}`);
+        
+        if (result.error) {
+          console.error(`[Email] Resend error:`, result.error);
+        } else {
+          console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - ID: ${result.data?.id}`);
+        }
       } catch (emailError) {
         console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
