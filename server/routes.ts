@@ -260,9 +260,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send email notification to Charles
       try {
-        let transporter;
         if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
-          transporter = nodemailer.createTransport({
+          console.log(`[Email] Attempting to send lead notification for ${validatedData.leadType} lead from ${validatedData.name}`);
+          
+          const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
               user: process.env.EMAIL_USER,
@@ -297,10 +298,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
             `,
           };
 
-          await transporter.sendMail(mailOptions);
+          const result = await transporter.sendMail(mailOptions);
+          console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - MessageId: ${result.messageId}`);
+        } else {
+          console.log("[Email] EMAIL_USER or EMAIL_PASSWORD not configured - skipping notification");
         }
       } catch (emailError) {
-        console.error("Error sending lead notification email:", emailError);
+        console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
       }
       
