@@ -8,6 +8,7 @@ import PDFDocument from "pdfkit";
 import nodemailer from "nodemailer";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { getResendClient } from "./resend";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -258,51 +259,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
       
-      // Send email notification to Charles
+      // Send email notification to Charles using Resend
       try {
-        if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
-          console.log(`[Email] Attempting to send lead notification for ${validatedData.leadType} lead from ${validatedData.name}`);
-          
-          const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASSWORD,
-            },
-          });
+        console.log(`[Email] Attempting to send lead notification for ${validatedData.leadType} lead from ${validatedData.name}`);
+        
+        const { client, fromEmail } = await getResendClient();
 
-          const leadTypeLabels: Record<string, string> = {
-            consultation: "Free Consultation Request",
-            general: "General Contact",
-            newsletter: "Newsletter Signup",
-            "black-book": "Black Book Download",
-            "executive-ad": "Executive Ad Landing Page",
-          };
+        const leadTypeLabels: Record<string, string> = {
+          consultation: "Free Consultation Request",
+          general: "General Contact",
+          newsletter: "Newsletter Signup",
+          "black-book": "Black Book Download",
+          "executive-ad": "Executive Ad Landing Page",
+        };
 
-          const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: "CStovall@FranChoice.com",
-            subject: `New Lead: ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}`,
-            html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-                <h2 style="color: #1E2B42;">New Lead Received</h2>
-                <p><strong>Type:</strong> ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}</p>
-                <p><strong>Name:</strong> ${validatedData.name}</p>
-                <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
-                ${validatedData.phone ? `<p><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>` : ""}
-                ${validatedData.message ? `<p><strong>Message:</strong></p><p style="background: #f5f5f5; padding: 15px; border-radius: 4px;">${validatedData.message}</p>` : ""}
-                <p style="color: #666; font-size: 14px; margin-top: 30px;">
-                  Received: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })}
-                </p>
-              </div>
-            `,
-          };
-
-          const result = await transporter.sendMail(mailOptions);
-          console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - MessageId: ${result.messageId}`);
-        } else {
-          console.log("[Email] EMAIL_USER or EMAIL_PASSWORD not configured - skipping notification");
-        }
+        const result = await client.emails.send({
+          from: fromEmail,
+          to: "CStovall@FranChoice.com",
+          subject: `New Lead: ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              <h2 style="color: #1E2B42;">New Lead Received</h2>
+              <p><strong>Type:</strong> ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}</p>
+              <p><strong>Name:</strong> ${validatedData.name}</p>
+              <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
+              ${validatedData.phone ? `<p><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>` : ""}
+              ${validatedData.message ? `<p><strong>Message:</strong></p><p style="background: #f5f5f5; padding: 15px; border-radius: 4px;">${validatedData.message}</p>` : ""}
+              <p style="color: #666; font-size: 14px; margin-top: 30px;">
+                Received: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })}
+              </p>
+            </div>
+          `,
+        });
+        console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - ID: ${result.data?.id}`);
       } catch (emailError) {
         console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
