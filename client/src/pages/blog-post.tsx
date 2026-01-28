@@ -1,10 +1,36 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import { useRoute, Link } from "wouter";
 import { getPostBySlug, formatDate } from "@/data/blog-posts";
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function getMetaDescription(excerpt: string, content: string): string {
+  const plainExcerpt = stripHtml(excerpt);
+  if (plainExcerpt.length >= 120 && plainExcerpt.length <= 160) {
+    return plainExcerpt;
+  }
+  
+  const plainContent = stripHtml(content);
+  const combined = `${plainExcerpt} ${plainContent}`;
+  return combined.substring(0, 155).trim() + "...";
+}
+
+function convertHeadings(html: string): string {
+  return html
+    .replace(/<h4>/g, '<h3>')
+    .replace(/<\/h4>/g, '</h3>')
+    .replace(/<h3>/g, '<h2>')
+    .replace(/<\/h3>/g, '</h2>')
+    .replace(/<h5>/g, '<h3>')
+    .replace(/<\/h5>/g, '</h3>');
+}
 
 export default function BlogPost() {
   const [, params] = useRoute("/blog/:slug");
@@ -15,6 +41,11 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="min-h-screen bg-background text-foreground">
+        <SEO 
+          title="Post Not Found | Charles Stovall"
+          description="The blog post you're looking for doesn't exist. Browse our franchise consulting articles and guides."
+          canonicalUrl="https://charlesstovall.com/blog"
+        />
         <Navbar />
         <section className="pt-32 pb-20">
           <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
@@ -33,8 +64,58 @@ export default function BlogPost() {
     );
   }
 
+  const canonicalUrl = `https://charlesstovall.com/blog/${post.slug}`;
+  const metaDescription = getMetaDescription(post.excerpt, post.content);
+  const processedContent = convertHeadings(post.content);
+
+  const blogPostSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "headline": post.title,
+    "description": metaDescription,
+    "image": "https://charlesstovall.com/opengraph.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Charles Stovall",
+      "url": "https://charlesstovall.com",
+      "jobTitle": "Franchise Consultant",
+      "image": "https://charlesstovall.com/charles-stovall.jpg"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Franchise Friend",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://charlesstovall.com/favicon.png"
+      }
+    },
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "articleSection": post.category,
+    "keywords": `franchise consulting, ${post.category.toLowerCase()}, Charleston SC, franchise investment`,
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO 
+        title={`${post.title} | Charles Stovall`}
+        description={metaDescription}
+        canonicalUrl={canonicalUrl}
+        type="article"
+        article={{
+          publishedTime: post.date,
+          modifiedTime: post.date,
+          author: "Charles Stovall",
+          section: post.category
+        }}
+        schema={blogPostSchema}
+      />
       <Navbar />
       
       <section className="pt-32 pb-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
@@ -79,8 +160,16 @@ export default function BlogPost() {
                 {post.excerpt}
               </p>
               <div 
-                className="border-t border-border pt-6 prose prose-lg max-w-none text-foreground [&_p]:mb-4 [&_p]:leading-relaxed [&_i]:italic"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                className="border-t border-border pt-6 prose prose-lg max-w-none text-foreground 
+                  [&_p]:mb-4 [&_p]:leading-relaxed [&_i]:italic
+                  [&_h2]:text-2xl [&_h2]:font-serif [&_h2]:font-bold [&_h2]:text-primary [&_h2]:mt-8 [&_h2]:mb-4
+                  [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-primary [&_h3]:mt-6 [&_h3]:mb-3
+                  [&_ul]:my-4 [&_ul]:pl-6 [&_li]:mb-2 [&_li]:text-foreground
+                  [&_table]:w-full [&_table]:my-6 [&_table]:border-collapse
+                  [&_th]:bg-secondary/10 [&_th]:p-3 [&_th]:text-left [&_th]:font-semibold [&_th]:border [&_th]:border-border
+                  [&_td]:p-3 [&_td]:border [&_td]:border-border
+                  [&_strong]:font-semibold [&_strong]:text-primary"
+                dangerouslySetInnerHTML={{ __html: processedContent }}
               />
             </div>
           </motion.article>

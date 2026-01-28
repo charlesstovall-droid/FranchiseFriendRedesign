@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
@@ -12,8 +13,37 @@ export default function Blog() {
   
   const filteredPosts = getPostsByCategory(selectedCategory);
 
+  const blogListSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Franchise Insights & Resources",
+    "description": "Expert franchise consulting articles and guides by Charles Stovall",
+    "url": "https://charlesstovall.com/blog",
+    "author": {
+      "@type": "Person",
+      "name": "Charles Stovall",
+      "url": "https://charlesstovall.com"
+    },
+    "blogPost": blogPosts.slice(0, 10).map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "url": `https://charlesstovall.com/blog/${post.slug}`,
+      "datePublished": post.date,
+      "author": {
+        "@type": "Person",
+        "name": "Charles Stovall"
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO 
+        title="Franchise Insights & Resources | Charles Stovall - Franchise Consultant"
+        description="Expert franchise consulting articles, guides, and market insights for Charleston SC entrepreneurs. Learn about franchise financing, industry trends, and business ownership opportunities."
+        canonicalUrl="https://charlesstovall.com/blog"
+        schema={blogListSchema}
+      />
       <Navbar />
       
       <section className="pt-32 pb-20 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
@@ -38,7 +68,7 @@ export default function Blog() {
             transition={{ delay: 0.1 }}
             className="mb-12"
           >
-            <h3 className="text-2xl font-bold text-primary mb-6">Filter by Category</h3>
+            <h2 className="text-2xl font-bold text-primary mb-6">Filter by Category</h2>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <Button
@@ -72,9 +102,9 @@ export default function Blog() {
                 <div className="h-full bg-white border border-border rounded-xl overflow-hidden hover:border-accent-pop/40 transition-all group shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
                   <div className="p-6 flex flex-col h-full">
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-bold text-primary leading-tight pr-2 group-hover:text-accent-pop transition-colors">
+                      <h2 className="text-lg font-bold text-primary leading-tight pr-2 group-hover:text-accent-pop transition-colors">
                         {post.title}
-                      </h3>
+                      </h2>
                     </div>
                     
                     <span className="inline-block mb-3 px-2 py-1 bg-secondary/10 text-secondary text-xs font-semibold rounded w-fit">

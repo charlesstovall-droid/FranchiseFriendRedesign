@@ -12,10 +12,16 @@ import { BlackBookCTA } from "@/components/BlackBookCTA";
 import { LatestInsights } from "@/components/LatestInsights";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-secondary/30">
+      <SEO 
+        title="Charles Stovall | Expert Franchise Consulting in Charleston SC | Franchise Friend"
+        description="Expert franchise consulting by Charles Stovall in Charleston, SC. Find top franchises 2026, business evaluation, due diligence services, and personalized franchise discovery."
+        canonicalUrl="https://charlesstovall.com/"
+      />
       <Navbar />
       <main>
         <Hero />
