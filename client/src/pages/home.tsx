@@ -8,7 +8,6 @@ import { ReviewsSection } from "@/components/ReviewsSection";
 import { PodcastSection } from "@/components/PodcastSection";
 import { About } from "@/components/About";
 import { MeetCharlesFamily } from "@/components/MeetCharlesFamily";
-import { ResaleOpportunities } from "@/components/ResaleOpportunities";
 import { BlackBookCTA } from "@/components/BlackBookCTA";
 import { LatestInsights } from "@/components/LatestInsights";
 import { CTASection } from "@/components/CTASection";
@@ -21,6 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBanner />
+        <LatestInsights />
         <HowItWorks />
         <Features />
         <MediaFeatures />
@@ -28,9 +28,7 @@ export default function Home() {
         <PodcastSection />
         <About />
         <MeetCharlesFamily />
-        <ResaleOpportunities />
         <BlackBookCTA />
-        <LatestInsights />
         <CTASection />
       </main>
       <Footer />
