@@ -3,9 +3,23 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Calendar } from "lucide-react";
 import { useRoute, Link } from "wouter";
-import { getPostBySlug, formatDate } from "@/data/blog-posts";
+import { 
+  getPostBySlug, 
+  formatDate, 
+  getRelatedPosts, 
+  calculateReadingTime,
+  extractHeadings,
+  addHeadingIds 
+} from "@/data/blog-posts";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { KeyTakeaways } from "@/components/blog/KeyTakeaways";
+import { FAQSection } from "@/components/blog/FAQSection";
+import { AuthorBio } from "@/components/blog/AuthorBio";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { SocialShare } from "@/components/blog/SocialShare";
+import { ReadingTime } from "@/components/blog/ReadingTime";
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -66,7 +80,11 @@ export default function BlogPost() {
 
   const canonicalUrl = `https://charlesstovall.com/blog/${post.slug}`;
   const metaDescription = getMetaDescription(post.excerpt, post.content);
-  const processedContent = convertHeadings(post.content);
+  const convertedContent = convertHeadings(post.content);
+  const processedContent = addHeadingIds(convertedContent);
+  const headings = extractHeadings(convertedContent);
+  const readingTime = calculateReadingTime(post.content);
+  const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
 
   const blogPostSchema = {
     "@context": "https://schema.org",
@@ -98,8 +116,26 @@ export default function BlogPost() {
     "articleSection": post.category,
     "keywords": `franchise consulting, ${post.category.toLowerCase()}, Charleston SC, franchise investment`,
     "inLanguage": "en-US",
-    "isAccessibleForFree": true
+    "isAccessibleForFree": true,
+    "wordCount": stripHtml(post.content).split(' ').length
   };
+
+  const faqSchema = post.faqs && post.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
+  const combinedSchema = faqSchema 
+    ? [blogPostSchema, faqSchema]
+    : blogPostSchema;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -114,12 +150,12 @@ export default function BlogPost() {
           author: "Charles Stovall",
           section: post.category
         }}
-        schema={blogPostSchema}
+        schema={combinedSchema}
       />
       <Navbar />
       
       <section className="pt-32 pb-12 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,58 +173,90 @@ export default function BlogPost() {
             <span className="inline-block mb-4 px-3 py-1 bg-secondary/20 text-secondary text-sm font-semibold rounded">
               {post.category}
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{post.title}</h1>
-            <div className="flex items-center gap-4 text-primary-foreground/70">
-              <span>{formatDate(post.date)}</span>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">{post.title}</h1>
+            <div className="flex flex-wrap items-center gap-4 text-primary-foreground/70">
+              <span className="inline-flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                {formatDate(post.date)}
+              </span>
+              <span>•</span>
+              <ReadingTime minutes={readingTime} />
               <span>•</span>
               <span>Charles Stovall</span>
+            </div>
+            <div className="mt-6 pt-6 border-t border-white/20">
+              <SocialShare url={canonicalUrl} title={post.title} />
             </div>
           </motion.div>
         </div>
       </section>
 
       <section className="py-12 bg-background">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.article
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="prose prose-lg max-w-none"
           >
+            {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+              <KeyTakeaways takeaways={post.keyTakeaways} />
+            )}
+
+            {headings.length > 2 && (
+              <TableOfContents headings={headings} />
+            )}
+
             <div className="bg-white border border-border rounded-xl p-8 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6 italic border-l-4 border-secondary/30 pl-4">
                 {post.excerpt}
               </p>
               <div 
-                className="border-t border-border pt-6 prose prose-lg max-w-none text-foreground 
+                className="prose prose-lg max-w-none text-foreground 
                   [&_p]:mb-4 [&_p]:leading-relaxed [&_i]:italic
-                  [&_h2]:text-2xl [&_h2]:font-serif [&_h2]:font-bold [&_h2]:text-primary [&_h2]:mt-8 [&_h2]:mb-4
-                  [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-primary [&_h3]:mt-6 [&_h3]:mb-3
+                  [&_h2]:text-2xl [&_h2]:font-serif [&_h2]:font-bold [&_h2]:text-primary [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:scroll-mt-24
+                  [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-primary [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:scroll-mt-24
                   [&_ul]:my-4 [&_ul]:pl-6 [&_li]:mb-2 [&_li]:text-foreground
+                  [&_ol]:my-4 [&_ol]:pl-6 [&_ol_li]:mb-2
                   [&_table]:w-full [&_table]:my-6 [&_table]:border-collapse
                   [&_th]:bg-secondary/10 [&_th]:p-3 [&_th]:text-left [&_th]:font-semibold [&_th]:border [&_th]:border-border
                   [&_td]:p-3 [&_td]:border [&_td]:border-border
-                  [&_strong]:font-semibold [&_strong]:text-primary"
+                  [&_strong]:font-semibold [&_strong]:text-primary
+                  [&_a]:text-secondary [&_a]:underline [&_a:hover]:text-accent-pop"
                 dangerouslySetInnerHTML={{ __html: processedContent }}
               />
             </div>
+
+            {post.faqs && post.faqs.length > 0 && (
+              <FAQSection faqs={post.faqs} />
+            )}
+
+            <AuthorBio />
+
+            <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-muted-foreground">Found this helpful? Share it with others:</p>
+              <SocialShare url={canonicalUrl} title={post.title} />
+            </div>
+
+            <RelatedPosts posts={relatedPosts} />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-12 bg-primary text-primary-foreground rounded-xl p-8 text-center"
+            >
+              <h2 className="text-2xl font-serif font-bold mb-4">Ready to Explore Franchise Opportunities?</h2>
+              <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
+                Get personalized guidance from a certified franchise consultant. 
+                Let's find the right franchise fit for your goals and lifestyle.
+              </p>
+              <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold">
+                  Book a Free Consultation
+                </Button>
+              </a>
+            </motion.div>
           </motion.article>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-lg text-muted-foreground mb-6">
-              Ready to explore franchise opportunities?
-            </p>
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold">
-                Book a Free Consultation
-              </Button>
-            </a>
-          </motion.div>
         </div>
       </section>
 
