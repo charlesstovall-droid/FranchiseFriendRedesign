@@ -83,6 +83,20 @@ export default function BlackbookLanding() {
             </div>
           </div>
 
+          <div className="flex justify-center mb-12">
+            <div className="relative">
+              <img 
+                src="/blackbook-cover.png" 
+                alt="The Black Book of Franchising" 
+                className="w-64 md:w-80 h-auto rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                data-testid="img-book-cover"
+              />
+              <div className="absolute -bottom-4 -right-4 bg-[#D4AF37] text-[#1E2B42] font-bold text-sm px-4 py-2 rounded-full shadow-lg">
+                FREE
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-8">
               <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
