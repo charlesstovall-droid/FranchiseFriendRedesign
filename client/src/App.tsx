@@ -24,6 +24,8 @@ import ExecutiveProcess from "@/pages/executive-process";
 import ExecutiveAbout from "@/pages/executive-about";
 import ExecutiveInvestment from "@/pages/executive-investment";
 import ThankYouAd from "@/pages/thank-you-ad";
+import BlackbookLanding from "@/pages/blackbook-landing";
+import ThankYouBlackbook from "@/pages/thank-you-blackbook";
 
 function Router() {
   return (
@@ -47,6 +49,8 @@ function Router() {
       <Route path="/executive-access/investment" component={ExecutiveInvestment} />
       <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
+      <Route path="/blackbook" component={BlackbookLanding} />
+      <Route path="/thank-you-blackbook" component={ThankYouBlackbook} />
       <Route component={NotFound} />
     </Switch>
   );
