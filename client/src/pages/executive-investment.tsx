@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { TrendingUp, Clock, Building2, Shield, CheckCircle } from "lucide-react";
+import { TrendingUp, Clock, Building2, Shield, CheckCircle, Phone } from "lucide-react";
 
 export default function ExecutiveInvestment() {
   useEffect(() => {
@@ -35,6 +35,14 @@ export default function ExecutiveInvestment() {
 
   return (
     <div className="min-h-screen bg-[#1E2B42] flex flex-col">
+      <a 
+        href="tel:9198273921" 
+        className="bg-[#D4AF37] text-[#1E2B42] py-3 px-4 flex items-center justify-center gap-2 hover:bg-[#c9a432] transition-colors"
+        data-testid="button-call-top"
+      >
+        <Phone size={18} className="animate-pulse" />
+        <span className="font-bold text-sm">Call Now: (919) 827-3921</span>
+      </a>
       <div className="flex-grow">
         <div className="max-w-4xl mx-auto px-4 py-16">
           {/* Hero Section */}
