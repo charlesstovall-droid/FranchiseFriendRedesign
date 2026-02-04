@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { CheckCircle, BookOpen, Phone, Download, Shield } from "lucide-react";
+import { CheckCircle, Phone, Download, Shield } from "lucide-react";
 
 export default function BlackbookLanding() {
   const [, setLocation] = useLocation();
@@ -52,117 +52,48 @@ export default function BlackbookLanding() {
         <Phone size={18} className="animate-pulse" />
         <span className="font-bold text-sm">Call Now: (919) 827-3921</span>
       </a>
+
       <div className="flex-grow">
-        <div className="max-w-4xl mx-auto px-4 py-16">
-          <div className="text-center mb-8">
-            <div className="inline-block mb-6">
-              <span className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase">
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="flex flex-col items-center lg:items-start">
+              <span className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-4">
                 Free Download
               </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-              The Black Book
-              <br />
-              <span className="text-[#D4AF37]">of Franchising</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              The Unfiltered Truth About Franchise Ownership And Why Success Lies Within the Person Starting the Business
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-xl py-6 px-4 mb-12">
-            <p className="text-center text-gray-500 text-xs font-semibold tracking-widest uppercase mb-4">
-              Written By Charles Stovall
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-              <span className="text-[#1E2B42] font-bold text-sm">Franchise Owner</span>
-              <span className="hidden sm:block text-gray-300">|</span>
-              <span className="text-[#1E2B42] font-bold text-sm">Advisor</span>
-              <span className="hidden sm:block text-gray-300">|</span>
-              <span className="text-[#1E2B42] font-bold text-sm">Advocate</span>
-            </div>
-          </div>
-
-          <div className="flex justify-center mb-12">
-            <div className="relative">
-              <img 
-                src="/blackbook-cover.png" 
-                alt="The Black Book of Franchising" 
-                className="w-64 md:w-80 h-auto rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
-                data-testid="img-book-cover"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-[#D4AF37] text-[#1E2B42] font-bold text-sm px-4 py-2 rounded-full shadow-lg">
-                FREE
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-8">
-              <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
-                <div className="flex items-center gap-3 mb-4">
-                  <BookOpen className="w-6 h-6 text-[#D4AF37]" />
-                  <h2 className="text-2xl font-serif font-bold text-white">
-                    What's Inside
-                  </h2>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-tight text-center lg:text-left">
+                The Black Book
+                <br />
+                <span className="text-[#D4AF37]">of Franchising</span>
+              </h1>
+              <p className="text-lg text-gray-300 mb-8 text-center lg:text-left">
+                The Unfiltered Truth About Franchise Ownership
+              </p>
+              
+              <div className="relative mb-8">
+                <img 
+                  src="/blackbook-cover.png" 
+                  alt="The Black Book of Franchising" 
+                  className="w-56 md:w-72 h-auto rounded-lg shadow-2xl"
+                  data-testid="img-book-cover"
+                />
+                <div className="absolute -top-3 -right-3 bg-[#D4AF37] text-[#1E2B42] font-bold text-sm px-4 py-2 rounded-full shadow-lg">
+                  FREE
                 </div>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                    <span>The psychological gut check every franchisee must pass</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                    <span>How to navigate landlords, leases, and the "Mafia Kings"</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                    <span>The mirror effect: what ownership reveals about you</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                    <span>Why the "proven system" is a dangerous illusion</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-                    <span>The Lunch Test that saves franchisees thousands</span>
-                  </li>
-                </ul>
               </div>
 
-              <div className="bg-[#D4AF37]/10 backdrop-blur rounded-xl p-6 border border-[#D4AF37]/30">
-                <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                  From the Author
-                </h2>
-                <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                  "I've owned four franchises. I've been in the trenches with brands like Yoga Six, Image Studios, and Massage Envy. This book contains the hard truths that the glossy brochures at franchise expos will never tell you."
-                </p>
-                <p className="text-[#D4AF37] font-semibold text-sm">
-                  — Charles Stovall
-                </p>
-              </div>
-
-              <div className="bg-white rounded-xl p-6">
-                <div className="flex items-start gap-3">
-                  <Shield className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-bold text-[#1E2B42] text-sm mb-1">100% FREE - No Gimmicks</p>
-                    <p className="text-gray-600 text-sm">Get instant access to the complete guide. No credit card required. Your information stays private.</p>
-                  </div>
-                </div>
+              <div className="text-gray-400 text-sm text-center lg:text-left">
+                <p className="mb-2">By <span className="text-white font-semibold">Charles Stovall</span></p>
+                <p>Franchise Owner | Advisor | Advocate</p>
               </div>
             </div>
 
             <div className="space-y-6">
               <div className="bg-white rounded-2xl p-8 shadow-2xl">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <Download className="w-8 h-8 text-[#1E2B42]" />
-                </div>
                 <h3 className="text-2xl font-serif font-bold text-[#1E2B42] mb-2 text-center">
                   Get Your Free Copy
                 </h3>
                 <p className="text-gray-600 text-center text-sm mb-6">
-                  Enter your details below for instant access
+                  Enter your details for instant download
                 </p>
               
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -214,35 +145,57 @@ export default function BlackbookLanding() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#D4AF37] hover:bg-[#c9a432] text-[#1E2B42] font-bold py-4 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed mt-2 flex items-center justify-center gap-2"
+                    className="w-full bg-[#D4AF37] hover:bg-[#c9a432] text-[#1E2B42] font-bold py-4 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed mt-2 flex items-center justify-center gap-2 text-lg"
                     data-testid="button-submit"
                   >
-                    <Download size={20} />
-                    {isSubmitting ? "Preparing Download..." : "Download The Black Book Now"}
+                    <Download size={22} />
+                    {isSubmitting ? "Preparing Download..." : "Download Now"}
                   </button>
                 </form>
                 
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  Your information is safe. We never share or sell your data.
-                </p>
+                <div className="flex items-center justify-center gap-2 mt-4 text-gray-500">
+                  <Shield size={14} />
+                  <p className="text-xs">Your information is safe. We never share your data.</p>
+                </div>
               </div>
 
               <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                  <img 
-                    src="/charles-headshot.jpeg" 
-                    alt="Charles Stovall" 
-                    className="w-20 h-20 rounded-full object-cover flex-shrink-0"
-                  />
-                  <div className="text-center sm:text-left">
-                    <h4 className="text-base font-bold text-white mb-1">
-                      About the Author
-                    </h4>
-                    <p className="text-xs text-gray-300 leading-relaxed">
-                      Charles Stovall is a franchise owner, advisor, and advocate based in Charleston, SC. With experience owning four franchise concepts, he shares the unfiltered truth about what it really takes to succeed.
-                    </p>
-                  </div>
-                </div>
+                <h4 className="text-lg font-bold text-white mb-4">What You'll Learn:</h4>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                    <span>The psychological gut check every franchisee must pass</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                    <span>How to navigate landlords, leases, and the "Mafia Kings"</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                    <span>Why the "proven system" is a dangerous illusion</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                    <span>The Lunch Test that saves franchisees thousands</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 bg-[#D4AF37]/10 backdrop-blur rounded-xl p-8 border border-[#D4AF37]/30">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <img 
+                src="/charles-headshot.jpeg" 
+                alt="Charles Stovall" 
+                className="w-24 h-24 rounded-full object-cover flex-shrink-0"
+              />
+              <div className="text-center md:text-left">
+                <h4 className="text-xl font-bold text-white mb-2">About the Author</h4>
+                <p className="text-gray-300 leading-relaxed">
+                  "I've owned four franchises. I've been in the trenches with brands like Yoga Six, Image Studios, and Massage Envy. This book contains the hard truths that the glossy brochures at franchise expos will never tell you."
+                </p>
+                <p className="text-[#D4AF37] font-semibold mt-3">— Charles Stovall, Charleston SC</p>
               </div>
             </div>
           </div>
