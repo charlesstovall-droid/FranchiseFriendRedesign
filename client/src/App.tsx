@@ -49,8 +49,8 @@ function Router() {
       <Route path="/executive-access/investment" component={ExecutiveInvestment} />
       <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
-      <Route path="/blackbook" component={BlackbookLanding} />
-      <Route path="/thank-you-blackbook" component={ThankYouBlackbook} />
+      <Route path="/free-franchise-guide" component={BlackbookLanding} />
+      <Route path="/thank-you-franchise-guide" component={ThankYouBlackbook} />
       <Route component={NotFound} />
     </Switch>
   );

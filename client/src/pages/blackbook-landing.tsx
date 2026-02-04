@@ -35,7 +35,7 @@ export default function BlackbookLanding() {
       link.click();
       document.body.removeChild(link);
       
-      setLocation("/thank-you-blackbook");
+      setLocation("/thank-you-franchise-guide");
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
