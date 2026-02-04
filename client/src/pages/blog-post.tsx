@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -49,6 +50,10 @@ function convertHeadings(html: string): string {
 export default function BlogPost() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug;
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   
   const post = slug ? getPostBySlug(slug) : null;
   
