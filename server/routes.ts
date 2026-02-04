@@ -1623,16 +1623,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const pageWidth = 512 - 2 * 10;
 
       // PAGE 1 - TITLE PAGE
-      doc.fontSize(36).font("Helvetica-Bold").fillColor(navyBlue).text("The Black Book", { align: "center" });
-      doc.fontSize(32).fillColor(gold).text("of Franchising", { align: "center" });
-      doc.moveDown(1.5);
-      doc.fontSize(16).fillColor(green).font("Helvetica-Bold").text("What Every Franchisor Prays You Never Find", { align: "center", width: pageWidth });
-      doc.moveDown(2);
-      doc.fontSize(12).fillColor("#333333").font("Helvetica").text("The hidden truths about franchise investing that franchisors don't want you to discover.", { align: "center", width: pageWidth });
+      doc.fontSize(36).font("Helvetica-Bold").fillColor(navyBlue).text("THE BLACKBOOK", { align: "center" });
+      doc.moveDown(0.5);
+      doc.fontSize(14).fillColor("#333333").font("Helvetica").text("The Unfiltered Truth About Franchise Ownership", { align: "center", width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(12).fillColor(gold).font("Helvetica-Bold").text("And Why Success Lies Within the Person Starting the Business", { align: "center", width: pageWidth });
       doc.moveDown(3);
-      doc.fontSize(11).fillColor("#000000").text("By Charles Stovall\nFranchise Friend", { align: "center" });
-      doc.moveDown(2);
-      doc.fontSize(10).fillColor("#666666").text("187 Pages of Franchise Investment Intelligence", { align: "center" });
+      doc.fontSize(11).fillColor("#000000").text("By Charles Stovall", { align: "center" });
+      doc.fontSize(10).fillColor("#666666").text("Franchise Owner | Advisor | Advocate", { align: "center" });
 
       doc.addPage();
 
@@ -1640,64 +1638,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(18).font("Helvetica-Bold").fillColor(navyBlue).text("Table of Contents");
       doc.moveDown(1);
       doc.fontSize(10).fillColor("#000000").font("Helvetica").text([
-        "Chapter 1: The Franchising Reality Check",
-        "Chapter 2: 37 Red-Flag Phrases in Every FDD",
-        "Chapter 3: Decoding Item 19 Financial Data",
-        "Chapter 4: The Real Cost of Franchising",
-        "Chapter 5: Why 60% of Franchisees Lose Money",
-        "Chapter 6: The Renewal Trap",
-        "Chapter 7: Understanding Broker Conflicts of Interest",
-        "Chapter 8: Building Your Due Diligence Strategy",
-        "Chapter 9: Critical Questions for Franchisors",
-        "Chapter 10: Red Flags That Mean 'Run'",
-        "Chapter 11: Negotiation Tactics That Work",
-        "Chapter 12: Exit Strategies Before You Start"
+        "Chapter 1: The Mirror and the Mountain",
+        "Chapter 2: The Mafia Kings",
+        "Chapter 3: The Real Cost of Franchising",
+        "Chapter 4: Understanding Item 19 Financial Data",
+        "Chapter 5: The Renewal Trap",
+        "Chapter 6: Broker Conflicts of Interest",
+        "Chapter 7: Due Diligence Strategy",
+        "Chapter 8: Critical Questions for Franchisors",
+        "Chapter 9: Red Flags That Mean 'Run'",
+        "Chapter 10: Negotiation Tactics",
+        "Chapter 11: Exit Strategies",
+        "Chapter 12: Your Action Plan"
       ], { width: pageWidth, lineGap: 8 });
 
       doc.addPage();
 
-      // PAGE 3 - CHAPTER 1
-      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 1: The Franchising Reality Check");
+      // PAGE 3 - CHAPTER 1: THE MIRROR AND THE MOUNTAIN
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("CHAPTER 1: THE MIRROR AND THE MOUNTAIN");
+      doc.fontSize(12).fillColor(gold).text("The Psychological Gut Check");
       doc.moveDown(0.8);
-      doc.fontSize(11).fillColor(red).font("Helvetica-Bold").text("If you're looking for part-time work, this is NOT for you.");
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text("Most people don't actually want a business. They want a feeling.", { width: pageWidth });
       doc.moveDown(0.5);
-      doc.fontSize(10).fillColor("#000000").text("Business ownership—whether franchise or independent—demands significant time, energy, and commitment. This is not a side project. This is your job.", { width: pageWidth });
-      doc.moveDown(1);
-      doc.fontSize(11).fillColor(navyBlue).font("Helvetica-Bold").text("The Hard Facts:");
+      doc.fontSize(9).text("They want the feeling of walking into a room and being introduced as 'The Owner.' They want the feeling of a bank account that doesn't dictate their stress levels. They want the feeling of freedom—the kind where you can spend a Tuesday morning at your son's school play without asking for permission.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor(navyBlue).font("Helvetica-Bold").text("The Blackbook Truth:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).fillColor("#000000").font("Helvetica").text("Freedom isn't the starting line. It's the summit of a very steep, very jagged mountain. Before you sign a franchise agreement, before you wire your life savings to a franchisor, you have to stand in front of the mirror and ask:", { width: pageWidth });
       doc.moveDown(0.5);
-      doc.fontSize(9).text([
-        "• Most franchisees work 50-70+ hours per week in their first 2-3 years",
-        "• 6-7 day work weeks are common during the growth phase",
-        "• You'll be working nights and weekends on administrative tasks",
-        "• You'll be 'on call' for emergencies at all times",
-        "• Managing staff, finances, and operations is your responsibility",
-        "• Vacation time is limited, especially in early years",
-        "• The stress of business ownership follows you home"
-      ], { width: pageWidth, lineGap: 5 });
-      doc.moveDown(1);
-      doc.fontSize(10).fillColor("#000000").text("This isn't meant to discourage you. It's meant to set expectations. For the right person with the right attitude, franchising can be incredibly rewarding. But you need to enter with your eyes open.", { width: pageWidth });
+      doc.fontSize(11).fillColor(gold).font("Helvetica-Bold").text('"Am I the fuel, or am I just looking for a ride?"', { align: "center" });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor(navyBlue).font("Helvetica-Bold").text("The Mirage of the 'Proven System'");
+      doc.moveDown(0.3);
+      doc.fontSize(9).fillColor("#000000").font("Helvetica").text("Franchising is often sold as a 'business in a box.' The industry marketing machine makes you believe that because the branding is consistent and the operations manual is three inches thick, the risk has been removed. That is a dangerous illusion.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).text("The system is the vehicle, but a vehicle without fuel is just an expensive piece of yard art. YOU are the fuel. A system doesn't handle a leaking roof at 3:00 AM. A system doesn't sit across from a landlord who just doubled your CAM charges. Only a leader does that. Only you can do that.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor(red).font("Helvetica-Bold").text("Action Step:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).fillColor("#000000").font("Helvetica").text("Take fifteen minutes tonight. Sit in silence. Ask yourself: 'What is my honest motivation for wanting to own a franchise?' Write the answer down. If the answer is about escaping something rather than building something, you have more soul-searching to do.", { width: pageWidth });
 
       doc.addPage();
 
-      // PAGE 4 - CHAPTER 2
-      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("Chapter 2: 37 Red-Flag Phrases in Every FDD");
+      // PAGE 4 - CHAPTER 2: THE MAFIA KINGS
+      doc.fontSize(16).font("Helvetica-Bold").fillColor(navyBlue).text("CHAPTER 2: THE MAFIA KINGS");
+      doc.fontSize(12).fillColor(gold).text("Navigating Landlords, Leases, and the Ghosting Game");
       doc.moveDown(0.8);
-      doc.fontSize(10).fillColor("#000000").text("The Franchise Disclosure Document is required by law, but it's written to protect the franchisor, not you. Every FDD contains standardized language designed to limit their liability. Here are the phrases you need to understand:", { width: pageWidth });
-      doc.moveDown(1);
-      doc.fontSize(9).fillColor(red).text([
-        "1. 'Past performance is not a guarantee of future results'",
-        "2. 'Item 19 - Financial Performance Representations'",
-        "3. 'No representations regarding earnings potential'",
-        "4. 'Franchisee may earn less than stated averages'",
-        "5. 'Substantial variation in franchisee success'",
-        "6. 'Franchise agreement may be terminated'",
-        "7. 'Non-compete clause applies indefinitely'",
-        "8. 'Franchisor may modify operations at any time'",
-        "9. 'Royalties and fees are non-refundable'",
-        "10. 'Transfer restrictions apply to franchise ownership'",
-        "11. 'Franchisor may repurchase at lesser value'",
-        "12. 'No profit guarantee is implied or expressed'"
-      ], { width: pageWidth, lineGap: 4 });
+      doc.fontSize(10).fillColor("#000000").font("Helvetica").text("In the glossy world of franchise discovery days, you spend time talking about 'territory' and 'demographics.' It all feels very scientific, very safe. But in the real world—the Blackbook world—territory doesn't matter if you can't secure the dirt. And the dirt is controlled by the Mafia Kings.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).text("I call them the Mafia Kings because, in the ecosystem of franchising, they hold the ultimate leverage. There is you, there is the franchisor, and then there is the Landlord. They sit above the transaction in ways that most new franchisees don't fully appreciate.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor(navyBlue).font("Helvetica-Bold").text("The Masterclass in Ghosting:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).fillColor("#000000").font("Helvetica").text("The landlord is your best friend while negotiating the Letter of Intent. They respond to every email within ten minutes. They talk about 'partnership' and 'mutual success.' Then, the ink dries on the lease. Suddenly, the landlord enrolls in a masterclass on how to ghost people.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).text("That leaking roof you reported? Not their priority. The parking lot lighting that went out? They'll address it 'next quarter.' The HVAC unit that just died? Good luck getting a return phone call before your customers start melting.", { width: pageWidth });
+      doc.moveDown(0.8);
+      doc.fontSize(10).fillColor(gold).font("Helvetica-Bold").text("The Lunch Test:");
+      doc.moveDown(0.3);
+      doc.fontSize(9).fillColor("#000000").font("Helvetica").text("I have never had a landlord screw me over if I had sat across a table from them and shared a meal. If a landlord won't take the time to eat lunch with you, they won't take the time to support you when your business hits a rough patch.", { width: pageWidth });
+      doc.moveDown(0.5);
+      doc.fontSize(9).text("When you sit down for that meal, don't just talk about the lease. Talk about your family. Talk about why you're building this business. Build a bridge of humanity. Because six months from now, when you need an extension on your rent-commencement date, you want that landlord to think of the person they ate lunch with, not just the LLC on the lease.", { width: pageWidth });
 
       doc.addPage();
 
