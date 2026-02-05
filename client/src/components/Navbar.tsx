@@ -28,9 +28,11 @@ export function Navbar() {
         <div className="flex items-center justify-between py-5 px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3.5 flex-shrink-0">
-            <div className="w-12 h-12 bg-primary rounded flex items-center justify-center flex-shrink-0 border border-accent-pop/30">
-              <span className="font-serif font-bold text-primary-foreground text-lg">CS</span>
-            </div>
+            <img 
+              src="/cs-shield-logo.png" 
+              alt="Charles Stovall Logo" 
+              className="w-12 h-auto object-contain flex-shrink-0"
+            />
             <div className="flex flex-col justify-center gap-1.5 min-w-0">
               <span className="font-serif font-bold text-sm leading-none text-primary truncate">Charles Stovall</span>
               <span className="text-[9px] uppercase tracking-widest text-secondary font-semibold leading-none">Franchise Friend</span>
