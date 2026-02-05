@@ -31,7 +31,7 @@ export function Navbar() {
             <img 
               src="/cs-shield-logo.png" 
               alt="Charles Stovall Logo" 
-              className="w-12 h-auto object-contain flex-shrink-0"
+              className="w-8 h-8 object-contain flex-shrink-0"
             />
             <div className="flex flex-col justify-center gap-1.5 min-w-0">
               <span className="font-serif font-bold text-sm leading-none text-primary truncate">Charles Stovall</span>
