@@ -1,0 +1,181 @@
+<!-- FAQ Section - Paste this where you want it below your hero -->
+<section id="faq" style="max-width: 800px; margin: 60px auto; padding: 0 20px; font-family: inherit;">
+  <h2 style="text-align: center; font-size: 2rem; margin-bottom: 10px; color: #1a1a1a;">Franchise Consulting FAQ</h2>
+  <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.05rem;">Everything you need to know about working with a franchise consultant</p>
+
+  <div style="border-bottom: 1px solid #e0e0e0;">
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        What does a franchise consultant do?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        A franchise consultant acts as your personal guide through the franchise discovery process. I help you identify opportunities that align with your goals, budget, and lifestyle — saving you months of research and helping you avoid costly mistakes. Think of me as a matchmaker between you and the right franchise investment.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        How much does it cost to hire a franchise consultant?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        My franchise consulting services are completely free to you. I'm compensated by the franchise brands when a successful match is made, so you get expert guidance at no cost. There's no obligation, no hidden fees, and no pressure.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        How do I know which franchise is the right fit for me?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        That's exactly what we figure out together. Through a detailed questionnaire and a one-on-one Zoom consultation, I learn about your interests, skills, investment range, and preferred territory. From there, I present franchise options tailored specifically to you — not a one-size-fits-all list.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        How much money do I need to invest in a franchise?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        Franchise investments vary widely — from as low as $50,000 to over $1 million depending on the brand and industry. During our consultation, I'll help you understand what's realistic for your budget and connect you with franchise opportunities that match your financial goals.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        Do I need business experience to own a franchise?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        Not necessarily. Many franchise systems are specifically designed for first-time business owners and provide comprehensive training, support, and a proven playbook. During our discovery process, I'll match you with brands that align with your experience level and strengths.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        What franchise industries can I explore?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        I work across a wide range of industries including home services, fitness, health and wellness, senior care, food service, education, cleaning, real estate services, pet care, and many more. I have access to 700+ franchise brands, including top-rated opportunities from Franchise Business Review's Top 200.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        How long does the franchise discovery process take?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        Most people go from initial consultation to narrowing down their top franchise choices within a few weeks. The full process — from first call to signing a franchise agreement — typically takes 30 to 90 days depending on your pace and comfort level.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        Can I use my 401(k) or retirement funds to buy a franchise?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        Yes, many franchise owners use a strategy called ROBS (Rollover for Business Startups) to invest their retirement funds into a franchise without early withdrawal penalties. I can connect you with financial experts who specialize in franchise funding options including ROBS, SBA loans, and more.
+      </p>
+    </details>
+
+    <details style="border-top: 1px solid #e0e0e0; padding: 18px 0;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1a1a1a; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        What's the first step to getting started?
+        <span style="font-size: 1.4rem; color: #888; transition: transform 0.2s;">+</span>
+      </summary>
+      <p style="margin-top: 14px; line-height: 1.7; color: #444; font-size: 1rem;">
+        It's simple — fill out my short <a href="https://entree.franchoice.com/cq/index/pr63svil69jn3u37x2cfhhty7hhb4tgaziigjd7qtqgicplixo" target="_blank" style="color: #2563eb; text-decoration: underline;">franchise questionnaire</a> and then <a href="https://calendly.com/charles-stovall/consult" target="_blank" style="color: #2563eb; text-decoration: underline;">book a free consultation</a> on my calendar. From there, I'll take the lead and walk you through everything.
+      </p>
+    </details>
+
+  </div>
+</section>
+
+<!-- FAQ Schema Markup for SEO - Paste this right before </body> -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a franchise consultant do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A franchise consultant acts as your personal guide through the franchise discovery process. They help you identify opportunities that align with your goals, budget, and lifestyle — saving you months of research and helping you avoid costly mistakes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire a franchise consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Franchise consulting services are completely free to you. Consultants are compensated by the franchise brands when a successful match is made, so you get expert guidance at no cost with no obligation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know which franchise is the right fit for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through a detailed questionnaire and one-on-one consultation, a franchise consultant learns about your interests, skills, investment range, and preferred territory to present franchise options tailored specifically to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much money do I need to invest in a franchise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Franchise investments vary widely — from as low as $50,000 to over $1 million depending on the brand and industry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need business experience to own a franchise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Many franchise systems are specifically designed for first-time business owners and provide comprehensive training, support, and a proven playbook."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What franchise industries can I explore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Franchise consultants work across industries including home services, fitness, health and wellness, senior care, food service, education, cleaning, real estate services, pet care, and many more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the franchise discovery process take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people go from initial consultation to narrowing down their top franchise choices within a few weeks. The full process typically takes 30 to 90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use my 401(k) or retirement funds to buy a franchise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, many franchise owners use a strategy called ROBS (Rollover for Business Startups) to invest their retirement funds into a franchise without early withdrawal penalties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the first step to getting started with a franchise consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fill out a short franchise questionnaire and book a free consultation. From there, your consultant will guide you through the entire discovery process."
+      }
+    }
+  ]
+}
+</script>
