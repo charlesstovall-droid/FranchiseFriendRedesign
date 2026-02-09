@@ -34,6 +34,7 @@ export default function ExecutiveLanding() {
   const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,7 +52,8 @@ export default function ExecutiveLanding() {
           leadType: "executive-ad",
         }),
       });
-      setLocation("/thank-you-ad");
+      setIsSubmitted(true);
+      setIsSubmitting(false);
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
@@ -166,19 +168,37 @@ export default function ExecutiveLanding() {
 
                   <p className="text-xs text-gray-400 text-center">🔒 Your information is 100% secure. No spam, ever.</p>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
-                    data-testid="button-submit"
-                  >
-                    {isSubmitting ? "Submitting..." : "Send Me My Free Assessment"}
-                  </button>
+                  {!isSubmitted ? (
+                    <>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
+                        data-testid="button-submit"
+                      >
+                        {isSubmitting ? "Submitting..." : "Send Me My Free Assessment"}
+                      </button>
 
-                  <div className="bg-amber-50 rounded-md p-3 text-center">
-                    <p className="text-xs font-semibold text-amber-600">⚠️ Limited to 5 new clients per month</p>
-                    <p className="text-xs font-semibold text-amber-600">📅 Consultations filling fast</p>
-                  </div>
+                      <div className="bg-amber-50 rounded-md p-3 text-center">
+                        <p className="text-xs font-semibold text-amber-600">⚠️ Limited to 5 new clients per month</p>
+                        <p className="text-xs font-semibold text-amber-600">📅 Consultations filling fast</p>
+                      </div>
+                    </>
+                  ) : (
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-4 text-center">
+                        <Check className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
+                        <p className="text-emerald-700 font-semibold">You're in! Your info has been received.</p>
+                      </div>
+                      <a
+                        href="/franchise-assessment"
+                        className="block w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
+                        data-testid="button-go-assessment"
+                      >
+                        Take Me to My Free Assessment
+                      </a>
+                    </motion.div>
+                  )}
                 </form>
               </div>
             </motion.div>

@@ -26,6 +26,7 @@ import ExecutiveInvestment from "@/pages/executive-investment";
 import ThankYouAd from "@/pages/thank-you-ad";
 import BlackbookLanding from "@/pages/blackbook-landing";
 import ThankYouBlackbook from "@/pages/thank-you-blackbook";
+import FranchiseAssessment from "@/pages/franchise-assessment";
 
 function Router() {
   return (
@@ -49,6 +50,7 @@ function Router() {
       <Route path="/executive-access/investment" component={ExecutiveInvestment} />
       <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
+      <Route path="/franchise-assessment" component={FranchiseAssessment} />
       <Route path="/free-franchise-guide" component={BlackbookLanding} />
       <Route path="/thank-you-franchise-guide" component={ThankYouBlackbook} />
       <Route component={NotFound} />
