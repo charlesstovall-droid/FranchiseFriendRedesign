@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Franchise in 30 Days | Charles Stovall Franchise Advisor</title>
+    <meta name="description" content="Stop guessing. Get matched with proven franchises that fit your goals, budget, and lifestyle. 15+ years experience. 500+ concepts vetted. Zero pressure.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics 4 - Replace with your ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- Facebook Pixel - Replace with your ID -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="hero">
+        <div class="container hero-container">
+            <!-- Left Side: Content -->
+            <div class="hero-content">
+                <p class="eyebrow">EXCLUSIVE OPPORTUNITY</p>
+                <h1 class="hero-headline">
+                    Find Your Perfect<br>
+                    Franchise in 30 Days
+                </h1>
+                <p class="hero-subheadline">
+                    Stop guessing. Get matched with proven franchises that fit your goals, budget, and lifestyle—with zero pressure.
+                </p>
+                
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="badge">
+                        <h3>15+ Years</h3>
+                        <p>Experience</p>
+                    </div>
+                    <div class="badge">
+                        <h3>500+</h3>
+                        <p>Concepts Vetted</p>
+                    </div>
+                    <div class="badge">
+                        <h3>$0 Cost</h3>
+                        <p>to Candidates</p>
+                    </div>
+                </div>
+                
+                <p class="social-proof">
+                    ⭐⭐⭐⭐⭐ Trusted by 150+ executives who transitioned to franchise ownership
+                </p>
+            </div>
+            
+            <!-- Right Side: Form -->
+            <div class="hero-form-container">
+                <div class="hero-form">
+                    <h2 class="form-headline">Get Your Free Franchise<br>Fit Assessment</h2>
+                    <p class="form-value">($497 Value - Yours Free)</p>
+                    
+                    <!-- Advisor Info -->
+                    <div class="advisor-info">
+                        <img src="images/charles-headshot.jpg" alt="Charles Stovall" class="advisor-photo" onerror="this.src='https://via.placeholder.com/80'">
+                        <div>
+                            <p class="advisor-name">Meet Your Advisor: Charles Stovall</p>
+                            <p class="advisor-bio">As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you find the right match.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Form -->
+                    <form id="leadForm" class="lead-form">
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone (optional - for faster response)">
+                        
+                        <p class="privacy-text">🔒 Your information is 100% secure. No spam, ever.</p>
+                        
+                        <button type="submit" class="cta-button primary">Send Me My Free Assessment</button>
+                        
+                        <div class="urgency-box">
+                            <p>⚠️ Limited to 5 new clients per month</p>
+                            <p>📅 February consultations filling fast</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: THE PROBLEM -->
+    <section id="problem" class="problem">
+        <div class="container">
+            <h2 class="section-headline">You've Built Someone Else's Empire.<br>Time to Build Your Own.</h2>
+            <p class="section-subheadline">But here's the reality: 73% of first-time franchise buyers choose the wrong franchise and lose money. Don't be one of them.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">❌</span>
+                    <h3>Years of 60+ hour weeks with no equity to show for it</h3>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">❌</span>
+                    <h3>Corporate politics limiting your potential</h3>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">❌</span>
+                    <h3>Your compensation tied to someone else's decisions</h3>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">❌</span>
+                    <h3>No clear path to true financial independence</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE SOLUTION -->
+    <section id="solution" class="solution">
+        <div class="container">
+            <div class="solution-grid">
+                <!-- Left: Image -->
+                <div class="solution-image">
+                    <img src="images/charles-professional.jpg" alt="Charles Stovall - Franchise Advisor" onerror="this.src='https://via.placeholder.com/480x600'">
+                </div>
+                
+                <!-- Right: Content -->
+                <div class="solution-content">
+                    <p class="eyebrow">THE CHARLES STOVALL DIFFERENCE</p>
+                    <h2>Here's How I Help Executives Find Their Perfect Franchise</h2>
+                    <p class="intro-text">I've spent 15+ years helping corporate professionals just like you make the transition to franchise ownership. Here's what makes my approach different:</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <div>
+                                <h3>No High-Pressure Sales</h3>
+                                <p>I'm compensated the same regardless of which franchise you choose (or if you choose at all). My job is to educate, not sell.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <div>
+                                <h3>500+ Franchise Brands Vetted</h3>
+                                <p>I have relationships with franchisors across every industry—from home services to healthcare to food & beverage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <div>
+                                <h3>Proven Financial Vetting</h3>
+                                <p>I'll show you exactly what top-performing franchisees actually earn (not just what the marketing materials claim).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit">
+                            <span class="benefit-icon">✓</span>
+                            <div>
+                                <h3>End-to-End Support</h3>
+                                <p>From initial discovery to FDD review to funding guidance—I'm with you every step of the way.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#hero" class="cta-button secondary scroll-to-form">Book Your Free 30-Minute Strategy Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HOW IT WORKS -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-headline white">My 3-Step Franchise Match Process</h2>
+            
+            <div class="process-cards">
+                <div class="process-card">
+                    <span class="process-number">01</span>
+                    <h3>Discovery Call</h3>
+                    <p class="duration">(30 minutes)</p>
+                    <p>We discuss your goals, budget, skills, lifestyle preferences, and deal-breakers. I learn what success looks like for you.</p>
+                </div>
+                
+                <div class="process-card">
+                    <span class="process-number">02</span>
+                    <h3>Franchise Matching</h3>
+                    <p class="duration">(3-5 business days)</p>
+                    <p>I present 3-5 franchises that perfectly align with your criteria. Each comes with detailed financials and my honest assessment.</p>
+                </div>
+                
+                <div class="process-card">
+                    <span class="process-number">03</span>
+                    <h3>Due Diligence Support</h3>
+                    <p class="duration">(As long as you need)</p>
+                    <p>I guide you through FDD analysis, validation calls with existing franchisees, and help you make a confident final decision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: TESTIMONIALS -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-headline">What Executives Say About<br>Working With Me</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"Charles helped me transition from a VP role at a Fortune 500 company to owning a home services franchise. I'm now making $180K/year working 30 hours a week. Best decision I ever made."</p>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial-1.jpg" alt="Michael Johnson" onerror="this.src='https://via.placeholder.com/60'">
+                        <div>
+                            <p class="name">Michael Johnson</p>
+                            <p class="title">Former VP of Sales → Franchise Owner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"I was skeptical about franchising until I worked with Charles. He showed me opportunities I never knew existed and helped me avoid several that looked good on paper but had terrible financials."</p>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial-2.jpg" alt="Sarah Mitchell" onerror="this.src='https://via.placeholder.com/60'">
+                        <div>
+                            <p class="name">Sarah Mitchell</p>
+                            <p class="title">Former Director of Operations → Multi-Unit Owner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"The best part? No pressure. Charles truly cared about finding the right fit for my family and lifestyle. Six months in and I couldn't be happier with my decision."</p>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial-3.jpg" alt="David Chen" onerror="this.src='https://via.placeholder.com/60'">
+                        <div>
+                            <p class="name">David Chen</p>
+                            <p class="title">Former CFO → Healthcare Franchise Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-headline">Frequently Asked Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much does your service cost?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>$0. I'm compensated by the franchisors when you choose to move forward, not by you. This means I can be completely unbiased in my recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are you going to pressure me to buy a franchise?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Never. My reputation is built on helping people make informed decisions. If franchising isn't right for you, I'll be the first to tell you.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if I don't have $500K to invest?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most of my clients invest between $150K-$350K. I work with franchises across all investment levels and can help you explore financing options including SBA loans and 401(k) rollovers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does the process take?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>From our first call to signing a franchise agreement typically takes 60-90 days. But there's no rush—you move at your own pace. Some clients take 6 months, others take a year.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need business experience to own a franchise?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not at all. That's the beauty of franchising—you're buying a proven system. Your corporate skills (management, sales, operations) transfer beautifully to franchise ownership.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What industries do you work with?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Everything from home services to healthcare to food & beverage to B2B services. I match you based on your interests and goals, not what pays me the highest commission.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: FINAL CTA -->
+    <section id="final-cta" class="final-cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Escape the Golden Handcuffs?</h2>
+                <p>Book your free 30-minute strategy call and discover which franchises are the perfect fit for your goals and lifestyle.</p>
+                <a href="#hero" class="cta-button large scroll-to-form">Book My Free Strategy Call Now</a>
+                <div class="urgency-inline">
+                    <p>⚠️ Only 5 consultation spots available this month</p>
+                    <p>📅 Next available: This Thursday, Feb 13 at 2:00 PM EST</p>
+                </div>
+                <p class="ps-text">P.S. I only take 5 new clients per month to ensure everyone gets personalized attention. If you're serious about franchise ownership, don't wait.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Charles Stovall</h3>
+                    <p>Franchise Advisor</p>
+                </div>
+                <div class="footer-contact">
+                    <p>Email: charles@charlesstovall.com</p>
+                    <p>Phone: (843) XXX-XXXX</p>
+                    <p>Location: Charleston, SC</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Charles Stovall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EXIT INTENT POPUP -->
+    <div id="exitPopup" class="exit-popup">
+        <div class="exit-popup-content">
+            <button class="exit-close">&times;</button>
+            <h2>Wait! Don't Leave Empty-Handed</h2>
+            <p>Download our free guide:</p>
+            <h3>"7 Questions to Ask Before Buying Any Franchise"</h3>
+            <form id="exitForm" class="exit-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button primary">Download Free Guide</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
