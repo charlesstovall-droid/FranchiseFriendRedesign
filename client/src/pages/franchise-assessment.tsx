@@ -137,27 +137,27 @@ function getVerdict(score: number, maxScore: number) {
 
 export default function FranchiseAssessment() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [answers, setAnswers] = useState<Record<string, { index: number; score: number }>>({});
   const [showResults, setShowResults] = useState(false);
   const [started, setStarted] = useState(false);
 
   const totalSteps = questions.length;
   const progress = showResults ? 100 : started ? ((currentStep + 1) / (totalSteps + 1)) * 100 : 0;
   const maxScore = questions.reduce((acc, q) => acc + Math.max(...q.options.map(o => o.score)), 0);
-  const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+  const totalScore = Object.values(answers).reduce((a, b) => a + b.score, 0);
 
   const sectionScores = useMemo(() => {
     const sections: Record<string, { earned: number; max: number }> = {};
     questions.forEach((q) => {
       if (!sections[q.section]) sections[q.section] = { earned: 0, max: 0 };
       sections[q.section].max += Math.max(...q.options.map(o => o.score));
-      if (answers[q.id] !== undefined) sections[q.section].earned += answers[q.id];
+      if (answers[q.id] !== undefined) sections[q.section].earned += answers[q.id].score;
     });
     return sections;
   }, [answers]);
 
-  const handleSelect = (questionId: string, score: number) => {
-    setAnswers({ ...answers, [questionId]: score });
+  const handleSelect = (questionId: string, index: number, score: number) => {
+    setAnswers({ ...answers, [questionId]: { index, score } });
   };
 
   const canProceed = answers[questions[currentStep]?.id] !== undefined;
@@ -254,11 +254,11 @@ export default function FranchiseAssessment() {
 
                   <div className="space-y-3 mb-10">
                     {questions[currentStep].options.map((opt, i) => {
-                      const isSelected = answers[questions[currentStep].id] === opt.score;
+                      const isSelected = answers[questions[currentStep].id]?.index === i;
                       return (
                         <button
                           key={i}
-                          onClick={() => handleSelect(questions[currentStep].id, opt.score)}
+                          onClick={() => handleSelect(questions[currentStep].id, i, opt.score)}
                           className={`w-full text-left flex items-center gap-4 p-4 rounded-lg border-2 transition-all duration-200 ${
                             isSelected
                               ? "border-[#D4AF37] bg-[#D4AF37]/5"
