@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import charlesPhoto from "@assets/IMG_2636_1763927193167.jpeg";
+import charlesPhoto from "@assets/charles-main-photo.png";
+
 
 export function Hero() {
   return (
