@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -140,6 +140,11 @@ export default function FranchiseAssessment() {
   const [answers, setAnswers] = useState<Record<string, { index: number; score: number }>>({});
   const [showResults, setShowResults] = useState(false);
   const [started, setStarted] = useState(false);
+  const emailSentRef = useRef(false);
+
+  const params = new URLSearchParams(window.location.search);
+  const userName = params.get("name") || "";
+  const userEmail = params.get("email") || "";
 
   const totalSteps = questions.length;
   const progress = showResults ? 100 : started ? ((currentStep + 1) / (totalSteps + 1)) * 100 : 0;
@@ -175,6 +180,23 @@ export default function FranchiseAssessment() {
 
   const verdict = getVerdict(totalScore, maxScore);
   const scorePercent = Math.round((totalScore / maxScore) * 100);
+
+  useEffect(() => {
+    if (showResults && userEmail && !emailSentRef.current) {
+      emailSentRef.current = true;
+      fetch("/api/assessment-results", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: userEmail,
+          name: userName,
+          scorePercent,
+          verdict: verdict.label,
+          sectionScores,
+        }),
+      }).catch((err) => console.error("Failed to send assessment results:", err));
+    }
+  }, [showResults]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5F7FA] to-[#E5E7EB] pb-16">
@@ -299,7 +321,10 @@ export default function FranchiseAssessment() {
           ) : (
             <motion.div key="results" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <div className="max-w-2xl mx-auto mt-8">
-                <h1 className="text-3xl md:text-4xl font-serif font-bold text-[#1B2B3A] text-center mb-10">Your Assessment Results</h1>
+                <h1 className="text-3xl md:text-4xl font-serif font-bold text-[#1B2B3A] text-center mb-4">Your Assessment Results</h1>
+                {userEmail && (
+                  <p className="text-center text-emerald-600 text-sm mb-10">A copy of this report has been sent to {userEmail}</p>
+                )}
 
                 <div className="text-center mb-12">
                   <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#C19A2E] flex flex-col items-center justify-center shadow-[0_8px_24px_rgba(212,175,55,0.3)]">

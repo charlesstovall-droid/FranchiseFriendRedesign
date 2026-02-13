@@ -314,6 +314,102 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/assessment-results", async (req, res) => {
+    try {
+      const { email, name, scorePercent, verdict, sectionScores } = req.body;
+
+      if (!email || !name || typeof email !== "string" || typeof name !== "string") {
+        return res.status(400).json({ success: false, error: "Name and email required" });
+      }
+      if (typeof scorePercent !== "number" || scorePercent < 0 || scorePercent > 100) {
+        return res.status(400).json({ success: false, error: "Invalid score" });
+      }
+      if (typeof verdict !== "string") {
+        return res.status(400).json({ success: false, error: "Invalid verdict" });
+      }
+
+      const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+      const safeName = esc(name);
+      const safeEmail = esc(email);
+      const safeVerdict = esc(verdict);
+      const safeScore = Math.round(scorePercent);
+
+      const sectionRows = Object.entries(sectionScores || {}).map(([section, data]: [string, any]) => {
+        if (!data || typeof data.earned !== "number" || typeof data.max !== "number" || data.max === 0) return "";
+        const pct = Math.min(100, Math.max(0, Math.round((data.earned / data.max) * 100)));
+        return `
+          <tr>
+            <td style="padding: 10px 16px; border-bottom: 1px solid #E5E7EB; font-weight: 500;">${esc(String(section))}</td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: 700; color: #D4AF37;">${pct}%</td>
+          </tr>`;
+      }).join("");
+
+      const htmlContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <div style="background: linear-gradient(135deg, #1B2B3A, #0F1922); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: #D4AF37; font-size: 28px; margin: 0 0 8px;">Franchise Fit Assessment</h1>
+            <p style="color: #E5E7EB; font-size: 16px; margin: 0;">Results for ${safeName}</p>
+          </div>
+          <div style="background: #fff; padding: 30px; border: 1px solid #E5E7EB; border-top: none;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <div style="display: inline-block; width: 120px; height: 120px; line-height: 120px; border-radius: 50%; background: linear-gradient(135deg, #D4AF37, #C19A2E); color: white; font-size: 42px; font-weight: 700;">${safeScore}</div>
+              <p style="font-size: 14px; color: #6B7280; margin-top: 8px;">out of 100</p>
+              <h2 style="color: #1B2B3A; font-size: 22px; margin: 12px 0 4px;">${safeVerdict}</h2>
+            </div>
+            <h3 style="color: #1B2B3A; font-size: 18px; margin-bottom: 12px;">Score Breakdown</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+              ${sectionRows}
+            </table>
+            <div style="background: #F5F7FA; padding: 20px; border-radius: 8px; margin-bottom: 24px;">
+              <h3 style="color: #1B2B3A; font-size: 16px; margin-bottom: 12px;">Recommended Next Steps</h3>
+              <ul style="padding-left: 20px; color: #4B5563; font-size: 14px; line-height: 1.8;">
+                <li>Schedule your free 30-minute strategy call with Charles</li>
+                <li>Receive 3-5 personalized franchise matches based on your profile</li>
+                <li>Review detailed financials and validation data</li>
+                <li>Make a confident, informed decision on your terms</li>
+              </ul>
+            </div>
+            <div style="text-align: center;">
+              <a href="https://calendly.com/charles-stovall/intro" style="display: inline-block; background: linear-gradient(135deg, #D4AF37, #C19A2E); color: #1B2B3A; font-weight: 700; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-size: 16px;">Book Your Free Strategy Call</a>
+            </div>
+          </div>
+          <div style="text-align: center; padding: 20px; color: #9CA3AF; font-size: 12px;">
+            <p>Charles Stovall | Franchise Advisor | Charleston, SC</p>
+            <p>(919) 827-3921 | CStovall@FranChoice.com</p>
+          </div>
+        </div>
+      `;
+
+      // Send to the person
+      try {
+        await sendEmail(email, "Your Franchise Fit Assessment Results", htmlContent);
+        console.log(`[Email] Assessment results sent to ${email}`);
+      } catch (e) {
+        console.error("[Email] Failed to send assessment to candidate:", e);
+      }
+
+      // Send copy to Charles
+      try {
+        const charlesHtml = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; background: #FEF3C7; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="font-weight: 700; color: #92400E; margin: 0;">Assessment completed by: ${safeName} (${safeEmail})</p>
+          </div>
+          ${htmlContent}
+        `;
+        await sendEmail("CStovall@FranChoice.com", `Assessment Completed: ${safeName} scored ${safeScore}/100`, charlesHtml);
+        console.log(`[Email] Assessment copy sent to CStovall@FranChoice.com`);
+      } catch (e) {
+        console.error("[Email] Failed to send assessment copy to Charles:", e);
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error sending assessment results:", error);
+      res.status(500).json({ success: false, error: "Failed to send results" });
+    }
+  });
+
   app.get("/api/leads", async (req, res) => {
     try {
       const { type } = req.query;

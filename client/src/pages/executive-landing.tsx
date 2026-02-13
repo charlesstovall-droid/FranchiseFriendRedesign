@@ -191,11 +191,11 @@ export default function ExecutiveLanding() {
                         <p className="text-emerald-700 font-semibold">You're in! Your info has been received.</p>
                       </div>
                       <a
-                        href="/franchise-assessment"
+                        href={`/franchise-assessment?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`}
                         className="block w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
                         data-testid="button-go-assessment"
                       >
-                        Take Me to My Free Assessment
+                        Take Me to My Assessment
                       </a>
                     </motion.div>
                   )}
