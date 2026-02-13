@@ -119,7 +119,7 @@ export function HowItWorks() {
           <p className="text-muted-foreground mb-6 text-lg">
             Ready to find your perfect franchise?
           </p>
-          <a href="/franchise-assessment" className="inline-block">
+          <a href="/executive-access" className="inline-block">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
