@@ -397,16 +397,23 @@ export default function FranchiseAssessment() {
                 exit="exit"
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <div className="flex items-center justify-between mb-8 pt-4">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-[#D4AF37]">{sectionIcons[questions[currentStep].sectionIcon]}</span>
-                    <span className="text-xs font-semibold tracking-wider uppercase text-gray-400">
-                      {questions[currentStep].section}
-                    </span>
+
+                <div className="bg-white rounded-xl p-4 mb-6 mt-4 border border-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] font-semibold tracking-widest uppercase text-[#D4AF37] mb-0.5">Your Readiness Score</p>
+                      <p className="text-2xl font-bold text-[#1B2B3A]">{Math.round((totalScore / maxScore) * 100)}<span className="text-sm font-normal text-gray-300">/100</span></p>
+                    </div>
+                    <ScoreRing score={totalScore} maxScore={maxScore} />
                   </div>
-                  <ScoreRing score={totalScore} maxScore={maxScore} />
                 </div>
 
+                <div className="flex items-center gap-2.5 mb-2">
+                  <span className="text-[#D4AF37]">{sectionIcons[questions[currentStep].sectionIcon]}</span>
+                  <span className="text-xs font-semibold tracking-wider uppercase text-gray-400">
+                    {questions[currentStep].section}
+                  </span>
+                </div>
                 <div className="mb-3">
                   <span className="text-xs text-gray-300 font-medium">Question {currentStep + 1} of {totalSteps}</span>
                 </div>

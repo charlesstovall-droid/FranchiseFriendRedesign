@@ -52,8 +52,7 @@ export default function ExecutiveLanding() {
           leadType: "executive-ad",
         }),
       });
-      setIsSubmitted(true);
-      setIsSubmitting(false);
+      setLocation(`/franchise-assessment?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`);
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
@@ -159,46 +158,29 @@ export default function ExecutiveLanding() {
                   />
                   <input
                     type="tel"
+                    required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                    placeholder="Phone (optional - for faster response)"
+                    placeholder="Enter your phone number"
                     data-testid="input-phone"
                   />
 
                   <p className="text-xs text-gray-400 text-center">🔒 Your information is 100% secure. No spam, ever.</p>
 
-                  {!isSubmitted ? (
-                    <>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
-                        data-testid="button-submit"
-                      >
-                        {isSubmitting ? "Submitting..." : "Send Me My Free Assessment"}
-                      </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
+                    data-testid="button-submit"
+                  >
+                    {isSubmitting ? "Loading..." : "Take Me to My Assessment"}
+                  </button>
 
-                      <div className="bg-amber-50 rounded-md p-3 text-center">
-                        <p className="text-xs font-semibold text-amber-600">⚠️ Limited to 5 new clients per month</p>
-                        <p className="text-xs font-semibold text-amber-600">📅 Consultations filling fast</p>
-                      </div>
-                    </>
-                  ) : (
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
-                      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-4 text-center">
-                        <Check className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
-                        <p className="text-emerald-700 font-semibold">You're in! Your info has been received.</p>
-                      </div>
-                      <a
-                        href={`/franchise-assessment?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`}
-                        className="block w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
-                        data-testid="button-go-assessment"
-                      >
-                        Take Me to My Assessment
-                      </a>
-                    </motion.div>
-                  )}
+                  <div className="bg-amber-50 rounded-md p-3 text-center">
+                    <p className="text-xs font-semibold text-amber-600">⚠️ Limited to 5 new clients per month</p>
+                    <p className="text-xs font-semibold text-amber-600">📅 Consultations filling fast</p>
+                  </div>
                 </form>
               </div>
             </motion.div>
