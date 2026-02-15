@@ -353,10 +353,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           </div>
           <div style="background: #fff; padding: 30px; border: 1px solid #E5E7EB; border-top: none;">
             <div style="text-align: center; margin-bottom: 30px;">
-              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto;">
-                <tr><td align="center" valign="middle" width="120" height="120" style="width: 120px; height: 120px; border-radius: 60px; background-color: #D4AF37; color: #ffffff; font-size: 42px; font-weight: 700; font-family: Arial, sans-serif; text-align: center;">${safeScore}</td></tr>
-              </table>
-              <p style="font-size: 14px; color: #6B7280; margin-top: 8px;">out of 100</p>
+              <p style="font-size: 56px; font-weight: 700; color: #D4AF37; margin: 0; line-height: 1.1; font-family: Arial, sans-serif;">${safeScore}<span style="font-size: 24px; color: #6B7280;">/100</span></p>
               <h2 style="color: #1B2B3A; font-size: 22px; margin: 12px 0 4px;">${safeVerdict}</h2>
             </div>
             <h3 style="color: #1B2B3A; font-size: 18px; margin-bottom: 12px;">Score Breakdown</h3>
