@@ -1,0 +1,22 @@
+Project Goal
+Refine the current assessment tool to increase user retention and "Book a Call" conversions. The goal is to make the interface feel like a premium financial advisor dashboard rather than a generic survey.
+UI/UX & Aesthetic Requirements
+1. Preserve Color Scheme: Retain the current primary and secondary colors, but apply them using a "less is more" approach. Use the primary color for Action Buttons and Active States only.
+2. Typography & Spacing: * Increase whitespace (padding/margins) to let the questions "breathe."
+• Use a clean, modern sans-serif font stack.
+• Ensure all input fields (radio buttons, text boxes) have a subtle hover effect and a defined "Selected" state using the brand's primary color.
+3. Modern Components:
+• Replace standard radio buttons with Large Clickable Cards.
+• Use a "Single Question at a Time" layout with smooth horizontal slide transitions.
+New Feature: The "Live Readiness Tracker"
+1. The Score Ring/Bar: Add a fixed, professional progress ring or linear bar that displays a "Franchise Readiness Score" (0–100).
+2. Dynamic Logic:
+• Assign a "weight" to each answer.
+• As the user selects an answer, the score should incrementally animate (e.g., +5 points for "Management Experience," -3 points for "Undecided on Budget").
+• This creates "Loss Aversion"—users are less likely to quit once they see their score climbing.
+3. Micro-Insights: Below the score, add a small text area that updates with "Expert Tips" based on their answer (e.g., "Great! $100k+ liquidity opens doors to the Top 50 service franchises.").
+The Conversion Engine (The "Hook")
+1. The Result Gate: Upon reaching 100% completion, show a high-quality "Analyzing your Profile..." loading animation (3 seconds) to build anticipation.
+2. The Score Summary: Display their final score with a professional badge (e.g., "High-Potential Candidate").
+3. The Calendly Integration: * Embed the booking widget directly on the results page.
+• Use a clear, authoritative CTA: "Your profile indicates a strong fit for semi-absentee models. Book your 15-minute Strategy Session to review the top 3 brands currently matching your score."
