@@ -495,66 +495,92 @@ export default function FranchiseAssessment() {
                   <p className="text-center text-emerald-500 text-xs font-medium mb-6">A copy of this report has been sent to {userEmail}</p>
                 )}
 
-                <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
-                  <div className="text-center mb-8">
-                    <div className="relative w-32 h-32 mx-auto mb-5">
-                      <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120">
-                        <circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" strokeWidth="6" />
-                        <motion.circle
-                          cx="60" cy="60" r="52" fill="none"
-                          stroke="#D4AF37" strokeWidth="6" strokeLinecap="round"
-                          strokeDasharray={2 * Math.PI * 52}
-                          initial={{ strokeDashoffset: 2 * Math.PI * 52 }}
-                          animate={{ strokeDashoffset: 2 * Math.PI * 52 - (scorePercent / 100) * 2 * Math.PI * 52 }}
-                          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <motion.span
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.5, duration: 0.4 }}
-                          className="text-3xl font-bold text-[#1B2B3A]"
-                        >{scorePercent}</motion.span>
-                        <span className="text-[10px] text-gray-300 font-medium">out of 100</span>
-                      </div>
+                <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6 text-center">
+                  <div className="relative w-32 h-32 mx-auto mb-5">
+                    <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" strokeWidth="6" />
+                      <motion.circle
+                        cx="60" cy="60" r="52" fill="none"
+                        stroke="#D4AF37" strokeWidth="6" strokeLinecap="round"
+                        strokeDasharray={2 * Math.PI * 52}
+                        initial={{ strokeDashoffset: 2 * Math.PI * 52 }}
+                        animate={{ strokeDashoffset: 2 * Math.PI * 52 - (scorePercent / 100) * 2 * Math.PI * 52 }}
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5, duration: 0.4 }}
+                        className="text-3xl font-bold text-[#1B2B3A]"
+                      >{scorePercent}</motion.span>
+                      <span className="text-[10px] text-gray-300 font-medium">out of 100</span>
                     </div>
-
-                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-semibold mb-3 ${verdict.badgeBg}`}>
-                      <Award className="w-3.5 h-3.5" />
-                      {verdict.label}
-                    </div>
-                    <p className="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">{verdict.desc}</p>
                   </div>
 
-                  <div className="border-t border-gray-100 pt-6">
-                    <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">Score Breakdown</h3>
-                    <div className="space-y-5">
-                      {Object.entries(sectionScores).map(([section, data], idx) => {
-                        const pct = Math.round((data.earned / data.max) * 100);
-                        return (
-                          <div key={section}>
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm text-gray-500">{section}</span>
-                              <span className="text-sm font-bold text-[#1B2B3A]">{pct}%</span>
-                            </div>
-                            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                              <motion.div
-                                className="h-full bg-[#D4AF37] rounded-full"
-                                initial={{ width: 0 }}
-                                animate={{ width: `${pct}%` }}
-                                transition={{ duration: 0.8, delay: 0.3 + idx * 0.15 }}
-                              />
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
+                  <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-semibold mb-3 ${verdict.badgeBg}`}>
+                    <Award className="w-3.5 h-3.5" />
+                    {verdict.label}
+                  </div>
+                  <p className="text-gray-400 text-sm max-w-md mx-auto leading-relaxed mb-6">{verdict.desc}</p>
+                </div>
+
+                <div className="bg-[#1B2B3A] rounded-2xl p-8 md:p-10 text-center mb-6">
+                  <h3 className="text-2xl md:text-[26px] font-semibold text-white mb-3">Book Your Free Strategy Session</h3>
+                  <p className="text-gray-300 text-sm mb-6 leading-relaxed max-w-md mx-auto">
+                    {verdict.ctaText}
+                  </p>
+
+                  <a
+                    href="https://calendly.com/charles-stovall/intro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#C19A2E] text-[#1B2B3A] font-bold text-base py-4 px-10 rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(212,175,55,0.4)] hover:shadow-[0_6px_24px_rgba(212,175,55,0.6)] hover:-translate-y-0.5"
+                    data-testid="button-book-call-results"
+                  >
+                    Book My Strategy Call Now <ChevronRight className="w-5 h-5" />
+                  </a>
+                  <p className="text-xs text-gray-400 mt-4">
+                    No pressure. No obligation. 15 minutes that could change your future.
+                  </p>
+
+                  <div className="mt-6 bg-white/5 rounded-xl p-4 border border-white/10">
+                    <div
+                      className="calendly-inline-widget"
+                      data-url="https://calendly.com/charles-stovall/intro"
+                      style={{ minWidth: "280px", height: "420px" }}
+                    />
                   </div>
                 </div>
 
                 <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
-                  <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">Recommended Next Steps</h3>
+                  <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">Score Breakdown</h3>
+                  <div className="space-y-5">
+                    {Object.entries(sectionScores).map(([section, data], idx) => {
+                      const pct = Math.round((data.earned / data.max) * 100);
+                      return (
+                        <div key={section}>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm text-gray-500">{section}</span>
+                            <span className="text-sm font-bold text-[#1B2B3A]">{pct}%</span>
+                          </div>
+                          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <motion.div
+                              className="h-full bg-[#D4AF37] rounded-full"
+                              initial={{ width: 0 }}
+                              animate={{ width: `${pct}%` }}
+                              transition={{ duration: 0.8, delay: 0.3 + idx * 0.15 }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
+                  <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">What Happens Next</h3>
                   <div className="space-y-4">
                     {[
                       "Book your complimentary Strategy Session with Charles",
@@ -564,7 +590,7 @@ export default function FranchiseAssessment() {
                     ].map((step, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-3.5 h-3.5 text-[#D4AF37]" />
+                          <span className="text-xs font-bold text-[#D4AF37]">{i + 1}</span>
                         </div>
                         <span className="text-sm text-gray-500 leading-relaxed">{step}</span>
                       </div>
@@ -572,32 +598,17 @@ export default function FranchiseAssessment() {
                   </div>
                 </div>
 
-                <div className="bg-[#1B2B3A] rounded-2xl p-8 md:p-10 text-center">
-                  <h3 className="text-xl font-semibold text-white mb-3">Your Next Step</h3>
-                  <p className="text-gray-400 text-sm mb-6 leading-relaxed max-w-md mx-auto">
-                    {verdict.ctaText}
-                  </p>
-
-                  <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
-                    <div
-                      className="calendly-inline-widget"
-                      data-url="https://calendly.com/charles-stovall/intro"
-                      style={{ minWidth: "280px", height: "400px" }}
-                    />
-                  </div>
-
+                <div className="bg-[#D4AF37] rounded-2xl p-6 md:p-8 text-center">
+                  <p className="text-[#1B2B3A] font-semibold mb-3">Don't let this momentum slip away.</p>
                   <a
                     href="https://calendly.com/charles-stovall/intro"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#C19A2E] text-white font-semibold text-sm py-3.5 px-8 rounded-xl transition-all duration-200"
-                    data-testid="button-book-call-results"
+                    className="inline-flex items-center gap-2 bg-[#1B2B3A] hover:bg-[#0F1922] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200"
+                    data-testid="button-book-call-bottom"
                   >
-                    Book Your Strategy Session <ChevronRight className="w-4 h-4" />
+                    Book My Strategy Call <ChevronRight className="w-4 h-4" />
                   </a>
-                  <p className="text-xs text-gray-500 mt-4">
-                    No pressure. No obligation. Just an honest conversation about your future.
-                  </p>
                 </div>
               </div>
             </motion.div>
