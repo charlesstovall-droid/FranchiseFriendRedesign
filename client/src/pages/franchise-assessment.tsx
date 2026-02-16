@@ -184,7 +184,7 @@ function ScoreRing({ score, maxScore }: { score: number; maxScore: number }) {
           </motion.span>
         </div>
       </div>
-      <span className="text-[10px] font-semibold tracking-wider uppercase text-gray-400">Readiness</span>
+      <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-gray-400">Readiness</span>
     </div>
   );
 }
@@ -304,7 +304,7 @@ export default function FranchiseAssessment() {
               </motion.div>
             </div>
           </div>
-          <h2 className="text-2xl font-semibold text-[#1B2B3A] mb-3">Analyzing Your Profile...</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#1B2B3A] mb-3">Analyzing Your Profile...</h2>
           <p className="text-gray-400 text-sm max-w-xs mx-auto">Comparing your responses against our database of successful franchise owners.</p>
           <div className="flex items-center justify-center gap-2 mt-6">
             {[0, 1, 2].map(i => (
@@ -340,10 +340,10 @@ export default function FranchiseAssessment() {
                   <div className="inline-flex items-center gap-2 bg-[#D4AF37]/10 text-[#B8962E] text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
                     <Shield className="w-3.5 h-3.5" /> Confidential Assessment
                   </div>
-                  <h1 className="text-3xl md:text-[40px] font-semibold text-[#1B2B3A] mb-4 leading-tight tracking-tight">
+                  <h1 className="text-3xl md:text-[40px] font-serif font-bold text-[#1B2B3A] mb-4 leading-tight">
                     Franchise Readiness Assessment
                   </h1>
-                  <p className="text-base text-gray-400 max-w-md mx-auto">Discover how ready you are for franchise ownership in just 3 minutes.</p>
+                  <p className="text-base text-gray-400 max-w-md mx-auto tracking-wide">Discover how ready you are for franchise ownership in just 3 minutes.</p>
                 </div>
 
                 <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
@@ -354,7 +354,7 @@ export default function FranchiseAssessment() {
                       <p className="text-xs text-gray-400">Franchise Advisor • Charleston, SC</p>
                     </div>
                   </div>
-                  <p className="text-gray-500 leading-relaxed mb-8 text-[15px]">
+                  <p className="text-gray-500 leading-relaxed mb-8 text-[15px] tracking-wide">
                     This assessment evaluates five key dimensions of franchise readiness. Your responses are confidential and will be used to generate a personalized readiness score.
                   </p>
 
@@ -401,7 +401,7 @@ export default function FranchiseAssessment() {
                 <div className="bg-white rounded-xl p-4 mb-6 mt-4 border border-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-[10px] font-semibold tracking-widest uppercase text-[#D4AF37] mb-0.5">Your Readiness Score</p>
+                      <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#D4AF37] mb-0.5">Your Readiness Score</p>
                       <p className="text-2xl font-bold text-[#1B2B3A]">{Math.round((totalScore / maxScore) * 100)}<span className="text-sm font-normal text-gray-300">/100</span></p>
                     </div>
                     <ScoreRing score={totalScore} maxScore={maxScore} />
@@ -410,7 +410,7 @@ export default function FranchiseAssessment() {
 
                 <div className="flex items-center gap-2.5 mb-2">
                   <span className="text-[#D4AF37]">{sectionIcons[questions[currentStep].sectionIcon]}</span>
-                  <span className="text-xs font-semibold tracking-wider uppercase text-gray-400">
+                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-400">
                     {questions[currentStep].section}
                   </span>
                 </div>
@@ -418,7 +418,7 @@ export default function FranchiseAssessment() {
                   <span className="text-xs text-gray-300 font-medium">Question {currentStep + 1} of {totalSteps}</span>
                 </div>
 
-                <h2 className="text-2xl md:text-[28px] font-semibold text-[#1B2B3A] leading-snug tracking-tight mb-8">
+                <h2 className="text-2xl md:text-[28px] font-serif font-bold text-[#1B2B3A] leading-snug mb-8">
                   {questions[currentStep].text}
                 </h2>
 
@@ -463,7 +463,7 @@ export default function FranchiseAssessment() {
                       className="mb-8"
                     >
                       <div className="bg-[#1B2B3A]/[0.03] rounded-xl px-5 py-4 border border-[#1B2B3A]/[0.06]">
-                        <p className="text-xs font-semibold text-[#D4AF37] tracking-wider uppercase mb-1.5">Expert Insight</p>
+                        <p className="text-xs font-semibold text-[#D4AF37] tracking-[0.2em] uppercase mb-1.5">Expert Insight</p>
                         <p className="text-sm text-gray-500 leading-relaxed">{currentInsight}</p>
                       </div>
                     </motion.div>
@@ -527,8 +527,8 @@ export default function FranchiseAssessment() {
                 </div>
 
                 <div className="bg-[#1B2B3A] rounded-2xl p-8 md:p-10 text-center mb-6">
-                  <h3 className="text-2xl md:text-[26px] font-semibold text-white mb-3">Book Your Free Strategy Session</h3>
-                  <p className="text-gray-300 text-sm mb-6 leading-relaxed max-w-md mx-auto">
+                  <h3 className="text-2xl md:text-[26px] font-serif font-bold text-white mb-3">Book Your Free Strategy Session</h3>
+                  <p className="text-gray-300 text-sm mb-6 leading-relaxed max-w-md mx-auto tracking-wide">
                     {verdict.ctaText}
                   </p>
 
@@ -555,7 +555,7 @@ export default function FranchiseAssessment() {
                 </div>
 
                 <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
-                  <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">Score Breakdown</h3>
+                  <h3 className="text-sm font-serif font-bold text-[#1B2B3A] uppercase tracking-[0.15em] mb-5">Score Breakdown</h3>
                   <div className="space-y-5">
                     {Object.entries(sectionScores).map(([section, data], idx) => {
                       const pct = Math.round((data.earned / data.max) * 100);
@@ -580,7 +580,7 @@ export default function FranchiseAssessment() {
                 </div>
 
                 <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] border border-gray-100 mb-6">
-                  <h3 className="text-sm font-semibold text-[#1B2B3A] uppercase tracking-wider mb-5">What Happens Next</h3>
+                  <h3 className="text-sm font-serif font-bold text-[#1B2B3A] uppercase tracking-[0.15em] mb-5">What Happens Next</h3>
                   <div className="space-y-4">
                     {[
                       "Book your complimentary Strategy Session with Charles",
