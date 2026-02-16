@@ -27,7 +27,6 @@ export function BlackBookCTA() {
             />
           </motion.div>
 
-          {/* Right: Content */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -35,19 +34,19 @@ export function BlackBookCTA() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              What every franchisor prays you never read
+              Everything I Wish I Knew Before Buying My First Franchise
             </h2>
             <p className="text-xl text-gray-300 mb-6">
-              The Black Book of Franchising reveals the hidden truths about franchise investing—
-              <span className="text-secondary font-semibold"> the red flags, the exit traps, and the real numbers</span> behind Item 19.
+              I wrote The Black Book of Franchising from years of firsthand experience—
+              <span className="text-secondary font-semibold"> the lessons, the wins, and the hard-earned wisdom</span> that only comes from actually doing the work.
             </p>
 
             <ul className="space-y-3 mb-8">
               {[
-                "37 red-flag phrases in every FDD",
-                "Franchises where 60%+ of owners lost money",
-                "The renewal trap nobody talks about",
-                "Real exits: who made millions vs. who lost everything",
+                "How to read an FDD like a seasoned franchise owner",
+                "The financial benchmarks that separate great brands from average ones",
+                "What to ask existing franchisees (and what their answers really mean)",
+                "How to build a business that fits your life—not the other way around",
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-gray-200">
                   <span className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></span>
@@ -57,18 +56,18 @@ export function BlackBookCTA() {
             </ul>
 
             <p className="text-sm text-gray-400 mb-8">
-              Free PDF. Zero spam. Just the truth.
+              Free guide. No strings attached. Just the knowledge I wish someone had handed me on day one.
             </p>
 
             <Link href="/free-franchise-guide">
               <Button className="bg-secondary hover:bg-secondary/90 text-primary font-bold text-lg h-12 px-8 group">
-                Get The Black Book
+                Download Your Free Copy
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
             <p className="text-xs text-gray-500 mt-6">
-              Download instantly after providing your email
+              Instant download — just enter your email
             </p>
           </motion.div>
         </div>
