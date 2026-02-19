@@ -79,9 +79,9 @@ export default function Speaking() {
               <div className="sticky top-10">
                 <div className="aspect-square bg-gray-700 rounded-2xl mb-6 overflow-hidden shadow-2xl border-2 border-[#D4AF37]/30">
                   <img
-                    src="/charles-headshot.jpeg"
+                    src="/charles-speaking-headshot.png"
                     alt="Charles Stovall — Franchise Consultant & Multi-Unit Owner"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     data-testid="img-charles-speaking"
                   />
                 </div>
