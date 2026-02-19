@@ -53,9 +53,14 @@ export default function Blog() {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">Franchise Insights & Resources</h1>
-            <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
+            <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">
               Expert articles and guides to help you navigate the franchise ownership journey with confidence.
             </p>
+            <Link href="/speaking">
+              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold h-12 px-8">
+                Book Charles for Your Podcast
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
