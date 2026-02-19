@@ -46,7 +46,7 @@ export default function Blog() {
       />
       <Navbar />
       
-      <section className="pt-48 pb-20 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
+      <section className="pt-80 pb-20 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
