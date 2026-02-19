@@ -50,7 +50,7 @@ export function HowItWorks() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4"
           >
-            How It Works
+            The Franchise Friend Proven Process
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
