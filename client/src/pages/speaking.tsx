@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink, Instagram, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const stats = [
@@ -114,9 +114,19 @@ export default function Speaking() {
                 <div className="border-t border-gray-700 pt-6">
                   <p className="text-xs uppercase tracking-widest text-gray-500 mb-4 font-semibold">Connect</p>
                   <div className="space-y-3">
+                    <a href="https://www.charlesstovall.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-website">
+                      <Globe size={18} />
+                      charlesstovall.com
+                      <ExternalLink size={12} className="ml-auto" />
+                    </a>
                     <a href="https://www.linkedin.com/in/charlesstovall/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-linkedin">
                       <Linkedin size={18} />
                       LinkedIn
+                      <ExternalLink size={12} className="ml-auto" />
+                    </a>
+                    <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-instagram">
+                      <Instagram size={18} />
+                      Instagram
                       <ExternalLink size={12} className="ml-auto" />
                     </a>
                     <a href="/podcasts" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-podcast">
@@ -266,8 +276,14 @@ export default function Speaking() {
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-700 flex flex-wrap justify-center gap-6">
+              <a href="https://www.charlesstovall.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+                <Globe size={16} /> Website
+              </a>
               <a href="https://www.linkedin.com/in/charlesstovall/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Linkedin size={16} /> LinkedIn
+              </a>
+              <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+                <Instagram size={16} /> Instagram
               </a>
               <a href="/podcasts" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Podcast size={16} /> Franchise Friend Podcast
