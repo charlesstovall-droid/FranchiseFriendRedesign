@@ -27,11 +27,13 @@ import ThankYouAd from "@/pages/thank-you-ad";
 import BlackbookLanding from "@/pages/blackbook-landing";
 import ThankYouBlackbook from "@/pages/thank-you-blackbook";
 import FranchiseAssessment from "@/pages/franchise-assessment";
+import Speaking from "@/pages/speaking";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/speaking" component={Speaking} />
       <Route path="/franchise-brands" component={FranchiseBrands} />
       <Route path="/podcasts" component={PodcastsPage} />
       <Route path="/podcast-admin" component={PodcastAdmin} />
