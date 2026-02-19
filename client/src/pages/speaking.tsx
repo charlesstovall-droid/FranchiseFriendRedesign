@@ -119,7 +119,7 @@ export default function Speaking() {
                       charlesstovall.com
                       <ExternalLink size={12} className="ml-auto" />
                     </a>
-                    <a href="https://www.linkedin.com/in/charlesstovall/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-linkedin">
+                    <a href="https://www.linkedin.com/in/charles-stovall-681b6110/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-linkedin">
                       <Linkedin size={18} />
                       LinkedIn
                       <ExternalLink size={12} className="ml-auto" />
@@ -279,7 +279,7 @@ export default function Speaking() {
               <a href="https://www.charlesstovall.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Globe size={16} /> Website
               </a>
-              <a href="https://www.linkedin.com/in/charlesstovall/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+              <a href="https://www.linkedin.com/in/charles-stovall-681b6110/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Linkedin size={16} /> LinkedIn
               </a>
               <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
