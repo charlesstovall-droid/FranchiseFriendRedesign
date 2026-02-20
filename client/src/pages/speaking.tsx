@@ -248,6 +248,32 @@ export default function Speaking() {
         </div>
       </div>
 
+      <div className="bg-white py-20 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-[#D4AF37] text-xs font-semibold tracking-[0.2em] uppercase">Watch Charles in Action</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1B2B3A] mt-3">Featured Appearance</h2>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-900">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/vjY0zwkOb4s"
+                title="Charles Stovall - Franchise Expert Appearance"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 italic">"Charles brings a level of raw, unfiltered truth to the franchise conversation that is refreshing and necessary."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-[#1B2B3A] py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
@@ -276,6 +302,9 @@ export default function Speaking() {
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-700 flex flex-wrap justify-center gap-6">
+              <a href="https://www.youtube.com/watch?v=vjY0zwkOb4s" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+                <Podcast size={16} /> Featured Appearance
+              </a>
               <a href="https://www.charlesstovall.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Globe size={16} /> Website
               </a>
