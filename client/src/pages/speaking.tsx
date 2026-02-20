@@ -254,7 +254,7 @@ export default function Speaking() {
             <span className="text-[#D4AF37] text-xs font-semibold tracking-[0.2em] uppercase">Watch Charles in Action</span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1B2B3A] mt-3">Featured Appearance</h2>
           </div>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-12">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-900">
               <iframe
                 width="100%"
@@ -267,6 +267,20 @@ export default function Speaking() {
                 className="w-full h-full"
               ></iframe>
             </div>
+
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-900">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/ZlKO6umW7pO88Bjyj"
+                title="Charles Stovall - Podcast Appearance"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+
             <div className="mt-8 text-center">
               <p className="text-gray-600 italic">"Charles brings a level of raw, unfiltered truth to the franchise conversation that is refreshing and necessary."</p>
             </div>
@@ -303,7 +317,10 @@ export default function Speaking() {
 
             <div className="mt-12 pt-8 border-t border-gray-700 flex flex-wrap justify-center gap-6">
               <a href="https://www.youtube.com/watch?v=vjY0zwkOb4s" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
-                <Podcast size={16} /> Featured Appearance
+                <Podcast size={16} /> Featured Appearance 1
+              </a>
+              <a href="https://share.google/ZlKO6umW7pO88Bjyj" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+                <Podcast size={16} /> Featured Appearance 2
               </a>
               <a href="https://www.charlesstovall.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Globe size={16} /> Website
