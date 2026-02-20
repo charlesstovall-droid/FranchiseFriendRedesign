@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Youtube, Instagram, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -66,6 +66,17 @@ export function Navbar() {
                 Book Consultation
               </Button>
             </a>
+            <div className="flex items-center gap-4 ml-4 border-l border-border/40 pl-4">
+              <a href="https://www.youtube.com/@yourfranchisefriend" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-pop transition-colors" title="YouTube">
+                <Youtube size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/charles-stovall/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-pop transition-colors" title="LinkedIn">
+                <Linkedin size={18} />
+              </a>
+              <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-pop transition-colors" title="Instagram">
+                <Instagram size={18} />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

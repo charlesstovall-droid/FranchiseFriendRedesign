@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink, Instagram, Globe } from "lucide-react";
+import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink, Instagram, Globe, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const stats = [
@@ -127,6 +127,11 @@ export default function Speaking() {
                     <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-instagram">
                       <Instagram size={18} />
                       Instagram
+                      <ExternalLink size={12} className="ml-auto" />
+                    </a>
+                    <a href="https://www.youtube.com/@yourfranchisefriend" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-youtube">
+                      <Youtube size={18} />
+                      YouTube Channel
                       <ExternalLink size={12} className="ml-auto" />
                     </a>
                     <a href="/podcasts" className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors text-sm" data-testid="link-podcast">
@@ -330,6 +335,9 @@ export default function Speaking() {
               </a>
               <a href="https://www.instagram.com/thefranchisefriend" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Instagram size={16} /> Instagram
+              </a>
+              <a href="https://www.youtube.com/@yourfranchisefriend" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
+                <Youtube size={16} /> YouTube
               </a>
               <a href="/podcasts" className="text-gray-500 hover:text-[#D4AF37] transition-colors text-sm flex items-center gap-2">
                 <Podcast size={16} /> Franchise Friend Podcast
