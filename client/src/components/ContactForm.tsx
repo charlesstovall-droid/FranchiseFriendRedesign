@@ -14,7 +14,8 @@ interface ContactFormProps {
 
 export function ContactForm({ leadType, buttonText = "Submit", compact = false }: ContactFormProps) {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     message: "",
@@ -27,7 +28,10 @@ export function ContactForm({ leadType, buttonText = "Submit", compact = false }
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...data,
+          name: `${data.firstName} ${data.lastName}`.trim(),
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
           leadType,
         }),
       });
@@ -44,7 +48,7 @@ export function ContactForm({ leadType, buttonText = "Submit", compact = false }
         title: "Success!",
         description: "Thank you for your interest. We'll be in touch soon.",
       });
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
     },
     onError: (error: Error) => {
       toast({
@@ -86,14 +90,22 @@ export function ContactForm({ leadType, buttonText = "Submit", compact = false }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
+      <div className="grid grid-cols-2 gap-3">
         <Input
           type="text"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
           required
-          data-testid="input-name"
+          data-testid="input-first-name"
+        />
+        <Input
+          type="text"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+          required
+          data-testid="input-last-name"
         />
       </div>
       

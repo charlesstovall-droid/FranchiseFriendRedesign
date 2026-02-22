@@ -32,7 +32,7 @@ const testimonials = [
 
 export default function ExecutiveLanding() {
   const [, setLocation] = useLocation();
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -45,14 +45,14 @@ export default function ExecutiveLanding() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.name,
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
           email: formData.email,
           phone: formData.phone,
           message: "Executive Landing - Free Franchise Fit Assessment",
           leadType: "executive-ad",
         }),
       });
-      setLocation(`/franchise-assessment?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`);
+      setLocation(`/franchise-assessment?name=${encodeURIComponent(`${formData.firstName} ${formData.lastName}`.trim())}&email=${encodeURIComponent(formData.email)}`);
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
@@ -138,15 +138,26 @@ export default function ExecutiveLanding() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                    placeholder="Enter your first name"
-                    data-testid="input-name"
-                  />
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="text"
+                      required
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
+                      placeholder="First Name"
+                      data-testid="input-first-name"
+                    />
+                    <input
+                      type="text"
+                      required
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
+                      placeholder="Last Name"
+                      data-testid="input-last-name"
+                    />
+                  </div>
                   <input
                     type="email"
                     required
