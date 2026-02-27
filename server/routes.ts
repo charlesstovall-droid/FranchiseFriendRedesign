@@ -259,6 +259,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
       
+      // Send to LeadConnector webhook
+      try {
+        await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/08191fc3-c4e5-483a-993b-2adc731a01b2", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: validatedData.phone || "",
+            message: validatedData.message || "",
+            leadType: validatedData.leadType,
+            source: "charlesstovall.com",
+          }),
+        });
+        console.log(`[Webhook] LeadConnector webhook fired for ${validatedData.leadType} lead`);
+      } catch (webhookError) {
+        console.error("[Webhook] Error sending to LeadConnector:", webhookError);
+      }
+
       // Send email notification to Charles using Gmail
       try {
         console.log(`[Email] Attempting to send lead notification for ${validatedData.leadType} lead from ${validatedData.name}`);
