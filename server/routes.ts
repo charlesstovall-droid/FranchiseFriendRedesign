@@ -298,7 +298,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       try {
-        const webhookResponse = await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/41d21995-88f1-42e8-934d-e0ba9cb61cd1", {
+        const webhookResponse = await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/3c0fe0ed-c3c0-46d2-8a04-a8fc140ffd6f", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
