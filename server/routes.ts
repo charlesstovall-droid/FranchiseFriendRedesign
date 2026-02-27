@@ -261,7 +261,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send to LeadConnector webhook
       try {
-        await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/08191fc3-c4e5-483a-993b-2adc731a01b2", {
+        await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/41d21995-88f1-42e8-934d-e0ba9cb61cd1", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
