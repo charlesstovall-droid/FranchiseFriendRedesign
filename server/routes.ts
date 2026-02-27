@@ -296,6 +296,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
       }
+
+      try {
+        const webhookResponse = await fetch("https://services.leadconnectorhq.com/hooks/YKqvXX2cVlnW9pthrGCU/webhook-trigger/41d21995-88f1-42e8-934d-e0ba9cb61cd1", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: validatedData.phone || "",
+            message: validatedData.message || "",
+            leadType: validatedData.leadType,
+          }),
+        });
+        console.log(`[Webhook] Lead data sent to LeadConnector - Status: ${webhookResponse.status}`);
+      } catch (webhookError) {
+        console.error("[Webhook] Error sending lead to LeadConnector:", webhookError);
+      }
       
       res.json({ success: true, lead });
     } catch (error: any) {
