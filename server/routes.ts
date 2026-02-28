@@ -269,6 +269,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           newsletter: "Newsletter Signup",
           "black-book": "Black Book Download",
           "executive-ad": "Executive Ad Landing Page",
+          "home-based-ad": "Home-Based Franchise Landing Page",
+          "home-based-guide": "Home-Based Franchise Guide Download",
         };
 
         const htmlContent = `

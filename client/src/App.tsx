@@ -28,6 +28,7 @@ import BlackbookLanding from "@/pages/blackbook-landing";
 import ThankYouBlackbook from "@/pages/thank-you-blackbook";
 import FranchiseAssessment from "@/pages/franchise-assessment";
 import Speaking from "@/pages/speaking";
+import HomeBasedFranchises from "@/pages/home-based-franchises";
 
 function Router() {
   return (
@@ -55,6 +56,7 @@ function Router() {
       <Route path="/franchise-assessment" component={FranchiseAssessment} />
       <Route path="/free-franchise-guide" component={BlackbookLanding} />
       <Route path="/thank-you-franchise-guide" component={ThankYouBlackbook} />
+      <Route path="/home-based-franchises" component={HomeBasedFranchises} />
       <Route component={NotFound} />
     </Switch>
   );

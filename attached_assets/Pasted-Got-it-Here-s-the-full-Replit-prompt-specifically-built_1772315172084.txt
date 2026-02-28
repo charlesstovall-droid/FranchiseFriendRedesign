@@ -1,0 +1,198 @@
+Got it! Here's the full Replit prompt specifically built for a home-based / in-home franchise landing page — laser-focused to match Google Ads search intent so visitors land on exactly what they searched for:
+🚀 Replit Prompt: Home-Based Franchise Landing Page for Charles Stovall
+
+Build me a high-converting, single-page lead generation landing page for Charles Stovall, a Franchise Advisor. This page is specifically designed for Google Ads traffic from people searching for "home-based franchise opportunities", "work from home franchise", "home service franchise", and similar terms. The goal is to capture leads who want to run a business from home or operate a home services franchise. Here are all the details:
+BRANDING & STYLE
+
+Color palette: Deep navy (#1a2332), gold/amber (#c9a84c), white, light gray
+Font: Playfair Display for headlines, Inter for body text
+Tone: Warm, aspirational, freedom-focused — speak to people who want flexibility AND income
+Feel: "This is attainable" — not corporate, not intimidating
+
+
+GOOGLE ADS ALIGNMENT (Critical)
+
+The page headline must mirror the ad copy so visitors feel an instant match
+Primary keyword theme: "Home-Based Franchise Opportunities"
+Secondary themes: work from home, low overhead, flexible schedule, no storefront needed, run from laptop, family-friendly business
+URL slug suggestion: /home-based-franchises
+
+
+SECTION 1 — HERO (Above the Fold)
+
+Sticky top bar: Phone number (919) 827-3921 + text: "Free Consultation — No Obligation — Limited Spots"
+Left side headline: "Run a Profitable Franchise From Home — No Office, No Storefront, No Commute."
+Sub-headline: "Discover the top home-based and in-home service franchises that let you build real wealth on your own schedule — with expert guidance at zero cost to you."
+3 trust badges in a row:
+
+🏠 "Home-Based Friendly"
+💰 "Investments Starting at $50K"
+⭐ "500+ Concepts Vetted"
+
+
+Right side: Opt-in form with ONLY 3 fields — First Name, Email, Phone
+CTA button (gold): "Show Me Home-Based Franchise Options →"
+Below button: "🔒 Free. Confidential. No pressure — ever."
+Add a rolling urgency line: "⚠️ Charles only takes 5 new clients per month — [X] spots remaining"
+
+
+SECTION 2 — WHAT IS A HOME-BASED FRANCHISE? (Education)
+
+Headline: "What Exactly Is a Home-Based Franchise — And Why Are So Many People Choosing Them?"
+2-column layout explaining:
+
+Left: Short, plain-English explanation: A home-based franchise lets you operate a real, proven business without a physical storefront. You work from home, manage a team remotely or in the field, and follow a proven system.
+Right: 4 bullet icons showing benefits:
+
+🏠 No lease, no retail overhead
+📅 Set your own schedule
+🛠️ In-demand services people always need
+📈 Scalable — start solo, grow a team
+
+
+
+
+Include a note: "These aren't MLMs or side hustles. These are real, scalable businesses backed by billion-dollar brands."
+
+
+SECTION 3 — FRANCHISE CATEGORY CARDS (The Hook)
+
+Headline: "Popular Home-Based & In-Home Franchise Categories Charles Helps Clients Explore"
+Grid of 6 visually distinct category cards with icons:
+
+🏠 Home Services — cleaning, restoration, painting, handyman
+🌿 Lawn & Landscaping — recurring revenue, low startup cost
+🧒 In-Home Tutoring & Education — recession-resistant
+🐾 Pet Care & Dog Training — booming market
+💆 Senior Care & Home Health — fastest growing sector
+🔧 Home Repair & Inspection — high ticket, low competition
+
+
+Below cards: "Not sure which fits you? That's exactly what Charles helps you figure out — for free."
+
+
+SECTION 4 — AGITATION (Pain Points)
+
+Dark navy background
+Headline: "Still Trading Time for a Paycheck That Was Never Really Yours?"
+4 pain point cards with red X icons:
+
+"Paying rent on an office or storefront you barely use"
+"Commuting hours every day that add up to months of your life"
+"A boss who controls your income ceiling"
+"No equity, no ownership, nothing to show after years of work"
+
+
+Bold transition: "A home-based franchise gives you the system, the brand, and the freedom — you just run it."
+
+
+SECTION 5 — MEET CHARLES (Trust & Authority)
+
+Photo of Charles on the left
+Right side headline: "Your Guide to Finding the Right Home-Based Franchise"
+4 credibility points with gold checkmarks:
+
+15+ years as a dedicated franchise advisor
+Personally vetted 500+ franchise brands including dozens of home-based concepts
+FranChoice certified — the highest standard in franchise consulting
+His service costs you nothing — he's paid by franchisors only
+
+
+Pull quote in large italic text: "My job isn't to sell you a franchise. It's to make sure you never buy the wrong one."
+Video embed placeholder labeled: "Watch: How a Former Teacher Replaced Her Income With a Home-Based Franchise in 8 Months"
+
+
+SECTION 6 — THE PROCESS
+
+Headline: "Here's How We Find Your Perfect Home-Based Franchise in 3 Simple Steps"
+3 horizontal step cards:
+
+Free Discovery Call (30 min) — "Tell Charles your budget, schedule preferences, and income goals"
+Your Custom Match Report — "Get 3-5 hand-picked home-based franchises with real earnings data"
+Decision With Confidence — "Charles guides you through due diligence — no pressure, no rush"
+
+
+Below: "Most clients go from curious to confident in under 30 days — at zero cost."
+
+
+SECTION 7 — TESTIMONIALS
+
+3 testimonial cards focused on home-based/lifestyle outcomes:
+
+"I went from a 90-minute daily commute to running my business from my kitchen table. Charles found me a home services franchise that replaced my salary in year one." — Jennifer R., Former Marketing Manager
+"I was skeptical that a 'real' business could run from home. Charles proved me wrong — I now run a 6-figure in-home tutoring franchise." — Marcus T., Former School Administrator
+"The best part is picking my kids up from school every day. Charles matched me with a pet care franchise that fits my life perfectly." — Lisa K., Former HR Director
+
+
+Stats bar below: "150+ Clients Placed | Home-Based Concepts Available in All 50 States | $0 Advisor Fee"
+
+
+SECTION 8 — LEAD MAGNET (Second Capture)
+
+Headline: "Free Download: The 2026 Guide to the Top 10 Home-Based Franchises Under $100K"
+5 bullet teaser items:
+
+"The #1 home services franchise with 90%+ owner satisfaction"
+"3 under-the-radar concepts with 6-figure Year 1 potential"
+"How to evaluate a home-based FDD in under 2 hours"
+"The funding options most people don't know exist"
+"Red flags to avoid in any home-based franchise agreement"
+
+
+Email-only opt-in form
+CTA: "Send Me the Free Guide →"
+
+
+SECTION 9 — FAQ
+
+Accordion style, 6 questions:
+
+"Are home-based franchises legitimate businesses?" → Yes, with real brand power
+"How much does it cost to get started?" → Options from $50K–$150K
+"Does Charles cost anything?" → Absolutely $0 to candidates
+"Can I run this while still employed?" → Many clients do
+"Do I need industry experience?" → No — the franchise provides training
+"How fast can I be up and running?" → Typically 60–120 days
+
+
+
+
+SECTION 10 — FINAL CTA
+
+Navy background, full-width
+Headline: "Your Home. Your Business. Your Freedom. It Starts With One Free Call."
+Gold button: "Book My Free Home-Based Franchise Consultation →"
+Urgency line: "⚠️ Only 5 spots open this month — don't wait"
+Calendly embed or redirect to booking link
+
+
+SECTION 11 — FOOTER
+
+Logo, email: CStovall@FranChoice.com, phone: (919) 827-3921, Charleston, SC
+Links: Main Site | Executive Access | Free Franchise Guide
+Legal disclaimer: "Results vary. Franchise investments involve risk. Charles Stovall is a FranChoice certified advisor."
+Copyright 2026
+
+
+TECHNICAL REQUIREMENTS
+
+Mobile-first, fully responsive
+Page load under 2 seconds
+Form submissions fire to EmailJS or webhook → Google Sheet or CRM
+Meta Pixel + Google Tag Manager placeholders in <head>
+Google Ads conversion tracking pixel placeholder on form submit
+Smooth scroll-in animations on each section
+Floating gold "Book a Free Call" button bottom-right on scroll
+All CTAs gold with navy text, hover darkens
+Page URL: /home-based-franchises
+
+
+CONVERSION PSYCHOLOGY BAKED IN
+
+Keyword mirroring — headline matches what they Googled (critical for Quality Score + conversions)
+Education first — section 2 builds trust before asking for anything
+Category cards — lets visitors self-identify their interest, increasing engagement
+Scarcity — 5 spots/month mentioned multiple times
+Two opt-in opportunities — hero form + lead magnet for different readiness levels
+Zero cost emphasis — mentioned in hero, process, FAQ, and footer
+
