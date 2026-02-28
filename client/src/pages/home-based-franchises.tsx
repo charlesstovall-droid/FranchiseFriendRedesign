@@ -4,12 +4,38 @@ import { Phone, Home, DollarSign, Star, X, Check, ChevronDown, ChevronUp, Leaf, 
 import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
-  { icon: Home, title: "Home Services", desc: "Cleaning, restoration, painting, handyman — essential services homeowners always need." },
-  { icon: Leaf, title: "Lawn & Landscaping", desc: "Recurring revenue, low startup cost, and year-round demand in most markets." },
-  { icon: GraduationCap, title: "In-Home Tutoring & Education", desc: "Recession-resistant demand as parents invest in their children's future." },
-  { icon: Dog, title: "Pet Care & Dog Training", desc: "A booming $150B+ industry with passionate, repeat customers." },
-  { icon: Heart, title: "Senior Care & Home Health", desc: "The fastest-growing sector in franchising as 10,000 Boomers turn 65 daily." },
-  { icon: Wrench, title: "Home Repair & Inspection", desc: "High-ticket services with low competition in most local markets." },
+  { icon: Home, title: "Home Services", desc: "Cleaning, restoration, painting, handyman — essential services homeowners always need.", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop" },
+  { icon: Leaf, title: "Lawn & Landscaping", desc: "Recurring revenue, low startup cost, and year-round demand in most markets.", img: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=250&fit=crop" },
+  { icon: GraduationCap, title: "In-Home Tutoring & Education", desc: "Recession-resistant demand as parents invest in their children's future.", img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop" },
+  { icon: Dog, title: "Pet Care & Dog Training", desc: "A booming $150B+ industry with passionate, repeat customers.", img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=250&fit=crop" },
+  { icon: Heart, title: "Senior Care & Home Health", desc: "The fastest-growing sector in franchising as 10,000 Boomers turn 65 daily.", img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=400&h=250&fit=crop" },
+  { icon: Wrench, title: "Home Repair & Inspection", desc: "High-ticket services with low competition in most local markets.", img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=250&fit=crop" },
+];
+
+const mediaLogos = [
+  "Entrepreneur Magazine",
+  "Forbes",
+  "Inc. 500",
+  "Fox Business",
+  "Business Insider",
+];
+
+const franchiseBrands = [
+  "MaidPro",
+  "Mosquito Joe",
+  "Lawn Doctor",
+  "Kumon",
+  "BrightStar Care",
+  "Cruise Planners",
+  "Dream Vacations",
+  "Junk King",
+  "Servpro",
+  "Jan-Pro",
+  "Stratus Building Solutions",
+  "Paul Davis Restoration",
+  "HomeVestors",
+  "Pillar To Post",
+  "Budget Blinds",
 ];
 
 const painPoints = [
@@ -26,9 +52,9 @@ const steps = [
 ];
 
 const testimonials = [
-  { quote: "I went from a 90-minute daily commute to running my business from my kitchen table. Charles found me a home services franchise that replaced my salary in year one.", name: "Jennifer R.", title: "Former Marketing Manager" },
-  { quote: "I was skeptical that a 'real' business could run from home. Charles proved me wrong — I now run a 6-figure in-home tutoring franchise.", name: "Marcus T.", title: "Former School Administrator" },
-  { quote: "The best part is picking my kids up from school every day. Charles matched me with a pet care franchise that fits my life perfectly.", name: "Lisa K.", title: "Former HR Director" },
+  { quote: "I went from a 90-minute daily commute to running my business from my kitchen table. Charles found me a home services franchise that replaced my salary in year one.", name: "Jennifer R.", title: "Former Marketing Manager", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face" },
+  { quote: "I was skeptical that a 'real' business could run from home. Charles proved me wrong — I now run a 6-figure in-home tutoring franchise.", name: "Marcus T.", title: "Former School Administrator", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" },
+  { quote: "The best part is picking my kids up from school every day. Charles matched me with a pet care franchise that fits my life perfectly.", name: "Lisa K.", title: "Former HR Director", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face" },
 ];
 
 const faqItems = [
@@ -132,8 +158,11 @@ export default function HomeBasedFranchises() {
       </a>
 
       {/* SECTION 1 — HERO */}
-      <section className="bg-gradient-to-br from-[#1a2332] to-[#0f1922] min-h-[90vh] flex items-center py-16 lg:py-20">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full">
+      <section className="relative bg-gradient-to-br from-[#1a2332] to-[#0f1922] min-h-[90vh] flex items-center py-16 lg:py-20 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop" alt="" className="w-full h-full object-cover opacity-10" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.15] mb-6">
@@ -256,6 +285,42 @@ export default function HomeBasedFranchises() {
         </div>
       </section>
 
+      {/* AS SEEN IN BAR */}
+      <section className="py-8 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <p className="text-center text-xs uppercase tracking-[3px] text-gray-400 font-['Inter'] font-semibold mb-6">As Seen In</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
+            {mediaLogos.map((name, i) => (
+              <div key={i} className="text-gray-300 hover:text-[#1a2332] transition-colors cursor-default" data-testid={`media-logo-${i}`}>
+                <span className="font-['Playfair_Display'] text-lg md:text-xl font-bold italic">{name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FRANCHISE BRAND LOGO TICKER */}
+      <section className="py-10 bg-gray-50 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6">
+          <p className="text-center text-sm uppercase tracking-[2px] text-gray-500 font-['Inter'] font-semibold">
+            A Sample of Home-Based Franchise Brands We Work With
+          </p>
+        </div>
+        <div className="relative">
+          <div className="flex animate-ticker">
+            {[...franchiseBrands, ...franchiseBrands].map((brand, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 mx-4 w-[180px] h-[70px] bg-white border border-gray-200 rounded-xl flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:border-[#c9a84c]/40 hover:shadow-md cursor-default"
+                data-testid={`brand-logo-${i}`}
+              >
+                <span className="font-['Inter'] text-sm font-semibold text-gray-600 text-center px-3">{brand}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 3 — CATEGORY CARDS */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
@@ -273,14 +338,21 @@ export default function HomeBasedFranchises() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } } }}
-                className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#c9a84c]/40 hover:shadow-lg transition-all group"
+                className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:border-[#c9a84c]/40 hover:shadow-lg transition-all group"
                 data-testid={`card-category-${i}`}
               >
-                <div className="w-14 h-14 rounded-xl bg-[#1a2332] flex items-center justify-center mb-4 group-hover:bg-[#c9a84c] transition-colors">
-                  <cat.icon size={26} className="text-[#c9a84c] group-hover:text-[#1a2332] transition-colors" />
+                <div className="h-40 overflow-hidden">
+                  <img src={cat.img} alt={cat.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <h3 className="font-['Playfair_Display'] text-xl font-bold text-[#1a2332] mb-2">{cat.title}</h3>
-                <p className="text-gray-600 text-sm font-['Inter'] leading-relaxed">{cat.desc}</p>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-lg bg-[#1a2332] flex items-center justify-center group-hover:bg-[#c9a84c] transition-colors flex-shrink-0">
+                      <cat.icon size={20} className="text-[#c9a84c] group-hover:text-[#1a2332] transition-colors" />
+                    </div>
+                    <h3 className="font-['Playfair_Display'] text-lg font-bold text-[#1a2332]">{cat.title}</h3>
+                  </div>
+                  <p className="text-gray-600 text-sm font-['Inter'] leading-relaxed">{cat.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -438,9 +510,12 @@ export default function HomeBasedFranchises() {
                   {[...Array(5)].map((_, j) => <Star key={j} size={16} className="fill-[#c9a84c] text-[#c9a84c]" />)}
                 </div>
                 <p className="text-gray-700 font-['Inter'] text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
-                <div>
-                  <p className="font-bold text-[#1a2332] font-['Inter'] text-sm">{t.name}</p>
-                  <p className="text-gray-500 text-xs font-['Inter']">{t.title}</p>
+                <div className="flex items-center gap-3">
+                  <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
+                  <div>
+                    <p className="font-bold text-[#1a2332] font-['Inter'] text-sm">{t.name}</p>
+                    <p className="text-gray-500 text-xs font-['Inter']">{t.title}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
