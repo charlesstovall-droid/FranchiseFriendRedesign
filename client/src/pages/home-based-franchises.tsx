@@ -7,6 +7,7 @@ import logoEntrepreneur from "@assets/154-1547881_entrepreneur-logo-entrepreneur
 import logoForbes from "@assets/forbes-logo-11609361702nvjwui1s5f_1772318692086.png";
 import logoInc from "@assets/683-6834584_inc-500-hd-png-download_1772318692086.png";
 import logoFoxBusiness from "@assets/FS_FBN_logo_new_1772318692086.png";
+import logoBusinessInsider from "@assets/Business-Insider-Logo_1772318791523.png";
 import logoBudgetBlinds from "@assets/US-BudgetBlinds_Logo-No-Tagline_RGB_1772318628142.png";
 import logoPaulDavis from "@assets/friday-the-13th-ch-ch-ch-ah-ah-ah-paul-davis-restoration-logo-_1772318628142.png";
 import logoStratus from "@assets/images_(1)_1772318628142.png";
@@ -29,7 +30,7 @@ const mediaLogos: { name: string; logo?: string }[] = [
   { name: "Forbes", logo: logoForbes },
   { name: "Inc. 5000", logo: logoInc },
   { name: "Fox Business", logo: logoFoxBusiness },
-  { name: "Business Insider" },
+  { name: "Business Insider", logo: logoBusinessInsider },
 ];
 
 const franchiseBrands: { name: string; logo?: string }[] = [
