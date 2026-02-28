@@ -3,6 +3,10 @@ import { useLocation } from "wouter";
 import { Phone, Home, DollarSign, Star, X, Check, ChevronDown, ChevronUp, Leaf, GraduationCap, Heart, Wrench, Dog, Calendar, TrendingUp, Shield, ArrowRight, Lock, AlertTriangle, Download, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import logoEntrepreneur from "@assets/154-1547881_entrepreneur-logo-entrepreneur-gray-logo_1772318692086.png";
+import logoForbes from "@assets/forbes-logo-11609361702nvjwui1s5f_1772318692086.png";
+import logoInc from "@assets/683-6834584_inc-500-hd-png-download_1772318692086.png";
+import logoFoxBusiness from "@assets/FS_FBN_logo_new_1772318692086.png";
 import logoBudgetBlinds from "@assets/US-BudgetBlinds_Logo-No-Tagline_RGB_1772318628142.png";
 import logoPaulDavis from "@assets/friday-the-13th-ch-ch-ch-ah-ah-ah-paul-davis-restoration-logo-_1772318628142.png";
 import logoStratus from "@assets/images_(1)_1772318628142.png";
@@ -20,12 +24,12 @@ const categories = [
   { icon: Wrench, title: "Home Repair & Inspection", desc: "High-ticket services with low competition in most local markets.", img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=250&fit=crop" },
 ];
 
-const mediaLogos = [
-  "Entrepreneur Magazine",
-  "Forbes",
-  "Inc. 500",
-  "Fox Business",
-  "Business Insider",
+const mediaLogos: { name: string; logo?: string }[] = [
+  { name: "Entrepreneur Magazine", logo: logoEntrepreneur },
+  { name: "Forbes", logo: logoForbes },
+  { name: "Inc. 5000", logo: logoInc },
+  { name: "Fox Business", logo: logoFoxBusiness },
+  { name: "Business Insider" },
 ];
 
 const franchiseBrands: { name: string; logo?: string }[] = [
@@ -298,9 +302,13 @@ export default function HomeBasedFranchises() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <p className="text-center text-xs uppercase tracking-[3px] text-gray-400 font-['Inter'] font-semibold mb-6">As Seen In</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
-            {mediaLogos.map((name, i) => (
-              <div key={i} className="text-gray-300 hover:text-[#1a2332] transition-colors cursor-default" data-testid={`media-logo-${i}`}>
-                <span className="font-['Playfair_Display'] text-lg md:text-xl font-bold italic">{name}</span>
+            {mediaLogos.map((media, i) => (
+              <div key={i} className="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default" data-testid={`media-logo-${i}`}>
+                {media.logo ? (
+                  <img src={media.logo} alt={media.name} className="h-8 md:h-10 object-contain" />
+                ) : (
+                  <span className="font-['Playfair_Display'] text-lg md:text-xl font-bold italic text-gray-400">{media.name}</span>
+                )}
               </div>
             ))}
           </div>
