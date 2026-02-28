@@ -3,6 +3,14 @@ import { useLocation } from "wouter";
 import { Phone, Home, DollarSign, Star, X, Check, ChevronDown, ChevronUp, Leaf, GraduationCap, Heart, Wrench, Dog, Calendar, TrendingUp, Shield, ArrowRight, Lock, AlertTriangle, Download, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import logoBudgetBlinds from "@assets/US-BudgetBlinds_Logo-No-Tagline_RGB_1772318628142.png";
+import logoPaulDavis from "@assets/friday-the-13th-ch-ch-ch-ah-ah-ah-paul-davis-restoration-logo-_1772318628142.png";
+import logoStratus from "@assets/images_(1)_1772318628142.png";
+import logoJanPro from "@assets/JAN-PRO®-Cleaning-Disinfecting-RGB-BlueGreen_1772318628142.png";
+import logoServpro from "@assets/429-4294474_servpro-logo-png-transparent-transparent-servpro-l_1772318628142.png";
+import logoJunkKing from "@assets/images_1772318628142.png";
+import logoBrightStar from "@assets/BSC-Primary-Logo-Full-Color_1772318628143.png";
+
 const categories = [
   { icon: Home, title: "Home Services", desc: "Cleaning, restoration, painting, handyman — essential services homeowners always need.", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop" },
   { icon: Leaf, title: "Lawn & Landscaping", desc: "Recurring revenue, low startup cost, and year-round demand in most markets.", img: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=250&fit=crop" },
@@ -20,22 +28,22 @@ const mediaLogos = [
   "Business Insider",
 ];
 
-const franchiseBrands = [
-  "MaidPro",
-  "Mosquito Joe",
-  "Lawn Doctor",
-  "Kumon",
-  "BrightStar Care",
-  "Cruise Planners",
-  "Dream Vacations",
-  "Junk King",
-  "Servpro",
-  "Jan-Pro",
-  "Stratus Building Solutions",
-  "Paul Davis Restoration",
-  "HomeVestors",
-  "Pillar To Post",
-  "Budget Blinds",
+const franchiseBrands: { name: string; logo?: string }[] = [
+  { name: "MaidPro" },
+  { name: "Mosquito Joe" },
+  { name: "Lawn Doctor" },
+  { name: "Kumon" },
+  { name: "BrightStar Care", logo: logoBrightStar },
+  { name: "Cruise Planners" },
+  { name: "Dream Vacations" },
+  { name: "Junk King", logo: logoJunkKing },
+  { name: "Servpro", logo: logoServpro },
+  { name: "Jan-Pro", logo: logoJanPro },
+  { name: "Stratus Building Solutions", logo: logoStratus },
+  { name: "Paul Davis Restoration", logo: logoPaulDavis },
+  { name: "HomeVestors" },
+  { name: "Pillar To Post" },
+  { name: "Budget Blinds", logo: logoBudgetBlinds },
 ];
 
 const painPoints = [
@@ -314,7 +322,11 @@ export default function HomeBasedFranchises() {
                 className="flex-shrink-0 mx-4 w-[180px] h-[70px] bg-white border border-gray-200 rounded-xl flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:border-[#c9a84c]/40 hover:shadow-md cursor-default"
                 data-testid={`brand-logo-${i}`}
               >
-                <span className="font-['Inter'] text-sm font-semibold text-gray-600 text-center px-3">{brand}</span>
+                {brand.logo ? (
+                  <img src={brand.logo} alt={brand.name} className="max-h-[45px] max-w-[150px] object-contain px-2" />
+                ) : (
+                  <span className="font-['Inter'] text-sm font-semibold text-gray-600 text-center px-3">{brand.name}</span>
+                )}
               </div>
             ))}
           </div>
