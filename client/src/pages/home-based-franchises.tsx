@@ -171,32 +171,47 @@ export default function HomeBasedFranchises() {
       </a>
 
       {/* SECTION 1 — HERO */}
-      <section className="relative bg-gradient-to-br from-[#1a2332] to-[#0f1922] min-h-[90vh] flex items-center py-16 lg:py-20 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop" alt="" className="w-full h-full object-cover opacity-10" />
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=80" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/95 via-[#1a2332]/85 to-[#1a2332]/70" />
         </div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+              <div className="inline-flex items-center gap-2 bg-[#c9a84c]/20 border border-[#c9a84c]/30 rounded-full px-4 py-1.5 mb-6">
+                <span className="w-2 h-2 bg-[#c9a84c] rounded-full animate-pulse" />
+                <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-['Inter']">Now Accepting New Clients</span>
+              </div>
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.15] mb-6">
                 Run a Profitable Franchise From Home — <span className="text-[#c9a84c]">No Office, No Storefront, No Commute.</span>
               </h1>
               <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 font-['Inter']">
                 Discover the top home-based and in-home service franchises that let you build real wealth on your own schedule — with expert guidance at zero cost to you.
               </p>
-              <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
-                  <Home size={18} className="text-[#c9a84c]" />
+              <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <Home size={16} className="text-[#c9a84c]" />
                   <span className="text-white text-sm font-medium font-['Inter']">Home-Based Friendly</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
-                  <DollarSign size={18} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Investments Starting at $50K</span>
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <DollarSign size={16} className="text-[#c9a84c]" />
+                  <span className="text-white text-sm font-medium font-['Inter']">Starting at $50K</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
-                  <Star size={18} className="text-[#c9a84c]" />
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <Star size={16} className="text-[#c9a84c]" />
                   <span className="text-white text-sm font-medium font-['Inter']">500+ Concepts Vetted</span>
                 </div>
+              </div>
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-video max-w-md">
+                <iframe
+                  src="https://www.youtube.com/embed?listType=user_uploads&list=yourfranchisefriend"
+                  title="Charles Stovall — Franchise Advisor"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  data-testid="hero-video"
+                />
               </div>
             </motion.div>
 
