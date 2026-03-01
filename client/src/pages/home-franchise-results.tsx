@@ -95,24 +95,6 @@ const franchises: Franchise[] = [
     fit: ["full-time", "semi-absentee", "flexible"],
   },
   {
-    name: "Woodhouse Spa",
-    category: "Luxury Day Spa",
-    description: "Woodhouse Spa delivers a premium, five-star spa experience. Franchisees own and operate a luxury day spa offering massages, facials, body treatments, and more in an upscale environment.",
-    investmentRange: "$300K – $600K",
-    ownershipModel: "Semi-absentee or executive model",
-    highlights: ["Premium brand with loyal clientele", "High average ticket per visit", "Recurring membership revenue"],
-    fit: ["executive", "semi-absentee"],
-  },
-  {
-    name: "Musicologie",
-    category: "Music Education",
-    description: "Musicologie offers private and group music lessons for students of all ages. Franchisees run a studio-based music school with professional instructors — a community-focused business with strong local engagement.",
-    investmentRange: "$150K – $250K",
-    ownershipModel: "Semi-absentee or owner-operator",
-    highlights: ["Passionate, engaged customer base", "Recurring monthly tuition model", "Community-driven brand"],
-    fit: ["full-time", "semi-absentee", "flexible"],
-  },
-  {
     name: "Fetch Pet Care",
     category: "Pet Care Services",
     description: "Fetch Pet Care provides professional pet sitting, dog walking, and overnight care. Franchisees manage a team of pet care providers in their territory — capitalizing on the booming $150B pet industry.",
@@ -255,7 +237,7 @@ export default function HomeFranchiseResults() {
                     Book a free call with Charles to learn more about this opportunity.
                   </p>
                   <a
-                    href="https://calendly.com/cstovall-franchoice/30min"
+                    href="https://calendly.com/charles-stovall/intro"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter']"
@@ -375,11 +357,11 @@ export default function HomeFranchiseResults() {
             <p className="text-gray-600 text-sm font-['Inter'] mb-6">
               Charles will walk you through these matches, answer your questions, and help you narrow down the best fit — all at zero cost.
             </p>
-            <div className="rounded-xl overflow-hidden border border-gray-200" style={{ minHeight: "650px" }}>
+            <div className="rounded-xl overflow-hidden border border-gray-200">
               <iframe
-                src="https://calendly.com/cstovall-franchoice/30min"
+                src="https://calendly.com/charles-stovall/intro"
                 className="w-full border-0"
-                style={{ height: "650px" }}
+                style={{ height: "400px" }}
                 title="Book a call with Charles"
                 data-testid="calendly-embed"
               />
