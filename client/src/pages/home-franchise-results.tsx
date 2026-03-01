@@ -347,24 +347,29 @@ export default function HomeFranchiseResults() {
 
       <div className="max-w-4xl mx-auto px-4 -mt-6">
         <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-10 border border-gray-100">
-            <div className="flex items-center gap-3 mb-4">
-              <Calendar size={22} className="text-[#c9a84c]" />
-              <h2 className="font-['Playfair_Display'] text-xl font-bold text-[#1a2332]">
-                Book Your Free Strategy Call
-              </h2>
-            </div>
-            <p className="text-gray-600 text-sm font-['Inter'] mb-6">
-              Charles will walk you through these matches, answer your questions, and help you narrow down the best fit — all at zero cost.
-            </p>
-            <div className="rounded-xl overflow-hidden border border-gray-200">
-              <iframe
-                src="https://calendly.com/charles-stovall/intro"
-                className="w-full border-0"
-                style={{ height: "400px" }}
-                title="Book a call with Charles"
-                data-testid="calendly-embed"
-              />
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-10 border border-gray-100">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#c9a84c]/10 flex items-center justify-center flex-shrink-0">
+                  <Calendar size={20} className="text-[#c9a84c]" />
+                </div>
+                <div>
+                  <h2 className="font-['Playfair_Display'] text-lg font-bold text-[#1a2332]">
+                    Ready to talk? Book your free call.
+                  </h2>
+                  <p className="text-gray-500 text-xs font-['Inter']">30 minutes, zero cost, zero pressure.</p>
+                </div>
+              </div>
+              <a
+                href="https://calendly.com/charles-stovall/intro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter'] text-sm"
+                data-testid="button-book-call"
+              >
+                <Calendar size={16} />
+                Book My Free Call
+              </a>
             </div>
           </div>
         </motion.div>
