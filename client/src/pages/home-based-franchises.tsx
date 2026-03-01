@@ -436,20 +436,20 @@ export default function HomeBasedFranchises() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <div className="aspect-[4/5] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden relative">
-                <img
-                  src="/charles-headshot.jpg"
-                  alt="Charles Stovall — Franchise Advisor"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/60 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-white font-bold text-xl font-['Playfair_Display']">Charles Stovall</p>
-                  <p className="text-gray-200 text-sm font-['Inter']">Franchise Advisor · Charleston, SC</p>
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                <div className="aspect-video">
+                  <iframe
+                    src="https://www.youtube.com/embed/videoseries?list=UUyourfranchisefriend"
+                    title="Watch: How a Home-Based Franchise Can Replace Your Income"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    data-testid="charles-video"
+                  />
+                </div>
+                <div className="bg-[#1a2332] px-6 py-4">
+                  <p className="text-white font-bold text-lg font-['Playfair_Display']">Charles Stovall</p>
+                  <p className="text-gray-300 text-sm font-['Inter']">Franchise Advisor · Charleston, SC</p>
                 </div>
               </div>
             </motion.div>
