@@ -114,7 +114,7 @@ export default function HomeBasedFranchises() {
       if (!response.ok) {
         throw new Error("Submission failed");
       }
-      setLocation("/franchise-assessment?name=" + encodeURIComponent(formData.firstName) + "&email=" + encodeURIComponent(formData.email));
+      setLocation("/home-franchise-results?name=" + encodeURIComponent(formData.firstName) + "&email=" + encodeURIComponent(formData.email));
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
