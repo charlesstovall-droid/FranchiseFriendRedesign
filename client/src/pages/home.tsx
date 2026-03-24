@@ -8,7 +8,6 @@ import { ReviewsSection } from "@/components/ReviewsSection";
 import { PodcastSection } from "@/components/PodcastSection";
 import { About } from "@/components/About";
 import { MeetCharlesFamily } from "@/components/MeetCharlesFamily";
-import { BlackBookCTA } from "@/components/BlackBookCTA";
 import { LatestInsights } from "@/components/LatestInsights";
 import { HomeFAQ } from "@/components/HomeFAQ";
 import { CTASection } from "@/components/CTASection";
@@ -35,7 +34,6 @@ export default function Home() {
         <PodcastSection />
         <About />
         <MeetCharlesFamily />
-        <BlackBookCTA />
         <HomeFAQ />
         <CTASection />
       </main>
