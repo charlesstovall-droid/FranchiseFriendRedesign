@@ -8,7 +8,6 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
     { name: "Speaking", href: "/speaking" },
     { name: "About", href: "#about" },
     { name: "Insights", href: "/blog" },
