@@ -3,94 +3,80 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import charlesPhoto from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
 
-
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-background via-background to-secondary/5">
-      {/* Background abstract shapes */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-secondary/10 via-transparent to-transparent -skew-x-12 translate-x-1/4 z-0" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl z-0" />
-      <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-accent-pop/5 rounded-full blur-3xl z-0" />
-      
-      {/* Animated dots pattern */}
-      <div className="absolute inset-0 opacity-30 z-0">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-secondary rounded-full animate-pulse" />
-        <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-1/4 left-1/2 w-2.5 h-2.5 bg-secondary/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+    <section className="relative min-h-screen flex items-center overflow-hidden border-b-4 border-[#1a2332]">
+      {/* Full-width background photo */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={charlesPhoto}
+          alt="Charles Stovall, Franchise Consultant"
+          className="w-full h-full object-cover object-top"
+        />
+        {/* Dark gradient overlay — strong on left for text legibility, fades right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/90 via-[#1a2332]/60 to-[#1a2332]/20" />
       </div>
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+
+      {/* Content */}
+      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 pb-16">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-2xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-pop/10 text-primary text-sm font-semibold mb-6 border border-accent-pop/20">
-            <span className="w-2 h-2 rounded-full bg-accent-pop" />
-            Nationwide
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/20 text-[#c9a84c] text-sm font-semibold mb-6 border border-[#c9a84c]/30 font-['Inter']">
+            <span className="w-2 h-2 rounded-full bg-[#c9a84c]" />
+            Nationwide Franchise Advisor
           </div>
-          
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-primary leading-[1.1] mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80">
-              Charles Stovall
-            </span>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-['Playfair_Display'] font-bold text-white leading-[1.1] mb-6">
+            <span className="text-[#c9a84c]">Charles Stovall</span>
             <br />
-            <span className="text-3xl md:text-4xl lg:text-5xl">Your Franchise Friend</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl text-white/90">Your Franchise Friend</span>
           </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
-            I guide people to franchise ownership with expertise, insight, and inside knowledge—helping you find the right opportunity, secure funding, and build lasting success.
+
+          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg leading-relaxed font-['Inter']">
+            I guide people to franchise ownership with expertise, insight, and inside knowledge — helping you find the right opportunity, secure funding, and build lasting success.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base px-8 h-12 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 transition-all">
+              <Button size="lg" className="bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base px-8 h-12 shadow-lg transition-all font-['Inter']">
                 Start Your Search
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </a>
-            <a href="#services">
-              <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 font-semibold text-base h-12 hover:border-primary/40 transition-all">
+            <a href="#about">
+              <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-['Inter']">
                 Learn More
               </Button>
             </a>
           </div>
 
-          <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+          <div className="flex flex-col gap-3 text-sm font-medium text-white/70 font-['Inter']">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-secondary" />
+              <CheckCircle2 className="w-5 h-5 text-[#c9a84c]" />
               <span>Expert Guidance on Franchise Selection</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-secondary" />
+              <CheckCircle2 className="w-5 h-5 text-[#c9a84c]" />
               <span>Financial Planning & Funding Strategies</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-secondary" />
+              <CheckCircle2 className="w-5 h-5 text-[#c9a84c]" />
               <span>Exclusive Market Opportunities</span>
             </div>
           </div>
         </motion.div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[600px] hidden md:block rounded-2xl overflow-hidden shadow-2xl border-4 border-[#1a2332]"
-        >
-          <img 
-            src={charlesPhoto} 
-            alt="Charles Stovall, Charleston SC Franchise Consultant - Your Franchise Friend providing guided discovery and due diligence" 
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
-          
-          {/* Floating Badge */}
-          <div className="absolute bottom-8 left-8 bg-background/95 backdrop-blur p-4 rounded-lg shadow-lg max-w-xs border border-border">
-            <p className="text-secondary uppercase text-xs font-bold tracking-widest mb-1">Your Franchise Friend™</p>
-            <p className="text-muted-foreground text-sm italic">"I provide a road map and honest assessment of how to succeed."</p>
-          </div>
-        </motion.div>
+      {/* Bottom floating badge */}
+      <div className="absolute bottom-8 right-8 z-10 hidden md:block">
+        <div className="bg-white/10 backdrop-blur border border-white/20 p-4 rounded-xl max-w-xs">
+          <p className="text-[#c9a84c] uppercase text-xs font-bold tracking-widest mb-1 font-['Inter']">Your Franchise Friend™</p>
+          <p className="text-white/80 text-sm italic font-['Inter']">"I provide a road map and honest assessment of how to succeed."</p>
+        </div>
       </div>
     </section>
   );
