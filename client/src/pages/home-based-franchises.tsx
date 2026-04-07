@@ -173,7 +173,7 @@ export default function HomeBasedFranchises() {
       {/* SECTION 1 — HERO */}
       <section className="relative min-h-[90vh] flex items-center py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=80" alt="" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=80" alt="" className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/95 via-[#1a2332]/85 to-[#1a2332]/70" />
         </div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 w-full relative z-10">

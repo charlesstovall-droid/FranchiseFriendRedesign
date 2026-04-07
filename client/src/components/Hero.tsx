@@ -76,6 +76,8 @@ export function Hero() {
               src={charlesPhoto}
               alt="Charles Stovall, Charleston SC Franchise Consultant"
               className="w-full h-full object-cover object-top"
+              loading="eager"
+              fetchPriority="high"
             />
             {/* Subtle bottom fade */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/50 via-transparent to-transparent" />

@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import { Suspense } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -31,6 +32,17 @@ import Speaking from "@/pages/speaking";
 import HomeBasedFranchises from "@/pages/home-based-franchises";
 import HomeFranchiseResults from "@/pages/home-franchise-results";
 import PrivacyPolicy from "@/pages/privacy-policy";
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-10 h-10 border-4 border-[#c9a84c] border-t-transparent rounded-full animate-spin" />
+        <p className="text-[#1a2332] text-sm font-semibold tracking-wide">Loading...</p>
+      </div>
+    </div>
+  );
+}
 
 function Router() {
   return (
@@ -72,7 +84,9 @@ function App() {
       <AuthProvider>
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <Suspense fallback={<PageLoader />}>
+            <Router />
+          </Suspense>
         </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>

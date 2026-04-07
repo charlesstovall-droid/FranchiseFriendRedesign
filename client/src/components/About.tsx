@@ -16,6 +16,7 @@ export function About() {
                 src={charlesPhoto} 
                 alt="Charles Stovall - Certified Franchise Consultant based in Charleston SC, helping entrepreneurs find the right opportunity" 
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
                 style={{ filter: "contrast(1.05) saturate(1.1)" }}
               />
             </div>

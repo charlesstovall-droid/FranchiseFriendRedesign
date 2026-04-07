@@ -16,6 +16,7 @@ export function PodcastSection() {
                 src="/podcast-artwork.png" 
                 alt="The Charles Stovall Podcast" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
+                loading="lazy"
                 data-testid="img-podcast-artwork"
               />
               <div className="absolute inset-0 flex items-center justify-center">
