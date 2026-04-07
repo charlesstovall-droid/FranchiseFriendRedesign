@@ -9,7 +9,7 @@ export function Hero() {
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-10 z-0" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #c9a84c 0%, transparent 50%), radial-gradient(circle at 80% 20%, #c9a84c 0%, transparent 40%)" }} />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center py-12">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-[1200px] relative z-10 grid md:grid-cols-2 gap-12 items-center py-12">
         {/* Left: Text */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

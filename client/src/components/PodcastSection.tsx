@@ -3,7 +3,7 @@ import { Play, Headphones } from "lucide-react";
 
 export function PodcastSection() {
   return (
-    <section id="podcast" className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+    <section id="podcast" className="py-16 bg-primary text-primary-foreground relative overflow-hidden">
       {/* Decorative circles */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -41,29 +41,27 @@ export function PodcastSection() {
               Hear the latest on how to buy a franchise with no money, how to evaluate the best franchise for you, and key notes for navigating ownership. Charles helps you make educated decisions for your future.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-wrap gap-3">
               <a href="https://www.franchisefriend.net/podcast" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 px-8 w-full">
+                <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 px-8">
                   Listen to Episodes
                 </Button>
               </a>
-              <div className="flex gap-2 flex-1">
-                <a href="https://open.spotify.com/search/your%20franchise%20friend" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
-                    Spotify
-                  </Button>
-                </a>
-                <a href="https://podcasts.apple.com/us/podcast/your-franchise-friend/id1500000000" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
-                    Apple
-                  </Button>
-                </a>
-                <a href="https://www.youtube.com/@YourFranchiseFriend" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 w-full text-sm">
-                    YouTube
-                  </Button>
-                </a>
-              </div>
+              <a href="https://open.spotify.com/search/your%20franchise%20friend" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 px-6 text-sm">
+                  Spotify
+                </Button>
+              </a>
+              <a href="https://podcasts.apple.com/us/podcast/your-franchise-friend/id1500000000" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 px-6 text-sm">
+                  Apple
+                </Button>
+              </a>
+              <a href="https://www.youtube.com/@YourFranchiseFriend" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 h-12 px-6 text-sm">
+                  YouTube
+                </Button>
+              </a>
             </div>
             
             <div className="mt-12 pt-8 border-t border-white/10 flex gap-8">

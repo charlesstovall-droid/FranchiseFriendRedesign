@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { getLatestPosts, formatDate, blogPosts } from "@/data/blog-posts";
 
 export function LatestInsights() {
-  const latestPosts = getLatestPosts(6);
+  const latestPosts = getLatestPosts(7);
   const featuredPost = latestPosts[0];
   const otherPosts = latestPosts.slice(1);
 
   return (
-    <section id="insights" className="py-24 bg-gradient-to-b from-secondary/5 to-background">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+    <section id="insights" className="py-16 bg-gradient-to-b from-secondary/5 to-background">
+      <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

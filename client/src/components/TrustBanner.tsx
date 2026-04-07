@@ -36,8 +36,8 @@ const affiliations = [
 
 export function TrustBanner() {
   return (
-    <section className="py-16 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground border-y border-white/10">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-14 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground border-y border-white/10">
+      <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
         <div className="text-center mb-8">
           <p className="text-secondary uppercase text-xs font-bold tracking-widest mb-2">
             Trusted Expertise
