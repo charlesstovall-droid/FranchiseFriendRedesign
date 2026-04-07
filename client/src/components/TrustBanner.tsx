@@ -52,15 +52,14 @@ export function TrustBanner() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="h-20 flex items-center justify-center mb-3">
+              <div className="h-20 flex items-center justify-center mb-3 bg-white/90 rounded-xl px-3 py-2">
                 <img
                   src={item.logo}
                   alt={item.name}
                   style={{
-                    height: "80px",
+                    height: "60px",
                     width: "auto",
                     maxWidth: "120px",
-                    filter: "brightness(0) invert(1)",
                     objectFit: "contain",
                   }}
                 />
