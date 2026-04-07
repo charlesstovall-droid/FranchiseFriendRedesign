@@ -11,10 +11,11 @@ export function Hero() {
         <img
           src={charlesPhoto}
           alt="Charles Stovall, Franchise Consultant"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-contain object-right-top"
+          style={{ objectPosition: "80% top" }}
         />
         {/* Dark gradient overlay — strong on left for text legibility, fades right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/90 via-[#1a2332]/60 to-[#1a2332]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/95 via-[#1a2332]/65 to-[#1a2332]/10" />
       </div>
 
       {/* Content */}
