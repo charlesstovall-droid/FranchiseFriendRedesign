@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import charlesPhoto from "@assets/IMG_2636_1763927193167.jpeg";
+import charlesPhoto from "@assets/ImageStudios_KDP-17_websize_1775559159692.jpg";
 
 export function About() {
   return (
@@ -11,11 +11,12 @@ export function About() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-secondary/10">
-               <img 
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-secondary/30">
+              <img 
                 src={charlesPhoto} 
                 alt="Charles Stovall - Certified Franchise Consultant based in Charleston SC, helping entrepreneurs find the right opportunity" 
                 className="w-full h-auto object-cover"
+                style={{ filter: "contrast(1.05) saturate(1.1)" }}
               />
             </div>
             {/* Decorative elements */}
