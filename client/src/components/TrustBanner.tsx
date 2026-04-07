@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Users, Star, CheckCircle } from "lucide-react";
-import ifaLogo from "@assets/international-franchise-association-ifa-vector-logo_1775558408238.png";
-import franchoiceLogo from "@assets/2023-fc-new-logo_1775558408238.png";
+import ifaLogo from "@assets/images_(1)_1775558834563.jpeg";
+import franchoiceLogo from "@assets/1689254790774_1775558932910.png";
 import inc500Logo from "@assets/inc-500-logo_1775558408237.png";
 
 const logoItems = [
