@@ -14,8 +14,8 @@ export function Hero() {
           className="w-full h-full object-contain object-right-top"
           style={{ objectPosition: "80% top" }}
         />
-        {/* Dark gradient overlay — strong on left for text legibility, fades right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/95 via-[#1a2332]/65 to-[#1a2332]/10" />
+        {/* Gradient: navy left → transparent mid → white right for clean blend */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #1a2332 30%, rgba(26,35,50,0.5) 55%, rgba(255,255,255,0.85) 80%, #ffffff 100%)" }} />
       </div>
 
       {/* Content */}
