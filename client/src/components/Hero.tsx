@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import charlesPhoto from "@assets/charles-main-photo.png";
+import charlesPhoto from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
 
 
 export function Hero() {
@@ -76,7 +76,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[600px] hidden md:block rounded-2xl overflow-hidden shadow-2xl border-2 border-secondary/10"
+          className="relative h-[600px] hidden md:block rounded-2xl overflow-hidden shadow-2xl border-4 border-[#1a2332]"
         >
           <img 
             src={charlesPhoto} 
