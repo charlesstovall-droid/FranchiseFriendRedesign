@@ -14,8 +14,8 @@ export function Hero() {
           className="w-full h-full object-contain object-right-top"
           style={{ objectPosition: "80% top" }}
         />
-        {/* Gradient: navy left → transparent mid → white right for clean blend */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #1a2332 30%, rgba(26,35,50,0.5) 55%, rgba(255,255,255,0.85) 80%, #ffffff 100%)" }} />
+        {/* Navy left for text, fully transparent on right so photo shows clearly */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #1a2332 30%, rgba(26,35,50,0.6) 50%, rgba(26,35,50,0) 70%)" }} />
       </div>
 
       {/* Content */}
