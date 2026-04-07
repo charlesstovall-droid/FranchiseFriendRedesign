@@ -14,10 +14,10 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <a 
         href="tel:9198273921" 
-        className="bg-accent-pop text-primary py-2 px-4 flex items-center justify-center gap-2 hover:bg-accent-pop/90 transition-colors"
+        className="bg-[#0A1F3C] text-white py-2 px-4 flex items-center justify-center gap-2 hover:bg-[#0A1F3C]/90 transition-colors"
         data-testid="button-call-top"
       >
         <Phone size={16} className="animate-pulse" />
@@ -44,7 +44,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-semibold text-muted-foreground hover:text-accent-pop transition-colors whitespace-nowrap uppercase tracking-wide relative"
+                className="text-xs font-semibold text-[#0A1F3C] hover:text-[#C9A84C] transition-colors whitespace-nowrap uppercase tracking-wide relative"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-pop group-hover:w-full transition-all"></span>
@@ -53,14 +53,14 @@ export function Navbar() {
             <Link href="/client-portal">
               <Button 
                 variant="outline" 
-                className="border-secondary text-secondary hover:bg-secondary/10 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1"
+                className="border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C]/10 bg-white font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1"
                 data-testid="button-client-portal"
               >
                 Candidate Portal
               </Button>
             </Link>
             <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1">
+              <Button className="bg-[#C9A84C] text-[#0A1F3C] hover:bg-[#b8953f] font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1">
                 Book Consultation
               </Button>
             </a>
@@ -95,14 +95,14 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-border bg-background overflow-hidden"
+            className="md:hidden border-b border-gray-200 bg-white overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-medium text-foreground py-2"
+                  className="text-lg font-medium text-[#0A1F3C] py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -111,13 +111,13 @@ export function Navbar() {
               <Link href="/client-portal" onClick={() => setIsOpen(false)}>
                 <Button 
                   variant="outline" 
-                  className="w-full border-secondary text-secondary hover:bg-secondary/10 font-semibold"
+                  className="w-full border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C]/10 bg-white font-semibold"
                 >
                   Candidate Portal
                 </Button>
               </Link>
               <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
-                <Button className="w-full bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold">
+                <Button className="w-full bg-[#C9A84C] text-[#0A1F3C] hover:bg-[#b8953f] font-semibold">
                   Book a Consultation
                 </Button>
               </a>
