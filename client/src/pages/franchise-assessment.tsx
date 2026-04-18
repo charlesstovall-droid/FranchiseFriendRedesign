@@ -190,6 +190,16 @@ function ScoreRing({ score, maxScore }: { score: number; maxScore: number }) {
 }
 
 export default function FranchiseAssessment() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-593191309/w4I0CPeau54cEI3D7ZoC",
+        value: 1.0,
+        currency: "USD",
+      });
+    }
+  }, []);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, { index: number; score: number }>>({});
   const [showResults, setShowResults] = useState(false);

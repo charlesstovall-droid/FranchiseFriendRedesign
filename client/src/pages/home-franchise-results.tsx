@@ -142,6 +142,16 @@ function getMatchedFranchises(answers: Record<string, string>): Franchise[] {
 }
 
 export default function HomeFranchiseResults() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-593191309/w4I0CPeau54cEI3D7ZoC",
+        value: 1.0,
+        currency: "USD",
+      });
+    }
+  }, []);
+
   const params = new URLSearchParams(window.location.search);
   const name = params.get("name") || "";
   const email = params.get("email") || "";
