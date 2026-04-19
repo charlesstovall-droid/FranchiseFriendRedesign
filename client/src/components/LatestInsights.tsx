@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
 import { ChevronRight, ArrowRight, BookOpen, TrendingUp } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { getLatestPosts, formatDate, blogPosts } from "@/data/blog-posts";
+
+// Issue 3: All whileInView / scroll-reveal animations removed.
 
 export function LatestInsights() {
   const latestPosts = getLatestPosts(7);
@@ -12,12 +13,7 @@ export function LatestInsights() {
   return (
     <section id="insights" className="py-16 bg-gradient-to-b from-secondary/5 to-background">
       <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-pop/10 rounded-full mb-6">
             <BookOpen className="w-4 h-4 text-accent-pop" />
             <span className="text-sm font-semibold text-accent-pop">Franchise Insights & Guides</span>
@@ -26,7 +22,7 @@ export function LatestInsights() {
             Expert Franchise Knowledge
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            In-depth guides, market analysis, and actionable advice to help Charleston entrepreneurs 
+            In-depth guides, market analysis, and actionable advice to help Charleston entrepreneurs
             make informed franchise investment decisions
           </p>
           <div className="flex items-center justify-center gap-6 mt-6 text-sm text-muted-foreground">
@@ -39,15 +35,10 @@ export function LatestInsights() {
             <span>•</span>
             <span>Charleston SC Focus</span>
           </div>
-        </motion.div>
+        </div>
 
         {featuredPost && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
+          <div className="mb-12">
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="relative bg-primary rounded-2xl overflow-hidden group cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80"></div>
@@ -78,18 +69,12 @@ export function LatestInsights() {
                 </div>
               </div>
             </Link>
-          </motion.div>
+          </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {otherPosts.map((post, index) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
+            <div key={post.id} data-testid={`insight-card-${index}`}>
               <Link href={`/blog/${post.slug}`}>
                 <article className="h-full bg-white border border-border rounded-xl overflow-hidden hover:border-accent-pop/40 hover:shadow-lg transition-all group cursor-pointer">
                   <div className="p-6 flex flex-col h-full">
@@ -99,17 +84,17 @@ export function LatestInsights() {
                       </span>
                       <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
                     </div>
-                    
+
                     <h3 className="text-lg font-bold text-primary leading-tight mb-3 group-hover:text-accent-pop transition-colors line-clamp-2">
                       {post.title}
                     </h3>
-                    
+
                     <p className="text-muted-foreground text-sm mb-4 flex-grow line-clamp-3">
                       {post.excerpt}
                     </p>
-                    
+
                     <div className="flex items-center justify-end pt-4 border-t border-border">
-                      <span 
+                      <span
                         className="inline-flex items-center gap-2 text-secondary hover:text-accent-pop transition-colors font-semibold text-sm group-hover:gap-3"
                         data-testid={`link-insight-${post.slug}`}
                       >
@@ -120,18 +105,13 @@ export function LatestInsights() {
                   </div>
                 </article>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <Link href="/blog">
-            <Button 
+            <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8"
               data-testid="button-view-all-insights"
@@ -144,7 +124,7 @@ export function LatestInsights() {
           <p className="text-sm text-muted-foreground mt-4">
             Covering franchise financing, industry trends, Charleston market insights, and more
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+
+// Issue 3: All whileInView / scroll-reveal animations removed.
 
 const mediaFeatures = [
   {
@@ -38,49 +39,27 @@ export function MediaFeatures() {
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-secondary uppercase text-sm font-bold tracking-widest mb-3"
-          >
+          <p className="text-secondary uppercase text-sm font-bold tracking-widest mb-3">
             Featured In
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4"
-          >
+          </p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
             Media & Industry Features
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Insights and expertise recognized by leading franchise industry publications.
-          </motion.p>
+          </p>
         </div>
 
         {/* Media Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {mediaFeatures.map((feature, index) => (
-            <motion.a
+            <a
               key={index}
               href={feature.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ translateY: -5 }}
-              className="group"
+              className="group hover:-translate-y-1 transition-transform duration-200"
+              data-testid={`media-card-${index}`}
             >
               <div className={`bg-gradient-to-br ${feature.color} border border-border/50 rounded-xl p-6 h-full hover:border-secondary/30 hover:shadow-xl transition-all cursor-pointer`}>
                 <div className="flex items-start justify-between mb-4">
@@ -103,7 +82,7 @@ export function MediaFeatures() {
                   <ExternalLink className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

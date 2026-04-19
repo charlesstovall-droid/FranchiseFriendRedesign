@@ -1,5 +1,8 @@
-import { motion } from "framer-motion";
 import { CheckCircle2, BarChart3, PhoneCall, Rocket } from "lucide-react";
+import { Link } from "wouter";
+
+// Issue 3: All whileInView / scroll-reveal animations removed.
+// Elements render at full opacity and final position on page load.
 
 const steps = [
   {
@@ -34,33 +37,15 @@ export function HowItWorks() {
       <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-secondary uppercase text-sm font-bold tracking-widest mb-3"
-          >
+          <p className="text-secondary uppercase text-sm font-bold tracking-widest mb-3">
             Simple & Proven
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4"
-          >
+          </p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
             The Franchise Friend Proven Process
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             From assessment to launch—I guide you through every step with expertise and confidence.
-          </motion.p>
+          </p>
         </div>
 
         {/* Timeline */}
@@ -69,14 +54,7 @@ export function HowItWorks() {
           <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-secondary/50 via-accent-pop/30 to-transparent" />
 
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="relative"
-            >
+            <div key={index} className="relative" data-testid={`step-card-${index}`}>
               {/* Step card */}
               <div className="bg-gradient-to-br from-background to-secondary/5 border border-border/50 rounded-xl p-6 relative z-10 h-full hover:border-accent-pop/40 transition-all group">
                 {/* Number badge */}
@@ -104,31 +82,21 @@ export function HowItWorks() {
                   ↓
                 </div>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center"
-        >
+        <div className="mt-16 text-center">
           <p className="text-muted-foreground mb-6 text-lg">
             Ready to find your perfect franchise?
           </p>
-          <a href="/executive-access" className="inline-block">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold px-8 py-3 rounded-lg transition-all shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30"
-            >
+          <Link href="/franchise-assessment">
+            <button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold px-8 py-3 rounded-lg transition-all shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 hover:scale-105 active:scale-95">
               Take the Free Franchise Fit Score
-            </motion.button>
-          </a>
-        </motion.div>
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

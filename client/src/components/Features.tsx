@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { Lightbulb, TrendingUp, Heart, Search, Compass, Target, Star, Users } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Lightbulb, Heart, Search, Compass, Target, Users } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
+// Issue 3: All whileInView / scroll-reveal animations removed.
 
 const services = [
   {
@@ -56,13 +57,7 @@ export function Features() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+            <div key={index} data-testid={`feature-card-${index}`}>
               <Card className="h-full border border-border/50 shadow-sm hover:shadow-xl hover:border-secondary/30 transition-all duration-300 bg-background/80 backdrop-blur group">
                 <div className="p-7">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-secondary/20 to-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -76,10 +71,9 @@ export function Features() {
                   </p>
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -1,0 +1,52 @@
+A. Issue 3 — confirm the animation fix is complete across the page.
+Your plan covers TrustBanner, HowItWorks, Features, MediaFeatures. Good. But ask Replit to also:
+
+Run a grep for whileInView, useInView, IntersectionObserver, and initial={{ opacity: 0 across the entire client/src/ directory and list ANY remaining instances on homepage-rendered components before finishing. There may be animation wrappers you didn't catch (e.g., a ScrollReveal wrapper, a FadeInSection component, Tailwind animate- classes with opacity-0 starts). A single missed component will reproduce the bug.
+
+Add this line to the Replit prompt:
+
+"Before finishing, run: grep -r 'whileInView\|initial=.*opacity: 0\|IntersectionObserver' client/src/components client/src/pages and paste the output. Confirm zero matches on anything rendered by the homepage."
+
+B. Issue 7 — the email capture needs validation + conversion tracking.
+Your plan says "POST to /api/leads with leadType homepage-checklist." Missing:
+
+Client-side email format validation before submit (basic regex, don't allow empty or invalid)
+Disable submit button while in-flight so people can't double-submit
+Fire the Google Ads conversion event on success (the same conversion action you already have set up for other lead forms). Your other forms presumably already do this — have Replit copy the pattern from ExecutiveAccess or HomeBased form components so it's consistent.
+
+Add:
+
+"Match the form submission pattern used in the Executive Access and Home-Based lead forms — same validation, same in-flight disabled state, same Google Ads conversion fire on success. Do not create a new submission pattern."
+
+C. Issue 8 — navigation dropdown accessibility.
+Hover-to-open alone breaks on keyboard navigation and touch devices that lie about hover support. Tell Replit:
+
+"The For Buyers dropdown must open on (a) hover, (b) focus via keyboard Tab, and (c) click/tap. Close on Escape, on click outside, and on selecting an item. Use aria-expanded, aria-haspopup, and role='menu' correctly. Test with keyboard only — Tab to it, Enter to open, arrow keys to navigate, Escape to close."
+
+D. Issue 6 — double-check the "1 → 20" stat tile doesn't blow up the TrustBanner layout.
+Your plan adds a new tile to TrustBanner AND comments out the Inc. 500 tile. Net: could be same count, could be one less, depending on how many tiles existed. Ask Replit to confirm the grid still looks balanced on desktop (4 columns?) and mobile (2 columns?).
+Add:
+
+"After the TrustBanner changes, confirm the tile count forms a balanced grid on desktop (prefer 4 across) and stacks cleanly on mobile. If the new count is awkward (e.g., 5 tiles = 4+1 orphan), tell me before finishing so we can adjust."
+
+E. Issue 1 — confirm the Calendly link is actually working, not just present in code.
+Ask:
+
+"For the primary CTA, paste the exact Calendly URL you're linking to here in your response. Verify it resolves (no 404) by opening it in the preview browser or curl. If it's broken or placeholder, stop and tell me."
+
+F. Add a post-deploy smoke test.
+Before you republish, have Replit verify in the preview:
+
+"Before telling me it's done, perform and report on these 5 checks in the preview URL:
+
+Click primary hero CTA — does it open Calendly correctly?
+Click secondary hero CTA — does it land on /franchise-assessment?
+Submit the email capture with a fake test email — does the POST hit /api/leads (check network tab, paste the request payload and response code)?
+Open the 'For Buyers' nav dropdown on desktop — do all 4 links route correctly?
+Scroll the entire homepage — are there any sections still at reduced opacity? Paste the screenshot."
+
+
+
+What to send Replit now:
+
+Approved — proceed with the 9-file plan exactly as written. Add these 6 additional requirements: [paste A through F above]. Before you start editing, confirm the Calendly URL (E) resolves. During the edit, do NOT republish. After editing, run the grep check (A) and the 5-item smoke test (F), paste results here, and wait for my sign-off before I click Publish.

@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
-import { motion } from "framer-motion";
+
+// Issue 3: whileInView scroll-reveal animations removed. Both columns render immediately.
 
 export function CTASection() {
   return (
@@ -13,19 +14,14 @@ export function CTASection() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
               Ready to Start Your <br />
               <span className="text-secondary">Franchise Journey?</span>
             </h2>
-            
+
             <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-              Book a complimentary consultation with Charles to discuss your goals, 
+              Book a complimentary consultation with Charles to discuss your goals,
               financial position, and find the perfect franchise opportunity for you.
             </p>
 
@@ -43,14 +39,9 @@ export function CTASection() {
                 <span>Expert financial guidance</span>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div>
             <div className="bg-background/95 backdrop-blur p-8 rounded-2xl shadow-2xl">
               <p className="text-secondary uppercase text-xs font-bold tracking-widest mb-2">
                 Your Franchise Friend™
@@ -59,11 +50,12 @@ export function CTASection() {
                 Schedule Time with Charles
               </h3>
               <div className="space-y-4">
-                <a 
-                  href="https://calendly.com/charles-stovall/intro" 
-                  target="_blank" 
+                <a
+                  href="https://calendly.com/charles-stovall/intro"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="block"
+                  data-testid="button-cta-calendly"
                 >
                   <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold py-3 px-6 rounded-lg transition-all border-2 border-accent-pop/30 hover:border-accent-pop/50">
                     Book Your Free Consultation
@@ -72,13 +64,13 @@ export function CTASection() {
                 <p className="text-xs text-muted-foreground text-center">
                   Or fill out the form below and we'll be in touch
                 </p>
-                <ContactForm 
-                  leadType="consultation" 
+                <ContactForm
+                  leadType="consultation"
                   buttonText="Send Message"
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
