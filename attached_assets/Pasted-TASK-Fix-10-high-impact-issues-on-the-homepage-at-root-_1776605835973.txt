@@ -1,0 +1,133 @@
+TASK: Fix 10 high-impact issues on the homepage at / (root route). This is my live marketing homepage — accuracy, trust, and conversion are critical.
+Before you write any code:
+
+Create a checkpoint / git commit of the current state so we can revert if needed.
+Show me the list of files you plan to modify and a brief summary of changes per file. Wait for my "go" before editing.
+
+Do NOT:
+
+Modify any other pages (/executive-access, /home-based-franchises, /charleston)
+Touch .env or any backend API routes
+Invent numbers, testimonials, client names, or awards I don't explicitly give you below
+Add filler placeholder content that looks real — if a field is waiting on my input, use a clearly-marked TODO comment
+
+
+ISSUE 1 — Hero CTA buttons are vague. Fix the copy and linking.
+Current: Primary button says "Start Your Search" (vague), secondary says "Learn More" (generic).
+Change to:
+
+Primary button: "Book a Free Consultation" → link to /contact or wherever the existing consultation booking form lives. If a Calendly link exists in the codebase, use that instead.
+Secondary button: "Take the Franchise Questionnaire" → link to the existing questionnaire page (find the route in the codebase — likely /questionnaire or similar). If no questionnaire page exists yet, link to /executive-access as a fallback and leave a // TODO: replace with questionnaire route when built comment.
+
+Match the existing button styling. Primary is gold/filled, secondary is outlined.
+
+ISSUE 2 — Hero body copy is generic. Replace it.
+Current copy: "I guide people to franchise ownership with expertise, insight, and inside knowledge — helping you find the right opportunity, secure funding, and build lasting success."
+Replace with exactly: "I've scaled 20 units across multiple states. Now I help executives and professionals avoid the mistakes I made — and find franchises actually worth owning. No cost to you."
+Keep it in the same paragraph slot directly under the H1.
+
+ISSUE 3 — Scroll-reveal animations are broken across the homepage.
+Symptoms observed: Multiple sections (including the "Franchise Friend Proven Process" section and the process step cards) are rendering at ~15% opacity on initial load and never reaching full opacity. There is also a large blank gap above the Process section that appears to be a scroll-animation container stuck in its pre-animation state.
+Do this:
+
+Audit every scroll-triggered animation on the homepage (likely using Framer Motion, whileInView, useInView, or Intersection Observer).
+Identify which ones are getting stuck below full opacity or below full y translation.
+The safest fix: remove all scroll-reveal/fade-in animations from the homepage entirely. Render every section at opacity: 1 and final position on page load. Keep transitions only on intentional user interactions (hovers, button clicks).
+If you strongly prefer to keep animations, instead set viewport={{ once: true, amount: 0.1 }} (10% trigger) and guarantee the final state is explicit opacity: 1. But my default preference is: remove them.
+
+After fixing, verify by loading / in the preview and confirming every section is fully visible on initial scroll.
+
+ISSUE 4 — Credibility claims need sourcing or clarification.
+Current unsourced claims on the page:
+
+"Inc. 500"
+"100+ Clients Successfully Placed"
+"100+ Episodes" (podcast)
+"5k+ Listeners" (podcast)
+
+Action:
+
+"Inc. 500" → I need you to leave this as a TODO for me. Add a comment: {/* TODO Charles: confirm Inc. 500 context — was this you personally, a company you were part of, or a client? Currently showing standalone which could be misleading. */}. In the UI, temporarily hide the Inc. 500 badge (comment it out) until I provide context. Do NOT delete it.
+"100+ Clients Successfully Placed" → leave as-is but add a TODO comment: {/* TODO Charles: verify exact client count. */}
+"100+ Episodes" and "5k+ Listeners" → leave as-is but add TODO comments for me to verify.
+
+Do not invent or round up any numbers.
+
+ISSUE 5 — Inconsistent years of experience.
+Homepage currently says "10+ Years". Other pages (Google Ads, /executive-access) say "15+ Years Experience".
+Change the homepage to "15+ Years Experience" everywhere it appears. This is the canonical number — use it on all future edits too.
+
+ISSUE 6 — "About Charles" buries the strongest claim.
+Current: "Based in Charleston, SC, Charles brings over a decade of entrepreneurial experience to the table. From scaling a single location to 20 successful units across multiple states…"
+The "1 → 20 units" story is the single most differentiating fact on the whole site. Surface it:
+
+In the About Charles section, change the section H2 or add a standout pull-quote above the body copy: "Scaled 1 → 20 franchise units. Now I help you skip the mistakes." Style it large, serif, with visual emphasis (e.g., underline or accent color under "1 → 20").
+Also add a small stat callout in the trust strip below the hero (where IFA Member / FranChoice currently live): a new tile with "1 → 20" as the big number and "Units Scaled Across Multiple States" as the subtitle.
+
+
+ISSUE 7 — Add a lead-magnet email capture to the hero.
+Add a compact email capture component in the hero, beneath or to the right of the photo of Charles. Design it as a clean card with:
+
+Small eyebrow text: "FREE DOWNLOAD"
+Headline: "The Franchise Buyer Checklist"
+Subhead: "7 questions that save six figures."
+Single email input field + button labeled "Send It to Me"
+Micro-trust line below: "No spam. Unsubscribe anytime."
+
+Submission behavior:
+
+POST to the existing /api/leads endpoint with leadType: "homepage-checklist" and email as the only required field.
+On success: swap the card to a success state reading "Check your inbox — the checklist is on its way."
+Do NOT implement the actual email delivery automation yet — leave a TODO comment in the API handler: // TODO: trigger Franchise Buyer Checklist auto-responder for homepage-checklist leadType
+
+
+ISSUE 8 — Main navigation is missing links to my best landing pages.
+Current nav: Speaking · About · Insights · Candidate Portal · Book Consultation
+Add a new dropdown menu item "For Buyers" placed BEFORE "Speaking" in the nav. Dropdown contents:
+
+Executive Franchises → /executive-access
+Home-Based Franchises → /home-based-franchises
+Charleston Buyers → /charleston
+Take the Questionnaire → same route used for the hero secondary CTA (Issue 1)
+
+Desktop: hover-to-open dropdown with a small chevron. Mobile: the dropdown expands inside the mobile menu drawer as a nested group. Match existing nav styling.
+
+ISSUE 9 — Podcast section is too prominent.
+Current homepage has a full-width section for the "Franchise Friend Podcast" with "100+ Episodes / 5k+ Listeners" stats and Spotify / Apple / YouTube links, sized as a peer section to consulting content.
+Shrink it to a single thin strip:
+
+One horizontal band, subtle background (light gray or ivory)
+Left side: small text "As heard on the Franchise Friend Podcast"
+Right side: Spotify, Apple, YouTube logos as inline icon links (small, grayscale, hover to color)
+Remove the "100+ Episodes" and "5k+ Listeners" stats from this location entirely
+
+Move this strip to just ABOVE the footer. It should no longer compete with the consultation CTA for attention.
+
+ISSUE 10 — Add social proof above the hero CTAs.
+Directly above the two CTA buttons in the hero (Issue 1), add a small social proof row.
+Because I have not confirmed a specific review count or testimonial with you yet, do NOT invent one. Instead, build it with a clearly-marked placeholder and a fallback:
+{/* TODO Charles: replace with real stat or remove entirely. Examples: "★★★★★ Rated by 50+ franchise buyers" or "Featured in [publication]" or a single client testimonial quote with name + city. */}
+{SHOW_HERO_SOCIAL_PROOF && (
+  <div className="hero-social-proof">
+    ★★★★★ Trusted by franchise buyers across the U.S.
+  </div>
+)}
+Set const SHOW_HERO_SOCIAL_PROOF = false; at the top of the hero component by default so it doesn't render until I confirm real data. When I say "turn it on", I'll flip the flag and give you the real copy.
+
+AFTER EDITING — Verification checklist before you tell me you're done:
+
+Build with no TypeScript errors or console warnings
+Load / in the preview and confirm:
+
+Every section is fully visible at full opacity on initial load
+Both hero CTAs work and route correctly
+New email capture card renders and POSTs on submit (check network tab)
+New "For Buyers" nav dropdown opens on hover (desktop) and expands (mobile)
+Podcast strip appears just above the footer, not mid-page
+Inc. 500 badge is commented out, not visible
+"15+ Years Experience" appears everywhere, "10+ Years" appears nowhere
+
+
+Send me screenshots of: (a) desktop hero, (b) mobile hero, (c) full desktop scroll, (d) email capture success state, (e) new nav dropdown open
+
+Do NOT republish to production. I'll review in preview and tell you when to publish.
