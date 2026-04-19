@@ -1,0 +1,101 @@
+Redesign the /charleston page completely. Keep the existing route and form submission logic (leadType: "charleston-ad"), but replace the visual design, content structure, and conversion elements. This page targets paid Google Ads traffic from Charleston metro executives searching "franchise consultant Charleston" — it must feel unmistakably local and premium, not generic.
+Do this before you write code: show me the proposed color palette, font pairing, and hero layout mockup (describe in plain text) before building. I'll approve before you start.
+Design direction (not the existing navy/gold template):
+
+Color palette: warm Lowcountry. Background ivory/cream (#F7F1E8 or similar), deep Charleston harbor teal as primary (#1F4E5F), warm terracotta or muted coral as accent (#C4704A), charcoal body text. Move away from the dark navy + bright gold combo used on the other landing pages — this page should feel distinctly regional.
+Typography: serif headline (Playfair Display or Fraunces), clean sans body (Inter). Larger headline sizes than current (clamp ~48–72px on desktop).
+Imagery: use actual Charleston photography — Ravenel Bridge, Rainbow Row, harbor, King Street — sourced from a royalty-free CDN (Unsplash API). Hero should have a full-bleed Charleston skyline or Ravenel Bridge photo with a dark teal overlay gradient left-to-right (copy on left, photo visible on right). Do NOT use stock business photos of handshakes or suits.
+Subtle palmetto/pineapple iconography as section dividers or bullet markers — tasteful, not kitschy.
+
+Page structure (in this order):
+
+Sticky call bar (top) — keep current: "Call Now: (919) 827-3921 · Charleston Franchise Consulting" but in warm coral not yellow.
+Hero
+
+Full-bleed Charleston photo background with dark teal gradient overlay
+Small eyebrow: "CHARLESTON · MOUNT PLEASANT · DANIEL ISLAND"
+H1 serif: "Own a Business in Charleston. Without Starting One From Scratch."
+Subhead: "I'm Charles Stovall — a Charleston-based franchise consultant. I help Lowcountry executives, military retirees, and professionals find franchise brands that fit their capital, lifestyle, and goals. No cost, no pressure, no guesswork."
+Two CTAs side by side: Primary "Book a 15-Min Charleston Call" (coral), Secondary ghost button "Call (919) 827-3921"
+Micro-trust under CTAs: "Free to you · Typically replies within 2 hours · Based in Charleston"
+REMOVE the stats strip ("500+ Concepts Vetted" etc.) — it's unverified and feels fluffy. Replace with a single line: "15+ years · $0 cost to you · Charleston-based"
+
+
+Short-form lead capture (above the fold on mobile, right-column on desktop)
+
+Put a compact 4-field form directly in the hero section, right column
+Fields only: First name, Email, Phone (required), Liquid capital dropdown (<$50K / $50K–$150K / $150K–$500K / $500K+)
+REMOVE: timeline dropdown, "what area of Charleston" field, last name field — they go in the longer form at the bottom. Short hero form = less friction for cold traffic.
+Submit button: "Request My Call"
+Below: "I'll personally respond within 1 business day · No spam, ever"
+REMOVE the "Limited to 5 new Charleston clients per month" line — it reads as fake scarcity to executive buyers.
+
+
+Proof strip (logos row)
+
+Thin band, ivory background: "Franchise brands in our network include" + 6–8 grayscale franchise brand logos (use real public logos of brands Charles typically places — if the codebase has a brand list, use it; otherwise leave placeholder slots with a TODO comment for Charles to upload).
+
+
+"Why a local consultant matters" — 3 columns
+
+Replace the generic "Why Work With Me" cards with Charleston-specific ones:
+
+"I know the Lowcountry market" — which brands are saturated in Mount Pleasant, where territories are still open in Summerville, what's working on Daniel Island.
+"We can meet in person" — coffee at Second State, breakfast at Hominy Grill. Real conversation, not Zoom fatigue.
+"I'm your neighbor, not a call center" — You'll work with me directly from discovery through close. No handoffs, no junior reps.
+
+
+
+
+How it works — horizontal 3-step visual
+
+Step 1 (Discover): 15-min call. Capital, goals, timeline.
+Step 2 (Match): 2–4 vetted franchise brands that fit you.
+Step 3 (Decide): Due diligence, validation calls, close support.
+Each step gets a palmetto-tree line icon, big step number in coral, one-sentence description.
+
+
+Testimonial section (single highlighted quote)
+
+Full-width, ivory background, large serif pull-quote format
+Leave a TODO placeholder: {{CHARLESTON_TESTIMONIAL}} with a comment for Charles to add a real quote from a Charleston client. If no testimonial data exists in the codebase, use a placeholder like "Testimonial coming soon" rather than inventing one.
+Include name, city (Mount Pleasant / Daniel Island / etc.), and franchise brand when Charles fills it in.
+
+
+About Charles (local founder section)
+
+Two-column: photo of Charles on left (use the existing photo in the repo), content on right
+H2: "About Charles"
+2 short paragraphs: his background, why he's based in Charleston, what he's placed locally
+Pull 3 credentials as inline badges: "15+ Years Experience", "Licensed Franchise Consultant", "Charleston Resident"
+
+
+FAQ accordion — keep the 4 Q&As from before, styled with subtle teal accordion chevrons
+Final CTA section
+
+Full-width coral band
+Large serif headline: "Ready to own a business in Charleston?"
+Subhead: "One 15-minute call. No cost. No pressure."
+Button: "Book My Call" → anchors to the full form section, OR if Calendly URL exists in env/config, opens Calendly.
+
+
+Footer — minimal: Charles's name, phone, email, Charleston address if available, small legal line.
+
+Technical requirements:
+
+Keep route /charleston
+Keep form leadType: "charleston-ad" for lead tagging
+Keep meta tags already added (title, description, LocalBusiness JSON-LD)
+Responsive: mobile-first. On mobile the hero form collapses below the hero text; on desktop it's right-column.
+Images: lazy-loaded, WebP format, proper alt tags mentioning Charleston for SEO.
+Do NOT add to main navigation.
+Do NOT modify .env or existing routes/components used by other pages. Build new page-specific components inside a /charleston folder or prefix components with Charleston.
+Run npm run build (or whatever the project uses) to confirm no type errors or build warnings before showing me the diff.
+
+Deliverables before I approve:
+
+Plain-text description of the hero layout + color palette
+List of files you'll create (don't create them yet)
+List of files you'll modify (and why)
+
+Then wait for my "go" before writing code.
