@@ -1,6 +1,17 @@
+import { useEffect } from "react";
 import { CheckCircle } from "lucide-react";
 
 export default function ThankYouAd() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-593191309/w4I0CPeau54cEI3D7ZoC",
+        value: 1.0,
+        currency: "USD",
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#1E2B42] flex items-center justify-center px-4">
       <div className="max-w-lg mx-auto text-center">

@@ -32,6 +32,7 @@ import Speaking from "@/pages/speaking";
 import HomeBasedFranchises from "@/pages/home-based-franchises";
 import HomeFranchiseResults from "@/pages/home-franchise-results";
 import PrivacyPolicy from "@/pages/privacy-policy";
+import Charleston from "@/pages/charleston";
 
 function PageLoader() {
   return (
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/home-based-franchises" component={HomeBasedFranchises} />
       <Route path="/home-franchise-results" component={HomeFranchiseResults} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/charleston" component={Charleston} />
       <Route component={NotFound} />
     </Switch>
   );

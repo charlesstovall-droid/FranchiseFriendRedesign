@@ -1,0 +1,61 @@
+Here's the Replit Agent prompt for the Charleston-specific landing page. Copy/paste this into Replit Agent:
+
+Replit Agent Prompt: Build Charleston Franchise Consulting Landing Page
+Create a new landing page at route /charleston (file: client/src/pages/charleston.tsx or equivalent based on the project's routing pattern — match the structure of executive-landing.tsx and home-based-franchises.tsx).
+Page requirements:
+
+Route: /charleston — add it to the router config wherever the other landing pages are registered.
+SEO / meta tags:
+
+Title: Charleston Franchise Consulting | Charles Stovall | Franchise Friend
+Meta description: Charleston-based franchise consultant helping Lowcountry professionals buy the right franchise. Free consultation. 15+ years experience. Serving Mount Pleasant, Daniel Island, Summerville & the Charleston metro.
+Open Graph + Twitter card versions of the same.
+
+
+Hero section (above the fold):
+
+H1: Charleston's Trusted Franchise Consultant
+Subhead: Helping Lowcountry professionals and executives find, vet, and buy the right franchise — without the guesswork or high-pressure sales tactics.
+Primary CTA button: Book My Free Charleston Consultation → scrolls to form
+Secondary trust line under CTA: Based in Charleston · 15+ Years Experience · $150K+ Liquid Capital Clients
+Local signal: a small line like Serving Mount Pleasant, Daniel Island, West Ashley, Summerville, James Island, Isle of Palms & the greater Charleston metro.
+
+
+Local credibility section:
+
+Headline: Why Work With a Charleston-Based Franchise Consultant
+3 value props in cards:
+
+Local Market Insight — "I know which franchise concepts are underserved in the Lowcountry and which ones are already saturated."
+In-Person Meetings Available — "Coffee in Mount Pleasant, lunch downtown, or a call — whatever works for your schedule."
+Charleston Network — "Connections to local SBA lenders, commercial real estate brokers, and franchise attorneys who know the Charleston market."
+
+
+
+
+Process section (reuse the same 3–4 step process from the executive landing page: Discovery Call → Capital Qualification → Brand Matching → Post-Sale Support).
+Social proof: If the other landing pages have testimonials or logos, pull the same component here. If not, skip.
+Lead form (bottom of page, also reachable via the hero CTA):
+
+Fields: First Name, Last Name, Email, Phone (required), Liquid Capital dropdown (Under $100K / $100K–$250K / $250K–$500K / $500K+), Timeline dropdown (0–3 months / 3–6 months / 6–12 months / Just exploring), "What area of Charleston are you in?" (text, optional).
+Submit POSTs to /api/leads with leadType: "charleston-landing" so we can track it separately in the backend.
+On successful submit, redirect to the existing thank-you / success page so the Google Ads conversion tag fires (same pattern as the executive and home-based landing pages — DO NOT create a new success flow).
+Form validation: phone and email required, block submit if liquid capital is "Under $100K".
+
+
+Styling: Match the existing design system — same fonts, colors, button styles, and section spacing as executive-landing.tsx. Do not introduce new component libraries or styles.
+Footer: Use the site's existing footer component.
+
+Do NOT:
+
+Do not modify executive-landing.tsx or home-based-franchises.tsx.
+Do not change anything in /api/leads — just send a new leadType value.
+Do not touch .env or any auth/server middleware.
+Do not change the existing success/thank-you page logic.
+
+When done:
+
+Confirm the page builds with no TypeScript errors.
+Confirm /charleston loads in preview.
+Confirm form submission returns 200 and redirects to the existing success page.
+Show me the new file(s) you created and the router change.
