@@ -259,41 +259,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
       
-      // Send email notification to Charles using Gmail
+      // Send email notification to Charles for every lead, regardless of type
       try {
         console.log(`[Email] Attempting to send lead notification for ${validatedData.leadType} lead from ${validatedData.name}`);
 
-        const leadTypeLabels: Record<string, string> = {
-          consultation: "Free Consultation Request",
-          general: "General Contact",
-          newsletter: "Newsletter Signup",
-          "black-book": "Black Book Download",
-          "executive-ad": "Executive Ad Landing Page",
-          "home-based-ad": "Home-Based Franchise Landing Page",
-          "home-based-guide": "Home-Based Franchise Guide Download",
-        };
+        const receivedAt = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
 
         const htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <h2 style="color: #1E2B42;">New Lead Received</h2>
-            <p><strong>Type:</strong> ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}</p>
+            <p><strong>Date/Time:</strong> ${receivedAt} ET</p>
+            <p><strong>Lead ID:</strong> ${lead.id}</p>
+            <p><strong>Lead Type:</strong> ${validatedData.leadType}</p>
             <p><strong>Name:</strong> ${validatedData.name}</p>
             <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
             ${validatedData.phone ? `<p><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>` : ""}
             ${validatedData.message ? `<p><strong>Message:</strong></p><p style="background: #f5f5f5; padding: 15px; border-radius: 4px;">${validatedData.message}</p>` : ""}
-            <p style="color: #666; font-size: 14px; margin-top: 30px;">
-              Received: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })}
-            </p>
           </div>
         `;
 
         const result = await sendEmail(
-          "CStovall@FranChoice.com",
-          `New Lead: ${leadTypeLabels[validatedData.leadType] || validatedData.leadType}`,
+          "charles.stovall@gmail.com",
+          `New Lead: ${validatedData.leadType} — ${validatedData.name}`,
           htmlContent
         );
         
-        console.log(`[Email] Lead notification sent successfully to CStovall@FranChoice.com - ID: ${result.id}`);
+        console.log(`[Email] Lead notification sent successfully to charles.stovall@gmail.com - ID: ${result.id}`);
       } catch (emailError) {
         console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
@@ -428,7 +419,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/leads", async (req, res) => {
+  // Admin-only middleware: requires x-admin-token header matching ADMIN_API_TOKEN env var.
+  // Returns 401 if the env var is not set or the header doesn't match.
+  // Apply only to sensitive read endpoints — never to POST /api/leads (forms must stay public).
+  function requireAdminToken(req: any, res: any, next: any) {
+    const token = process.env.ADMIN_API_TOKEN;
+    if (!token || req.headers["x-admin-token"] !== token) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    next();
+  }
+
+  app.get("/api/leads", requireAdminToken, async (req, res) => {
     try {
       const { type } = req.query;
       const leads = type 

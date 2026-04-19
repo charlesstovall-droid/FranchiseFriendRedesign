@@ -1,0 +1,39 @@
+Please make the following two fixes to the Express server (likely in server/routes.ts, server/index.ts, or wherever the /api/leads routes are defined). Do NOT modify the React frontend. Do NOT change the lead schema or database. Show me a diff before applying.
+
+=== FIX 1: Send me an email for EVERY new lead, regardless of leadType ===
+
+Currently the POST /api/leads handler sends an email notification only for some leadTypes (I believe only "executive-ad"). I need an email sent for EVERY successful lead insert, including: "consultation", "home-based-ad", "home-franchise", "black-book-download", "black-book", "executive-ad", and any future leadType.
+
+Requirements:
+1. Locate the existing email-sending code (likely uses Resend, SendGrid, Nodemailer, or a similar service — reuse whatever is already configured; do NOT add a new email provider or new env var).
+2. Move the email-send call so it runs on EVERY successful lead creation in POST /api/leads, not only for specific leadTypes. Put it AFTER the DB insert succeeds and BEFORE the res.json response. Wrap it in try/catch so an email failure does not block the 200 response to the user.
+3. The email must go to: charles.stovall@gmail.com (use the same recipient the executive-ad email currently uses — do not hardcode a new one if there's already a config/env value for it).
+4. Subject line: `New Lead: ${leadType} — ${name}`
+5. Body must include (plain text is fine): Date/time, Lead Type, Name, Email, Phone, Message, and the lead ID (UUID).
+6. If the existing email function has a specific signature, match it. Do not refactor unrelated code.
+
+=== FIX 2: Lock down the public endpoints that expose lead data ===
+
+These endpoints are currently publicly accessible and return sensitive PII:
+- GET /api/leads  (returns the full leads list)
+- GET /api/admin/leads  (if it exists)
+- GET /admin  (if it exists and serves an admin UI)
+
+Requirements:
+1. Add a simple auth middleware that requires a header `x-admin-token` matching a new environment variable `ADMIN_API_TOKEN`. If the env var is not set OR the header doesn't match, return 401 Unauthorized with `{error: "Unauthorized"}`.
+2. Apply this middleware to: GET /api/leads, GET /api/admin/leads (if present), and GET /admin (if present).
+3. Do NOT apply the middleware to POST /api/leads — that endpoint must remain public so the website forms keep working.
+4. Do not commit the token value. Just reference process.env.ADMIN_API_TOKEN. I will set the secret in Replit Secrets manually.
+5. Add a brief comment above the middleware explaining what it does.
+
+=== FINAL STEPS ===
+
+After making these edits:
+- Show me the diff of each file changed.
+- Confirm that POST /api/leads is still public (form submissions work).
+- Confirm that GET /api/leads now returns 401 without the x-admin-token header.
+- Do NOT touch .env or .env.local files.
+- Do NOT modify the frontend React code.
+- Do NOT change the database schema or migrations.
+
+When done, tell me what environment variable I need to add to Replit Secrets and what value I should use (you can suggest a random 32-char string format, but don't generate or store it yourself — I'll generate it).
