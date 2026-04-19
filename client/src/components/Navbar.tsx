@@ -74,14 +74,15 @@ export function Navbar() {
               alt="Charles Stovall Logo"
               className="w-10 h-10 object-contain flex-shrink-0"
             />
-            <div className="flex flex-col justify-center gap-1.5 min-w-0">
+            {/* Hide name text at md breakpoint to prevent collision with nav items; show at lg+ */}
+            <div className="hidden lg:flex flex-col justify-center gap-1.5 min-w-0">
               <span className="font-serif font-bold text-sm leading-none text-primary truncate">Charles Stovall</span>
               <span className="text-[9px] uppercase tracking-widest text-secondary font-semibold leading-none">Franchise Friend</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10 flex-shrink-0">
+          <div className="hidden md:flex items-center gap-5 lg:gap-10 flex-shrink-0">
 
             {/* For Buyers dropdown — Issue 8 */}
             <div
