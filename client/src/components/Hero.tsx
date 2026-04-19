@@ -117,12 +117,13 @@ export function Hero() {
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-10 z-0" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #c9a84c 0%, transparent 50%), radial-gradient(circle at 80% 20%, #c9a84c 0%, transparent 40%)" }} />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-[1200px] relative z-10 grid md:grid-cols-2 gap-12 items-center py-12">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-[1200px] relative z-10 grid md:grid-cols-2 gap-12 items-start py-12">
         {/* Left: Text */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="pt-4 md:pt-8"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/20 text-[#c9a84c] text-sm font-semibold mb-6 border border-[#c9a84c]/30 font-['Inter']">
             <span className="w-2 h-2 rounded-full bg-[#c9a84c]" />
@@ -137,7 +138,7 @@ export function Hero() {
 
           {/* Issue 2: Updated body copy */}
           <p className="text-lg md:text-xl text-white/70 mb-8 max-w-lg leading-relaxed font-['Inter']">
-            I've scaled 20 units across multiple states. Now I help executives and professionals avoid the mistakes I made — and find franchises actually worth owning. No cost to you.
+            I've scaled 30 units across multiple states. Now I help executives and professionals avoid the mistakes I made — and find franchises actually worth owning. No cost to you.
           </p>
 
           {/* Issue 10: Social proof row (hidden until flag is true) */}
