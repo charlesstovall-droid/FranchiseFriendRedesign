@@ -1,0 +1,88 @@
+Please update two landing pages on the site. Both files are in the client/src/pages/ directory. Do NOT change routing, form logic, or the /api/leads submission code. Only change the visible copy, headlines, subheadlines, bullet points, CTA button text, and trust-signal text as specified below. Preserve all existing styling, layout, components, images, and className values — only swap the text content inside.
+
+Show me a diff before applying changes.
+
+=====================================================
+FILE 1: executive-landing.tsx  (route: /executive-access)
+=====================================================
+
+Replace the hero section copy with:
+
+HEADLINE:
+"The Franchise Your Resume Can't Get You"
+
+SUBHEADLINE:
+"Private access to semi-absentee and executive-model franchises — the ones that don't advertise publicly. For professionals with $150K+ in liquid capital who want ownership without leaving their career."
+
+Remove any mention of "$497 value", "$0 cost", "free assessment", or similar discount-coupon language from the hero. Executives don't want coupons — they want access.
+
+Replace the form CTA button text with:
+"Request Private Access"
+(Instead of "Get My Free Assessment" or similar)
+
+Under the form, in small text where the "free" language used to be, replace with:
+"No cost to you — we're compensated by the franchisors in our network. We only introduce you to brands that fit your capital, goals, and lifestyle."
+
+Update the three-bullet value prop section (or equivalent) to:
+1. "Off-market opportunities — Pre-vetted franchise brands not listed on public sites"
+2. "Semi-absentee models — Keep your W-2 income while building ownership equity"
+3. "Capital-matched recommendations — Only brands that fit your $150K–$500K+ range"
+
+If there's a trust-signal or social-proof line, replace it with:
+"Charles has placed clients with franchise brands including service, fitness, food, and home-services concepts across the Southeast."
+
+=====================================================
+FILE 2: home-based-franchises.tsx  (route: /home-based-franchises)
+=====================================================
+
+Replace the hero section copy with:
+
+HEADLINE:
+"Own a Franchise From Your Kitchen Table"
+
+SUBHEADLINE:
+"Home-based franchise opportunities under $75K that you can run remotely, part-time, or alongside a full-time job. Get matched with brands that fit your budget, schedule, and goals — in 15 minutes, at no cost."
+
+Replace the form CTA button text with:
+"See My Matches"
+
+Below the form, in small text:
+"Free because franchisors pay us a placement fee. You get unbiased guidance — we earn only when you find a fit you love."
+
+Update the three-bullet value prop section (or equivalent) to:
+1. "Low startup cost — Many options under $30K–$75K all-in"
+2. "Run from anywhere — No storefront, no employees required to start"
+3. "Keep your day job — Most of our home-based brands are semi-absentee friendly"
+
+If there's a "how it works" section, use these three steps:
+1. "Tell us your budget, schedule, and goals (2 minutes)"
+2. "We match you with 2–3 franchise brands that fit"
+3. "You talk directly to the brands — no pressure, no obligation"
+
+If there's a trust-signal line, replace with:
+"We've helped professionals across the Southeast find their first franchise — from retirees adding income to parents building something they can run during school hours."
+
+=====================================================
+GLOBAL RULES FOR BOTH FILES
+=====================================================
+
+- Do NOT change any form field names, validation logic, state management, or /api/leads POST calls.
+- Do NOT change the leadType values sent in the form submission.
+- Do NOT touch the conversion tracking gtag snippet on the success/thank-you pages.
+- Do NOT modify any other file.
+- Keep all existing images, icons, colors, buttons styles, and section order.
+- Only replace user-visible text strings.
+
+After making changes:
+- Show me the diff for each file
+- Confirm no logic or tracking was modified
+- Tell me to re-publish
+
+=====================================================
+WHY THESE CHANGES (context only, don't include in the code)
+=====================================================
+- The executive audience responds to exclusivity, not discounts. "$497 value / $0 cost" sounds like a coupon and signals low quality to a $200K+ buyer.
+- "Off-market" and "semi-absentee" are the two exact terms executive franchise buyers Google.
+- Explaining *why* it's free (franchisor pays placement) removes the "too good to be true" red flag that kills conversions.
+- Home-based buyers are more price-sensitive, so leading with specific dollar ranges ($30K–$75K) qualifies in/out faster.
+- "See My Matches" converts better than "Submit" or "Get Assessment" because it promises a specific outcome.

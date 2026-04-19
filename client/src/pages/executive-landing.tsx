@@ -85,10 +85,10 @@ export default function ExecutiveLanding() {
             >
               <p className="text-[#D4AF37] text-xs font-bold tracking-[3px] uppercase mb-5">Exclusive Opportunity</p>
               <h1 className="text-4xl md:text-5xl lg:text-[56px] font-serif font-bold text-white mb-6 leading-[1.15]">
-                Find Your Perfect<br />Franchise in 30 Days
+                The Franchise Your Resume Can't Get You
               </h1>
               <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
-                Stop guessing. Get matched with proven franchises that fit your goals, budget, and lifestyle—with zero pressure.
+                Private access to semi-absentee and executive-model franchises — the ones that don't advertise publicly. For professionals with $150K+ in liquid capital who want ownership without leaving their career.
               </p>
 
               <div className="bg-white rounded-xl p-6 md:p-8 grid grid-cols-3 gap-4 mb-5">
@@ -101,13 +101,13 @@ export default function ExecutiveLanding() {
                   <p className="text-xs text-gray-500 mt-1">Concepts Vetted</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-xl md:text-2xl font-bold text-[#1B2B3A]">$0 Cost</p>
-                  <p className="text-xs text-gray-500 mt-1">to Candidates</p>
+                  <p className="text-xl md:text-2xl font-bold text-[#1B2B3A]">$150K+</p>
+                  <p className="text-xs text-gray-500 mt-1">Capital Minimum</p>
                 </div>
               </div>
 
               <p className="text-sm text-gray-400 italic">
-                <span className="text-[#D4AF37]">★★★★★</span> Trusted by 150+ executives who transitioned to franchise ownership
+                Charles has placed clients with franchise brands including service, fitness, food, and home-services concepts across the Southeast.
               </p>
             </motion.div>
 
@@ -119,9 +119,9 @@ export default function ExecutiveLanding() {
             >
               <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B2B3A] text-center mb-2">
-                  Get Your Free Franchise<br />Fit Assessment
+                  Get Your Executive<br />Franchise Assessment
                 </h2>
-                <p className="text-sm font-semibold text-emerald-600 text-center mb-6">($497 Value - Yours Free)</p>
+                <p className="text-xs text-gray-500 text-center mb-6">No cost to you — we're compensated by the franchisors in our network. We only introduce you to brands that fit your capital, goals, and lifestyle.</p>
 
                 <div className="flex gap-4 items-start mb-6 pb-6 border-b border-gray-200">
                   <img
@@ -185,7 +185,7 @@ export default function ExecutiveLanding() {
                     className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
                     data-testid="button-submit"
                   >
-                    {isSubmitting ? "Loading..." : "Take Me to My Assessment"}
+                    {isSubmitting ? "Loading..." : "Request Private Access"}
                   </button>
 
                   <div className="bg-amber-50 rounded-md p-3 text-center">
@@ -265,10 +265,9 @@ export default function ExecutiveLanding() {
 
               <div className="space-y-6 mb-10">
                 {[
-                  { title: "No High-Pressure Sales", desc: "I'm compensated the same regardless of which franchise you choose (or if you choose at all). My job is to educate, not sell." },
-                  { title: "500+ Franchise Brands Vetted", desc: "I have relationships with franchisors across every industry—from home services to healthcare to food & beverage." },
-                  { title: "Proven Financial Vetting", desc: "I'll show you exactly what top-performing franchisees actually earn (not just what the marketing materials claim)." },
-                  { title: "End-to-End Support", desc: "From initial discovery to FDD review to funding guidance—I'm with you every step of the way." },
+                  { title: "Off-market opportunities", desc: "Pre-vetted franchise brands not listed on public sites — you only see them through an advisor relationship." },
+                  { title: "Semi-absentee models", desc: "Keep your W-2 income while building ownership equity. Most of our executive clients don't leave their careers on day one." },
+                  { title: "Capital-matched recommendations", desc: "Only brands that fit your $150K–$500K+ range. No wasted time on concepts outside your investment profile." },
                 ].map((b, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">

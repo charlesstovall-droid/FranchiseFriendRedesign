@@ -59,9 +59,9 @@ const painPoints = [
 ];
 
 const steps = [
-  { num: "1", title: "Free Discovery Call (30 min)", desc: "Tell Charles your budget, schedule preferences, and income goals." },
-  { num: "2", title: "Your Custom Match Report", desc: "Get 3–5 hand-picked home-based franchises with real earnings data." },
-  { num: "3", title: "Decision With Confidence", desc: "Charles guides you through due diligence — no pressure, no rush." },
+  { num: "1", title: "Tell Us Your Goals", desc: "Tell us your budget, schedule, and goals (2 minutes). We listen before we recommend anything." },
+  { num: "2", title: "We Find Your Matches", desc: "We match you with 2–3 franchise brands that fit your budget, lifestyle, and income target." },
+  { num: "3", title: "Talk Directly to Brands", desc: "You talk directly to the brands — no pressure, no obligation. We stay with you through the process." },
 ];
 
 const testimonials = [
@@ -184,23 +184,23 @@ export default function HomeBasedFranchises() {
                 <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-['Inter']">Now Accepting New Clients</span>
               </div>
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.15] mb-6">
-                Run a Profitable Franchise From Home — <span className="text-[#c9a84c]">No Office, No Storefront, No Commute.</span>
+                Own a Franchise From Your Kitchen Table
               </h1>
               <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 font-['Inter']">
-                Discover the top home-based and in-home service franchises that let you build real wealth on your own schedule — with expert guidance at zero cost to you.
+                Home-based franchise opportunities under $75K that you can run remotely, part-time, or alongside a full-time job. Get matched with brands that fit your budget, schedule, and goals — in 15 minutes, at no cost.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                  <Home size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Home-Based Friendly</span>
+                  <DollarSign size={16} className="text-[#c9a84c]" />
+                  <span className="text-white text-sm font-medium font-['Inter']">Low startup cost — under $75K</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                  <DollarSign size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Starting at $50K</span>
+                  <Home size={16} className="text-[#c9a84c]" />
+                  <span className="text-white text-sm font-medium font-['Inter']">Run from anywhere</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <Star size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">500+ Concepts Vetted</span>
+                  <span className="text-white text-sm font-medium font-['Inter']">Keep your day job</span>
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-video max-w-md">
@@ -255,12 +255,12 @@ export default function HomeBasedFranchises() {
                     className="w-full h-[56px] bg-[#c9a84c] text-[#1a2332] font-bold text-lg rounded-lg hover:bg-[#b8953f] transition-colors disabled:opacity-60 font-['Inter']"
                     data-testid="button-hero-submit"
                   >
-                    {isSubmitting ? "Submitting..." : "Show Me Home-Based Franchise Options →"}
+                    {isSubmitting ? "Submitting..." : "See My Matches"}
                   </button>
                 </form>
                 <div className="flex items-center justify-center gap-2 mt-4">
                   <Lock size={14} className="text-gray-400" />
-                  <span className="text-gray-400 text-xs font-['Inter']">Free. Confidential. No pressure — ever.</span>
+                  <span className="text-gray-400 text-xs font-['Inter']">Free because franchisors pay us a placement fee. You get unbiased guidance — we earn only when you find a fit you love.</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-3 bg-amber-50 rounded-lg py-2 px-3">
                   <AlertTriangle size={14} className="text-amber-600" />
@@ -518,7 +518,7 @@ export default function HomeBasedFranchises() {
             ))}
           </div>
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center text-gray-600 mt-10 text-lg font-['Inter']">
-            Most clients go from curious to confident in under 30 days — at <span className="text-[#c9a84c] font-semibold">zero cost</span>.
+            We've helped professionals across the Southeast find their first franchise — from retirees adding income to parents building something they can run during school hours.
           </motion.p>
         </div>
       </section>
