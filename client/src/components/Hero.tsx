@@ -149,12 +149,12 @@ export function Hero() {
             </div>
           )}
 
-          {/* Issue 1: Updated CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+          {/* Issue 1: Updated CTAs — stacked vertically to stay within left column */}
+          <div className="flex flex-col gap-4 mb-10 max-w-sm">
+            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button
                 size="lg"
-                className="bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base px-8 h-12 shadow-lg transition-all font-['Inter']"
+                className="w-full bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base h-12 shadow-lg transition-all font-['Inter']"
                 data-testid="button-hero-primary"
               >
                 Book a Free Consultation
@@ -162,11 +162,11 @@ export function Hero() {
               </Button>
             </a>
             {/* // TODO: replace with questionnaire route when built — currently linking to /franchise-assessment */}
-            <Link href="/franchise-assessment">
+            <Link href="/franchise-assessment" className="w-full">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-['Inter']"
+                className="w-full border-white/30 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-['Inter']"
                 data-testid="button-hero-secondary"
               >
                 Take the Franchise Questionnaire
