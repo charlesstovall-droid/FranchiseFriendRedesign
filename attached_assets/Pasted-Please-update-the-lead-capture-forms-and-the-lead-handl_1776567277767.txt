@@ -1,0 +1,122 @@
+Please update the lead-capture forms and the lead-handling backend with the following changes. Show me a diff for every file before applying.
+
+OVERVIEW:
+- Add 2 new optional dropdown fields to the lead forms: "Liquid Capital" and "Timeline"
+- Make phone number REQUIRED (it is currently optional)
+- Add an auto-responder email that fires to the lead the moment a form is successfully submitted
+- The internal notification email to charles.stovall@gmail.com (already in place) must include the new fields
+
+DO NOT change routing, page layout, branding, colors, or any other functionality. Only add the new fields and the auto-responder logic.
+
+=====================================================
+PART 1: SCHEMA + BACKEND (server-side)
+=====================================================
+
+In the lead schema (likely shared/schema.ts or wherever the Zod/Drizzle schema for leads lives):
+
+1. Add two new OPTIONAL string fields to the leads table and the insert schema:
+   - liquidCapital: string (optional, nullable)
+   - timeline: string (optional, nullable)
+
+2. Make the phone field REQUIRED (currently optional). Use Zod validation: phone must be a non-empty string of at least 7 characters.
+
+3. If a database migration is needed (Drizzle), generate it and run it. Do NOT drop or rename existing columns.
+
+In the POST /api/leads handler (likely server/routes.ts):
+
+4. Accept and store the two new fields (liquidCapital, timeline) when present.
+
+5. AFTER the lead is successfully inserted (and after the existing internal notification email to charles.stovall@gmail.com is sent), send a new auto-responder email TO the lead's email address. Use the same email service already configured (Resend / SendGrid / Nodemailer / whatever is in use — DO NOT add a new email provider).
+
+   Auto-responder email details:
+   - To: the lead's email
+   - From: the same "from" address used by the internal notification email
+   - Reply-To: charles.stovall@gmail.com
+   - Subject: "Thanks for reaching out, {firstName} — next steps inside"
+   - Body (HTML, simple, no marketing flourishes):
+
+     Hi {firstName},
+
+     Thanks for reaching out. I got your information and I'll personally be in touch [FILL IN: response-time promise, e.g. "within one business day"].
+
+     If you'd rather skip the wait and pick a time directly on my calendar, here's my link:
+     [FILL IN: your Calendly URL]
+
+     I'll be calling from [FILL IN: your phone number] — feel free to save it so you don't miss the call.
+
+     Talk soon,
+     Charles Stovall
+     Franchise Friend
+     charles.stovall@gmail.com
+
+   - firstName = the first word of the submitted "name" field, with first letter capitalized. If name is empty, use "there".
+   - Wrap the auto-responder in try/catch so a failure doesn't break the 200 response to the user.
+
+6. Update the existing internal notification email to charles.stovall@gmail.com to ALSO include the two new fields (Liquid Capital and Timeline) in the email body, in addition to the existing fields.
+
+=====================================================
+PART 2: FRONTEND FORMS (client-side)
+=====================================================
+
+There are two forms to update. Find both and make these identical changes to each:
+
+A) The Executive Access form (used on /executive-access route, likely in client/src/pages/executive-landing.tsx or a form component it imports)
+B) The Home-Based Franchise form (used on /home-based-franchises route, likely in client/src/pages/home-based-franchises.tsx or a form component it imports)
+
+For each form:
+
+1. Make the phone field VISUALLY required (add the * indicator, change validation message to "Phone number is required").
+
+2. Add a new dropdown ABOVE the submit button (after the phone field):
+
+   Label: "Liquid Capital Available"
+   Helper text under label: "Optional — helps us match you with the right opportunities"
+   Field name: liquidCapital
+   Required: NO
+   Options:
+     - "" (placeholder: "Select range")
+     - "Under $50K"
+     - "$50K – $150K"
+     - "$150K – $500K"
+     - "$500K+"
+     - "Prefer not to say"
+
+3. Add a second new dropdown directly below the Liquid Capital one:
+
+   Label: "When are you looking to make a decision?"
+   Helper text: "Optional"
+   Field name: timeline
+   Required: NO
+   Options:
+     - "" (placeholder: "Select timeline")
+     - "This month"
+     - "1-3 months"
+     - "3-6 months"
+     - "Just researching"
+
+4. Both new fields should match the existing form field styling (same className, same component library — Shadcn Select if that's what's already in use, otherwise native <select> styled to match).
+
+5. Include the two new fields in the POST /api/leads payload when submitted. Send empty string as null/omitted, not as empty string.
+
+6. Do NOT change the leadType values, the success page redirect, or the conversion tracking gtag snippet. Those must keep working exactly as they do now.
+
+=====================================================
+RULES
+=====================================================
+
+- Do NOT modify .env or .env.local files.
+- Do NOT add new npm dependencies unless absolutely required (the email service is already installed).
+- Do NOT change the design system, colors, or component library.
+- Do NOT touch the conversion tracking code on success/thank-you pages.
+- Do NOT modify any other unrelated files.
+- Show me the diff of every file changed before applying.
+- After applying, confirm:
+   a) Phone is now required on both forms
+   b) Both forms show the two new dropdowns
+   c) New leads in /api/leads include the new fields
+   d) Internal notification email to charles.stovall@gmail.com includes the new fields
+   e) Auto-responder is sent to the lead's email address
+   f) Conversion tag still fires on success pages
+   g) /api/leads GET endpoint is still locked behind the ADMIN_API_TOKEN auth (from the previous fix)
+
+When done, tell me to republish.

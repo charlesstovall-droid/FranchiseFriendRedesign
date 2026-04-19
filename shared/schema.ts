@@ -10,6 +10,8 @@ export const leads = pgTable("leads", {
   phone: text("phone"),
   message: text("message"),
   leadType: text("lead_type").notNull(),
+  liquidCapital: text("liquid_capital"),
+  timeline: text("timeline"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -18,7 +20,9 @@ export const insertLeadSchema = createInsertSchema(leads).omit({
   createdAt: true,
 }).extend({
   email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
+  phone: z.string().min(7, "Phone number is required"),
+  liquidCapital: z.string().optional().nullable(),
+  timeline: z.string().optional().nullable(),
 });
 
 export type InsertLead = z.infer<typeof insertLeadSchema>;

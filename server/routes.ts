@@ -274,6 +274,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             <p><strong>Name:</strong> ${validatedData.name}</p>
             <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
             ${validatedData.phone ? `<p><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>` : ""}
+            ${validatedData.liquidCapital ? `<p><strong>Liquid Capital:</strong> ${validatedData.liquidCapital}</p>` : ""}
+            ${validatedData.timeline ? `<p><strong>Timeline:</strong> ${validatedData.timeline}</p>` : ""}
             ${validatedData.message ? `<p><strong>Message:</strong></p><p style="background: #f5f5f5; padding: 15px; border-radius: 4px;">${validatedData.message}</p>` : ""}
           </div>
         `;
@@ -288,6 +290,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (emailError) {
         console.error("[Email] Error sending lead notification email:", emailError);
         // Don't fail the lead creation if email fails
+      }
+
+      // Auto-responder email to the lead
+      try {
+        const firstName = validatedData.name
+          ? validatedData.name.trim().split(/\s+/)[0].charAt(0).toUpperCase() + validatedData.name.trim().split(/\s+/)[0].slice(1).toLowerCase()
+          : "there";
+
+        const autoResponderHtml = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
+            <p>Hi ${firstName},</p>
+            <p>Thanks for reaching out. I got your information and I'll personally be in touch within one business day.</p>
+            <p>If you'd rather skip the wait and pick a time directly on my calendar, here's my link:<br>
+            <a href="https://calendly.com/charles-stovall/intro">https://calendly.com/charles-stovall/intro</a></p>
+            <p>I'll be calling from <strong>(919) 827-3921</strong> — feel free to save it so you don't miss the call.</p>
+            <p>Talk soon,<br>
+            <strong>Charles Stovall</strong><br>
+            Franchise Friend<br>
+            <a href="mailto:charles.stovall@gmail.com">charles.stovall@gmail.com</a></p>
+          </div>
+        `;
+
+        await sendEmail(
+          validatedData.email,
+          `Thanks for reaching out, ${firstName} — next steps inside`,
+          autoResponderHtml,
+          "charles.stovall@gmail.com"
+        );
+
+        console.log(`[Email] Auto-responder sent to ${validatedData.email}`);
+      } catch (autoResponderError) {
+        console.error("[Email] Error sending auto-responder email:", autoResponderError);
+        // Don't fail the lead creation if auto-responder fails
       }
 
       try {

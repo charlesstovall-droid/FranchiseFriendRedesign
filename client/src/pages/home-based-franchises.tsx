@@ -89,7 +89,7 @@ const guideTeaser = [
 
 export default function HomeBasedFranchises() {
   const [, setLocation] = useLocation();
-  const [formData, setFormData] = useState({ firstName: "", email: "", phone: "" });
+  const [formData, setFormData] = useState({ firstName: "", email: "", phone: "", liquidCapital: "", timeline: "" });
   const [guideEmail, setGuideEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGuideSubmitting, setIsGuideSubmitting] = useState(false);
@@ -109,6 +109,8 @@ export default function HomeBasedFranchises() {
           phone: formData.phone,
           message: "Home-Based Franchise Landing Page — Lead",
           leadType: "home-based-ad",
+          ...(formData.liquidCapital ? { liquidCapital: formData.liquidCapital } : {}),
+          ...(formData.timeline ? { timeline: formData.timeline } : {}),
         }),
       });
       if (!response.ok) {
@@ -246,9 +248,43 @@ export default function HomeBasedFranchises() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-['Inter']"
-                    placeholder="Phone Number"
+                    placeholder="Phone Number (required)"
                     data-testid="input-phone"
                   />
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-['Inter']">Liquid Capital Available <span className="font-normal text-gray-400">(Optional — helps us match you with the right opportunities)</span></label>
+                    <select
+                      value={formData.liquidCapital}
+                      onChange={(e) => setFormData({ ...formData, liquidCapital: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-['Inter']"
+                      data-testid="select-liquid-capital"
+                    >
+                      <option value="">Select range</option>
+                      <option value="Under $50K">Under $50K</option>
+                      <option value="$50K – $150K">$50K – $150K</option>
+                      <option value="$150K – $500K">$150K – $500K</option>
+                      <option value="$500K+">$500K+</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-['Inter']">When are you looking to make a decision? <span className="font-normal text-gray-400">(Optional)</span></label>
+                    <select
+                      value={formData.timeline}
+                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-['Inter']"
+                      data-testid="select-timeline"
+                    >
+                      <option value="">Select timeline</option>
+                      <option value="This month">This month</option>
+                      <option value="1-3 months">1-3 months</option>
+                      <option value="3-6 months">3-6 months</option>
+                      <option value="Just researching">Just researching</option>
+                    </select>
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting}

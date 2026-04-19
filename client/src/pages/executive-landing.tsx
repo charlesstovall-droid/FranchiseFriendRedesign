@@ -32,7 +32,7 @@ const testimonials = [
 
 export default function ExecutiveLanding() {
   const [, setLocation] = useLocation();
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "" });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "", liquidCapital: "", timeline: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -48,8 +48,10 @@ export default function ExecutiveLanding() {
           name: `${formData.firstName} ${formData.lastName}`.trim(),
           email: formData.email,
           phone: formData.phone,
-          message: "Executive Landing - Free Franchise Fit Assessment",
+          message: "Executive Landing - Franchise Assessment",
           leadType: "executive-ad",
+          ...(formData.liquidCapital ? { liquidCapital: formData.liquidCapital } : {}),
+          ...(formData.timeline ? { timeline: formData.timeline } : {}),
         }),
       });
       setLocation(`/franchise-assessment?name=${encodeURIComponent(`${formData.firstName} ${formData.lastName}`.trim())}&email=${encodeURIComponent(formData.email)}`);
@@ -173,9 +175,42 @@ export default function ExecutiveLanding() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                    placeholder="Enter your phone number"
+                    placeholder="Phone number (required)"
                     data-testid="input-phone"
                   />
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1">Liquid Capital Available <span className="font-normal text-gray-400">(Optional — helps us match you with the right opportunities)</span></label>
+                    <select
+                      value={formData.liquidCapital}
+                      onChange={(e) => setFormData({ ...formData, liquidCapital: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition bg-white text-gray-700"
+                      data-testid="select-liquid-capital"
+                    >
+                      <option value="">Select range</option>
+                      <option value="Under $50K">Under $50K</option>
+                      <option value="$50K – $150K">$50K – $150K</option>
+                      <option value="$150K – $500K">$150K – $500K</option>
+                      <option value="$500K+">$500K+</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1">When are you looking to make a decision? <span className="font-normal text-gray-400">(Optional)</span></label>
+                    <select
+                      value={formData.timeline}
+                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition bg-white text-gray-700"
+                      data-testid="select-timeline"
+                    >
+                      <option value="">Select timeline</option>
+                      <option value="This month">This month</option>
+                      <option value="1-3 months">1-3 months</option>
+                      <option value="3-6 months">3-6 months</option>
+                      <option value="Just researching">Just researching</option>
+                    </select>
+                  </div>
 
                   <p className="text-xs text-gray-400 text-center">🔒 Your information is 100% secure. No spam, ever.</p>
 

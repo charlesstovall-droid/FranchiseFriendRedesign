@@ -47,17 +47,21 @@ export async function getGmailClient() {
   return google.gmail({ version: 'v1', auth: oauth2Client });
 }
 
-export async function sendEmail(to: string, subject: string, htmlContent: string) {
+export async function sendEmail(to: string, subject: string, htmlContent: string, replyTo?: string) {
   const gmail = await getGmailClient();
-  
-  const message = [
+
+  const headers: string[] = [
     'Content-Type: text/html; charset=utf-8',
     'MIME-Version: 1.0',
     `To: ${to}`,
     `Subject: ${subject}`,
-    '',
-    htmlContent
-  ].join('\n');
+  ];
+  if (replyTo) {
+    headers.push(`Reply-To: ${replyTo}`);
+  }
+  headers.push('', htmlContent);
+
+  const message = headers.join('\n');
 
   const encodedMessage = Buffer.from(message)
     .toString('base64')
