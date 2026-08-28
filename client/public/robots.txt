@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://charlesstovall.com/sitemap.xml
+Sitemap: https://www.charlesstovall.com/sitemap.xml
 Sitemap: https://franchisefriend.net/sitemap.xml
 
 Disallow: /api/

@@ -18,16 +18,16 @@ export default function Blog() {
     "@type": "Blog",
     "name": "Franchise Insights & Resources",
     "description": "Expert franchise consulting articles and guides by Charles Stovall",
-    "url": "https://charlesstovall.com/blog",
+    "url": "https://www.charlesstovall.com/blog",
     "author": {
       "@type": "Person",
       "name": "Charles Stovall",
-      "url": "https://charlesstovall.com"
+      "url": "https://www.charlesstovall.com"
     },
     "blogPost": blogPosts.slice(0, 10).map(post => ({
       "@type": "BlogPosting",
       "headline": post.title,
-      "url": `https://charlesstovall.com/blog/${post.slug}`,
+      "url": `https://www.charlesstovall.com/blog/${post.slug}`,
       "datePublished": post.date,
       "author": {
         "@type": "Person",
@@ -41,7 +41,7 @@ export default function Blog() {
       <SEO 
         title="Franchise Insights & Resources | Charles Stovall - Franchise Consultant"
         description="Expert franchise consulting articles, guides, and market insights for Charleston SC entrepreneurs. Learn about franchise financing, industry trends, and business ownership opportunities."
-        canonicalUrl="https://charlesstovall.com/blog"
+        canonicalUrl="https://www.charlesstovall.com/blog"
         schema={blogListSchema}
       />
       <Navbar />
@@ -120,14 +120,14 @@ export default function Blog() {
                     
                     <div className="flex items-center justify-between pt-4 border-t border-border">
                       <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
-                      <Link 
+                      <a
                         href={`/blog/${post.slug}`}
                         className="inline-flex items-center gap-2 text-secondary hover:text-accent-pop transition-colors font-semibold text-sm"
                         data-testid={`link-post-${post.slug}`}
                       >
                         Read More
                         <ChevronRight className="w-3 h-3" />
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>

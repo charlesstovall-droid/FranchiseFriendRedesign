@@ -58,17 +58,17 @@ export default function PodcastsPage() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "PodcastSeries",
-          "@id": "https://charlesstovall.com/podcasts#series",
+          "@id": "https://www.charlesstovall.com/podcasts#series",
           "name": "Charles Stovall's Franchise Friend Podcast",
           "description": "Expert insights on franchise consulting, business strategy, and entrepreneurship from certified franchise consultant Charles Stovall",
-          "url": "https://charlesstovall.com/podcasts",
+          "url": "https://www.charlesstovall.com/podcasts",
           "author": {
             "@type": "Person",
             "name": "Charles Stovall",
-            "url": "https://charlesstovall.com"
+            "url": "https://www.charlesstovall.com"
           },
-          "image": "https://charlesstovall.com/podcast-artwork.png",
-          "webFeed": "https://charlesstovall.com/api/podcast/rss"
+          "image": "https://www.charlesstovall.com/podcast-artwork.png",
+          "webFeed": "https://www.charlesstovall.com/api/podcast/rss"
         })}
       </script>
       {podcasts.length > 0 && (
@@ -83,13 +83,13 @@ export default function PodcastsPage() {
                 "@type": "PodcastEpisode",
                 "name": p.title,
                 "description": p.description || "Franchise consulting insights from Charles Stovall",
-                "url": `https://charlesstovall.com/podcasts#episode-${p.id}`,
+                "url": `https://www.charlesstovall.com/podcasts#episode-${p.id}`,
                 "datePublished": p.publishedAt,
                 "duration": p.duration ? `PT${Math.floor(p.duration / 60)}M${p.duration % 60}S` : undefined,
-                "image": p.artworkUrl || "https://charlesstovall.com/podcast-artwork.png",
+                "image": p.artworkUrl || "https://www.charlesstovall.com/podcast-artwork.png",
                 "partOfSeries": {
                   "@type": "PodcastSeries",
-                  "@id": "https://charlesstovall.com/podcasts#series"
+                  "@id": "https://www.charlesstovall.com/podcasts#series"
                 },
                 "associatedMedia": {
                   "@type": "AudioObject",

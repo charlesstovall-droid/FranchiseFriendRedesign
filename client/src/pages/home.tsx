@@ -20,7 +20,7 @@ export default function Home() {
       <SEO
         title="Charles Stovall | Expert Franchise Consulting in Charleston SC | Franchise Friend"
         description="Expert franchise consulting by Charles Stovall in Charleston, SC. Find top franchises 2026, business evaluation, due diligence services, and personalized franchise discovery."
-        canonicalUrl="https://charlesstovall.com/"
+        canonicalUrl="https://www.charlesstovall.com/"
       />
       <Navbar />
       <main>

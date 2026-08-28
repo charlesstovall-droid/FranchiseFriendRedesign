@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { toWwwCanonical } from "@shared/site";
 
 interface SEOProps {
   title: string;
@@ -50,18 +51,20 @@ export function SEO({
       }
     };
 
+    const canonical = toWwwCanonical(canonicalUrl);
+
     updateMetaTag("description", description);
     updateMetaTag("title", title);
-    updateCanonical(canonicalUrl);
+    updateCanonical(canonical);
 
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
-    updateMetaTag("og:url", canonicalUrl, true);
+    updateMetaTag("og:url", canonical, true);
     updateMetaTag("og:type", type, true);
 
     updateMetaTag("twitter:title", title);
     updateMetaTag("twitter:description", description);
-    updateMetaTag("twitter:url", canonicalUrl);
+    updateMetaTag("twitter:url", canonical);
 
     if (article) {
       updateMetaTag("article:published_time", article.publishedTime, true);

@@ -9,6 +9,7 @@ import nodemailer from "nodemailer";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { sendEmail } from "./gmail";
+import { sitemapUrls } from "./seo";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -50,32 +51,24 @@ function escapeXml(str: string = ""): string {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Dynamic Sitemap
   app.get("/sitemap.xml", async (req, res) => {
+    const today = new Date().toISOString().split("T")[0];
     const podcasts = await storage.getAllPodcasts();
+    const pageUrls = sitemapUrls().map((loc) => `
+  <url>
+    <loc>${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>`).join("");
     const podcastUrls = podcasts.map(p => `
   <url>
-    <loc>https://charlesstovall.com/podcast/${p.id}</loc>
-    <lastmod>${new Date(p.publishedAt).toISOString().split('T')[0]}</lastmod>
+    <loc>https://www.charlesstovall.com/podcasts#episode-${p.id}</loc>
+    <lastmod>${(p.publishedAt ? new Date(p.publishedAt) : new Date()).toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
   </url>`).join("");
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://charlesstovall.com/</loc>
-    <lastmod>2026-01-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://charlesstovall.com/podcasts</loc>
-    <lastmod>2026-01-13</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://charlesstovall.com/home</loc>
-    <lastmod>2026-01-13</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
+  ${pageUrls}
   ${podcastUrls}
 </urlset>`;
     res.header('Content-Type', 'application/xml');
@@ -256,7 +249,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/leads", async (req, res) => {
     try {
-      const validatedData = insertLeadSchema.parse(req.body);
+      const rawBody = req.body && typeof req.body === "object" ? { ...req.body } : {};
+      if (!rawBody.name && (rawBody.firstName || rawBody.lastName)) {
+        rawBody.name = `${rawBody.firstName || ""} ${rawBody.lastName || ""}`.trim();
+      }
+      const validatedData = insertLeadSchema.parse(rawBody);
       const lead = await storage.createLead(validatedData);
       
       // Send email notification to Charles for every lead, regardless of type
@@ -342,6 +339,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error("[Webhook] Error sending lead to LeadConnector:", webhookError);
       }
       
+      const wantsHtml =
+        req.is("application/x-www-form-urlencoded") ||
+        req.is("multipart/form-data");
+      if (wantsHtml) {
+        return res.redirect(303, "/thank-you-ad");
+      }
+
       res.json({ success: true, lead });
     } catch (error: any) {
       if (error.name === "ZodError") {

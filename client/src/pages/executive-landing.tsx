@@ -1,499 +1,334 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { Phone, Check, X, Star } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Phone, ArrowRight } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { trackConversion } from "@/lib/analytics";
+import { absoluteUrl } from "@shared/site";
 
-const faqItems = [
-  { id: "1", q: "How much does your service cost?", a: "$0. I'm compensated by the franchisors when you choose to move forward, not by you. This means I can be completely unbiased in my recommendations." },
-  { id: "2", q: "Are you going to pressure me to buy a franchise?", a: "Never. My reputation is built on helping people make informed decisions. If franchising isn't right for you, I'll be the first to tell you." },
-  { id: "3", q: "What if I don't have $500K to invest?", a: "Most of my clients invest between $150K-$350K. I work with franchises across all investment levels and can help you explore financing options including SBA loans and 401(k) rollovers." },
-  { id: "4", q: "How long does the process take?", a: "From our first call to signing a franchise agreement typically takes 60-90 days. But there's no rush—you move at your own pace. Some clients take 6 months, others take a year." },
-  { id: "5", q: "Do I need business experience to own a franchise?", a: "Not at all. That's the beauty of franchising—you're buying a proven system. Your corporate skills (management, sales, operations) transfer beautifully to franchise ownership." },
-  { id: "6", q: "What industries do you work with?", a: "Everything from home services to healthcare to food & beverage to B2B services. I match you based on your interests and goals, not what pays me the highest commission." },
-];
-
-const testimonials = [
+const reviews = [
   {
-    quote: "Charles helped me transition from a VP role at a Fortune 500 company to owning a home services franchise. Best decision I ever made.",
-    name: "Michael J.",
-    title: "Former VP of Sales → Franchise Owner",
+    quote: "Charles is a great teacher and leader, and has found me several franchise opportunities to consider. I appreciate his approach on all matters including the various different franchise opportunities.",
+    name: "Mark Murrel",
+    title: "Principal, Murrel Investments",
   },
   {
-    quote: "I was skeptical about franchising until I worked with Charles. He showed me opportunities I never knew existed and helped me avoid several that looked good on paper but had terrible financials.",
-    name: "Sarah M.",
-    title: "Former Director of Operations → Multi-Unit Owner",
+    quote: "Charles helped guide me through the process of starting a franchise. He was patient and took the time to learn about my background and work history and then helped me strategize a plan for my future.",
+    name: "Chad Tinney",
+    title: "Redbox+ Owner",
   },
   {
-    quote: "The best part? No pressure. Charles truly cared about finding the right fit for my family and lifestyle. Six months in and I couldn't be happier with my decision.",
-    name: "David C.",
-    title: "Former CFO → Healthcare Franchise Owner",
+    quote: "Charles helped me research 3 separate franchises. Without his guidance, my wife and I would have never known what the process entailed. With his industry insight we were able to find and fund our first franchise.",
+    name: "Joe Bosso",
+    title: "Atlanta, GA",
   },
 ];
 
 export default function ExecutiveLanding() {
   const [, setLocation] = useLocation();
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "", liquidCapital: "", timeline: "" });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
     try {
-      await fetch("/api/leads", {
+      const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`.trim(),
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
-          message: "Executive Landing - Franchise Assessment",
+          message: "Executive Access — Franchise Assessment",
           leadType: "executive-ad",
-          ...(formData.liquidCapital ? { liquidCapital: formData.liquidCapital } : {}),
-          ...(formData.timeline ? { timeline: formData.timeline } : {}),
         }),
       });
-      setLocation(`/franchise-assessment?name=${encodeURIComponent(`${formData.firstName} ${formData.lastName}`.trim())}&email=${encodeURIComponent(formData.email)}`);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+      if (!res.ok) {
+        throw new Error("Submission failed");
+      }
+      trackConversion("executive-ad");
+      setLocation("/thank-you-ad");
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      setError("Something went wrong. Call (919) 827-3921 or try again.");
       setIsSubmitting(false);
     }
   };
 
   const scrollToForm = () => {
-    document.getElementById("hero-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("executive-assessment-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <a
-        href="tel:9198273921"
-        className="bg-[#D4AF37] text-[#1B2B3A] py-3 px-4 flex items-center justify-center gap-2 hover:bg-[#c9a432] transition-colors"
-        data-testid="button-call-top"
-      >
-        <Phone size={18} className="animate-pulse" />
-        <span className="font-bold text-sm">Call Now: (919) 827-3921</span>
-      </a>
+    <div className="min-h-screen bg-[#F7F4EC] text-[#1a2332]">
+      <SEO
+        title="Executive Access | Semi-Absentee Franchise Opportunities for Executives | Charles Stovall"
+        description="Charles Stovall helps executives in Charleston and nationwide match capital to a franchise model they can run without leaving the W-2. Assessment, FDD review, Item 19."
+        canonicalUrl={absoluteUrl("/executive-access")}
+      />
 
-      {/* HERO */}
-      <section className="bg-gradient-to-br from-[#1B2B3A] to-[#0F1922] min-h-[90vh] flex items-center py-16 lg:py-20">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+      <header className="bg-[#0A1F3C] text-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
+          <a href="/" className="flex items-center gap-3">
+            <img src="/cs-shield-logo.png" alt="Charles Stovall" className="w-10 h-10 object-contain" />
+            <div className="leading-tight">
+              <p className="font-serif font-bold text-sm">Charles Stovall</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#c9a84c]">Franchise Friend</p>
+            </div>
+          </a>
+          <div className="flex items-center gap-3 text-sm">
+            <a
+              href="tel:9198273921"
+              className="inline-flex items-center gap-2 text-white/90 hover:text-[#c9a84c]"
+              data-testid="button-call-top"
             >
-              <p className="text-[#D4AF37] text-xs font-bold tracking-[3px] uppercase mb-5">Exclusive Opportunity</p>
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-serif font-bold text-white mb-6 leading-[1.15]">
-                The Franchise Your Resume Can't Get You
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
-                Private access to semi-absentee and executive-model franchises — the ones that don't advertise publicly. For professionals with $150K+ in liquid capital who want ownership without leaving their career.
-              </p>
-
-              <div className="bg-white rounded-xl p-6 md:p-8 grid grid-cols-3 gap-4 mb-5">
-                <div className="text-center border-r border-gray-200 last:border-r-0">
-                  <p className="text-xl md:text-2xl font-bold text-[#1B2B3A]">15+</p>
-                  <p className="text-xs text-gray-500 mt-1">Years Experience</p>
-                </div>
-                <div className="text-center border-r border-gray-200 last:border-r-0">
-                  <p className="text-xl md:text-2xl font-bold text-[#1B2B3A]">500+</p>
-                  <p className="text-xs text-gray-500 mt-1">Concepts Vetted</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xl md:text-2xl font-bold text-[#1B2B3A]">$150K+</p>
-                  <p className="text-xs text-gray-500 mt-1">Capital Minimum</p>
-                </div>
-              </div>
-
-              <p className="text-sm text-gray-400 italic">
-                Charles has placed clients with franchise brands including service, fitness, food, and home-services concepts across the Southeast.
-              </p>
-            </motion.div>
-
-            <motion.div
-              id="hero-form"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              <Phone size={16} />
+              <span className="hidden sm:inline">(919) 827-3921</span>
+            </a>
+            <a
+              href="https://calendly.com/charles-stovall/intro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center h-10 px-4 rounded-md bg-[#c9a84c] text-[#0A1F3C] font-semibold hover:bg-[#b8953f]"
             >
-              <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
-                <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B2B3A] text-center mb-2">
-                  Get Your Executive<br />Franchise Assessment
-                </h2>
-                <p className="text-xs text-gray-500 text-center mb-6">No cost to you — we're compensated by the franchisors in our network. We only introduce you to brands that fit your capital, goals, and lifestyle.</p>
-
-                <div className="flex gap-4 items-start mb-6 pb-6 border-b border-gray-200">
-                  <img
-                    src="/charles-headshot.jpeg"
-                    alt="Charles Stovall"
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover flex-shrink-0 border-[3px] border-[#D4AF37]"
-                  />
-                  <div>
-                    <p className="font-semibold text-[#1B2B3A] text-sm mb-1">Meet Your Advisor: Charles Stovall</p>
-                    <p className="text-xs text-gray-500 leading-relaxed">
-                      As a Franchise Advisor, I specialize in helping corporate executives transition into business ownership. I don't sell franchises; I help you find the right match.
-                    </p>
-                  </div>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    <input
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                      placeholder="First Name"
-                      data-testid="input-first-name"
-                    />
-                    <input
-                      type="text"
-                      required
-                      value={formData.lastName}
-                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                      placeholder="Last Name"
-                      data-testid="input-last-name"
-                    />
-                  </div>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                    placeholder="Enter your email address"
-                    data-testid="input-email"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition"
-                    placeholder="Phone number (required)"
-                    data-testid="input-phone"
-                  />
-
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">Liquid Capital Available <span className="font-normal text-gray-400">(Optional — helps us match you with the right opportunities)</span></label>
-                    <select
-                      value={formData.liquidCapital}
-                      onChange={(e) => setFormData({ ...formData, liquidCapital: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition bg-white text-gray-700"
-                      data-testid="select-liquid-capital"
-                    >
-                      <option value="">Select range</option>
-                      <option value="Under $50K">Under $50K</option>
-                      <option value="$50K – $150K">$50K – $150K</option>
-                      <option value="$150K – $500K">$150K – $500K</option>
-                      <option value="$500K+">$500K+</option>
-                      <option value="Prefer not to say">Prefer not to say</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">When are you looking to make a decision? <span className="font-normal text-gray-400">(Optional)</span></label>
-                    <select
-                      value={formData.timeline}
-                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/10 transition bg-white text-gray-700"
-                      data-testid="select-timeline"
-                    >
-                      <option value="">Select timeline</option>
-                      <option value="This month">This month</option>
-                      <option value="1-3 months">1-3 months</option>
-                      <option value="3-6 months">3-6 months</option>
-                      <option value="Just researching">Just researching</option>
-                    </select>
-                  </div>
-
-                  <p className="text-xs text-gray-400 text-center">🔒 Your information is 100% secure. No spam, ever.</p>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-14 bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_6px_20px_rgba(212,175,55,0.6)] text-[#1B2B3A] font-bold text-base rounded-lg transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
-                    data-testid="button-submit"
-                  >
-                    {isSubmitting ? "Loading..." : "Request Private Access"}
-                  </button>
-
-                  <div className="bg-amber-50 rounded-md p-3 text-center">
-                    <p className="text-xs font-semibold text-amber-600">⚠️ Limited to 5 new clients per month</p>
-                    <p className="text-xs font-semibold text-amber-600">📅 Consultations filling fast</p>
-                  </div>
-                </form>
-              </div>
-            </motion.div>
+              Book a call
+            </a>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* PROBLEM */}
-      <section className="py-20 md:py-28 bg-[#F5F7FA]">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-[42px] font-serif font-bold text-[#1B2B3A] text-center mb-4 leading-tight">
-              You've Built Someone Else's Empire.<br />Time to Build Your Own.
-            </h2>
-            <p className="text-lg md:text-xl text-gray-500 text-center max-w-3xl mx-auto mb-14">
-              But here's the reality: 73% of first-time franchise buyers choose the wrong franchise and lose money. Don't be one of them.
+      <section className="bg-[#0A1F3C] text-white pb-16 md:pb-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
+          <div>
+            <p className="text-[#7dceb0] text-xs font-semibold tracking-[0.22em] uppercase mb-4">
+              Charleston / Mt. Pleasant, SC
             </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {[
-              "Years of 60+ hour weeks with no equity to show for it",
-              "Corporate politics limiting your potential",
-              "Your compensation tied to someone else's decisions",
-              "No clear path to true financial independence",
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-              >
-                <X className="w-6 h-6 text-red-400 mb-4" />
-                <h3 className="text-lg font-semibold text-[#1B2B3A] leading-snug">{item}</h3>
-              </motion.div>
-            ))}
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.12] mb-6">
+              Keep the W-2. Buy a model that can run without you.
+            </h1>
+            <p className="text-lg md:text-xl text-white/75 max-w-xl leading-relaxed mb-6">
+              I'm Charles Stovall. I built 30 locations and sold into private equity. Now I help executives match capital to a franchise — then read the FDD like someone who has made payroll.
+            </p>
+            <p className="text-base text-white/65 max-w-xl leading-relaxed mb-8">
+              Your resume got you the corner office. It will not get you a clean Item 19. Semi-absentee only works if the labor, the cash, and the file agree.
+            </p>
+            <div className="grid grid-cols-3 gap-3 max-w-lg">
+              {[
+                { stat: "30", label: "Locations built" },
+                { stat: "PE", label: "Exit, then this" },
+                { stat: "FDD", label: "Read like an operator" },
+              ].map((item) => (
+                <div key={item.label} className="bg-white/5 border border-white/10 rounded-lg px-3 py-4">
+                  <p className="font-serif text-2xl text-[#c9a84c] font-bold">{item.stat}</p>
+                  <p className="text-xs text-white/60 mt-1 leading-snug">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* SOLUTION */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-[40%_60%] gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <img
-                src="/charles-headshot.jpeg"
-                alt="Charles Stovall - Franchise Advisor"
-                className="rounded-2xl shadow-xl w-full max-w-md mx-auto object-cover"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-[#D4AF37] text-xs font-bold tracking-[3px] uppercase mb-5">The Charles Stovall Difference</p>
-              <h2 className="text-3xl md:text-[38px] font-serif font-bold text-[#1B2B3A] mb-6 leading-tight">
-                Here's How I Help Executives Find Their Perfect Franchise
-              </h2>
-              <p className="text-gray-500 mb-8 leading-relaxed">
-                I've spent 15+ years helping corporate professionals just like you make the transition to franchise ownership. Here's what makes my approach different:
-              </p>
-
-              <div className="space-y-6 mb-10">
-                {[
-                  { title: "Off-market opportunities", desc: "Pre-vetted franchise brands not listed on public sites — you only see them through an advisor relationship." },
-                  { title: "Semi-absentee models", desc: "Keep your W-2 income while building ownership equity. Most of our executive clients don't leave their careers on day one." },
-                  { title: "Capital-matched recommendations", desc: "Only brands that fit your $150K–$500K+ range. No wasted time on concepts outside your investment profile." },
-                ].map((b, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 text-emerald-500" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-[#1B2B3A] mb-1">{b.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{b.desc}</p>
-                    </div>
-                  </div>
-                ))}
+          <div className="bg-[#F7F4EC] text-[#1a2332] rounded-2xl p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+            <h2 className="font-serif text-2xl font-bold mb-2">Request your executive assessment</h2>
+            <p className="text-sm text-[#1a2332]/65 mb-6">
+              Four fields. I'll follow up to book the call and look at capital versus the model.
+            </p>
+            <form id="executive-assessment-form" action="/api/leads" method="POST" onSubmit={handleSubmit} className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <label className="block text-xs font-semibold">
+                  First name
+                  <input
+                    type="text"
+                    name="firstName"
+                    required
+                    autoComplete="given-name"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="mt-1 w-full h-12 px-3 rounded-lg border border-[#1a2332]/15 bg-white text-base focus:outline-none focus:border-[#c9a84c]"
+                    data-testid="input-first-name"
+                  />
+                </label>
+                <label className="block text-xs font-semibold">
+                  Last name
+                  <input
+                    type="text"
+                    name="lastName"
+                    required
+                    autoComplete="family-name"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="mt-1 w-full h-12 px-3 rounded-lg border border-[#1a2332]/15 bg-white text-base focus:outline-none focus:border-[#c9a84c]"
+                    data-testid="input-last-name"
+                  />
+                </label>
               </div>
-
+              <label className="block text-xs font-semibold">
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="mt-1 w-full h-12 px-3 rounded-lg border border-[#1a2332]/15 bg-white text-base focus:outline-none focus:border-[#c9a84c]"
+                  data-testid="input-email"
+                />
+              </label>
+              <label className="block text-xs font-semibold">
+                Phone
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  autoComplete="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="mt-1 w-full h-12 px-3 rounded-lg border border-[#1a2332]/15 bg-white text-base focus:outline-none focus:border-[#c9a84c]"
+                  data-testid="input-phone"
+                />
+              </label>
+              <input type="hidden" name="leadType" value="executive-ad" />
+              <input type="hidden" name="message" value="Executive Access — Franchise Assessment" />
+              {error && <p className="text-sm text-red-700">{error}</p>}
               <button
-                onClick={scrollToForm}
-                className="bg-[#D4AF37] hover:bg-[#C19A2E] text-[#1B2B3A] font-bold py-4 px-10 rounded-lg transition-all duration-300 hover:-translate-y-0.5"
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-13 h-14 bg-[#0A1F3C] hover:bg-[#122c54] text-white font-bold rounded-lg disabled:opacity-50"
+                data-testid="button-submit"
               >
-                Book Your Free 30-Minute Strategy Call
+                {isSubmitting ? "Sending…" : "Request the assessment"}
               </button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3-STEP PROCESS */}
-      <section className="py-20 md:py-28 bg-[#1B2B3A]">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-[42px] font-serif font-bold text-white text-center mb-16 leading-tight"
-          >
-            My 3-Step Franchise Match Process
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { num: "01", title: "Discovery Call", time: "30 minutes", desc: "We discuss your goals, budget, skills, lifestyle preferences, and deal-breakers. I learn what success looks like for you." },
-              { num: "02", title: "Franchise Matching", time: "3-5 business days", desc: "I present 3-5 franchises that perfectly align with your criteria. Each comes with detailed financials and my honest assessment." },
-              { num: "03", title: "Due Diligence Support", time: "As long as you need", desc: "I guide you through FDD analysis, validation calls with existing franchisees, and help you make a confident final decision." },
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="bg-[#2C3E50] p-10 rounded-2xl border-t-4 border-[#D4AF37] hover:-translate-y-1 transition-all duration-300"
-              >
-                <span className="text-6xl font-serif font-bold text-[#D4AF37] opacity-30 block mb-4">{step.num}</span>
-                <h3 className="text-2xl font-serif font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-sm text-[#D4AF37] mb-4">{step.time}</p>
-                <p className="text-gray-300 leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-20 md:py-28 bg-[#F5F7FA]">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-[42px] font-serif font-bold text-[#1B2B3A] text-center mb-16 leading-tight"
-          >
-            What Executives Say About<br />Working With Me
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 md:p-10 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="flex gap-1 text-[#D4AF37] mb-5">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-5 h-5 fill-current" />)}
-                </div>
-                <p className="text-gray-600 italic leading-relaxed mb-6">"{t.quote}"</p>
-                <div>
-                  <p className="font-semibold text-[#1B2B3A]">{t.name}</p>
-                  <p className="text-sm text-gray-500">{t.title}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-3xl mx-auto px-4 md:px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-[42px] font-serif font-bold text-[#1B2B3A] text-center mb-12"
-          >
-            Frequently Asked Questions
-          </motion.h2>
-
-          <div className="border-b border-gray-200">
-            {faqItems.map((item) => (
-              <div key={item.id} className="border-t border-gray-200">
-                <button
-                  onClick={() => setOpenFaq(openFaq === item.id ? null : item.id)}
-                  className="w-full py-5 flex items-center justify-between gap-4 text-left group"
-                  data-testid={`button-exec-faq-${item.id}`}
-                >
-                  <h3 className="font-semibold text-[#1B2B3A] text-lg group-hover:text-[#D4AF37] transition-colors">{item.q}</h3>
-                  <span className={`text-2xl text-[#D4AF37] flex-shrink-0 transition-transform duration-200 ${openFaq === item.id ? "rotate-45" : ""}`}>+</span>
-                </button>
-                <AnimatePresence>
-                  {openFaq === item.id && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-gray-500 leading-relaxed pb-5">{item.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="py-20 md:py-24 bg-gradient-to-br from-[#1B2B3A] to-[#0F1922]">
-        <div className="max-w-3xl mx-auto px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#2C3E50] border-2 border-[#D4AF37] rounded-2xl p-10 md:p-16 text-center"
-          >
-            <h2 className="text-3xl md:text-[38px] font-serif font-bold text-white mb-5 leading-tight">
-              Ready to Escape the Golden Handcuffs?
-            </h2>
-            <p className="text-lg text-gray-300 mb-10 leading-relaxed">
-              Book your free 30-minute strategy call and discover which franchises are the perfect fit for your goals and lifestyle.
+            </form>
+            <p className="text-xs text-[#1a2332]/50 text-center mt-4">
+              Or <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-[#0A1F3C]">book a time on Calendly</a>.
             </p>
+          </div>
+        </div>
+      </section>
 
+      <section className="py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
+          <img
+            src="/charles-headshot.jpeg"
+            alt="Charles Stovall, franchise consultant in Charleston and Mt. Pleasant, SC"
+            className="w-full max-w-md mx-auto rounded-2xl object-cover border-4 border-[#c9a84c]"
+          />
+          <div>
+            <p className="text-[#0A1F3C] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The operator version</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-5">
+              I don't match you to a logo. I match capital to a model.
+            </h2>
+            <p className="text-[#1a2332]/70 leading-relaxed mb-4">
+              If the only way the deal works is a perfect ramp and a cheap manager, you didn't buy a business. You bought a story. I spent years on the other side of that story — 30 units, then a PE exit — and I still live in the Charleston / Mt. Pleasant market I send people into.
+            </p>
+            <p className="text-[#1a2332]/70 leading-relaxed mb-8">
+              Executives keep the W-2 on purpose. The question is whether the franchise can stand a normal month without you behind the counter. That's Item 19, labor, and occupancy — not a highlight reel.
+            </p>
             <button
               onClick={scrollToForm}
-              className="bg-gradient-to-r from-[#D4AF37] to-[#C19A2E] hover:shadow-[0_8px_24px_rgba(212,175,55,0.4)] text-[#1B2B3A] font-bold text-lg py-5 px-14 rounded-lg transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#0A1F3C] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f]"
             >
-              Book My Free Strategy Call Now
+              Request the assessment
+              <ArrowRight size={16} />
             </button>
-
-            <div className="mt-6">
-              <p className="text-sm font-semibold text-amber-400">⚠️ Only 5 consultation spots available this month</p>
-            </div>
-
-            <p className="text-sm italic text-gray-400 mt-8">
-              P.S. I only take 5 new clients per month to ensure everyone gets personalized attention. If you're serious about franchise ownership, don't wait.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#0F1922] py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-10 mb-10 pb-10 border-b border-white/10">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-12">
+            Three things we actually do
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                num: "01",
+                title: "Capital and calendar",
+                desc: "What you can write, what you can finance, and how many hours you can give while the W-2 still pays. If those numbers don't fit, we stop early.",
+              },
+              {
+                num: "02",
+                title: "Match the model",
+                desc: "Semi-absentee or executive-model brands where the unit economics survive a normal month — not just the slide with the best lighting.",
+              },
+              {
+                num: "03",
+                title: "Read the file",
+                desc: "Item 19 if they give it. Item 7 versus the cash you'll actually need. Item 20 for who left. Then validation calls. Then you decide.",
+              },
+            ].map((step) => (
+              <div key={step.num} className="border border-[#1a2332]/10 rounded-xl p-7 bg-[#F7F4EC]">
+                <p className="text-[#7dceb0] font-serif text-3xl font-bold mb-3">{step.num}</p>
+                <h3 className="font-serif text-xl font-bold mb-3">{step.title}</h3>
+                <p className="text-sm text-[#1a2332]/70 leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-12">
+            What buyers actually said
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.map((review) => (
+              <blockquote key={review.name} className="bg-white border border-[#1a2332]/10 rounded-xl p-7">
+                <p className="text-[#1a2332]/75 leading-relaxed mb-5">“{review.quote}”</p>
+                <footer>
+                  <p className="font-semibold">{review.name}</p>
+                  <p className="text-sm text-[#1a2332]/50">{review.title}</p>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#0A1F3C] text-white">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Ready to look at the file?</h2>
+          <p className="text-white/70 mb-8 leading-relaxed">
+            Request the assessment or book the call. Bring capital, a calendar, and a willingness to walk if Item 19 is cute and useless.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={scrollToForm}
+              className="inline-flex items-center justify-center gap-2 bg-[#c9a84c] text-[#0A1F3C] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f]"
+            >
+              Request the assessment
+            </button>
+            <a
+              href="https://calendly.com/charles-stovall/intro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 border border-white/25 px-8 py-4 rounded-lg hover:bg-white/5"
+            >
+              Book a call
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-[#081628] text-white/60 py-10 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <img src="/cs-shield-logo.png" alt="" className="w-8 h-8 object-contain" />
             <div>
-              <h3 className="text-lg font-serif font-bold text-[#D4AF37] mb-2">Charles Stovall</h3>
-              <p className="text-sm text-gray-400">Franchise Advisor</p>
-            </div>
-            <div className="text-sm text-gray-300 space-y-2">
-              <p>Email: CStovall@FranChoice.com</p>
-              <p>Phone: (919) 827-3921</p>
-              <p>Location: Charleston, SC</p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <a href="/" className="text-sm text-gray-300 hover:text-[#D4AF37] transition-colors">Main Site</a>
-              <a href="/free-franchise-guide" className="text-sm text-gray-300 hover:text-[#D4AF37] transition-colors">Free Franchise Guide</a>
+              <p className="text-white font-serif font-bold">Charles Stovall</p>
+              <p className="text-xs">Franchise consultant · Charleston / Mt. Pleasant, SC</p>
             </div>
           </div>
-          <p className="text-center text-sm text-gray-500">© 2026 Charles Stovall. All rights reserved.</p>
+          <div className="text-sm space-y-1">
+            <a href="tel:9198273921" className="block hover:text-[#c9a84c]">(919) 827-3921</a>
+            <a href="/" className="block hover:text-[#c9a84c]">Main site</a>
+          </div>
+          <p className="text-xs">© {new Date().getFullYear()} Charles Stovall</p>
         </div>
       </footer>
     </div>
