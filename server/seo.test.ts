@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml } from "./seo";
+import express from "express";
+import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, pathnameFromRequest } from "./seo";
 import { AD_LANDING_REDIRECTS } from "./redirects";
 import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
 
@@ -71,5 +72,42 @@ for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor 
 const chromeUaHtml = applySeoToHtml(shell, "/blog/fdd-red-flags");
 const botUaHtml = applySeoToHtml(shell, "/blog/fdd-red-flags");
 assert.equal(chromeUaHtml, botUaHtml);
+
+assert.equal(pathnameFromRequest({ path: "/", originalUrl: "/executive-access" }), "/executive-access");
+assert.equal(pathnameFromRequest({ path: "/", originalUrl: "/blog/fdd-red-flags?utm=1" }), "/blog/fdd-red-flags");
+assert.equal(pathnameFromRequest({ path: "/" }), "/");
+
+const probe = express();
+probe.use("*", (req, res) => {
+  res.json({ path: req.path, originalUrl: req.originalUrl, resolved: pathnameFromRequest(req) });
+});
+const starServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = probe.listen(0, "127.0.0.1", () => resolve(server));
+});
+const starPort = (starServer.address() as { port: number }).port;
+const starBody = await (await fetch(`http://127.0.0.1:${starPort}/executive-access`)).json();
+assert.equal(starBody.path, "/");
+assert.equal(starBody.originalUrl, "/executive-access");
+assert.equal(starBody.resolved, "/executive-access");
+await new Promise<void>((resolve, reject) => starServer.close((err) => err ? reject(err) : resolve()));
+
+const prodApp = express();
+prodApp.use((req, res) => {
+  res.status(200).type("html").send(applySeoToHtml(shell, pathnameFromRequest(req)));
+});
+const prodServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = prodApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const prodPort = (prodServer.address() as { port: number }).port;
+const chromeUa = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+const execHtml = await (await fetch(`http://127.0.0.1:${prodPort}/executive-access`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(execHtml, /<title>Executive Access/);
+assert.match(execHtml, /canonical" href="https:\/\/www\.charlesstovall\.com\/executive-access"/);
+assert.match(execHtml, /id="executive-assessment-form"/);
+const fddHtml = await (await fetch(`http://127.0.0.1:${prodPort}/blog/fdd-red-flags`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(fddHtml, /<title>FDD Red Flags/);
+assert.match(fddHtml, /<article>/);
+assert.match(fddHtml, /Item 19/);
+await new Promise<void>((resolve, reject) => prodServer.close((err) => err ? reject(err) : resolve()));
 
 console.log("seo.test.ts passed");

@@ -5,7 +5,7 @@ import path from "node:path";
 import express, { type Express, type Request } from "express";
 
 import runApp from "./app";
-import { applySeoToHtml } from "./seo";
+import { applySeoToHtml, pathnameFromRequest } from "./seo";
 
 export async function serveStatic(app: Express, server: Server) {
   const distPath = path.resolve(import.meta.dirname, "public");
@@ -37,11 +37,12 @@ export async function serveStatic(app: Express, server: Server) {
   const indexHtml = fs.readFileSync(indexPath, "utf-8");
 
   // fall through to index.html if the file doesn't exist (SPA routing)
-  // SSR the same article/landing HTML for every user agent — not Googlebot-only.
-  app.use("*", (req, res) => {
+  // Do not use app.use("*") — Express treats * as the mount path and sets req.path to "/".
+  app.use((req, res) => {
+    const pathname = pathnameFromRequest(req);
     res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.status(200).send(applySeoToHtml(indexHtml, req.path));
+    res.status(200).send(applySeoToHtml(indexHtml, pathname));
   });
 }
 
