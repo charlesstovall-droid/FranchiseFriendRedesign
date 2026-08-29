@@ -82,8 +82,7 @@ export function renderExecutiveAccessHtml(): string {
 export function renderCharlestonHtml(): string {
   return `
 <img src="/cs-shield-logo.png" alt="Charles Stovall" />
-<img src="/rainbow-row-pano.jpg" alt="Rainbow Row on East Bay Street, Charleston, South Carolina" />
-<img src="/charles-headshot.jpeg" alt="Charles Stovall, Charleston franchise consultant" />
+<img src="/charles-homepage-portrait.jpg" alt="Charles Stovall, Charleston franchise consultant" />
 <article>
   <p>Charleston · Mt. Pleasant · Daniel Island · the Lowcountry</p>
   <h1>Own a Business in Charleston. Without Starting One From Scratch.</h1>
@@ -134,7 +133,6 @@ export function renderCharlestonHtml(): string {
   <button type="submit">Request the call</button>
 </form>
 <p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
-<p>Photo: Something Original / Wikimedia Commons (CC BY-SA 3.0)</p>
 `.trim();
 }
 
