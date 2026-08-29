@@ -20,6 +20,7 @@ function escapeHtml(value: string): string {
 
 export function renderExecutiveAccessHtml(): string {
   return `
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Charleston and Mt. Pleasant, SC" />
 <article>
   <p>Charles Stovall · Charleston / Mt. Pleasant, SC</p>
   <h1>Keep the W-2. Buy a model that can run without you.</h1>
