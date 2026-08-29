@@ -55,6 +55,7 @@ assertPage("/executive-access", "Executive Access", (html) => {
   assert.match(html, /name="email"/);
   assert.match(html, /name="phone"/);
   assert.match(html, /Keep the W-2/);
+  assert.match(html, /src="\/charles-headshot\.jpeg"/);
 });
 
 assert.equal(AD_LANDING_REDIRECTS["/executive/access"], "/executive-access");

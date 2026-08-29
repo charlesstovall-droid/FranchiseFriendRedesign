@@ -60,8 +60,8 @@ export default function ExecutiveLanding() {
           alt="Charles Stovall, franchise consultant in Charleston and Mt. Pleasant, SC"
           className="absolute inset-0 h-full w-full object-cover object-[68%_center] md:object-[72%_center]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F3C] via-[#0A1F3C]/78 to-[#0A1F3C]/15 md:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C] via-[#0A1F3C]/20 to-[#0A1F3C]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F3C]/92 via-[#0A1F3C]/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C]/70 via-transparent to-[#0A1F3C]/25" />
 
         <header className="relative z-10 flex items-center justify-between gap-4 px-5 md:px-10 pt-6">
           <a href="/" className="flex items-center gap-3">
