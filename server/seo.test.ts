@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import express from "express";
 import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, pathnameFromRequest } from "./seo";
+import { mountClientStatic } from "./serve-client";
 import { AD_LANDING_REDIRECTS } from "./redirects";
 import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
 
@@ -135,5 +139,50 @@ assert.match(fddHtml, /<title>FDD Red Flags/);
 assert.match(fddHtml, /<article>/);
 assert.match(fddHtml, /Item 19/);
 await new Promise<void>((resolve, reject) => prodServer.close((err) => err ? reject(err) : resolve()));
+
+const staticDir = fs.mkdtempSync(path.join(os.tmpdir(), "seo-static-"));
+fs.writeFileSync(path.join(staticDir, "index.html"), shell);
+fs.writeFileSync(path.join(staticDir, "cs-shield-logo.png"), "png");
+
+const liveBugApp = express();
+liveBugApp.use(express.static(staticDir));
+liveBugApp.use((req, res) => {
+  res.status(200).type("html").send(applySeoToHtml(shell, pathnameFromRequest(req)));
+});
+const liveBugServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = liveBugApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const liveBugPort = (liveBugServer.address() as { port: number }).port;
+const rawHome = await (await fetch(`http://127.0.0.1:${liveBugPort}/`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(rawHome, /<div id="root"><\/div>/);
+assert.match(rawHome, /Expert Franchise Consulting in Charleston SC/);
+assert.doesNotMatch(rawHome, /Invest in Yourself/);
+const rawExec = await (await fetch(`http://127.0.0.1:${liveBugPort}/executive-access`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(rawExec, /Keep the W-2/);
+await new Promise<void>((resolve, reject) => liveBugServer.close((err) => err ? reject(err) : resolve()));
+
+const fixedApp = express();
+mountClientStatic(fixedApp, staticDir);
+const fixedServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = fixedApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const fixedPort = (fixedServer.address() as { port: number }).port;
+const fixedHome = await (await fetch(`http://127.0.0.1:${fixedPort}/`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(fixedHome, /<title>Charles Stovall \| Your Franchise Friend/);
+assert.match(fixedHome, /canonical" href="https:\/\/www\.charlesstovall\.com\/"/);
+assert.match(fixedHome, /Invest in Yourself/);
+assert.match(fixedHome, /I have sat on your side of the table/);
+assert.match(fixedHome, /src="\/cs-shield-logo\.png"/);
+assert.doesNotMatch(fixedHome, /<div id="root"><\/div>/);
+assert.doesNotMatch(fixedHome, /Expert Franchise Consulting in Charleston SC/);
+const fixedIndexHtml = await (await fetch(`http://127.0.0.1:${fixedPort}/index.html`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(fixedIndexHtml, /Invest in Yourself/);
+const fixedExec = await (await fetch(`http://127.0.0.1:${fixedPort}/executive-access`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(fixedExec, /Keep the W-2/);
+assert.match(fixedExec, /id="executive-assessment-form"/);
+const png = await fetch(`http://127.0.0.1:${fixedPort}/cs-shield-logo.png`);
+assert.equal(png.status, 200);
+await new Promise<void>((resolve, reject) => fixedServer.close((err) => err ? reject(err) : resolve()));
+fs.rmSync(staticDir, { recursive: true, force: true });
 
 console.log("seo.test.ts passed");
