@@ -67,7 +67,9 @@ assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
   assert.match(html, /Own a Business in Charleston/);
   assert.match(html, /Without Starting One From Scratch/);
-  assert.match(html, /Mount Pleasant/);
+  assert.match(html, /I live in this market/);
+  assert.match(html, /The Lowcountry is not a national slide/);
+  assert.match(html, /Mt\. Pleasant/);
   assert.match(html, /Daniel Island/);
   assert.match(html, /Lowcountry/);
   assert.match(html, /How it works/i);

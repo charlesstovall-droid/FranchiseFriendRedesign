@@ -84,31 +84,27 @@ export function renderCharlestonHtml(): string {
 <img src="/cs-shield-logo.png" alt="Charles Stovall" />
 <img src="/charles-headshot.jpeg" alt="Charles Stovall, Charleston franchise consultant" />
 <article>
-  <p>Charleston · Mount Pleasant · Daniel Island · the Lowcountry</p>
+  <p>Charleston · Mt. Pleasant · Daniel Island · the Lowcountry</p>
   <h1>Own a Business in Charleston. Without Starting One From Scratch.</h1>
-  <p>I'm Charles Stovall — a Charleston-based franchise consultant. I help Lowcountry executives, military retirees, and professionals find franchise brands that fit their capital, lifestyle, and goals.</p>
-  <h2>Why a local consultant matters</h2>
-  <p>National firms don't know the Lowcountry. I know which concepts are underserved here and which ones are already saturated in Mount Pleasant. Where territories are still open in Summerville. What's working on Daniel Island.</p>
-  <p>We can meet in person — coffee at Second State, breakfast at Hominy Grill, or a call. You work with me directly from discovery through close. No handoffs, no junior reps, no call center.</p>
+  <p>I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.</p>
+  <p>A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.</p>
+  <p>30 locations built. A PE exit. Charleston resident.</p>
+  <h2>The Lowcountry is not a national slide.</h2>
+  <p>I know which concepts are already saturated in Mount Pleasant, where territories are still open in Summerville, and what's working on Daniel Island. National firms do not sit in those rooms.</p>
+  <p>When we read an FDD together, you get an operator's view of Item 19, labor, and occupancy in this market — not a highlight reel built for a cheaper city. If the concept is wrong for Charleston, I will say so.</p>
   <h2>How it works</h2>
   <ol>
-    <li>Discover — a 15-minute call on capital, goals, timeline, and lifestyle. No pitch. Just listening.</li>
-    <li>Match — 2–4 vetted franchise brands that fit your profile. Real financials, honest assessment.</li>
+    <li>Discover — a 15-minute call on capital, goals, timeline, and lifestyle. No pitch. Just whether this market and this buyer fit.</li>
+    <li>Match — two to four vetted franchise brands that can live in the Lowcountry. Real financials. Honest assessment.</li>
     <li>Decide — due diligence, validation calls with existing franchisees, close support. You move at your own pace.</li>
   </ol>
-  <h2>About Charles</h2>
-  <p>I've spent 15+ years helping corporate professionals and executives make the transition to franchise ownership. I'm based in Charleston because I believe the Lowcountry is one of the best markets in the country for the right franchise concepts — and I want to be the advisor who knows that market inside and out. If franchising isn't right for you, I'll tell you.</p>
-  <h2>Frequently asked questions</h2>
-  <h3>Why work with a local Charleston consultant vs. a national firm?</h3>
-  <p>Because I live here. I know which Lowcountry markets are underserved, which concepts are already saturated in Mount Pleasant, and which SBA lenders and franchise attorneys in Charleston are ready to move fast. That local context doesn't exist in a call center.</p>
-  <h3>What investment level do you work with?</h3>
-  <p>I typically work with clients who have $100K+ in liquid capital. Many Charleston clients invest $150K–$500K in proven, established concepts. We'll discuss financing options — including SBA loans and 401(k) rollovers — on our first call.</p>
-  <h3>Do I need to quit my job to own a franchise?</h3>
-  <p>Not at all. Many of the models I recommend are semi-absentee — you can keep your income while building equity. It's one of the things we'll map out together based on your schedule and goals.</p>
+  <h2>We can sit in the same city.</h2>
+  <p>Coffee at Second State, breakfast, or a call — whatever fits your calendar. You work with me from discovery through close. No handoffs. No junior reps. No call center.</p>
+  <p>I typically work with buyers who have $100K+ in liquid capital. Many Charleston clients invest $150K–$500K in proven concepts. Semi-absentee is on the table if the labor model can stand a normal month without you behind the counter.</p>
 </article>
 <form id="charleston-consultation-form" action="/api/leads" method="POST">
   <h2>Request a Charleston consultation</h2>
-  <p>First name, last name, email, and phone. I'll follow up within one business day.</p>
+  <p>I'll follow up to book the call. Bring capital and a neighborhood in mind.</p>
   <label>First name <input type="text" name="firstName" required autocomplete="given-name" /></label>
   <label>Last name <input type="text" name="lastName" autocomplete="family-name" /></label>
   <label>Email <input type="email" name="email" required autocomplete="email" /></label>
@@ -131,10 +127,10 @@ export function renderCharlestonHtml(): string {
       <option value="Just exploring">Just exploring</option>
     </select>
   </label>
-  <label>What area of Charleston are you in? <input type="text" name="area" placeholder="e.g. Mount Pleasant, Summerville, Downtown" /></label>
+  <label>Neighborhood <input type="text" name="area" placeholder="Mt. Pleasant, Daniel Island…" /></label>
   <input type="hidden" name="leadType" value="charleston-ad" />
   <input type="hidden" name="message" value="Charleston Ad Landing Page" />
-  <button type="submit">Book My 15-Min Call</button>
+  <button type="submit">Request the call</button>
 </form>
 <p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
 `.trim();
@@ -249,7 +245,7 @@ const STATIC_PAGES: Record<string, SeoPage> = {
   },
   "/charleston": {
     title: "Charleston Franchise Consultant | Charles Stovall",
-    description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, and the Lowcountry.",
+    description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll.",
     canonical: absoluteUrl("/charleston"),
     bodyHtml: renderCharlestonHtml(),
   },
