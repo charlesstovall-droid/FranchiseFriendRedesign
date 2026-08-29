@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import express from "express";
-import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, pathnameFromRequest } from "./seo";
 import { mountClientStatic } from "./serve-client";
 import { AD_LANDING_REDIRECTS } from "./redirects";
 import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
@@ -63,6 +63,27 @@ assertPage("/", "Your Franchise Friend", (html) => {
   assert.doesNotMatch(html, /Expert Franchise Consulting in Charleston SC/);
 });
 
+assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
+  assert.match(html, /Own a Business in Charleston/);
+  assert.match(html, /Without Starting One From Scratch/);
+  assert.match(html, /Mount Pleasant/);
+  assert.match(html, /Daniel Island/);
+  assert.match(html, /Lowcountry/);
+  assert.match(html, /How it works/i);
+  assert.match(html, /id="charleston-consultation-form"/);
+  assert.match(html, /action="\/api\/leads"/);
+  assert.match(html, /name="firstName"/);
+  assert.match(html, /name="lastName"/);
+  assert.match(html, /name="email"/);
+  assert.match(html, /name="phone"/);
+  assert.match(html, /name="liquidCapital"/);
+  assert.match(html, /leadType" value="charleston-ad"/);
+  assert.match(html, /src="\/cs-shield-logo\.png"/);
+  assert.match(html, /src="\/charles-headshot\.jpeg"/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+});
+
 assertPage("/executive-access", "Executive Access", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/executive-access"/);
   assert.match(html, /id="executive-assessment-form"/);
@@ -85,9 +106,11 @@ assert.equal(toWwwCanonical("/faq"), "https://www.charlesstovall.com/faq");
 
 const exec = renderExecutiveAccessHtml().toLowerCase();
 const home = renderHomeHtml().toLowerCase();
+const charleston = renderCharlestonHtml().toLowerCase();
 for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor pays", "free to you"]) {
   assert.equal(exec.includes(banned), false, `landing SSR should not include "${banned}"`);
   assert.equal(home.includes(banned), false, `homepage SSR should not include "${banned}"`);
+  assert.equal(charleston.includes(banned), false, `charleston SSR should not include "${banned}"`);
 }
 
 const chromeUaHtml = applySeoToHtml(shell, "/blog/fdd-red-flags");
@@ -134,6 +157,12 @@ assert.match(execHtml, /canonical" href="https:\/\/www\.charlesstovall\.com\/exe
 assert.match(execHtml, /id="executive-assessment-form"/);
 assert.match(execHtml, /src="\/cs-shield-logo\.png"/);
 assert.match(execHtml, /src="\/charles-headshot\.jpeg"/);
+const charlestonHtml = await (await fetch(`http://127.0.0.1:${prodPort}/charleston`, { headers: { "user-agent": chromeUa } })).text();
+assert.match(charlestonHtml, /<title>Charleston Franchise Consultant/);
+assert.match(charlestonHtml, /canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
+assert.match(charlestonHtml, /Own a Business in Charleston/);
+assert.match(charlestonHtml, /id="charleston-consultation-form"/);
+assert.doesNotMatch(charlestonHtml, /<div id="root"><\/div>/);
 const fddHtml = await (await fetch(`http://127.0.0.1:${prodPort}/blog/fdd-red-flags`, { headers: { "user-agent": chromeUa } })).text();
 assert.match(fddHtml, /<title>FDD Red Flags/);
 assert.match(fddHtml, /<article>/);

@@ -79,6 +79,67 @@ export function renderExecutiveAccessHtml(): string {
 `.trim();
 }
 
+export function renderCharlestonHtml(): string {
+  return `
+<img src="/cs-shield-logo.png" alt="Charles Stovall" />
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, Charleston franchise consultant" />
+<article>
+  <p>Charleston · Mount Pleasant · Daniel Island · the Lowcountry</p>
+  <h1>Own a Business in Charleston. Without Starting One From Scratch.</h1>
+  <p>I'm Charles Stovall — a Charleston-based franchise consultant. I help Lowcountry executives, military retirees, and professionals find franchise brands that fit their capital, lifestyle, and goals.</p>
+  <h2>Why a local consultant matters</h2>
+  <p>National firms don't know the Lowcountry. I know which concepts are underserved here and which ones are already saturated in Mount Pleasant. Where territories are still open in Summerville. What's working on Daniel Island.</p>
+  <p>We can meet in person — coffee at Second State, breakfast at Hominy Grill, or a call. You work with me directly from discovery through close. No handoffs, no junior reps, no call center.</p>
+  <h2>How it works</h2>
+  <ol>
+    <li>Discover — a 15-minute call on capital, goals, timeline, and lifestyle. No pitch. Just listening.</li>
+    <li>Match — 2–4 vetted franchise brands that fit your profile. Real financials, honest assessment.</li>
+    <li>Decide — due diligence, validation calls with existing franchisees, close support. You move at your own pace.</li>
+  </ol>
+  <h2>About Charles</h2>
+  <p>I've spent 15+ years helping corporate professionals and executives make the transition to franchise ownership. I'm based in Charleston because I believe the Lowcountry is one of the best markets in the country for the right franchise concepts — and I want to be the advisor who knows that market inside and out. If franchising isn't right for you, I'll tell you.</p>
+  <h2>Frequently asked questions</h2>
+  <h3>Why work with a local Charleston consultant vs. a national firm?</h3>
+  <p>Because I live here. I know which Lowcountry markets are underserved, which concepts are already saturated in Mount Pleasant, and which SBA lenders and franchise attorneys in Charleston are ready to move fast. That local context doesn't exist in a call center.</p>
+  <h3>What investment level do you work with?</h3>
+  <p>I typically work with clients who have $100K+ in liquid capital. Many Charleston clients invest $150K–$500K in proven, established concepts. We'll discuss financing options — including SBA loans and 401(k) rollovers — on our first call.</p>
+  <h3>Do I need to quit my job to own a franchise?</h3>
+  <p>Not at all. Many of the models I recommend are semi-absentee — you can keep your income while building equity. It's one of the things we'll map out together based on your schedule and goals.</p>
+</article>
+<form id="charleston-consultation-form" action="/api/leads" method="POST">
+  <h2>Request a Charleston consultation</h2>
+  <p>First name, last name, email, and phone. I'll follow up within one business day.</p>
+  <label>First name <input type="text" name="firstName" required autocomplete="given-name" /></label>
+  <label>Last name <input type="text" name="lastName" autocomplete="family-name" /></label>
+  <label>Email <input type="email" name="email" required autocomplete="email" /></label>
+  <label>Phone <input type="tel" name="phone" required autocomplete="tel" /></label>
+  <label>Liquid capital
+    <select name="liquidCapital">
+      <option value="">Select range</option>
+      <option value="Under $50K">Under $50K</option>
+      <option value="$50K–$150K">$50K–$150K</option>
+      <option value="$150K–$500K">$150K–$500K</option>
+      <option value="$500K+">$500K+</option>
+    </select>
+  </label>
+  <label>Timeline
+    <select name="timeline">
+      <option value="">Select timeline</option>
+      <option value="0–3 months">0–3 months</option>
+      <option value="3–6 months">3–6 months</option>
+      <option value="6–12 months">6–12 months</option>
+      <option value="Just exploring">Just exploring</option>
+    </select>
+  </label>
+  <label>What area of Charleston are you in? <input type="text" name="area" placeholder="e.g. Mount Pleasant, Summerville, Downtown" /></label>
+  <input type="hidden" name="leadType" value="charleston-ad" />
+  <input type="hidden" name="message" value="Charleston Ad Landing Page" />
+  <button type="submit">Book My 15-Min Call</button>
+</form>
+<p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+`.trim();
+}
+
 function renderHomeBasedHtml(): string {
   return `
 <article>
@@ -190,6 +251,7 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     title: "Charleston Franchise Consultant | Charles Stovall",
     description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, and the Lowcountry.",
     canonical: absoluteUrl("/charleston"),
+    bodyHtml: renderCharlestonHtml(),
   },
 };
 
