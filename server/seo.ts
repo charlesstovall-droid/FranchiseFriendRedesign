@@ -18,8 +18,39 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
+export function renderHomeHtml(): string {
+  return `
+<img src="/cs-shield-logo.png" alt="Charles Stovall" />
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Charleston, SC" />
+<article>
+  <p>Charles Stovall · Your Franchise Friend · Charleston, SC</p>
+  <h1>Invest in Yourself. Do it with someone who has done it.</h1>
+  <p>You are weighing a six or seven figure decision. Before you sign an FDD, talk to a consultant who built 30 franchise locations across 4 brands and exited to private equity. Honest answers, real numbers.</p>
+  <h2>I have sat on your side of the table.</h2>
+  <p>Most franchise consultants have never signed a lease, made payroll on a slow month, or negotiated a multi-unit development agreement. I have done all three, many times over.</p>
+  <p>I opened my first location in 2013. By 2017 I had scaled to 20 units across multiple states, and I went on to build and operate 30 locations across four very different brands before selling to private equity.</p>
+  <p>When we review an FDD together, you get an operator's read on Item 19, territory, labor model, and unit economics. If a concept is not right for you, I will tell you.</p>
+  <ul>
+    <li>30 locations built and exited</li>
+    <li>4 franchise brands owned</li>
+    <li>Private equity exit</li>
+  </ul>
+  <h2>Four phases. Zero pressure.</h2>
+  <ol>
+    <li>Intro call — goals, capital, timeline, and lifestyle.</li>
+    <li>Your profile — background, strengths, and financial picture.</li>
+    <li>Matched options — owner-operator, semi-absentee, or multi-unit.</li>
+    <li>Due diligence — FDD review, validation calls, funding, discovery day.</li>
+  </ol>
+  <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+</article>
+`.trim();
+}
+
 export function renderExecutiveAccessHtml(): string {
   return `
+<img src="/cs-shield-logo.png" alt="Charles Stovall" />
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Charleston and Mt. Pleasant, SC" />
 <article>
   <p>Charles Stovall · Charleston / Mt. Pleasant, SC</p>
   <h1>Keep the W-2. Buy a model that can run without you.</h1>
@@ -112,9 +143,10 @@ function renderBlogPostHtml(slug: string): SeoPage | null {
 
 const STATIC_PAGES: Record<string, SeoPage> = {
   "/": {
-    title: "Charles Stovall | Expert Franchise Consulting in Charleston SC | Franchise Friend",
-    description: "Expert franchise consulting by Charles Stovall in Charleston, SC. Find top franchises 2026, business evaluation, due diligence services, and personalized franchise discovery. Serving South Carolina and nationwide.",
+    title: "Charles Stovall | Your Franchise Friend — Franchise Consulting for Serious Investors",
+    description: "Considering a six-figure franchise investment? Work with Charles Stovall, a consultant who built and exited 30 franchise locations across 4 brands.",
     canonical: absoluteUrl("/"),
+    bodyHtml: renderHomeHtml(),
   },
   "/blog": {
     title: "Franchise Insights & Resources | Charles Stovall - Franchise Consultant",
