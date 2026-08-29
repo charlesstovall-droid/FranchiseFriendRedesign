@@ -182,8 +182,20 @@ function replaceOrInsert(html: string, pattern: RegExp, tag: string): string {
   return html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
+/** Express `app.use("*")` mounts the full path, so `req.path` becomes `/`. Always prefer originalUrl. */
+export function pathnameFromRequest(req: {
+  originalUrl?: string;
+  url?: string;
+  path?: string;
+}): string {
+  const raw = req.originalUrl || req.url || req.path || "/";
+  const path = raw.split("#")[0].split("?")[0];
+  if (!path || path === "*") return "/";
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
 export function applySeoToHtml(html: string, pathname: string): string {
-  const page = resolveSeoPage(pathname);
+  const page = resolveSeoPage(pathnameFromRequest({ originalUrl: pathname, path: pathname }));
   if (!page) {
     return html;
   }
