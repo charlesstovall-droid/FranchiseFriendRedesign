@@ -70,7 +70,7 @@ export default function Charleston() {
         <img
           src={portrait}
           alt="Charles Stovall, Charleston franchise consultant"
-          className="absolute inset-0 h-full w-full object-cover object-[70%_center] md:object-[74%_center]"
+          className="absolute inset-0 h-full w-full object-cover object-[82%_28%] sm:object-[76%_center] md:object-[74%_center]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F3C]/88 via-[#0A1F3C]/28 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C] via-[#0A1F3C]/15 to-[#0A1F3C]/20" />
