@@ -83,6 +83,8 @@ assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
   assert.match(html, /leadType" value="charleston-ad"/);
   assert.match(html, /src="\/cs-shield-logo\.png"/);
   assert.match(html, /src="\/charles-headshot\.jpeg"/);
+  assert.match(html, /src="\/rainbow-row-pano\.jpg"/);
+  assert.match(html, /Something Original \/ Wikimedia Commons \(CC BY-SA 3\.0\)/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
 });
 

@@ -4,6 +4,7 @@ import { Phone } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { trackConversion } from "@/lib/analytics";
 import { absoluteUrl } from "@shared/site";
+import rainbowRow from "@assets/rainbow-row-pano.jpg";
 import portrait from "@assets/IMG_2636_1763927193167.jpeg";
 
 export default function Charleston() {
@@ -66,61 +67,70 @@ export default function Charleston() {
         canonicalUrl={absoluteUrl("/charleston")}
       />
 
-      <section className="relative min-h-screen overflow-hidden">
-        <img
-          src={portrait}
-          alt="Charles Stovall, Charleston franchise consultant"
-          className="absolute inset-0 h-full w-full object-cover object-[82%_28%] sm:object-[76%_center] md:object-[74%_center]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F3C]/88 via-[#0A1F3C]/28 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C] via-[#0A1F3C]/15 to-[#0A1F3C]/20" />
+      <section className="relative bg-[#0A1F3C] overflow-hidden">
+        <div className="relative">
+          <img
+            src={rainbowRow}
+            alt="Rainbow Row on East Bay Street, Charleston, South Carolina"
+            className="block w-full h-auto"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C] via-[#0A1F3C]/35 to-[#0A1F3C]/15" />
+          <header className="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-4 px-5 md:px-10 pt-6">
+            <a href="/" className="flex items-center gap-3">
+              <img
+                src="/cs-shield-logo.png"
+                alt="Charles Stovall"
+                className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]"
+              />
+              <span className="sr-only">Charles Stovall</span>
+            </a>
+            <div className="flex items-center gap-5 text-sm">
+              <a
+                href="tel:9198273921"
+                className="inline-flex items-center gap-2 text-[#F7F4EC]/90 hover:text-[#c9a84c]"
+                data-testid="button-call-top"
+              >
+                <Phone size={16} />
+                <span className="hidden sm:inline">(919) 827-3921</span>
+              </a>
+              <a
+                href="https://calendly.com/charles-stovall/intro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c9a84c] hover:text-[#e0c56a] font-semibold"
+              >
+                Book a call
+              </a>
+            </div>
+          </header>
+        </div>
 
-        <header className="relative z-10 flex items-center justify-between gap-4 px-5 md:px-10 pt-6">
-          <a href="/" className="flex items-center gap-3">
-            <img
-              src="/cs-shield-logo.png"
-              alt="Charles Stovall"
-              className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]"
-            />
-            <span className="sr-only">Charles Stovall</span>
-          </a>
-          <div className="flex items-center gap-5 text-sm">
-            <a
-              href="tel:9198273921"
-              className="inline-flex items-center gap-2 text-[#F7F4EC]/90 hover:text-[#c9a84c]"
-              data-testid="button-call-top"
-            >
-              <Phone size={16} />
-              <span className="hidden sm:inline">(919) 827-3921</span>
-            </a>
-            <a
-              href="https://calendly.com/charles-stovall/intro"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c9a84c] hover:text-[#e0c56a] font-semibold"
-            >
-              Book a call
-            </a>
+        <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 -mt-16 md:-mt-28 lg:-mt-36 pb-8 grid lg:grid-cols-[minmax(0,1fr)_minmax(17rem,22rem)] gap-10 lg:gap-14 items-end">
+          <div>
+            <p className="text-[#c9a84c] text-[11px] font-semibold tracking-[0.28em] uppercase mb-6">
+              Charleston · Mt. Pleasant · Daniel Island · the Lowcountry
+            </p>
+            <h1 className="font-serif text-[2.6rem] sm:text-5xl lg:text-[64px] font-bold leading-[1.04] text-[#F7F4EC] max-w-3xl mb-6">
+              Own a Business in Charleston.
+              <span className="block text-[#F7F4EC]/80">Without Starting One From Scratch.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-[#F7F4EC]/80 leading-relaxed max-w-xl mb-4">
+              I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.
+            </p>
+            <p className="text-base text-[#F7F4EC]/60 leading-relaxed max-w-xl mb-8">
+              A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[#F7F4EC]/45">
+              30 locations built · PE exit · Charleston resident
+            </p>
           </div>
-        </header>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-8">
-          <p className="text-[#c9a84c] text-[11px] font-semibold tracking-[0.28em] uppercase mb-6">
-            Charleston · Mt. Pleasant · Daniel Island · the Lowcountry
-          </p>
-          <h1 className="font-serif text-[2.6rem] sm:text-5xl lg:text-[64px] font-bold leading-[1.04] text-[#F7F4EC] max-w-3xl mb-6">
-            Own a Business in Charleston.
-            <span className="block text-[#F7F4EC]/80">Without Starting One From Scratch.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-[#F7F4EC]/80 leading-relaxed max-w-xl mb-4">
-            I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.
-          </p>
-          <p className="text-base text-[#F7F4EC]/60 leading-relaxed max-w-xl mb-8">
-            A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.
-          </p>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[#F7F4EC]/45 mb-10">
-            30 locations built · PE exit · Charleston resident
-          </p>
+          <figure className="justify-self-end w-full max-w-sm shadow-[0_28px_70px_rgba(0,0,0,0.45)] ring-1 ring-[#F7F4EC]/20 bg-[#0A1F3C]">
+            <img
+              src={portrait}
+              alt="Charles Stovall, Charleston franchise consultant"
+              className="block w-full h-auto"
+            />
+          </figure>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 pb-14">
@@ -359,9 +369,14 @@ export default function Charleston() {
           <img src="/cs-shield-logo.png" alt="" className="h-7 w-7 object-contain" />
           <p>Charles Stovall · Charleston / Mt. Pleasant / Daniel Island</p>
         </div>
-        <div className="flex gap-5">
-          <a href="tel:9198273921" className="hover:text-[#c9a84c]">(919) 827-3921</a>
-          <a href="/" className="hover:text-[#c9a84c]">Main site</a>
+        <div className="flex flex-col sm:items-end gap-2">
+          <div className="flex gap-5">
+            <a href="tel:9198273921" className="hover:text-[#c9a84c]">(919) 827-3921</a>
+            <a href="/" className="hover:text-[#c9a84c]">Main site</a>
+          </div>
+          <p className="text-[10px] text-[#F7F4EC]/35 leading-snug">
+            Photo: Something Original / Wikimedia Commons (CC BY-SA 3.0)
+          </p>
         </div>
       </footer>
     </div>
