@@ -5,6 +5,7 @@ import path from "node:path";
 import express, { type Express, type Request } from "express";
 
 import runApp from "./app";
+import { applySeoToHtml } from "./seo";
 
 export async function serveStatic(app: Express, server: Server) {
   const distPath = path.resolve(import.meta.dirname, "public");
@@ -32,10 +33,15 @@ export async function serveStatic(app: Express, server: Server) {
     }
   }));
 
+  const indexPath = path.resolve(distPath, "index.html");
+  const indexHtml = fs.readFileSync(indexPath, "utf-8");
+
   // fall through to index.html if the file doesn't exist (SPA routing)
-  app.use("*", (_req, res) => {
-    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-    res.sendFile(path.resolve(distPath, "index.html"));
+  // SSR the same article/landing HTML for every user agent — not Googlebot-only.
+  app.use("*", (req, res) => {
+    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.status(200).send(applySeoToHtml(indexHtml, req.path));
   });
 }
 

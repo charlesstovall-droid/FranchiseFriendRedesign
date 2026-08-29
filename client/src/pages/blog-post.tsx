@@ -63,7 +63,7 @@ export default function BlogPost() {
         <SEO 
           title="Post Not Found | Charles Stovall"
           description="The blog post you're looking for doesn't exist. Browse our franchise consulting articles and guides."
-          canonicalUrl="https://charlesstovall.com/blog"
+          canonicalUrl="https://www.charlesstovall.com/blog"
         />
         <Navbar />
         <section className="pt-32 pb-20">
@@ -83,7 +83,7 @@ export default function BlogPost() {
     );
   }
 
-  const canonicalUrl = `https://charlesstovall.com/blog/${post.slug}`;
+  const canonicalUrl = `https://www.charlesstovall.com/blog/${post.slug}`;
   const metaDescription = getMetaDescription(post.excerpt, post.content);
   const convertedContent = convertHeadings(post.content);
   const processedContent = addHeadingIds(convertedContent);
@@ -100,20 +100,20 @@ export default function BlogPost() {
     },
     "headline": post.title,
     "description": metaDescription,
-    "image": "https://charlesstovall.com/opengraph.jpg",
+    "image": "https://www.charlesstovall.com/opengraph.jpg",
     "author": {
       "@type": "Person",
       "name": "Charles Stovall",
-      "url": "https://charlesstovall.com",
+      "url": "https://www.charlesstovall.com",
       "jobTitle": "Franchise Consultant",
-      "image": "https://charlesstovall.com/charles-stovall.jpg"
+      "image": "https://www.charlesstovall.com/charles-stovall.jpg"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Franchise Friend",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://charlesstovall.com/favicon.png"
+        "url": "https://www.charlesstovall.com/favicon.png"
       }
     },
     "datePublished": post.date,

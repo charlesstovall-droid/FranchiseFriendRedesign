@@ -6,6 +6,7 @@ import ConnectPgSimple from "connect-pg-simple";
 import compression from "compression";
 import pg from "pg";
 import { registerRoutes } from "./routes";
+import { seoRedirects } from "./redirects";
 
 const { Pool } = pg;
 
@@ -56,6 +57,8 @@ app.get('/health', (req, res) => {
 app.get('/_health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
+
+app.use(seoRedirects);
 
 declare module 'http' {
   interface IncomingMessage {
