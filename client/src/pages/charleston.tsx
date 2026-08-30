@@ -67,22 +67,12 @@ export default function Charleston() {
       />
 
       <section className="relative min-h-screen overflow-hidden bg-[#0A1F3C]">
-        <div className="pointer-events-none absolute inset-0 md:inset-y-0 md:left-auto md:right-0 md:w-[min(52%,42rem)]">
-          <img
-            src={portrait}
-            alt="Charles Stovall, Charleston franchise consultant"
-            className="absolute inset-0 h-full w-full object-cover object-[center_18%] md:object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F3C] via-[#0A1F3C]/50 to-[#0A1F3C]/10 md:from-[#0A1F3C] md:via-[#0A1F3C]/25 md:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F3C] via-[#0A1F3C]/20 to-transparent" />
-        </div>
-
-        <header className="relative z-10 flex items-center justify-between gap-4 px-5 md:px-10 pt-6">
-          <a href="/" className="flex items-center gap-3">
+        <header className="relative z-10 flex items-center justify-between gap-4 px-5 md:px-10 pt-5 md:pt-7">
+          <a href="/" className="flex items-center gap-4">
             <img
               src="/cs-shield-logo.png"
               alt="Charles Stovall"
-              className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]"
+              className="h-24 w-24 md:h-32 md:w-32 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]"
             />
             <span className="sr-only">Charles Stovall</span>
           </a>
@@ -106,23 +96,34 @@ export default function Charleston() {
           </div>
         </header>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-8">
-          <p className="text-[#c9a84c] text-[11px] font-semibold tracking-[0.28em] uppercase mb-6">
-            Charleston · Mt. Pleasant · Daniel Island · the Lowcountry
-          </p>
-          <h1 className="font-serif text-[2.6rem] sm:text-5xl lg:text-[64px] font-bold leading-[1.04] text-[#F7F4EC] max-w-3xl mb-6">
-            Own a Business in Charleston.
-            <span className="block text-[#F7F4EC]/80">Without Starting One From Scratch.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-[#F7F4EC]/80 leading-relaxed max-w-xl mb-4">
-            I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.
-          </p>
-          <p className="text-base text-[#F7F4EC]/60 leading-relaxed max-w-xl mb-8">
-            A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.
-          </p>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[#F7F4EC]/45 mb-10">
-            30 locations built · PE exit · Charleston resident
-          </p>
+        <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 pt-8 md:pt-10 pb-8">
+          <div className="grid md:grid-cols-[minmax(0,1fr)_19rem] lg:grid-cols-[minmax(0,1fr)_21rem] gap-8 lg:gap-12 items-start">
+            <div>
+              <p className="text-[#c9a84c] text-[11px] font-semibold tracking-[0.28em] uppercase mb-6">
+                Charleston · Mt. Pleasant · Daniel Island · the Lowcountry
+              </p>
+              <h1 className="font-serif text-[2.6rem] sm:text-5xl lg:text-[64px] font-bold leading-[1.04] text-[#F7F4EC] max-w-3xl mb-6">
+                Own a Business in Charleston.
+                <span className="block text-[#F7F4EC]/80">Without Starting One From Scratch.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-[#F7F4EC]/80 leading-relaxed max-w-xl mb-4">
+                I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.
+              </p>
+              <p className="text-base text-[#F7F4EC]/60 leading-relaxed max-w-xl mb-8">
+                A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.
+              </p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-[#F7F4EC]/45 mb-2 md:mb-0">
+                30 locations built · PE exit · Charleston resident
+              </p>
+            </div>
+            <figure className="w-[15rem] sm:w-[17rem] md:w-full justify-self-start md:justify-self-end shrink-0">
+              <img
+                src={portrait}
+                alt="Charles Stovall, Charleston franchise consultant"
+                className="w-full aspect-[3/4] object-cover object-top shadow-[0_24px_60px_rgba(0,0,0,0.35)]"
+              />
+            </figure>
+          </div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-10 pb-14">
