@@ -117,6 +117,13 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
+            <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#1a2332]">Ownership Advisor</h2>
+            <p>
+              If you use the Franchise Friend Ownership Advisor at /advisor, your conversation, profile, and Ownership Thesis are stored in this application so you can resume later and so Charles can prepare for a strategy call. That data is not sold for unrelated marketing. You can request deletion at /advisor/privacy.
+            </p>
+          </section>
+
+          <section>
             <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#1a2332]">Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. We encourage you to review this policy periodically.

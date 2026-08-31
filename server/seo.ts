@@ -198,6 +198,28 @@ function renderBlogPostHtml(slug: string): SeoPage | null {
   };
 }
 
+export function renderAdvisorHtml(): string {
+  return `
+<img src="/cs-shield-logo.png" alt="Charles Stovall" />
+<article>
+  <p>Franchise Friend Ownership Advisor</p>
+  <h1>Before you choose a franchise, understand what should actually fit your life.</h1>
+  <p>The Franchise Friend Ownership Advisor helps you think through your goals, finances, desired role and lifestyle before anyone tries to sell you a business.</p>
+  <p>A private, guided conversation built from Chuck Stovall's experience opening more than 100 franchise locations.</p>
+  <h2>What You'll Receive</h2>
+  <ul>
+    <li>A personalized Ownership Thesis</li>
+    <li>The business characteristics that may fit you</li>
+    <li>Potential conflicts or blind spots to consider</li>
+    <li>Practical questions to guide your research</li>
+    <li>A clearer next step</li>
+  </ul>
+  <p>Franchise Friend's consulting service is generally free to candidates because participating franchisors may pay a referral fee if a candidate purchases a franchise. The advisor is designed for education and preparation, not legal, tax, investment or earnings advice.</p>
+  <p><a href="/advisor/conversation">Build My Ownership Profile</a></p>
+</article>
+`.trim();
+}
+
 const STATIC_PAGES: Record<string, SeoPage> = {
   "/": {
     title: "Charles Stovall | Your Franchise Friend — Franchise Consulting for Serious Investors",
@@ -248,6 +270,12 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll.",
     canonical: absoluteUrl("/charleston"),
     bodyHtml: renderCharlestonHtml(),
+  },
+  "/advisor": {
+    title: "Ownership Advisor | Franchise Friend with Charles Stovall",
+    description: "Before you choose a franchise, understand what should actually fit your life. A private, guided conversation built from Chuck Stovall's ownership experience.",
+    canonical: absoluteUrl("/advisor"),
+    bodyHtml: renderAdvisorHtml(),
   },
 };
 
@@ -359,6 +387,7 @@ export function sitemapUrls(): string[] {
     "/franchise-brands",
     "/charleston",
     "/speaking",
+    "/advisor",
   ];
   return [
     ...staticUrls.map((path) => absoluteUrl(path)),

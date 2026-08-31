@@ -61,3 +61,7 @@ Preferred communication style: Simple, everyday language.
 - `SESSION_SECRET`: Secret for express-session
 - `GOOGLE_CLIENT_ID`: Google OAuth client ID (for admin auth)
 - `GOOGLE_CLIENT_SECRET`: Google OAuth client secret (for admin auth)
+
+## Ownership Advisor
+
+Separate product at `/advisor` with Chuck's desk at `/admin/advisor`. Docs live in `docs/ownership-advisor/`. Additive Postgres tables are created on boot. Candidate data is not stored only in memory.
