@@ -265,6 +265,7 @@ export default function MembersAdmin() {
         <div className="container mx-auto px-4 md:px-6">
           <h1 className="text-5xl font-serif font-bold mb-4">Member Management</h1>
           <p className="text-lg text-primary-foreground/80">Create invitations for new clients</p>
+          <a href="/admin/advisor" className="inline-block mt-4 text-sm text-secondary hover:underline">Ownership Advisor desk</a>
         </div>
       </section>
 

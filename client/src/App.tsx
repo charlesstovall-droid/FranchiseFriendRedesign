@@ -34,6 +34,17 @@ import HomeFranchiseResults from "@/pages/home-franchise-results";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import Charleston from "@/pages/charleston";
 import AboutPage from "@/pages/about";
+import AdvisorLanding from "@/pages/advisor/landing";
+import AdvisorConversation from "@/pages/advisor/conversation";
+import AdvisorReport from "@/pages/advisor/report";
+import AdvisorResume from "@/pages/advisor/resume";
+import AdvisorPrivacy from "@/pages/advisor/privacy";
+import AdvisorAdminLogin from "@/pages/admin/advisor-login";
+import AdvisorAdminDashboard from "@/pages/admin/advisor-dashboard";
+import AdvisorAdminCandidate from "@/pages/admin/advisor-candidate";
+import AdvisorAdminBrands from "@/pages/admin/advisor-brands";
+import AdvisorAdminSettings from "@/pages/admin/advisor-settings";
+import AdvisorAdminAnalytics from "@/pages/admin/advisor-analytics";
 
 function PageLoader() {
   return (
@@ -77,6 +88,17 @@ function Router() {
       <Route path="/home-franchise-results" component={HomeFranchiseResults} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/charleston" component={Charleston} />
+      <Route path="/advisor/conversation" component={AdvisorConversation} />
+      <Route path="/advisor/report/:token" component={AdvisorReport} />
+      <Route path="/advisor/resume/:token" component={AdvisorResume} />
+      <Route path="/advisor/privacy" component={AdvisorPrivacy} />
+      <Route path="/advisor" component={AdvisorLanding} />
+      <Route path="/admin/advisor/login" component={AdvisorAdminLogin} />
+      <Route path="/admin/advisor/candidates/:id" component={AdvisorAdminCandidate} />
+      <Route path="/admin/advisor/brands" component={AdvisorAdminBrands} />
+      <Route path="/admin/advisor/settings" component={AdvisorAdminSettings} />
+      <Route path="/admin/advisor/analytics" component={AdvisorAdminAnalytics} />
+      <Route path="/admin/advisor" component={AdvisorAdminDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -13,6 +13,7 @@ const buyerLinks = [
   { name: "Executive Franchises", href: "/executive-access" },
   { name: "Home-Based Franchises", href: "/home-based-franchises" },
   { name: "Charleston Buyers", href: "/charleston" },
+  { name: "Ownership Advisor", href: "/advisor" },
   // TODO: replace with dedicated questionnaire route when built
   { name: "Take the Questionnaire", href: "/franchise-assessment" },
 ];
