@@ -424,7 +424,7 @@ export async function registerAdvisorRoutes(app: Express) {
     const ok = await verifyAdvisorAdminPassword(parsed.data.email, parsed.data.password);
     if (!ok) return res.status(401).json({ error: "Those credentials are not valid." });
     await establishAdvisorAdminSession(req, parsed.data.email);
-    await store.writeAudit({ actorType: "admin", actorId: parsed.data.email, action: "admin_login" });
+    await store.writeAudit({ actorType: "admin", actorId: parsed.data.email, action: "admin_login" }).catch(() => undefined);
     res.json({ ok: true, email: parsed.data.email });
   });
 

@@ -14,7 +14,7 @@ The live site is already React + Express + Drizzle + PostgreSQL, with express-se
 
 Production candidate data is stored in PostgreSQL. It is never kept only in memory.
 
-On boot, `ensureAdvisorTables()` runs additive `CREATE TABLE IF NOT EXISTS` statements. That is the Replit-safe path.
+On boot, `ensureAdvisorTables()` runs additive `CREATE TABLE IF NOT EXISTS` statements through the standard `pg` driver. That is the Replit-safe path and works with Neon or Replit Postgres. Advisor reads and writes also use `pg`, so candidate data is not tied to Neon HTTP.
 
 You can also run:
 

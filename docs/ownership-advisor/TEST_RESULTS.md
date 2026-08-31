@@ -1,5 +1,19 @@
 # Ownership Advisor test results
 
+## Verified in this environment
+
+Local Postgres + `npm run dev` (no `OPENAI_API_KEY`):
+
+- `/` Charleston and executive-access still return 200
+- `/advisor` SSR includes the specified hero, What You'll Receive, disclosure, and CTA
+- `POST /api/advisor/conversations` persists a candidate and the exact opening question
+- Turns without an OpenAI key return the configured-not-yet message
+- Resume token restores the conversation
+- Admin password login works; candidate sessions receive 401 on `/api/advisor/admin/*`
+- Approved brands list is empty
+- Admin settings seed opening copy, system instructions, chapter prompts, booking link, and HubSpot mapping
+- Candidate row and messages persist in PostgreSQL (`advisor_candidates`, `advisor_conversation_messages`)
+
 ## Verified without live keys
 
 Run:

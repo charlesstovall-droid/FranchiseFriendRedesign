@@ -1,5 +1,13 @@
 import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
-import { db } from "../../db";
+import { getAdvisorDb } from "./db";
+
+const db = new Proxy({} as ReturnType<typeof getAdvisorDb>, {
+  get(_target, prop, receiver) {
+    const real = getAdvisorDb() as unknown as Record<PropertyKey, unknown>;
+    const value = Reflect.get(real, prop, receiver);
+    return typeof value === "function" ? value.bind(real) : value;
+  },
+});
 import {
   advisorAdminSettings,
   advisorAnalyticsEvents,
@@ -410,7 +418,11 @@ export async function writeAudit(event: {
   entityId?: string;
   metadata?: Record<string, unknown>;
 }) {
-  await db.insert(advisorAuditLog).values(event);
+  try {
+    await db.insert(advisorAuditLog).values(event);
+  } catch (error) {
+    console.error("[advisor] audit log failed:", error);
+  }
 }
 
 export async function trackEvent(event: {
@@ -419,7 +431,11 @@ export async function trackEvent(event: {
   chapter?: string | null;
   metadata?: Record<string, unknown>;
 }) {
-  await db.insert(advisorAnalyticsEvents).values(event);
+  try {
+    await db.insert(advisorAnalyticsEvents).values(event);
+  } catch (error) {
+    console.error("[advisor] analytics event failed:", error);
+  }
 }
 
 export async function analyticsSummary() {
