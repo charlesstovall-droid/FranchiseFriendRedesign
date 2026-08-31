@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { pgTable, text, varchar, timestamp, integer, boolean, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -315,6 +315,99 @@ export const advisorDeletionRequests = pgTable("advisor_deletion_requests", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   resolvedAt: timestamp("resolved_at"),
 });
+
+export const advisorCandidatesRelations = relations(advisorCandidates, ({ many, one }) => ({
+  conversations: many(advisorConversations),
+  profile: one(advisorCandidateProfiles),
+  reports: many(advisorOwnershipReports),
+  briefs: many(advisorBriefs),
+  hubspotEvents: many(advisorHubspotSyncEvents),
+  bookingEvents: many(advisorBookingEvents),
+  deletionRequests: many(advisorDeletionRequests),
+}));
+
+export const advisorConversationsRelations = relations(advisorConversations, ({ one, many }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorConversations.candidateId],
+    references: [advisorCandidates.id],
+  }),
+  messages: many(advisorConversationMessages),
+  reports: many(advisorOwnershipReports),
+}));
+
+export const advisorConversationMessagesRelations = relations(advisorConversationMessages, ({ one }) => ({
+  conversation: one(advisorConversations, {
+    fields: [advisorConversationMessages.conversationId],
+    references: [advisorConversations.id],
+  }),
+}));
+
+export const advisorCandidateProfilesRelations = relations(advisorCandidateProfiles, ({ one }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorCandidateProfiles.candidateId],
+    references: [advisorCandidates.id],
+  }),
+}));
+
+export const advisorOwnershipReportsRelations = relations(advisorOwnershipReports, ({ one, many }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorOwnershipReports.candidateId],
+    references: [advisorCandidates.id],
+  }),
+  conversation: one(advisorConversations, {
+    fields: [advisorOwnershipReports.conversationId],
+    references: [advisorConversations.id],
+  }),
+  briefs: many(advisorBriefs),
+  brandFitReasons: many(advisorBrandFitReasons),
+}));
+
+export const advisorBriefsRelations = relations(advisorBriefs, ({ one }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorBriefs.candidateId],
+    references: [advisorCandidates.id],
+  }),
+  report: one(advisorOwnershipReports, {
+    fields: [advisorBriefs.reportId],
+    references: [advisorOwnershipReports.id],
+  }),
+}));
+
+export const advisorApprovedBrandsRelations = relations(advisorApprovedBrands, ({ many }) => ({
+  fitReasons: many(advisorBrandFitReasons),
+}));
+
+export const advisorBrandFitReasonsRelations = relations(advisorBrandFitReasons, ({ one }) => ({
+  report: one(advisorOwnershipReports, {
+    fields: [advisorBrandFitReasons.reportId],
+    references: [advisorOwnershipReports.id],
+  }),
+  brand: one(advisorApprovedBrands, {
+    fields: [advisorBrandFitReasons.brandId],
+    references: [advisorApprovedBrands.id],
+  }),
+}));
+
+export const advisorHubspotSyncEventsRelations = relations(advisorHubspotSyncEvents, ({ one }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorHubspotSyncEvents.candidateId],
+    references: [advisorCandidates.id],
+  }),
+}));
+
+export const advisorBookingEventsRelations = relations(advisorBookingEvents, ({ one }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorBookingEvents.candidateId],
+    references: [advisorCandidates.id],
+  }),
+}));
+
+export const advisorDeletionRequestsRelations = relations(advisorDeletionRequests, ({ one }) => ({
+  candidate: one(advisorCandidates, {
+    fields: [advisorDeletionRequests.candidateId],
+    references: [advisorCandidates.id],
+  }),
+}));
 
 export type AdvisorCandidate = typeof advisorCandidates.$inferSelect;
 export type AdvisorConversation = typeof advisorConversations.$inferSelect;
