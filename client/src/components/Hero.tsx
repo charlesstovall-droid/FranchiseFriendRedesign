@@ -161,15 +161,14 @@ export function Hero() {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </a>
-            {/* // TODO: replace with questionnaire route when built — currently linking to /franchise-assessment */}
-            <Link href="/franchise-assessment" className="w-full">
+            <Link href="/advisor" className="w-full">
               <Button
                 size="lg"
                 variant="outline"
                 className="w-full border-white/30 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-['Inter']"
                 data-testid="button-hero-secondary"
               >
-                Take the Franchise Questionnaire
+                Ownership Advisor
               </Button>
             </Link>
           </div>

@@ -49,7 +49,6 @@ export function Footer() {
             <ul className="space-y-3">
               <li><a href="/blog" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Latest Blog Posts</a></li>
               <li><a href="/faq" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">FAQ</a></li>
-              <li><a href="/black-book" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Black Book</a></li>
               <li><a href="/franchise-brands" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Franchise Brands</a></li>
               <li><a href="/advisor" className="text-primary-foreground/70 hover:text-accent-pop transition-colors">Ownership Advisor</a></li>
             </ul>
