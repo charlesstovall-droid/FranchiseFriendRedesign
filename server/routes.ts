@@ -10,6 +10,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { sendEmail } from "./gmail";
 import { sitemapUrls } from "./seo";
+import { mountPlainSiteFiles } from "./plain-files";
 import { registerAdvisorRoutes } from "./advisor/routes";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
@@ -50,6 +51,8 @@ function escapeXml(str: string = ""): string {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  mountPlainSiteFiles(app);
+
   // Dynamic Sitemap
   app.get("/sitemap.xml", async (req, res) => {
     const today = new Date().toISOString().split("T")[0];

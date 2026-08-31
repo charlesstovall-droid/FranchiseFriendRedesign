@@ -20,7 +20,7 @@ const buyerLinks = [
 
 const navLinks = [
   { name: "Speaking", href: "/speaking" },
-  { name: "About", href: "#about" },
+  { name: "About", href: "/about" },
   { name: "Insights", href: "/blog" },
 ];
 

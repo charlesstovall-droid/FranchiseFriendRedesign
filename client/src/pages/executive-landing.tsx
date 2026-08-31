@@ -4,6 +4,8 @@ import { Phone } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { trackConversion } from "@/lib/analytics";
 import { absoluteUrl } from "@shared/site";
+import { executiveFaqItems, faqPageSchema } from "@shared/faq";
+import { NAP } from "@shared/nap";
 import heroPhoto from "@assets/IMG_2636_1763927193167.jpeg";
 
 export default function ExecutiveLanding() {
@@ -52,6 +54,7 @@ export default function ExecutiveLanding() {
         title="Executive Access | Semi-Absentee Franchise Opportunities for Executives | Charles Stovall"
         description="Charles Stovall helps executives in Charleston and nationwide match capital to a franchise model they can run without leaving the W-2. Assessment, FDD review, Item 19."
         canonicalUrl={absoluteUrl("/executive-access")}
+        schema={faqPageSchema(executiveFaqItems)}
       />
 
       <section className="relative min-h-screen overflow-hidden">
@@ -244,6 +247,20 @@ export default function ExecutiveLanding() {
         </div>
       </section>
 
+      <section className="bg-[#F7F4EC] text-[#0A1F3C] py-20 md:py-24">
+        <div className="max-w-3xl mx-auto px-5 md:px-10">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-10">Executive Access FAQ</h2>
+          <dl className="space-y-8">
+            {executiveFaqItems.map((item) => (
+              <div key={item.id}>
+                <dt className="font-serif text-xl font-bold mb-2">{item.question}</dt>
+                <dd className="text-[#0A1F3C]/70 leading-relaxed">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="py-20 bg-[#0A1F3C] border-t border-white/10">
         <div className="max-w-3xl mx-auto px-5 md:px-10">
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Ready to look at the file?</h2>
@@ -272,7 +289,7 @@ export default function ExecutiveLanding() {
       <footer className="px-5 md:px-10 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[#F7F4EC]/45 text-sm">
         <div className="flex items-center gap-3">
           <img src="/cs-shield-logo.png" alt="" className="h-7 w-7 object-contain" />
-          <p>Charles Stovall · Charleston / Mt. Pleasant, SC</p>
+          <p>Charles Stovall Your Franchise Friend · {NAP.streetAddress}, {NAP.addressLocality}, {NAP.addressRegion} {NAP.postalCode}</p>
         </div>
         <div className="flex gap-5">
           <a href="tel:9198273921" className="hover:text-[#c9a84c]">(919) 827-3921</a>

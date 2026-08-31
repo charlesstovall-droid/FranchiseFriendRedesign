@@ -94,27 +94,15 @@ export default function BlogPost() {
   const blogPostSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": canonicalUrl
-    },
+    "mainEntityOfPage": canonicalUrl,
     "headline": post.title,
     "description": metaDescription,
     "image": "https://www.charlesstovall.com/opengraph.jpg",
     "author": {
-      "@type": "Person",
-      "name": "Charles Stovall",
-      "url": "https://www.charlesstovall.com",
-      "jobTitle": "Franchise Consultant",
-      "image": "https://www.charlesstovall.com/charles-stovall.jpg"
+      "@id": "https://www.charlesstovall.com/#person"
     },
     "publisher": {
-      "@type": "Organization",
-      "name": "Franchise Friend",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.charlesstovall.com/favicon.png"
-      }
+      "@id": "https://www.charlesstovall.com/#organization"
     },
     "datePublished": post.date,
     "dateModified": post.date,

@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.charlesstovall.com/sitemap.xml
-Sitemap: https://franchisefriend.net/sitemap.xml
 
 Disallow: /api/
 Disallow: /members-admin

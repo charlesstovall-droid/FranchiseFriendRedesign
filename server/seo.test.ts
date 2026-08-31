@@ -3,10 +3,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import express from "express";
-import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, sitemapUrls, pathnameFromRequest } from "./seo";
 import { mountClientStatic } from "./serve-client";
+import { mountPlainSiteFiles } from "./plain-files";
 import { AD_LANDING_REDIRECTS } from "./redirects";
 import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
+import { GOOGLE_SITE_VERIFICATION, GOOGLE_VERIFICATION_BODY, GOOGLE_VERIFICATION_FILENAME, NAP, NAP_GEO, OG_IMAGE_URL } from "../shared/nap";
 
 const shell = `<!DOCTYPE html>
 <html>
@@ -216,5 +218,110 @@ const png = await fetch(`http://127.0.0.1:${fixedPort}/cs-shield-logo.png`);
 assert.equal(png.status, 200);
 await new Promise<void>((resolve, reject) => fixedServer.close((err) => err ? reject(err) : resolve()));
 fs.rmSync(staticDir, { recursive: true, force: true });
+
+const homeSeo = applySeoToHtml(shell, "/");
+assert.match(homeSeo, new RegExp(`<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}"`));
+assert.match(homeSeo, /"@id":"https:\/\/www\.charlesstovall\.com\/#person"/);
+assert.match(homeSeo, /"@id":"https:\/\/www\.charlesstovall\.com\/#localbusiness"/);
+assert.match(homeSeo, /"@id":"https:\/\/www\.charlesstovall\.com\/#organization"/);
+assert.match(homeSeo, /"name":"Charles Stovall Your Franchise Friend"/);
+assert.match(homeSeo, /"streetAddress":"1531 N Lakeshore Dr"/);
+assert.match(homeSeo, /"addressLocality":"Mt Pleasant"/);
+assert.match(homeSeo, /"postalCode":"29466"/);
+assert.match(homeSeo, /"telephone":"\+1-919-827-3921"/);
+assert.match(homeSeo, /https:\/\/www\.linkedin\.com\/in\/charles-stovall\//);
+assert.match(homeSeo, /https:\/\/x\.com\/chuckstovall/);
+assert.match(homeSeo, /https:\/\/www\.instagram\.com\/thefranchisefriend/);
+assert.match(homeSeo, /https:\/\/www\.franchoice\.com\/our-consultants\/charles-stovall\//);
+assert.match(homeSeo, /business\.mountpleasantchamber\.org/);
+assert.match(homeSeo, new RegExp(`"latitude":${NAP_GEO.latitude}`));
+assert.match(homeSeo, new RegExp(`"longitude":${NAP_GEO.longitude}`));
+assert.doesNotMatch(homeSeo, /32\.7765/);
+assert.doesNotMatch(homeSeo, /-79\.9311/);
+assert.doesNotMatch(homeSeo, /"@id":"https:\/\/www\.charlesstovall\.com\/"/);
+assert.doesNotMatch(homeSeo, /"addressLocality":"Charleston"/);
+assert.match(homeSeo, new RegExp(`og:image" content="${OG_IMAGE_URL}"`));
+assert.doesNotMatch(homeSeo, /replit\.app/);
+assert.match(homeSeo, /href="\/charleston"/);
+assert.match(homeSeo, /href="\/blog\/fdd-red-flags"/);
+assert.match(homeSeo, /1531 N Lakeshore Dr/);
+
+const fddSeo = applySeoToHtml(shell, "/blog/fdd-red-flags");
+assert.match(fddSeo, /"@type":"BlogPosting"/);
+assert.match(fddSeo, /"headline":"FDD Red Flags I Learned the Hard Way"/);
+assert.match(fddSeo, /"datePublished":"2026-08-14"/);
+assert.match(fddSeo, /"dateModified":"2026-08-14"/);
+assert.match(fddSeo, /"author":\{"@id":"https:\/\/www\.charlesstovall\.com\/#person"\}/);
+assert.match(fddSeo, /"publisher":\{"@id":"https:\/\/www\.charlesstovall\.com\/#organization"\}/);
+assert.match(fddSeo, /"mainEntityOfPage":"https:\/\/www\.charlesstovall\.com\/blog\/fdd-red-flags"/);
+assert.match(fddSeo, /article:published_time" content="2026-08-14"/);
+assert.match(fddSeo, new RegExp(`<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}"`));
+
+const faqSeo = applySeoToHtml(shell, "/faq");
+assert.match(faqSeo, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/faq"/);
+assert.doesNotMatch(faqSeo, /<div id="root"><\/div>/);
+assert.match(faqSeo, /What does a franchise consultant do\?/);
+assert.match(faqSeo, /How much money do I need to invest in a franchise\?/);
+assert.match(faqSeo, /"@type":"FAQPage"/);
+assert.match(faqSeo, /1531 N Lakeshore Dr/);
+
+const aboutSeo = applySeoToHtml(shell, "/about");
+assert.match(aboutSeo, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/about"/);
+assert.match(aboutSeo, /<meta property="og:url" content="https:\/\/www\.charlesstovall\.com\/about"/);
+assert.doesNotMatch(aboutSeo, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/"/);
+assert.doesNotMatch(aboutSeo, /<div id="root"><\/div>/);
+assert.match(aboutSeo, /About Charles Stovall/);
+assert.match(aboutSeo, /1531 N Lakeshore Dr/);
+assert.match(aboutSeo, /Mt Pleasant/);
+assert.match(aboutSeo, /30 locations/);
+
+const charlestonSeo = applySeoToHtml(shell, "/charleston");
+assert.match(charlestonSeo, /"@type":"FAQPage"/);
+assert.match(charlestonSeo, /Item 19/);
+assert.match(charlestonSeo, /labor costs in Mt. Pleasant/);
+assert.match(charlestonSeo, /1531 N Lakeshore Dr/);
+
+const execSeo = applySeoToHtml(shell, "/executive-access");
+assert.match(execSeo, /"@type":"FAQPage"/);
+assert.match(execSeo, /Item 19/);
+
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
+
+const robotsTxt = fs.readFileSync(path.resolve("client/public/robots.txt"), "utf-8");
+assert.doesNotMatch(robotsTxt, /franchisefriend\.net/);
+assert.match(robotsTxt, /Sitemap: https:\/\/www\.charlesstovall\.com\/sitemap\.xml/);
+
+const aboutSsr = renderAboutHtml().toLowerCase();
+for (const banned of ["compensat", "you pay nothing", "franchisor pays", "free to you"]) {
+  assert.equal(aboutSsr.includes(banned), false, `about SSR should not include "${banned}"`);
+}
+
+const plainApp = express();
+mountPlainSiteFiles(plainApp);
+const plainServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = plainApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const plainPort = (plainServer.address() as { port: number }).port;
+const gscRes = await fetch(`http://127.0.0.1:${plainPort}/${GOOGLE_VERIFICATION_FILENAME}`);
+assert.equal(gscRes.status, 200);
+assert.match(gscRes.headers.get("content-type") || "", /text\/html/);
+assert.equal((await gscRes.text()).trim(), GOOGLE_VERIFICATION_BODY);
+const llmsRes = await fetch(`http://127.0.0.1:${plainPort}/llms.txt`);
+assert.equal(llmsRes.status, 200);
+const llmsBody = await llmsRes.text();
+assert.match(llmsBody, /Charles Stovall Your Franchise Friend/);
+assert.match(llmsBody, /1531 N Lakeshore Dr/);
+assert.match(llmsBody, /\/charleston/);
+assert.match(llmsBody, /\/executive-access/);
+assert.match(llmsBody, /\/blog\/fdd-red-flags/);
+assert.match(llmsBody, /\/faq/);
+assert.match(llmsBody, /\/about/);
+assert.match(llmsBody, /franchoice\.com\/our-consultants\/charles-stovall/);
+assert.match(llmsBody, /mountpleasantchamber\.org/);
+await new Promise<void>((resolve, reject) => plainServer.close((err) => err ? reject(err) : resolve()));
+
+assert.equal(NAP.addressLocality, "Mt Pleasant");
+assert.equal(NAP.postalCode, "29466");
 
 console.log("seo.test.ts passed");

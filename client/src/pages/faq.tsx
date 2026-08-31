@@ -5,73 +5,9 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { SEO } from "@/components/SEO";
+import { faqPageSchema, siteFaqItems as faqItems } from "@shared/faq";
 
-interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-}
-
-const faqItems: FAQItem[] = [
-  {
-    id: "1",
-    question: "What does a franchise consultant do?",
-    answer: "A franchise consultant acts as your personal guide through the franchise discovery process. I help you identify opportunities that align with your goals, budget, and lifestyle — saving you months of research and helping you avoid costly mistakes. Think of me as a matchmaker between you and the right franchise investment."
-  },
-  {
-    id: "2",
-    question: "How much does it cost to hire a franchise consultant?",
-    answer: "My franchise consulting services are completely free to you. I'm compensated by the franchise brands when a successful match is made, so you get expert guidance at no cost. There's no obligation, no hidden fees, and no pressure."
-  },
-  {
-    id: "3",
-    question: "How do I know which franchise is the right fit for me?",
-    answer: "That's exactly what we figure out together. Through a detailed questionnaire and a one-on-one Zoom consultation, I learn about your interests, skills, investment range, and preferred territory. From there, I present franchise options tailored specifically to you — not a one-size-fits-all list."
-  },
-  {
-    id: "4",
-    question: "How much money do I need to invest in a franchise?",
-    answer: "Franchise investments vary widely — from as low as $50,000 to over $1 million depending on the brand and industry. During our consultation, I'll help you understand what's realistic for your budget and connect you with franchise opportunities that match your financial goals."
-  },
-  {
-    id: "5",
-    question: "Do I need business experience to own a franchise?",
-    answer: "Not necessarily. Many franchise systems are specifically designed for first-time business owners and provide comprehensive training, support, and a proven playbook. During our discovery process, I'll match you with brands that align with your experience level and strengths."
-  },
-  {
-    id: "6",
-    question: "What franchise industries can I explore?",
-    answer: "I work across a wide range of industries including home services, fitness, health and wellness, senior care, food service, education, cleaning, real estate services, pet care, and many more. I have access to 700+ franchise brands, including top-rated opportunities from Franchise Business Review's Top 200."
-  },
-  {
-    id: "7",
-    question: "How long does the franchise discovery process take?",
-    answer: "Most people go from initial consultation to narrowing down their top franchise choices within a few weeks. The full process — from first call to signing a franchise agreement — typically takes 30 to 90 days depending on your pace and comfort level."
-  },
-  {
-    id: "8",
-    question: "Can I use my 401(k) or retirement funds to buy a franchise?",
-    answer: "Yes, many franchise owners use a strategy called ROBS (Rollover for Business Startups) to invest their retirement funds into a franchise without early withdrawal penalties. I can connect you with financial experts who specialize in franchise funding options including ROBS, SBA loans, and more."
-  },
-  {
-    id: "9",
-    question: "What's the first step to getting started?",
-    answer: "It's simple — fill out my short franchise questionnaire and then book a free consultation on my calendar. From there, I'll take the lead and walk you through everything."
-  },
-];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map(item => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.answer
-    }
-  }))
-};
+const faqSchema = faqPageSchema(faqItems);
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null);

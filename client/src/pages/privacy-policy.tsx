@@ -134,9 +134,9 @@ export default function PrivacyPolicy() {
             <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#1a2332]">Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, please contact us:</p>
             <div className="bg-gray-50 rounded-xl p-6 mt-3">
-              <p className="font-semibold text-[#1a2332]">Charles Stovall</p>
-              <p>Franchise Advisor — FranChoice Certified</p>
-              <p>Charleston, SC</p>
+              <p className="font-semibold text-[#1a2332]">Charles Stovall Your Franchise Friend</p>
+              <p>1531 N Lakeshore Dr</p>
+              <p>Mt Pleasant, SC 29466</p>
               <p>Email: <a href="mailto:CStovall@FranChoice.com" className="text-[#c9a84c] hover:underline">CStovall@FranChoice.com</a></p>
               <p>Phone: <a href="tel:9198273921" className="text-[#c9a84c] hover:underline">(919) 827-3921</a></p>
             </div>

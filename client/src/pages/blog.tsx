@@ -56,6 +56,11 @@ export default function Blog() {
             <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">
               Expert articles and guides to help you navigate the franchise ownership journey with confidence.
             </p>
+            <p className="text-sm text-primary-foreground/70 mb-8">
+              <a href="/charleston" className="underline hover:text-secondary">Charleston franchise consulting</a>
+              {" · "}
+              <a href="/blog/fdd-red-flags" className="underline hover:text-secondary">FDD Red Flags</a>
+            </p>
             <Link href="/speaking">
               <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold h-12 px-8">
                 Book Charles for Speaking Engagement

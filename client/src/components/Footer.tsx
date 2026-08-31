@@ -36,10 +36,11 @@ export function Footer() {
             <h3 className="font-serif font-bold text-lg mb-6 text-secondary">Quick Links</h3>
             <ul className="space-y-3">
               <li><a href="/" className="text-primary-foreground/70 hover:text-white transition-colors">Home</a></li>
-              <li><a href="/#services" className="text-primary-foreground/70 hover:text-white transition-colors">Services</a></li>
+              <li><a href="/about" className="text-primary-foreground/70 hover:text-white transition-colors">About Charles</a></li>
+              <li><a href="/charleston" className="text-primary-foreground/70 hover:text-white transition-colors">Charleston</a></li>
               <li><a href="/blog" className="text-primary-foreground/70 hover:text-white transition-colors">Insights & Blog</a></li>
+              <li><a href="/blog/fdd-red-flags" className="text-primary-foreground/70 hover:text-white transition-colors">FDD Red Flags</a></li>
               <li><a href="/#reviews" className="text-primary-foreground/70 hover:text-white transition-colors">Success Stories</a></li>
-              <li><a href="/#about" className="text-primary-foreground/70 hover:text-white transition-colors">About Charles</a></li>
             </ul>
           </div>
 
@@ -56,6 +57,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-serif font-bold text-lg mb-6 text-secondary">Contact</h3>
+            <p className="text-primary-foreground/80 font-semibold mb-4">Charles Stovall Your Franchise Friend</p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-primary-foreground/70">
                 <Mail className="w-5 h-5 mt-0.5 text-secondary" />
@@ -67,7 +69,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-primary-foreground/70">
                 <MapPin className="w-5 h-5 mt-0.5 text-secondary" />
-                <span>Charleston, SC</span>
+                <span>1531 N Lakeshore Dr<br />Mt Pleasant, SC 29466</span>
               </li>
             </ul>
           </div>
