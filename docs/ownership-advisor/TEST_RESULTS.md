@@ -14,6 +14,8 @@ Local Postgres + `npm run dev` (no `OPENAI_API_KEY`):
 - Admin settings seed opening copy, system instructions, chapter prompts, booking link, and HubSpot mapping
 - Candidate row and messages persist in PostgreSQL (`advisor_candidates`, `advisor_conversation_messages`)
 
+Browser pass (desktop and ~400px): marketing homepage still uses its own styling; `/advisor` cream/navy/gold landing matches the specified copy; conversation consent and opening question are correct; `/admin/advisor` login and candidate list work; approved brands stay empty; candidate footer does not link to admin.
+
 ## Verified without live keys
 
 Run:
@@ -40,7 +42,7 @@ Verified in that suite:
 
 ## Needs Chuck's live keys
 
-These cannot be proven in this environment because `DATABASE_URL`, `OPENAI_API_KEY`, and `HUBSPOT_PRIVATE_APP_TOKEN` are not present here.
+These cannot be proven end-to-end here because this environment has no production `OPENAI_API_KEY` or `HUBSPOT_PRIVATE_APP_TOKEN`. Local Postgres and admin password login were verified.
 
 | Path | Needs |
 | --- | --- |
