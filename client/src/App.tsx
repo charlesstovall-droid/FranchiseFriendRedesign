@@ -11,7 +11,6 @@ import FranchiseBrands from "@/pages/franchise-brands";
 import PodcastAdmin from "@/pages/podcast-admin";
 import MembersAdmin from "@/pages/members-admin";
 import PodcastsPage from "@/pages/podcasts";
-import BlackBook from "@/pages/black-book";
 import ClientPortal from "@/pages/client-portal";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
@@ -25,9 +24,6 @@ import ExecutiveProcess from "@/pages/executive-process";
 import ExecutiveAbout from "@/pages/executive-about";
 import ExecutiveInvestment from "@/pages/executive-investment";
 import ThankYouAd from "@/pages/thank-you-ad";
-import BlackbookLanding from "@/pages/blackbook-landing";
-import ThankYouBlackbook from "@/pages/thank-you-blackbook";
-import FranchiseAssessment from "@/pages/franchise-assessment";
 import Speaking from "@/pages/speaking";
 import HomeBasedFranchises from "@/pages/home-based-franchises";
 import HomeFranchiseResults from "@/pages/home-franchise-results";
@@ -66,7 +62,6 @@ function Router() {
       <Route path="/podcasts" component={PodcastsPage} />
       <Route path="/podcast-admin" component={PodcastAdmin} />
       <Route path="/members-admin" component={MembersAdmin} />
-      <Route path="/black-book" component={BlackBook} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/faq" component={FAQ} />
@@ -81,9 +76,6 @@ function Router() {
       <Route path="/executive-access/investment" component={ExecutiveInvestment} />
       <Route path="/executive-access" component={ExecutiveLanding} />
       <Route path="/thank-you-ad" component={ThankYouAd} />
-      <Route path="/franchise-assessment" component={FranchiseAssessment} />
-      <Route path="/free-franchise-guide" component={BlackbookLanding} />
-      <Route path="/thank-you-franchise-guide" component={ThankYouBlackbook} />
       <Route path="/home-based-franchises" component={HomeBasedFranchises} />
       <Route path="/home-franchise-results" component={HomeFranchiseResults} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />

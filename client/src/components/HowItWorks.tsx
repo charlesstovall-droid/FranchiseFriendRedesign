@@ -91,9 +91,9 @@ export function HowItWorks() {
           <p className="text-muted-foreground mb-6 text-lg">
             Ready to find your perfect franchise?
           </p>
-          <Link href="/franchise-assessment">
+          <Link href="/advisor">
             <button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold px-8 py-3 rounded-lg transition-all shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 hover:scale-105 active:scale-95">
-              Take the Free Franchise Fit Score
+              Ownership Advisor
             </button>
           </Link>
         </div>

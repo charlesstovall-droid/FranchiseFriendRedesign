@@ -496,11 +496,6 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     description: "Expert insights on franchise consulting, business strategy, and entrepreneurship from Charles Stovall.",
     canonical: absoluteUrl("/podcasts"),
   },
-  "/franchise-assessment": {
-    title: "Franchise Assessment | Charles Stovall",
-    description: "Take the franchise questionnaire and see how ready you are for ownership.",
-    canonical: absoluteUrl("/franchise-assessment"),
-  },
   "/charleston": {
     title: "Charleston Franchise Consultant | Charles Stovall",
     description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll.",

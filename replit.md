@@ -39,7 +39,7 @@ Preferred communication style: Simple, everyday language.
 
 4. **Admin Authentication**: Admin users authenticate via Google OAuth, with the admin email hardcoded to `charles@franchisefriend.net`.
 
-5. **Lead Capture**: Multiple lead types (consultation, general, newsletter, black-book) are captured through forms and stored in the leads table.
+5. **Lead Capture**: Multiple lead types (consultation, general, newsletter) are captured through forms and stored in the leads table.
 
 6. **Podcast Management**: Admin can create/delete podcast episodes, which are served via an auto-generated RSS feed at `/api/podcast/rss`.
 
@@ -54,7 +54,7 @@ Preferred communication style: Simple, everyday language.
 - **Nodemailer**: Configured for sending emails (transporter setup in routes.ts)
 
 ### PDF Generation
-- **PDFKit**: Used for generating downloadable PDF content (Black Book feature)
+- **PDFKit**: Used for generating downloadable PDF content (member portal guides and Ownership Advisor reports)
 
 ### Key Environment Variables Required
 - `DATABASE_URL`: Neon PostgreSQL connection string

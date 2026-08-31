@@ -746,7 +746,7 @@ export default function HomeBasedFranchises() {
               <div className="flex md:justify-end gap-4 mb-3">
                 <a href="/" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Main Site</a>
                 <a href="/executive-access" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Executive Access</a>
-                <a href="/free-franchise-guide" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Free Guide</a>
+                <a href="/advisor" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Ownership Advisor</a>
               </div>
             </div>
           </div>

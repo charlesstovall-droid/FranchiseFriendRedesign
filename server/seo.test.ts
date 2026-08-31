@@ -6,7 +6,7 @@ import express from "express";
 import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, sitemapUrls, pathnameFromRequest } from "./seo";
 import { mountClientStatic } from "./serve-client";
 import { mountPlainSiteFiles } from "./plain-files";
-import { AD_LANDING_REDIRECTS } from "./redirects";
+import { AD_LANDING_REDIRECTS, BLACK_BOOK_REDIRECTS, OLD_ASSESSMENT_REDIRECTS, seoRedirects } from "./redirects";
 import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
 import { GOOGLE_SITE_VERIFICATION, GOOGLE_VERIFICATION_BODY, GOOGLE_VERIFICATION_FILENAME, NAP, NAP_GEO, OG_IMAGE_URL } from "../shared/nap";
 
@@ -105,6 +105,20 @@ assertPage("/executive-access", "Executive Access", (html) => {
 assert.equal(AD_LANDING_REDIRECTS["/executive/access"], "/executive-access");
 assert.equal(AD_LANDING_REDIRECTS["/executive/ownership"], "/executive-access");
 assert.equal(AD_LANDING_REDIRECTS["/home-based/franchises"], "/home-based-franchises");
+
+assert.equal(BLACK_BOOK_REDIRECTS["/black-book"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/blackbook"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/the-blackbook-of-franchising"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/black-book-of-franchising"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/the-black-book-of-franchising"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/free-franchise-guide"], "/");
+assert.equal(BLACK_BOOK_REDIRECTS["/thank-you-franchise-guide"], "/");
+assert.equal(OLD_ASSESSMENT_REDIRECTS["/franchise-assessment"], "/advisor");
+assert.equal(OLD_ASSESSMENT_REDIRECTS["/assessment"], "/advisor");
+assert.equal(OLD_ASSESSMENT_REDIRECTS["/franchise-quiz"], "/advisor");
+assert.equal(OLD_ASSESSMENT_REDIRECTS["/readiness"], "/advisor");
+assert.equal(resolveSeoPage("/franchise-assessment"), null);
+assert.equal(resolveSeoPage("/black-book"), null);
 
 assert.equal(toWwwCanonical("https://charlesstovall.com/blog"), "https://www.charlesstovall.com/blog");
 assert.equal(toWwwCanonical("/faq"), "https://www.charlesstovall.com/faq");
@@ -287,6 +301,9 @@ assert.match(execSeo, /Item 19/);
 
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/advisor"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/black-book"), false);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/franchise-assessment"), false);
 
 const robotsTxt = fs.readFileSync(path.resolve("client/public/robots.txt"), "utf-8");
 assert.doesNotMatch(robotsTxt, /franchisefriend\.net/);
@@ -319,7 +336,27 @@ assert.match(llmsBody, /\/faq/);
 assert.match(llmsBody, /\/about/);
 assert.match(llmsBody, /franchoice\.com\/our-consultants\/charles-stovall/);
 assert.match(llmsBody, /mountpleasantchamber\.org/);
+assert.doesNotMatch(llmsBody, /black-book|blackbook|franchise-assessment/i);
 await new Promise<void>((resolve, reject) => plainServer.close((err) => err ? reject(err) : resolve()));
+
+const redirectApp = express();
+redirectApp.use(seoRedirects);
+redirectApp.use((_req, res) => res.status(200).send("ok"));
+const redirectServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = redirectApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const redirectPort = (redirectServer.address() as { port: number }).port;
+async function assertRedirect(from: string, to: string) {
+  const res = await fetch(`http://127.0.0.1:${redirectPort}${from}`, { redirect: "manual" });
+  assert.equal(res.status, 301, `${from} should 301`);
+  assert.equal(res.headers.get("location"), to, `${from} should 301 to ${to}`);
+}
+await assertRedirect("/black-book", "/");
+await assertRedirect("/blackbook", "/");
+await assertRedirect("/free-franchise-guide", "/");
+await assertRedirect("/franchise-assessment", "/advisor");
+await assertRedirect("/assessment", "/advisor");
+await new Promise<void>((resolve, reject) => redirectServer.close((err) => err ? reject(err) : resolve()));
 
 assert.equal(NAP.addressLocality, "Mt Pleasant");
 assert.equal(NAP.postalCode, "29466");
