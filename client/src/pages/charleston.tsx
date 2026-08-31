@@ -4,6 +4,8 @@ import { Phone } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { trackConversion } from "@/lib/analytics";
 import { absoluteUrl } from "@shared/site";
+import { charlestonFaqItems, faqPageSchema } from "@shared/faq";
+import { NAP } from "@shared/nap";
 import portrait from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
 
 export default function Charleston() {
@@ -64,6 +66,7 @@ export default function Charleston() {
         title="Charleston Franchise Consultant | Charles Stovall"
         description="Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll."
         canonicalUrl={absoluteUrl("/charleston")}
+        schema={faqPageSchema(charlestonFaqItems)}
       />
 
       <section className="relative min-h-screen overflow-hidden bg-[#0A1F3C]">
@@ -332,6 +335,20 @@ export default function Charleston() {
         </div>
       </section>
 
+      <section className="bg-[#F7F4EC] text-[#0A1F3C] py-20 md:py-24 border-t border-[#0A1F3C]/10">
+        <div className="max-w-3xl mx-auto px-5 md:px-10">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-10">Charleston FAQ</h2>
+          <dl className="space-y-8">
+            {charlestonFaqItems.map((item) => (
+              <div key={item.id}>
+                <dt className="font-serif text-xl font-bold mb-2">{item.question}</dt>
+                <dd className="text-[#0A1F3C]/70 leading-relaxed">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="py-20 bg-[#0A1F3C] border-t border-white/10">
         <div className="max-w-3xl mx-auto px-5 md:px-10">
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Ready to look at Charleston with an operator?</h2>
@@ -360,7 +377,7 @@ export default function Charleston() {
       <footer className="px-5 md:px-10 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[#F7F4EC]/45 text-sm">
         <div className="flex items-center gap-3">
           <img src="/cs-shield-logo.png" alt="" className="h-7 w-7 object-contain" />
-          <p>Charles Stovall · Charleston / Mt. Pleasant / Daniel Island</p>
+          <p>Charles Stovall Your Franchise Friend · {NAP.streetAddress}, {NAP.addressLocality}, {NAP.addressRegion} {NAP.postalCode}</p>
         </div>
         <div className="flex gap-5">
           <a href="tel:9198273921" className="hover:text-[#c9a84c]">(919) 827-3921</a>

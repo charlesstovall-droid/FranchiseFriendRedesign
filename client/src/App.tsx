@@ -33,6 +33,7 @@ import HomeBasedFranchises from "@/pages/home-based-franchises";
 import HomeFranchiseResults from "@/pages/home-franchise-results";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import Charleston from "@/pages/charleston";
+import AboutPage from "@/pages/about";
 
 function PageLoader() {
   return (
@@ -58,6 +59,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/faq" component={FAQ} />
+      <Route path="/about" component={AboutPage} />
       <Route path="/client-portal" component={ClientPortal} />
       <Route path="/phase1" component={Phase1} />
       <Route path="/phase2" component={Phase2} />

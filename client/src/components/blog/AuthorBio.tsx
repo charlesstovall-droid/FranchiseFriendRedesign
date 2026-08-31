@@ -9,7 +9,7 @@ export function AuthorBio() {
         </div>
         <div className="flex-1">
           <h3 className="text-xl font-serif font-bold text-primary mb-1">Charles Stovall</h3>
-          <p className="text-secondary font-semibold mb-3">Certified Franchise Consultant | Charleston, SC</p>
+          <p className="text-secondary font-semibold mb-3">Franchise Consultant | 1531 N Lakeshore Dr, Mt Pleasant, SC 29466</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Charles Stovall is a certified franchise consultant with FranChoice, helping aspiring entrepreneurs 
             navigate franchise ownership opportunities. With a focus on personalized guidance and honest advice, 
