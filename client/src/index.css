@@ -131,3 +131,70 @@ section {
 .animate-ticker:hover {
   animation-play-state: running;
 }
+
+/* Ownership Advisor surface. Scoped so marketing pages keep their current look. */
+.advisor-surface {
+  --font-display: var(--font-serif);
+  --advisor-cream: #F4ECE1;
+  --advisor-navy: #12304C;
+  --advisor-gold: #F2C740;
+  --advisor-green: #9BD7B3;
+  --advisor-line: rgba(18, 48, 76, 0.14);
+  background-color: var(--advisor-cream);
+  color: var(--advisor-navy);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+}
+
+.advisor-surface section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.advisor-display {
+  font-family: var(--font-display), "Libre Baskerville", serif;
+}
+
+.advisor-grid {
+  background-image:
+    linear-gradient(rgba(18, 48, 76, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 48, 76, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.advisor-wave {
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(155, 215, 179, 0.28), transparent 46%),
+    radial-gradient(ellipse at 90% 20%, rgba(242, 199, 64, 0.12), transparent 40%);
+}
+
+@keyframes advisor-listen {
+  0% { transform: scaleX(0.2); opacity: 0.35; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.2); opacity: 0.35; }
+}
+
+.advisor-listen-bar {
+  transform-origin: center;
+  animation: advisor-listen 1.8s ease-in-out infinite;
+}
+
+@keyframes advisor-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.advisor-enter {
+  animation: advisor-fade-up 0.45s ease both;
+}
+
+@media print {
+  .advisor-surface header,
+  .advisor-surface footer,
+  .print\\:hidden {
+    display: none !important;
+  }
+  .advisor-surface {
+    background: #fff;
+  }
+}
