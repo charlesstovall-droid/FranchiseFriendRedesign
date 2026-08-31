@@ -26,11 +26,18 @@ export const DEFAULT_SETTING_VALUES: Record<string, unknown> = {
 
 export type AdvisorSettingsMap = typeof DEFAULT_SETTING_VALUES;
 
+function withoutStaleOpenAiKeyCopy<T extends { unconfiguredMessage?: unknown }>(copy: T): T {
+  if (typeof copy.unconfiguredMessage === "string" && /openai/i.test(copy.unconfiguredMessage)) {
+    return { ...copy, unconfiguredMessage: DEFAULT_ADVISOR_COPY.unconfiguredMessage };
+  }
+  return copy;
+}
+
 export function publicCopyFromSettings(settings: Record<string, unknown>): typeof DEFAULT_ADVISOR_COPY {
-  const copy = {
+  const copy = withoutStaleOpenAiKeyCopy({
     ...DEFAULT_ADVISOR_COPY,
     ...((settings.copy as Record<string, unknown> | undefined) || {}),
-  };
+  });
   if (typeof settings.opening_message === "string") copy.openingMessage = settings.opening_message;
   if (typeof settings.disclosure === "string") copy.disclosure = settings.disclosure;
   if (typeof settings.booking_link === "string") copy.calendlyUrl = settings.booking_link;
@@ -38,4 +45,12 @@ export function publicCopyFromSettings(settings: Record<string, unknown>): typeo
   if (report?.conclusion) copy.thesisConclusion = report.conclusion;
   if (report?.handoff) copy.callHandoff = report.handoff;
   return copy as typeof DEFAULT_ADVISOR_COPY;
+}
+
+export function sanitizeStoredAdvisorSettings(map: Record<string, unknown>): Record<string, unknown> {
+  const storedCopy = map.copy;
+  if (storedCopy && typeof storedCopy === "object") {
+    return { ...map, copy: withoutStaleOpenAiKeyCopy({ ...(storedCopy as Record<string, unknown>) }) };
+  }
+  return map;
 }

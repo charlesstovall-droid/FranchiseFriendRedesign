@@ -28,11 +28,13 @@ Do not drop existing `leads`, `members`, `podcasts`, or `brands` tables. Advisor
 
 Copy values from `.env.example`. Never put secrets in client code.
 
-Required for a live conversation: `DATABASE_URL`, `OPENAI_API_KEY`.
+Required for a live conversation: `DATABASE_URL`, `XAI_API_KEY`.
 
 Useful in production: `SESSION_SECRET`, `APP_BASE_URL`, `CALENDLY_URL`, `HUBSPOT_PRIVATE_APP_TOKEN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
 
-If `OPENAI_API_KEY` is missing, `/advisor` still renders and explains that the advisor is not configured yet.
+Optional: `XAI_MODEL` (defaults to `grok-4.6`).
+
+If `XAI_API_KEY` is missing, `/advisor` still renders and explains that the advisor is not configured yet.
 
 ## Admin access
 

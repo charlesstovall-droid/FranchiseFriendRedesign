@@ -64,4 +64,4 @@ Preferred communication style: Simple, everyday language.
 
 ## Ownership Advisor
 
-Separate product at `/advisor` with Chuck's desk at `/admin/advisor`. Docs live in `docs/ownership-advisor/`. Additive Postgres tables are created on boot. Candidate data is not stored only in memory.
+Separate product at `/advisor` with Chuck's desk at `/admin/advisor`. Docs live in `docs/ownership-advisor/`. Additive Postgres tables are created on boot. Candidate data is not stored only in memory. Live conversations require the Replit secret `XAI_API_KEY`. Optional `XAI_MODEL` defaults to `grok-4.6`.

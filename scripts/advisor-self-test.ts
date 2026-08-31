@@ -1,6 +1,18 @@
 import assert from "node:assert/strict";
 import { BANNED_CANDIDATE_PHRASES, OPENING_QUESTION, THESIS_CONCLUSION, CALL_HANDOFF, FINANCIAL_DISCLAIMER, turnOutputSchema, HUBSPOT_ADVISOR_PROPERTIES, PROFILE_FIELD_KEYS } from "../shared/advisor";
 import { DEFAULT_ADVISOR_COPY } from "../shared/advisor-copy";
+import {
+  AdvisorNotConfiguredError,
+  DEFAULT_XAI_MODEL,
+  XAI_BASE_URL,
+  XaiAdvisorProvider,
+  advisorClientConfig,
+  advisorModelName,
+  createAdvisorClient,
+  isAdvisorConfigured,
+  type AdvisorChatClient,
+} from "../server/advisor/ai/provider";
+import { publicCopyFromSettings } from "../server/advisor/settings";
 import { mergeExtractedProfile } from "../server/advisor/profile";
 import { detectFollowUpHints, detectFinancialChapter } from "../server/advisor/followups";
 import { detectSafetyFlags, filterNamedBrands, sanitizeCandidateMessage } from "../server/advisor/safety";
@@ -159,7 +171,7 @@ section("provider errors stay short and distinguish auth vs schema", () => {
   });
   assert.equal(wrapped.status, 401);
   assert.equal(wrapped.code, "invalid_api_key");
-  assert.match(wrapped.message, /OpenAI 401/);
+  assert.match(wrapped.message, /Advisor API 401/);
   assert.match(wrapped.message, /sk-\[redacted\]/);
   assert.doesNotMatch(wrapped.message, /sk-test_secret_value/);
   assert.equal(isOpenAiAuthFailure(wrapped), true);
@@ -229,9 +241,141 @@ section("banned hype list is enforced in copy defaults", () => {
   }
 });
 
-hashPassword("correct-horse").then(async ({ hash, salt }) => {
-  assert.equal(await verifyPassword("correct-horse", hash, salt), true);
-  assert.equal(await verifyPassword("wrong", hash, salt), false);
-  console.log("ok  password hashing");
-  console.log("\nOwnership Advisor self-tests passed (no live keys required).");
+section("unconfigured copy does not tell anyone to add an OpenAI key", () => {
+  assert.match(DEFAULT_ADVISOR_COPY.unconfiguredMessage, /not configured yet/i);
+  assert.doesNotMatch(DEFAULT_ADVISOR_COPY.unconfiguredMessage, /openai/i);
+  const stale = publicCopyFromSettings({
+    copy: {
+      ...DEFAULT_ADVISOR_COPY,
+      unconfiguredMessage: "Chuck still needs to add an OpenAI API key before conversations can run.",
+    },
+  });
+  assert.doesNotMatch(stale.unconfiguredMessage, /openai/i);
 });
+
+section("advisor is configured only when XAI_API_KEY is set", () => {
+  const previousXai = process.env.XAI_API_KEY;
+  const previousOpenAi = process.env.OPENAI_API_KEY;
+  const previousModel = process.env.XAI_MODEL;
+  try {
+    delete process.env.XAI_API_KEY;
+    process.env.OPENAI_API_KEY = "sk-openai-should-not-count";
+    assert.equal(isAdvisorConfigured(), false);
+    assert.throws(() => advisorClientConfig(), AdvisorNotConfiguredError);
+
+    process.env.XAI_API_KEY = "xai-test-key-not-a-secret";
+    delete process.env.XAI_MODEL;
+    assert.equal(isAdvisorConfigured(), true);
+    assert.deepEqual(advisorClientConfig(), { apiKey: "xai-test-key-not-a-secret", baseURL: XAI_BASE_URL });
+    assert.equal(XAI_BASE_URL, "https://api.x.ai/v1");
+    assert.equal(advisorModelName(), DEFAULT_XAI_MODEL);
+    assert.equal(DEFAULT_XAI_MODEL, "grok-4.6");
+
+    process.env.XAI_MODEL = "grok-4";
+    assert.equal(advisorModelName(), "grok-4");
+
+    const client = createAdvisorClient() as { baseURL?: string; apiKey?: string };
+    assert.equal(client.baseURL, XAI_BASE_URL);
+    assert.equal(client.apiKey, "xai-test-key-not-a-secret");
+  } finally {
+    if (previousXai === undefined) delete process.env.XAI_API_KEY;
+    else process.env.XAI_API_KEY = previousXai;
+    if (previousOpenAi === undefined) delete process.env.OPENAI_API_KEY;
+    else process.env.OPENAI_API_KEY = previousOpenAi;
+    if (previousModel === undefined) delete process.env.XAI_MODEL;
+    else process.env.XAI_MODEL = previousModel;
+  }
+});
+
+function mockAdvisorClient(payload: unknown, captured: { body?: { model?: string; response_format?: { type?: string } } }): AdvisorChatClient {
+  return {
+    chat: {
+      completions: {
+        create: async (body) => {
+          captured.body = body;
+          return {
+            choices: [{ message: { content: JSON.stringify(payload) } }],
+          } as Awaited<ReturnType<AdvisorChatClient["chat"]["completions"]["create"]>>;
+        },
+      },
+    },
+  };
+}
+
+{
+  const previousXai = process.env.XAI_API_KEY;
+  const previousModel = process.env.XAI_MODEL;
+  process.env.XAI_API_KEY = "xai-test-key-not-a-secret";
+  delete process.env.XAI_MODEL;
+  try {
+    const captured: { body?: { model?: string; response_format?: { type?: string } } } = {};
+    const turn = {
+      candidate_message: "That gives me part of the picture. What would you like ownership to change first?",
+      current_chapter: "why_now",
+      extracted_candidate_data: { firstName: "Sam" },
+      ready_for_thesis: false,
+    };
+    const provider = new XaiAdvisorProvider(() => mockAdvisorClient(turn, captured));
+    const parsed = await provider.completeTurn("system", "user");
+    assert.equal(parsed.candidate_message.includes("part of the picture"), true);
+    assert.equal(captured.body?.model, "grok-4.6");
+    assert.equal(captured.body?.response_format?.type, "json_schema");
+
+    const thesisSection = { title: "Title", body: "Body", indicator: "Worth exploring" as const };
+    const thesisProvider = new XaiAdvisorProvider(() =>
+      mockAdvisorClient(
+        {
+          whyOwnershipIsBeingConsidered: thesisSection,
+          whatCandidateWantsOwnershipToCreate: thesisSection,
+          recommendedOwnerRole: thesisSection,
+          financialFramework: thesisSection,
+          businessCharacteristicsThatMayFit: thesisSection,
+          businessCharacteristicsToApproachCarefully: thesisSection,
+          strengthsTheCandidateBrings: thesisSection,
+          potentialConflictsOrBlindSpots: thesisSection,
+          questionsStillRequiringHumanJudgment: thesisSection,
+          recommendedNextStep: thesisSection,
+          namedBrands: [],
+          conclusion: "This profile is a framework, not a franchise recommendation.",
+        },
+        captured,
+      ),
+    );
+    const thesis = await thesisProvider.generateThesis("system", "user");
+    assert.equal(thesis.namedBrands.length, 0);
+
+    const briefProvider = new XaiAdvisorProvider(() =>
+      mockAdvisorClient(
+        {
+          candidateInOneParagraph: "A candidate exploring ownership.",
+          whatTheySayTheyWant: "More control.",
+          whatTheyMayActuallyBeSolvingFor: "A better week.",
+          financialReality: "Ranges only.",
+          familyOrLifestyleConstraints: "Family time matters.",
+          contradictionsToExplore: "Income versus flexibility.",
+          likelyDecisionStyle: "Careful.",
+          suitableBusinessModelCharacteristics: "Recurring revenue.",
+          modelsToApproachCarefully: "High-buildout concepts.",
+          threeQuestionsChuckShouldAskNext: ["What timeline feels honest?"],
+          suggestedOpeningForTheStrategyCall: "Let's talk about fit.",
+          suggestedFollowUpEmail: "Thanks for the conversation.",
+        },
+        captured,
+      ),
+    );
+    const brief = await briefProvider.generateBrief("system", "user");
+    assert.equal(brief.threeQuestionsChuckShouldAskNext.length, 1);
+    console.log("ok  mocked xAI provider still returns Zod turn/thesis/brief shapes");
+  } finally {
+    if (previousXai === undefined) delete process.env.XAI_API_KEY;
+    else process.env.XAI_API_KEY = previousXai;
+    if (previousModel === undefined) delete process.env.XAI_MODEL;
+    else process.env.XAI_MODEL = previousModel;
+  }
+}
+
+const { hash, salt } = await hashPassword("correct-horse");
+assert.equal(await verifyPassword("correct-horse", hash, salt), true);
+assert.equal(await verifyPassword("wrong", hash, salt), false);
+console.log("ok  password hashing");
+console.log("\nOwnership Advisor self-tests passed (no live keys required).");

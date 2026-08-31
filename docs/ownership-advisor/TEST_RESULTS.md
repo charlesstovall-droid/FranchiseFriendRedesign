@@ -2,12 +2,12 @@
 
 ## Verified in this environment
 
-Local Postgres + `npm run dev` (no `OPENAI_API_KEY`):
+Local Postgres + `npm run dev` (no `XAI_API_KEY`):
 
 - `/` Charleston and executive-access still return 200
 - `/advisor` SSR includes the specified hero, What You'll Receive, disclosure, and CTA
 - `POST /api/advisor/conversations` persists a candidate and the exact opening question
-- Turns without an OpenAI key return the configured-not-yet message
+- Turns without an API key return the configured-not-yet message
 - Resume token restores the conversation
 - Admin password login works; candidate sessions receive 401 on `/api/advisor/admin/*`
 - Approved brands list is empty
@@ -39,15 +39,18 @@ Verified in that suite:
 - Additive SQL only (no `DROP TABLE`)
 - HubSpot property list completeness
 - Default copy does not include banned celebration language
+- Unconfigured copy does not mention OpenAI
+- Advisor is configured only when `XAI_API_KEY` is set (not `OPENAI_API_KEY`)
+- Mocked xAI client uses `https://api.x.ai/v1` and `grok-4.6` with `json_schema`
 
 ## Needs Chuck's live keys
 
-These cannot be proven end-to-end here because this environment has no production `OPENAI_API_KEY` or `HUBSPOT_PRIVATE_APP_TOKEN`. Local Postgres and admin password login were verified.
+These cannot be proven end-to-end here because this environment has no production `XAI_API_KEY` or `HUBSPOT_PRIVATE_APP_TOKEN`. Local Postgres and admin password login were verified.
 
 | Path | Needs |
 | --- | --- |
-| Full conversation through Ownership Thesis | `DATABASE_URL` + `OPENAI_API_KEY` |
-| PDF download and private share link | `DATABASE_URL` + `OPENAI_API_KEY` |
+| Full conversation through Ownership Thesis | `DATABASE_URL` + `XAI_API_KEY` |
+| PDF download and private share link | `DATABASE_URL` + `XAI_API_KEY` |
 | HubSpot create/update + note | `HUBSPOT_PRIVATE_APP_TOKEN` |
 | Admin password login | `ADMIN_EMAIL` + `ADMIN_PASSWORD` |
 | Existing admin session unlock | current Google / member-admin session |

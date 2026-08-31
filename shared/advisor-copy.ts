@@ -34,7 +34,7 @@ export const DEFAULT_ADVISOR_COPY = {
   aiDisclosure:
     "An AI model helps ask follow-up questions and draft your Ownership Thesis. Chuck reviews profiles before any strategy conversation. The advisor will not recommend a specific franchise as a perfect fit.",
   unconfiguredMessage:
-    "The Ownership Advisor is not configured yet. Chuck still needs to add an OpenAI API key before conversations can run.",
+    "The Ownership Advisor is not configured yet. An API key still needs to be added before conversations can run.",
   contactPrompt:
     "If you would like to save this thesis, receive a private link, or review it with Chuck, leave an email and phone number. We will not ask for this before the work is useful.",
   deletionHelp:
