@@ -32,7 +32,7 @@ import {
   type AdvisorOwnershipReport,
 } from "@shared/schema";
 import type { ExtractedProfile } from "@shared/advisor";
-import { DEFAULT_SETTING_VALUES } from "./settings";
+import { DEFAULT_SETTING_VALUES, sanitizeStoredAdvisorSettings } from "./settings";
 import { createOpaqueToken } from "./tokens";
 
 export async function createCandidateSession() {
@@ -479,7 +479,7 @@ export async function getSettingsMap(): Promise<Record<string, unknown>> {
   for (const row of rows) {
     map[row.key] = row.value;
   }
-  return map;
+  return sanitizeStoredAdvisorSettings(map);
 }
 
 export async function upsertSetting(key: string, value: unknown, updatedBy?: string) {

@@ -5,7 +5,7 @@ None of these belong in the git repo.
 | Variable | Why | Needed to |
 | --- | --- | --- |
 | `DATABASE_URL` | Existing Neon / Replit Postgres | Persist candidates, transcripts, theses |
-| `OPENAI_API_KEY` | Server-side model calls | Run the conversation and write the thesis |
+| `XAI_API_KEY` | Server-side model calls (xAI / Grok) | Run the conversation and write the thesis |
 | `SESSION_SECRET` | Existing session cookie | Keep admin and resume sessions honest in production |
 | `APP_BASE_URL` | Public site origin | Build private report links |
 | `CALENDLY_URL` | Defaults to `https://calendly.com/charles-stovall/intro` | Booking handoff |
@@ -16,6 +16,8 @@ None of these belong in the git repo.
 
 Clerk is documented and unused in v1.
 
-Without `OPENAI_API_KEY`, the landing page still works and explains that the advisor is not configured.
+Without `XAI_API_KEY`, the landing page still works and explains that the advisor is not configured.
+
+Optional: `XAI_MODEL` (defaults to `grok-4.6`).
 
 Without `HUBSPOT_PRIVATE_APP_TOKEN`, conversations, theses, PDFs, and the dashboard still work.

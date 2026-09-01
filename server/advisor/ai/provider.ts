@@ -2,9 +2,15 @@ import OpenAI from "openai";
 import { turnOutputSchema, ownershipThesisSchema, meetingBriefSchema, type TurnOutput, type OwnershipThesis, type MeetingBrief } from "@shared/advisor";
 import { briefJsonSchema, thesisJsonSchema, turnJsonSchema } from "./schemas";
 
+/** Official xAI chat completions base URL (OpenAI-compatible). */
+export const XAI_BASE_URL = "https://api.x.ai/v1";
+
+/** Current Grok chat model with structured JSON (`response_format.json_schema`). From xAI docs. */
+export const DEFAULT_XAI_MODEL = "grok-4.6";
+
 export class AdvisorNotConfiguredError extends Error {
   constructor() {
-    super("OPENAI_API_KEY is not configured");
+    super("XAI_API_KEY is not configured");
     this.name = "AdvisorNotConfiguredError";
   }
 }
@@ -27,6 +33,14 @@ export interface AdvisorAiProvider {
   generateBrief(system: string, user: string): Promise<MeetingBrief>;
 }
 
+export type AdvisorChatClient = {
+  chat: {
+    completions: {
+      create: (body: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming) => Promise<OpenAI.Chat.Completions.ChatCompletion>;
+    };
+  };
+};
+
 type JsonSchemaFormat = { name: string; strict: boolean; schema: Record<string, unknown> };
 
 function asRecord(value: unknown): Record<string, unknown> | null {
@@ -36,6 +50,7 @@ function asRecord(value: unknown): Record<string, unknown> | null {
 export function sanitizeProviderMessage(message: string): string {
   return message
     .replace(/sk-[A-Za-z0-9_-]+/g, "sk-[redacted]")
+    .replace(/xai-[A-Za-z0-9_-]+/g, "xai-[redacted]")
     .replace(/Bearer\s+\S+/gi, "Bearer [redacted]")
     .replace(/\s+/g, " ")
     .trim()
@@ -64,7 +79,7 @@ export function providerErrorDetails(error: unknown): { status?: number; code?: 
 export function wrapProviderError(error: unknown): AdvisorProviderError {
   if (error instanceof AdvisorProviderError) return error;
   const details = providerErrorDetails(error);
-  const prefix = details.status != null ? `OpenAI ${details.status}` : "OpenAI";
+  const prefix = details.status != null ? `Advisor API ${details.status}` : "Advisor API";
   const codePart = details.code ? ` ${details.code}` : "";
   return new AdvisorProviderError(`${prefix}${codePart}: ${details.message}`, {
     status: details.status,
@@ -97,26 +112,35 @@ export function isResponseFormatError(error: unknown): boolean {
   );
 }
 
-function client(): OpenAI {
-  if (!process.env.OPENAI_API_KEY) {
+export function advisorClientConfig(): { apiKey: string; baseURL: string } {
+  const apiKey = process.env.XAI_API_KEY;
+  if (!apiKey) {
     throw new AdvisorNotConfiguredError();
   }
-  return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  return {
+    apiKey,
+    baseURL: XAI_BASE_URL,
+  };
 }
 
-function modelName(): string {
-  return process.env.OPENAI_MODEL || "gpt-4o";
+export function advisorModelName(): string {
+  return process.env.XAI_MODEL || DEFAULT_XAI_MODEL;
+}
+
+export function createAdvisorClient(): AdvisorChatClient {
+  return new OpenAI(advisorClientConfig());
 }
 
 async function requestCompletion(
   system: string,
   user: string,
   responseFormat: { type: "json_schema"; json_schema: JsonSchemaFormat } | { type: "json_object" },
+  createClient: () => AdvisorChatClient,
 ) {
-  const openai = client();
+  const client = createClient();
   try {
-    const response = await openai.chat.completions.create({
-      model: modelName(),
+    const response = await client.chat.completions.create({
+      model: advisorModelName(),
       temperature: 0.4,
       response_format: responseFormat as any,
       messages: [
@@ -135,42 +159,49 @@ async function requestCompletion(
   }
 }
 
-async function completeJson(system: string, user: string, schema: JsonSchemaFormat) {
+async function completeJson(
+  system: string,
+  user: string,
+  schema: JsonSchemaFormat,
+  createClient: () => AdvisorChatClient,
+) {
   try {
     return await requestCompletion(system, user, {
       type: "json_schema",
       json_schema: schema,
-    });
+    }, createClient);
   } catch (error) {
     if (error instanceof AdvisorNotConfiguredError) throw error;
     if (isResponseFormatError(error)) {
-      return await requestCompletion(system, user, { type: "json_object" });
+      return await requestCompletion(system, user, { type: "json_object" }, createClient);
     }
     throw wrapProviderError(error);
   }
 }
 
-export class OpenAiAdvisorProvider implements AdvisorAiProvider {
+export class XaiAdvisorProvider implements AdvisorAiProvider {
+  constructor(private readonly createClient: () => AdvisorChatClient = createAdvisorClient) {}
+
   async completeTurn(system: string, user: string): Promise<TurnOutput> {
-    const raw = await completeJson(system, user, turnJsonSchema);
+    const raw = await completeJson(system, user, turnJsonSchema, this.createClient);
     return turnOutputSchema.parse(raw);
   }
 
   async generateThesis(system: string, user: string): Promise<OwnershipThesis> {
-    const raw = await completeJson(system, user, thesisJsonSchema);
+    const raw = await completeJson(system, user, thesisJsonSchema, this.createClient);
     return ownershipThesisSchema.parse(raw);
   }
 
   async generateBrief(system: string, user: string): Promise<MeetingBrief> {
-    const raw = await completeJson(system, user, briefJsonSchema);
+    const raw = await completeJson(system, user, briefJsonSchema, this.createClient);
     return meetingBriefSchema.parse(raw);
   }
 }
 
 export function isAdvisorConfigured(): boolean {
-  return Boolean(process.env.OPENAI_API_KEY);
+  return Boolean(process.env.XAI_API_KEY);
 }
 
 export function createAdvisorProvider(): AdvisorAiProvider {
-  return new OpenAiAdvisorProvider();
+  return new XaiAdvisorProvider();
 }

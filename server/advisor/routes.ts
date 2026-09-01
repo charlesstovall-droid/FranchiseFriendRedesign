@@ -509,7 +509,7 @@ export async function registerAdvisorRoutes(app: Express) {
   });
 
   app.post("/api/advisor/admin/candidates/:id/brief/regenerate", requireAdvisorAdmin, async (req, res) => {
-    if (!isAdvisorConfigured()) return res.status(503).json({ error: "OpenAI is not configured." });
+    if (!isAdvisorConfigured()) return res.status(503).json({ error: "The advisor is not configured yet." });
     const bundle = await store.getCandidateBundle(req.params.id);
     if (!bundle?.report) return res.status(400).json({ error: "Generate a thesis before the meeting brief." });
     const settings = await store.getSettingsMap();
