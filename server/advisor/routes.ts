@@ -13,7 +13,7 @@ import { brandsToCsv, csvToBrandRows } from "./csv";
 import { detectFollowUpHints } from "./followups";
 import { ensureHubspotProperties, isHubspotConfigured, upsertAdvisorContact } from "./hubspot";
 import { ensureAdvisorTables } from "./migrate";
-import { AdvisorNotConfiguredError, isAdvisorConfigured } from "./ai/provider";
+import { AdvisorNotConfiguredError, isAdvisorConfigured, isOpenAiAuthFailure } from "./ai/provider";
 import { runAdvisorTurn, runBriefGeneration, runThesisGeneration } from "./ai/orchestrator";
 import { renderOwnershipThesisPdf } from "./pdf";
 import { contactReady, primaryConflict, profileFromRow, summarizeProfile } from "./profile";
@@ -253,10 +253,12 @@ export async function registerAdvisorRoutes(app: Express) {
         resumeToken: candidate.resumeToken,
       });
     } catch (error) {
-      if (error instanceof AdvisorNotConfiguredError) {
+      if (error instanceof AdvisorNotConfiguredError || isOpenAiAuthFailure(error)) {
+        const message = error instanceof Error ? error.message : "unconfigured";
+        console.error("[advisor] turn failed:", message);
         return res.status(503).json({ error: DEFAULT_ADVISOR_COPY.unconfiguredMessage, configured: false });
       }
-      console.error("[advisor] turn failed:", error);
+      console.error("[advisor] turn failed:", error instanceof Error ? error.message : error);
       res.status(500).json({ error: "I could not take that turn. Please try once more." });
     }
   });

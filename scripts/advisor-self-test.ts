@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { BANNED_CANDIDATE_PHRASES, OPENING_QUESTION, THESIS_CONCLUSION, CALL_HANDOFF, FINANCIAL_DISCLAIMER, turnOutputSchema, HUBSPOT_ADVISOR_PROPERTIES } from "../shared/advisor";
+import { BANNED_CANDIDATE_PHRASES, OPENING_QUESTION, THESIS_CONCLUSION, CALL_HANDOFF, FINANCIAL_DISCLAIMER, turnOutputSchema, HUBSPOT_ADVISOR_PROPERTIES, PROFILE_FIELD_KEYS } from "../shared/advisor";
 import { DEFAULT_ADVISOR_COPY } from "../shared/advisor-copy";
 import { mergeExtractedProfile } from "../server/advisor/profile";
 import { detectFollowUpHints, detectFinancialChapter } from "../server/advisor/followups";
@@ -9,6 +9,13 @@ import { rateLimit, resetRateLimitForTests } from "../server/advisor/rate-limit"
 import { parseCsv, csvToBrandRows, brandsToCsv } from "../server/advisor/csv";
 import { advisorMigrationStatements } from "../server/advisor/migrate";
 import { primaryConflict, summarizeProfile } from "../server/advisor/profile";
+import { turnJsonSchema } from "../server/advisor/ai/schemas";
+import {
+  isOpenAiAuthFailure,
+  isResponseFormatError,
+  sanitizeProviderMessage,
+  wrapProviderError,
+} from "../server/advisor/ai/provider";
 
 function section(name: string, fn: () => void) {
   fn();
@@ -86,6 +93,86 @@ section("structured turn schema", () => {
   });
   assert.equal(parsed.suggested_answers.length, 0);
   assert.equal(parsed.safety_flags.length, 0);
+  assert.deepEqual(parsed.confidence_by_field, {});
+});
+
+function collectObjectSchemas(node: unknown, path: string, found: Array<{ path: string; node: Record<string, unknown> }>) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) {
+    node.forEach((item, index) => collectObjectSchemas(item, `${path}[${index}]`, found));
+    return;
+  }
+  const obj = node as Record<string, unknown>;
+  if (obj.type === "object") {
+    found.push({ path, node: obj });
+    collectObjectSchemas(obj.properties, `${path}.properties`, found);
+    return;
+  }
+  if (obj.type === "array") {
+    collectObjectSchemas(obj.items, `${path}.items`, found);
+    return;
+  }
+  for (const [key, value] of Object.entries(obj)) {
+    collectObjectSchemas(value, `${path}.${key}`, found);
+  }
+}
+
+section("turn JSON schema is OpenAI structured-output valid", () => {
+  const objects: Array<{ path: string; node: Record<string, unknown> }> = [];
+  collectObjectSchemas(turnJsonSchema.schema, "turn", objects);
+  assert.ok(objects.length >= 3, "expected root, extracted_candidate_data, and confidence_by_field objects");
+  for (const { path, node } of objects) {
+    assert.equal(node.additionalProperties, false, `${path} must set additionalProperties false`);
+    assert.equal(typeof node.properties, "object", `${path} must have a properties map`);
+    assert.ok(node.properties && !Array.isArray(node.properties), `${path} properties must be an object`);
+  }
+
+  const confidence = objects.find((item) => item.path.endsWith("confidence_by_field"));
+  assert.ok(confidence, "confidence_by_field must be an object schema");
+  assert.equal(confidence.node.additionalProperties, false);
+  const confidenceKeys = Object.keys(confidence.node.properties as Record<string, unknown>);
+  assert.deepEqual(confidenceKeys, [...PROFILE_FIELD_KEYS]);
+  for (const key of PROFILE_FIELD_KEYS) {
+    assert.deepEqual((confidence.node.properties as Record<string, { type: string }>)[key], { type: "number" });
+  }
+
+  const extracted = objects.find((item) => item.path.endsWith("extracted_candidate_data"));
+  assert.ok(extracted);
+  assert.deepEqual(Object.keys(extracted.node.properties as Record<string, unknown>), [...PROFILE_FIELD_KEYS]);
+});
+
+section("profile merge keeps current values when the model omits fields", () => {
+  const merged = mergeExtractedProfile(
+    { firstName: "Alex", whyOwnershipNow: "control" },
+    {},
+    {},
+  );
+  assert.equal(merged.firstName, "Alex");
+  assert.equal(merged.whyOwnershipNow, "control");
+});
+
+section("provider errors stay short and distinguish auth vs schema", () => {
+  const wrapped = wrapProviderError({
+    status: 401,
+    code: "invalid_api_key",
+    message: "Incorrect API key provided: sk-test_secret_value",
+  });
+  assert.equal(wrapped.status, 401);
+  assert.equal(wrapped.code, "invalid_api_key");
+  assert.match(wrapped.message, /OpenAI 401/);
+  assert.match(wrapped.message, /sk-\[redacted\]/);
+  assert.doesNotMatch(wrapped.message, /sk-test_secret_value/);
+  assert.equal(isOpenAiAuthFailure(wrapped), true);
+  assert.equal(isResponseFormatError(wrapped), false);
+  assert.equal(sanitizeProviderMessage("Bearer sk-abc123"), "Bearer [redacted]");
+
+  const schemaError = wrapProviderError({
+    status: 400,
+    param: "response_format",
+    message: "Invalid schema for response_format 'advisor_turn': additionalProperties must be false.",
+  });
+  assert.equal(isResponseFormatError(schemaError), true);
+  assert.equal(isOpenAiAuthFailure(schemaError), false);
 });
 
 section("csv import export", () => {
