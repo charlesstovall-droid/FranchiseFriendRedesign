@@ -351,7 +351,7 @@ function renderBlogIndexHtml(): string {
 <nav>
   <h1>Franchise Insights &amp; Resources</h1>
   <p>Expert franchise consulting articles and guides by Charles Stovall.</p>
-  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a></p>
+  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
   <ul>
     ${links}
   </ul>

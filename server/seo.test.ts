@@ -43,12 +43,23 @@ assertPage("/blog/fdd-red-flags", "FDD Red Flags", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog\/fdd-red-flags"/);
   assert.match(html, /<article>/);
   assert.match(html, /Item 19/);
+  assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /<div id="root">/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+});
+
+assertPage("/blog/how-i-read-an-fdd-in-20-minutes", "How I Actually Read an FDD", (html) => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /<article>/);
+  assert.match(html, /Item 20/);
+  assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /<div id="root">/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
 });
 
 assertPage("/blog", "Franchise Insights", (html) => {
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
+  assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
   assert.match(html, /href="\/blog\/2026-franchise-outlook-boring-businesses"/);
 });
 
@@ -269,6 +280,14 @@ assert.match(fddSeo, /"author":\{"@id":"https:\/\/www\.charlesstovall\.com\/#per
 assert.match(fddSeo, /"publisher":\{"@id":"https:\/\/www\.charlesstovall\.com\/#organization"\}/);
 assert.match(fddSeo, /"mainEntityOfPage":"https:\/\/www\.charlesstovall\.com\/blog\/fdd-red-flags"/);
 assert.match(fddSeo, /article:published_time" content="2026-08-14"/);
+
+const fddReadSeo = applySeoToHtml(shell, "/blog/how-i-read-an-fdd-in-20-minutes");
+assert.match(fddReadSeo, /"@type":"BlogPosting"/);
+assert.match(fddReadSeo, /"headline":"How I Actually Read an FDD in 20 Minutes"/);
+assert.match(fddReadSeo, /"datePublished":"2026-09-21"/);
+assert.match(fddReadSeo, /"mainEntityOfPage":"https:\/\/www\.charlesstovall\.com\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+assert.match(fddReadSeo, /How to read an FDD in 20 minutes/);
+assert.match(fddReadSeo, /href="\/blog\/fdd-red-flags"/);
 assert.match(fddSeo, new RegExp(`<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}"`));
 
 const faqSeo = applySeoToHtml(shell, "/faq");
@@ -302,6 +321,7 @@ assert.match(execSeo, /Item 19/);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/advisor"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/blog/how-i-read-an-fdd-in-20-minutes"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/black-book"), false);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/franchise-assessment"), false);
 
@@ -332,6 +352,7 @@ assert.match(llmsBody, /1531 N Lakeshore Dr/);
 assert.match(llmsBody, /\/charleston/);
 assert.match(llmsBody, /\/executive-access/);
 assert.match(llmsBody, /\/blog\/fdd-red-flags/);
+assert.match(llmsBody, /\/blog\/how-i-read-an-fdd-in-20-minutes/);
 assert.match(llmsBody, /\/faq/);
 assert.match(llmsBody, /\/about/);
 assert.match(llmsBody, /franchoice\.com\/our-consultants\/charles-stovall/);

@@ -73,6 +73,7 @@ export function renderLlmsTxt(): string {
     absoluteUrl("/charleston"),
     absoluteUrl("/executive-access"),
     absoluteUrl("/blog/fdd-red-flags"),
+    absoluteUrl("/blog/how-i-read-an-fdd-in-20-minutes"),
     absoluteUrl("/faq"),
     absoluteUrl("/about"),
     "https://www.franchoice.com/our-consultants/charles-stovall/",
