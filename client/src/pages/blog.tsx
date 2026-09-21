@@ -60,6 +60,8 @@ export default function Blog() {
               <a href="/charleston" className="underline hover:text-secondary">Charleston franchise consulting</a>
               {" · "}
               <a href="/blog/fdd-red-flags" className="underline hover:text-secondary">FDD Red Flags</a>
+              {" · "}
+              <a href="/blog/how-i-read-an-fdd-in-20-minutes" className="underline hover:text-secondary">How I Read an FDD</a>
             </p>
             <Link href="/speaking">
               <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold h-12 px-8">
