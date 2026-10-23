@@ -3,7 +3,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import express from "express";
-import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, sitemapUrls, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, renderLocalMarketHtml, sitemapUrls, pathnameFromRequest } from "./seo";
+import { localMarketWordCount, mountPleasantPage, southCarolinaPage } from "../shared/local-markets";
 import { mountClientStatic } from "./serve-client";
 import { mountPlainSiteFiles } from "./plain-files";
 import { AD_LANDING_REDIRECTS, BLACK_BOOK_REDIRECTS, OLD_ASSESSMENT_REDIRECTS, seoRedirects } from "./redirects";
@@ -76,6 +77,77 @@ assertPage("/", "Your Franchise Friend", (html) => {
   assert.doesNotMatch(html, /Expert Franchise Consulting in Charleston SC/);
 });
 
+function assertJsonLd(html: string) {
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.ok(blocks.length > 0);
+  for (const block of blocks) {
+    const parsed = JSON.parse(block[1]);
+    assert.ok(parsed);
+  }
+}
+
+assertPage("/mount-pleasant", "Franchise Consultant Mount Pleasant SC", (html) => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/mount-pleasant"/);
+  assert.match(html, /<title>Franchise Consultant Mount Pleasant SC \| Charles Stovall, Your Franchise Friend<\/title>/);
+  assert.match(html, /Mount Pleasant Is Where I Live/);
+  assert.match(html, /Point Hope/);
+  assert.match(html, /Clements Ferry/);
+  assert.match(html, /Berkeley County/);
+  assert.match(html, /Shem Creek/);
+  assert.match(html, /Towne Centre/);
+  assert.match(html, /Belle Hall/);
+  assert.match(html, /id="mount-pleasant-consultation-form"/);
+  assert.match(html, /leadType" value="mount-pleasant"/);
+  assert.match(html, /href="\/charleston"/);
+  assert.match(html, /href="\/blog\/fdd-red-flags"/);
+  assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /calendly\.com\/charles-stovall\/intro/);
+  assert.match(html, /95,469/);
+  assert.match(html, /\$748,500/);
+  assert.match(html, /<h2>Sources<\/h2>/);
+  assert.match(html, /pointhopecharleston\.com/);
+  assert.match(html, /census\.gov/);
+  assert.match(html, /"@type":\["ProfessionalService","LocalBusiness"\]/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /"name":"Charles Stovall Your Franchise Friend"/);
+  assert.match(html, /"streetAddress":"1531 N Lakeshore Dr"/);
+  assert.match(html, /"telephone":"\(919\) 827-3921"/);
+  assert.match(html, /1531 N Lakeshore Dr/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+  assertJsonLd(html);
+});
+
+assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/south-carolina"/);
+  assert.match(html, /<title>Franchise Consultant South Carolina \| Charles Stovall<\/title>/);
+  assert.match(html, /South Carolina Is Not One Franchise Market/);
+  assert.match(html, /Greenville/);
+  assert.match(html, /Spartanburg/);
+  assert.match(html, /Columbia/);
+  assert.match(html, /Myrtle Beach/);
+  assert.match(html, /Hilton Head/);
+  assert.match(html, /Bluffton/);
+  assert.match(html, /Berkeley/);
+  assert.match(html, /Summerville/);
+  assert.match(html, /5,570,274/);
+  assert.match(html, /66,622/);
+  assert.match(html, /id="south-carolina-consultation-form"/);
+  assert.match(html, /leadType" value="south-carolina"/);
+  assert.match(html, /href="\/charleston"/);
+  assert.match(html, /href="\/mount-pleasant"/);
+  assert.match(html, /href="\/blog\/fdd-red-flags"/);
+  assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /calendly\.com\/charles-stovall\/intro/);
+  assert.match(html, /<h2>Sources<\/h2>/);
+  assert.match(html, /sccommerce\.com/);
+  assert.match(html, /"@type":\["ProfessionalService","LocalBusiness"\]/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /"streetAddress":"1531 N Lakeshore Dr"/);
+  assert.match(html, /"telephone":"\(919\) 827-3921"/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+  assertJsonLd(html);
+});
+
 assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
   assert.match(html, /Own a Business in Charleston/);
@@ -137,10 +209,19 @@ assert.equal(toWwwCanonical("/faq"), "https://www.charlesstovall.com/faq");
 const exec = renderExecutiveAccessHtml().toLowerCase();
 const home = renderHomeHtml().toLowerCase();
 const charleston = renderCharlestonHtml().toLowerCase();
-for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor pays", "free to you"]) {
+const mountPleasant = renderLocalMarketHtml(mountPleasantPage).toLowerCase();
+const southCarolina = renderLocalMarketHtml(southCarolinaPage).toLowerCase();
+for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor pays", "free to you", "referral fee", "placement fee"]) {
   assert.equal(exec.includes(banned), false, `landing SSR should not include "${banned}"`);
   assert.equal(home.includes(banned), false, `homepage SSR should not include "${banned}"`);
   assert.equal(charleston.includes(banned), false, `charleston SSR should not include "${banned}"`);
+  assert.equal(mountPleasant.includes(banned), false, `mount pleasant SSR should not include "${banned}"`);
+  assert.equal(southCarolina.includes(banned), false, `south carolina SSR should not include "${banned}"`);
+}
+
+for (const page of [mountPleasantPage, southCarolinaPage]) {
+  const words = localMarketWordCount(page);
+  assert.ok(words >= 900 && words <= 1350, `${page.path} should be about 900–1,300 words, got ${words}`);
 }
 
 const chromeUaHtml = applySeoToHtml(shell, "/blog/fdd-red-flags");
@@ -193,6 +274,19 @@ assert.match(charlestonHtml, /canonical" href="https:\/\/www\.charlesstovall\.co
 assert.match(charlestonHtml, /Own a Business in Charleston/);
 assert.match(charlestonHtml, /id="charleston-consultation-form"/);
 assert.doesNotMatch(charlestonHtml, /<div id="root"><\/div>/);
+const googlebot = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
+const mpBot = await (await fetch(`http://127.0.0.1:${prodPort}/mount-pleasant`, { headers: { "user-agent": googlebot } })).text();
+const mpChrome = await (await fetch(`http://127.0.0.1:${prodPort}/mount-pleasant`, { headers: { "user-agent": chromeUa } })).text();
+assert.equal(mpBot, mpChrome);
+assert.match(mpBot, /<title>Franchise Consultant Mount Pleasant SC \| Charles Stovall, Your Franchise Friend<\/title>/);
+assert.match(mpBot, /Point Hope/);
+assert.match(mpBot, /<article>/);
+assert.doesNotMatch(mpBot, /<div id="root"><\/div>/);
+const scBot = await (await fetch(`http://127.0.0.1:${prodPort}/south-carolina`, { headers: { "user-agent": googlebot } })).text();
+assert.match(scBot, /<title>Franchise Consultant South Carolina \| Charles Stovall<\/title>/);
+assert.match(scBot, /Greenville/);
+assert.match(scBot, /<article>/);
+assert.doesNotMatch(scBot, /<div id="root"><\/div>/);
 const fddHtml = await (await fetch(`http://127.0.0.1:${prodPort}/blog/fdd-red-flags`, { headers: { "user-agent": chromeUa } })).text();
 assert.match(fddHtml, /<title>FDD Red Flags/);
 assert.match(fddHtml, /<article>/);
@@ -268,6 +362,8 @@ assert.doesNotMatch(homeSeo, /"addressLocality":"Charleston"/);
 assert.match(homeSeo, new RegExp(`og:image" content="${OG_IMAGE_URL}"`));
 assert.doesNotMatch(homeSeo, /replit\.app/);
 assert.match(homeSeo, /href="\/charleston"/);
+assert.match(homeSeo, /href="\/mount-pleasant"/);
+assert.match(homeSeo, /href="\/south-carolina"/);
 assert.match(homeSeo, /href="\/blog\/fdd-red-flags"/);
 assert.match(homeSeo, /1531 N Lakeshore Dr/);
 
@@ -318,6 +414,8 @@ const execSeo = applySeoToHtml(shell, "/executive-access");
 assert.match(execSeo, /"@type":"FAQPage"/);
 assert.match(execSeo, /Item 19/);
 
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/mount-pleasant"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/south-carolina"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/advisor"), true);
@@ -350,6 +448,8 @@ const llmsBody = await llmsRes.text();
 assert.match(llmsBody, /Charles Stovall Your Franchise Friend/);
 assert.match(llmsBody, /1531 N Lakeshore Dr/);
 assert.match(llmsBody, /\/charleston/);
+assert.match(llmsBody, /\/mount-pleasant/);
+assert.match(llmsBody, /\/south-carolina/);
 assert.match(llmsBody, /\/executive-access/);
 assert.match(llmsBody, /\/blog\/fdd-red-flags/);
 assert.match(llmsBody, /\/blog\/how-i-read-an-fdd-in-20-minutes/);

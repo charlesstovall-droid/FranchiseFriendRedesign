@@ -71,6 +71,8 @@ export function renderLlmsTxt(): string {
     "",
     absoluteUrl("/"),
     absoluteUrl("/charleston"),
+    absoluteUrl("/mount-pleasant"),
+    absoluteUrl("/south-carolina"),
     absoluteUrl("/executive-access"),
     absoluteUrl("/blog/fdd-red-flags"),
     absoluteUrl("/blog/how-i-read-an-fdd-in-20-minutes"),

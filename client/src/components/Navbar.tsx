@@ -13,6 +13,8 @@ const buyerLinks = [
   { name: "Executive Franchises", href: "/executive-access" },
   { name: "Home-Based Franchises", href: "/home-based-franchises" },
   { name: "Charleston Buyers", href: "/charleston" },
+  { name: "Mount Pleasant", href: "/mount-pleasant" },
+  { name: "South Carolina", href: "/south-carolina" },
   { name: "Ownership Advisor", href: "/advisor" },
 ];
 

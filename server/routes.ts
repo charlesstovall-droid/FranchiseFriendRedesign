@@ -56,7 +56,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Dynamic Sitemap
   app.get("/sitemap.xml", async (req, res) => {
     const today = new Date().toISOString().split("T")[0];
-    const podcasts = await storage.getAllPodcasts();
+    let podcasts: Awaited<ReturnType<typeof storage.getAllPodcasts>> = [];
+    try {
+      podcasts = await storage.getAllPodcasts();
+    } catch (err) {
+      console.error("[sitemap] podcast URLs unavailable:", err);
+    }
     const pageUrls = sitemapUrls().map((loc) => `
   <url>
     <loc>${loc}</loc>
