@@ -38,6 +38,8 @@ export function Footer() {
               <li><a href="/" className="text-primary-foreground/70 hover:text-white transition-colors">Home</a></li>
               <li><a href="/about" className="text-primary-foreground/70 hover:text-white transition-colors">About Charles</a></li>
               <li><a href="/charleston" className="text-primary-foreground/70 hover:text-white transition-colors">Charleston</a></li>
+              <li><a href="/mount-pleasant" className="text-primary-foreground/70 hover:text-white transition-colors">Mount Pleasant</a></li>
+              <li><a href="/south-carolina" className="text-primary-foreground/70 hover:text-white transition-colors">South Carolina</a></li>
               <li><a href="/blog" className="text-primary-foreground/70 hover:text-white transition-colors">Insights & Blog</a></li>
               <li><a href="/blog/fdd-red-flags" className="text-primary-foreground/70 hover:text-white transition-colors">FDD Red Flags</a></li>
               <li><a href="/#reviews" className="text-primary-foreground/70 hover:text-white transition-colors">Success Stories</a></li>

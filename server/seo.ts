@@ -13,6 +13,13 @@ import {
 } from "../shared/nap";
 import { charlestonFaqItems, executiveFaqItems, faqPageSchema, siteFaqItems } from "../shared/faq";
 import { blogPosts, getPostBySlug } from "../client/src/data/blog-posts";
+import {
+  localMarketJsonLd,
+  mountPleasantPage,
+  southCarolinaPage,
+  type Inline,
+  type LocalMarketPage,
+} from "../shared/local-markets";
 
 export interface SeoPage {
   title: string;
@@ -226,7 +233,7 @@ export function renderHomeHtml(): string {
     <li>Matched options — owner-operator, semi-absentee, or multi-unit.</li>
     <li>Due diligence — FDD review, validation calls, funding, discovery day.</li>
   </ol>
-  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/about">About Charles</a></p>
+  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant franchise consultant</a> · <a href="/south-carolina">South Carolina franchise consultant</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/about">About Charles</a></p>
   <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
   ${napBlockHtml()}
 </article>
@@ -280,6 +287,7 @@ export function renderCharlestonHtml(): string {
   <h2>The Lowcountry is not a national slide.</h2>
   <p>I know which concepts are already saturated in Mount Pleasant, where territories are still open in Summerville, and what's working on Daniel Island. National firms do not sit in those rooms.</p>
   <p>When we read an FDD together, you get an operator's view of Item 19, labor, and occupancy in this market — not a highlight reel built for a cheaper city. If the concept is wrong for Charleston, I will say so.</p>
+  <p>The town I live in has its own page, and so does the state: <a href="/mount-pleasant">Mount Pleasant franchise consultant</a> and <a href="/south-carolina">South Carolina franchise consultant</a>. Read <a href="/blog/fdd-red-flags">FDD red flags</a> and <a href="/blog/how-i-read-an-fdd-in-20-minutes">how I read an FDD in 20 minutes</a> before you fall in love with a brand.</p>
   <h2>How it works</h2>
   <ol>
     <li>Discover — a 15-minute call on capital, goals, timeline, and lifestyle. No pitch. Just whether this market and this buyer fit.</li>
@@ -322,6 +330,88 @@ export function renderCharlestonHtml(): string {
   <button type="submit">Request the call</button>
 </form>
 <p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+${napBlockHtml()}
+`.trim();
+}
+
+function renderInlines(parts: Inline[]): string {
+  return parts
+    .map((part) =>
+      typeof part === "string"
+        ? escapeHtml(part)
+        : `<a href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`,
+    )
+    .join("");
+}
+
+export function renderLocalMarketHtml(page: LocalMarketPage): string {
+  const formId = `${page.path.slice(1)}-consultation-form`;
+  const sections = page.sections
+    .map(
+      (section) => `<section>
+  ${section.kicker ? `<p>${escapeHtml(section.kicker)}</p>` : ""}
+  <h2>${escapeHtml(section.heading)}</h2>
+  ${section.paragraphs.map((paragraph) => `<p>${renderInlines(paragraph)}</p>`).join("\n  ")}
+</section>`,
+    )
+    .join("\n");
+  const steps = page.steps
+    .map((step) => `<li><strong>${escapeHtml(step.title)}</strong> — ${escapeHtml(step.desc)}</li>`)
+    .join("");
+  const sources = page.sources
+    .map((source) => `<li><a href="${escapeHtml(source.href)}">${escapeHtml(source.label)}</a></li>`)
+    .join("");
+
+  return `
+<img src="/cs-shield-logo.png" alt="Charles Stovall" />
+<img src="/charles-homepage-portrait.jpg" alt="${escapeHtml(page.portraitAlt)}" />
+<article>
+  <p>${escapeHtml(page.kicker)}</p>
+  <h1>${escapeHtml(page.h1)} ${escapeHtml(page.h1Sub)}</h1>
+  ${page.lede.map((paragraph) => `<p>${renderInlines(paragraph)}</p>`).join("\n  ")}
+  <p>${escapeHtml(page.proof)}</p>
+  ${sections}
+  <h2>${escapeHtml(page.stepsHeading)}</h2>
+  <ol>${steps}</ol>
+  ${renderFaqHtml(page.faqs, page.faqHeading)}
+  <section>
+    <h2>Sources</h2>
+    <p>${escapeHtml(page.sourcesIntro)}</p>
+    <ul>${sources}</ul>
+  </section>
+</article>
+<form id="${formId}" action="/api/leads" method="POST">
+  <h2>${escapeHtml(page.formHeading)}</h2>
+  <p>${escapeHtml(page.formNote)}</p>
+  <label>First name <input type="text" name="firstName" required autocomplete="given-name" /></label>
+  <label>Last name <input type="text" name="lastName" autocomplete="family-name" /></label>
+  <label>Email <input type="email" name="email" required autocomplete="email" /></label>
+  <label>Phone <input type="tel" name="phone" required autocomplete="tel" /></label>
+  <label>Liquid capital
+    <select name="liquidCapital">
+      <option value="">Select range</option>
+      <option value="Under $50K">Under $50K</option>
+      <option value="$50K–$150K">$50K–$150K</option>
+      <option value="$150K–$500K">$150K–$500K</option>
+      <option value="$500K+">$500K+</option>
+    </select>
+  </label>
+  <label>Timeline
+    <select name="timeline">
+      <option value="">Select timeline</option>
+      <option value="0–3 months">0–3 months</option>
+      <option value="3–6 months">3–6 months</option>
+      <option value="6–12 months">6–12 months</option>
+      <option value="Just exploring">Just exploring</option>
+    </select>
+  </label>
+  <label>Neighborhood <input type="text" name="area" placeholder="${escapeHtml(page.areaPlaceholder)}" /></label>
+  <input type="hidden" name="leadType" value="${escapeHtml(page.leadType)}" />
+  <input type="hidden" name="message" value="${escapeHtml(page.message)}" />
+  <button type="submit">Request the call</button>
+</form>
+<p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+<p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant</a> · <a href="/south-carolina">South Carolina</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
 ${napBlockHtml()}
 `.trim();
 }
@@ -503,6 +593,20 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     bodyHtml: renderCharlestonHtml(),
     jsonLd: faqPageSchema(charlestonFaqItems),
   },
+  "/mount-pleasant": {
+    title: mountPleasantPage.title,
+    description: mountPleasantPage.description,
+    canonical: absoluteUrl("/mount-pleasant"),
+    bodyHtml: renderLocalMarketHtml(mountPleasantPage),
+    jsonLd: localMarketJsonLd(mountPleasantPage),
+  },
+  "/south-carolina": {
+    title: southCarolinaPage.title,
+    description: southCarolinaPage.description,
+    canonical: absoluteUrl("/south-carolina"),
+    bodyHtml: renderLocalMarketHtml(southCarolinaPage),
+    jsonLd: localMarketJsonLd(southCarolinaPage),
+  },
   "/about": {
     title: "About Charles Stovall | Your Franchise Friend",
     description: `Charles Stovall — franchise consultant at ${formattedAddressLine()}. Built 30 locations across 4 brands and exited to private equity.`,
@@ -679,6 +783,8 @@ export function sitemapUrls(): string[] {
     "/faq",
     "/franchise-brands",
     "/charleston",
+    "/mount-pleasant",
+    "/south-carolina",
     "/speaking",
     "/advisor",
   ];

@@ -29,6 +29,8 @@ import HomeBasedFranchises from "@/pages/home-based-franchises";
 import HomeFranchiseResults from "@/pages/home-franchise-results";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import Charleston from "@/pages/charleston";
+import MountPleasant from "@/pages/mount-pleasant";
+import SouthCarolina from "@/pages/south-carolina";
 import AboutPage from "@/pages/about";
 import AdvisorLanding from "@/pages/advisor/landing";
 import AdvisorConversation from "@/pages/advisor/conversation";
@@ -80,6 +82,8 @@ function Router() {
       <Route path="/home-franchise-results" component={HomeFranchiseResults} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/charleston" component={Charleston} />
+      <Route path="/mount-pleasant" component={MountPleasant} />
+      <Route path="/south-carolina" component={SouthCarolina} />
       <Route path="/advisor/conversation" component={AdvisorConversation} />
       <Route path="/advisor/report/:token" component={AdvisorReport} />
       <Route path="/advisor/resume/:token" component={AdvisorResume} />

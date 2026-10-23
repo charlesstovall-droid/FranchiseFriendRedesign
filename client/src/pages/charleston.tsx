@@ -280,8 +280,19 @@ export default function Charleston() {
           <p className="text-[#0A1F3C]/70 leading-relaxed mb-4">
             I know which concepts are already saturated in Mount Pleasant, where territories are still open in Summerville, and what's working on Daniel Island. National firms do not sit in those rooms.
           </p>
-          <p className="text-[#0A1F3C]/70 leading-relaxed mb-10">
+          <p className="text-[#0A1F3C]/70 leading-relaxed mb-4">
             When we read an FDD together, you get an operator's view of Item 19, labor, and occupancy in this market — not a highlight reel built for a cheaper city. If the concept is wrong for Charleston, I will say so.
+          </p>
+          <p className="text-[#0A1F3C]/70 leading-relaxed mb-10">
+            The town I live in has its own page, and so does the state:{" "}
+            <a href="/mount-pleasant" className="underline font-semibold">Mount Pleasant franchise consultant</a>
+            {" "}and{" "}
+            <a href="/south-carolina" className="underline font-semibold">South Carolina franchise consultant</a>.
+            Read{" "}
+            <a href="/blog/fdd-red-flags" className="underline font-semibold">FDD red flags</a>
+            {" "}and{" "}
+            <a href="/blog/how-i-read-an-fdd-in-20-minutes" className="underline font-semibold">how I read an FDD in 20 minutes</a>
+            {" "}before you fall in love with a brand.
           </p>
           <button onClick={scrollToForm} className="text-[#0A1F3C] font-semibold tracking-wide underline underline-offset-4 hover:text-[#c9a84c]">
             Request a Charleston consultation
@@ -381,6 +392,8 @@ export default function Charleston() {
         </div>
         <div className="flex gap-5">
           <a href="tel:9198273921" className="hover:text-[#c9a84c]">(919) 827-3921</a>
+          <a href="/mount-pleasant" className="hover:text-[#c9a84c]">Mount Pleasant</a>
+          <a href="/south-carolina" className="hover:text-[#c9a84c]">South Carolina</a>
           <a href="/" className="hover:text-[#c9a84c]">Main site</a>
         </div>
       </footer>
