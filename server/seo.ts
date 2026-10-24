@@ -217,6 +217,8 @@ export function renderHomeHtml(): string {
   <p>Charles Stovall · Your Franchise Friend · Charleston, SC</p>
   <h1>Invest in Yourself. Do it with someone who has done it.</h1>
   <p>You are weighing a six or seven figure decision. Before you sign an FDD, talk to a consultant who built 30 franchise locations across 4 brands and exited to private equity. Honest answers, real numbers.</p>
+  <p>5.0 · 37 Google Reviews</p>
+  <p>Brands built, scaled and exited. Featured in Inc. 500, Entrepreneur, and Business RadioX. Boost Mobile, Massage Envy, YogaSix, Image Studios.</p>
   <h2>I have sat on your side of the table.</h2>
   <p>Most franchise consultants have never signed a lease, made payroll on a slow month, or negotiated a multi-unit development agreement. I have done all three, many times over.</p>
   <p>I opened my first location in 2013. By 2017 I had scaled to 20 units across multiple states, and I went on to build and operate 30 locations across four very different brands before selling to private equity.</p>
@@ -225,16 +227,51 @@ export function renderHomeHtml(): string {
     <li>30 locations built and exited</li>
     <li>4 franchise brands owned</li>
     <li>Private equity exit</li>
+    <li>5.0 Google rating</li>
   </ul>
   <h2>Four phases. Zero pressure.</h2>
+  <p>A structured path from first conversation to a confident yes or a confident no. Most clients move through it in 6 to 10 weeks.</p>
   <ol>
-    <li>Intro call — goals, capital, timeline, and lifestyle.</li>
-    <li>Your profile — background, strengths, and financial picture.</li>
-    <li>Matched options — owner-operator, semi-absentee, or multi-unit.</li>
-    <li>Due diligence — FDD review, validation calls, funding, discovery day.</li>
+    <li><strong>Intro Call</strong> — A real conversation about your goals, capital, timeline, and lifestyle.</li>
+    <li><strong>Your Profile</strong> — Background, strengths, and financial picture.</li>
+    <li><strong>Matched Options</strong> — Owner-operator, semi-absentee, or multi-unit. Side-by-side comparisons included.</li>
+    <li><strong>Due Diligence</strong> — FDD review, validation calls with current franchisees, funding strategy, and discovery day prep.</li>
   </ol>
+  <h2>Rated 5.0 by the people who took the leap.</h2>
+  <blockquote><p>Excellent partner and guide in our journey into the franchise world. We gained valuable exposure to what is suitable and received great advice as we prepared to take a significant step from the corporate world to franchising.</p><footer>DK Patel · Google Review</footer></blockquote>
+  <blockquote><p>He's incredibly knowledgeable about franchising, but what really stands out is how much he genuinely cares about helping you find the right fit. He's honest, professional, and patient throughout the entire process. I highly recommend him to anyone considering franchise ownership.</p><footer>Nate F. · Google Review</footer></blockquote>
+  <blockquote><p>One of the few business brokers with first-hand experience. Generous with his time and wisdom. Great guy to know and talk to about all things business ownership, franchising, and business acquisition.</p><footer>Justin Risedorf · Google Review</footer></blockquote>
+  <blockquote><p>Charles is a great person with strong morals and that shows in how he works with his customers. He is positive, but also very honest to help you evaluate and make the best decision for you and your family. He draws on a ton of personal experience in the franchising world.</p><footer>Brent Ely · Google Review</footer></blockquote>
+  <blockquote><p>Charles made me millions in just a few years. Best choice I ever made. I have went with other investors in the past and they don't come close to the service and experience you get with him.</p><footer>Simon Curtis · Google Review</footer></blockquote>
+  <blockquote><p>Charles was helpful pointing out some real potential pitfalls that we wouldn't have seen coming! Highly recommend getting him involved in any high stakes transaction!</p><footer>Brandon Dunevant · Google Review</footer></blockquote>
+  <h2>Built for people making a serious investment.</h2>
+  <h3>Leaving the W-2 behind</h3>
+  <p>You have 15 to 25 years of executive experience and want to own your outcome. We focus on concepts where your leadership skills transfer and the model matches your risk tolerance.</p>
+  <h3>Diversifying your income</h3>
+  <p>You want a cash-flowing asset alongside your market portfolio. We target semi-absentee and manager-run models with strong Item 19s and a path to multiple units.</p>
+  <h3>Going multi-unit from day one</h3>
+  <p>You are thinking in territories, not storefronts. Having scaled 1 location to 30, I will help you structure development agreements and avoid the mistakes that stall growth.</p>
+  <h2>Trusted Referral Partners.</h2>
+  <h3>Peter Sherer · Experience Matters</h3>
+  <p>Executive and senior-professional career-transition coaching to help clarify your strengths and next steps.</p>
+  <h3>Tanielle Luepkes · FranFund</h3>
+  <p>FranFund helps prospective business owners explore funding options as they consider a franchise or other business opportunity.</p>
+  <h2>Find Your Freedom.</h2>
+  <p>Book a free, no-obligation consultation. Worst case, you leave with a clearer picture of franchising. Best case, you find the business that changes your family's trajectory.</p>
   <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant franchise consultant</a> · <a href="/south-carolina">South Carolina franchise consultant</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/about">About Charles</a></p>
-  <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+  <nav>
+    <a href="/blog">Blog</a>
+    <a href="/podcasts">Podcast</a>
+    <a href="/faq">FAQ</a>
+    <a href="/franchise-brands">Franchise Brands</a>
+    <a href="/home-based-franchises">Home-Based Franchises</a>
+    <a href="/charleston">Charleston</a>
+    <a href="/mount-pleasant">Mount Pleasant</a>
+    <a href="/south-carolina">South Carolina</a>
+    <a href="/executive-access">Executive Access</a>
+    <a href="/privacy-policy">Privacy</a>
+  </nav>
+  <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">919.827.3921</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a></p>
   ${napBlockHtml()}
 </article>
 `.trim();

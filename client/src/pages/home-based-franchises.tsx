@@ -73,7 +73,7 @@ const testimonials = [
 const faqItems = [
   { id: "1", q: "Are home-based franchises legitimate businesses?", a: "Absolutely. These are real, legally structured franchise businesses backed by established brands. You'll operate under a Franchise Disclosure Document (FDD), receive full training and support, and build a business with real equity and resale value. These are not MLMs or side hustles." },
   { id: "2", q: "How much does it cost to get started?", a: "Home-based franchise investments typically range from $50K to $150K, depending on the concept. Many options are available with SBA financing, 401(k) rollovers (ROBS), or other creative funding strategies Charles can walk you through." },
-  { id: "3", q: "Does Charles cost anything?", a: "Absolutely $0 to you. Charles is compensated by the franchisors when you choose to move forward, which means his advice is completely unbiased and focused entirely on your best interests." },
+  { id: "3", q: "Does Charles cost anything?", a: "There is no separate consulting invoice for the discovery process. You will see each brand's investment range before you decide whether to go further." },
   { id: "4", q: "Can I run this while still employed?", a: "Many of Charles's clients start their franchise exploration while still working full-time. Some home-based concepts can even be launched part-time before transitioning to full ownership." },
   { id: "5", q: "Do I need industry experience?", a: "No. That's the beauty of franchising — the franchisor provides comprehensive training, systems, and ongoing support. Your transferable skills in management, communication, and leadership are what matter most." },
   { id: "6", q: "How fast can I be up and running?", a: "Typically 60–120 days from signing your franchise agreement. The discovery process itself usually takes 30–60 days, moving at whatever pace is comfortable for you." },
@@ -296,7 +296,7 @@ export default function HomeBasedFranchises() {
                 </form>
                 <div className="flex items-center justify-center gap-2 mt-4">
                   <Lock size={14} className="text-gray-400" />
-                  <span className="text-gray-400 text-xs font-['Inter']">Free because franchisors pay us a placement fee. You get unbiased guidance — we earn only when you find a fit you love.</span>
+                  <span className="text-gray-400 text-xs font-['Inter']">Your details stay private.</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-3 bg-amber-50 rounded-lg py-2 px-3">
                   <AlertTriangle size={14} className="text-amber-600" />
