@@ -4,16 +4,17 @@ import path from "node:path";
 import type { Express, Response } from "express";
 import express from "express";
 
-import { applySeoToHtml, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, pathnameFromRequest, statusForPath } from "./seo";
 
 function seoPathname(pathname: string): string {
   return pathname === "/index.html" ? "/" : pathname;
 }
 
 function sendSeoHtml(res: Response, indexHtml: string, pathname: string) {
+  const seoPath = seoPathname(pathname);
   res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
   res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.status(200).send(applySeoToHtml(indexHtml, seoPathname(pathname)));
+  res.status(statusForPath(seoPath)).send(applySeoToHtml(indexHtml, seoPath));
 }
 
 /**

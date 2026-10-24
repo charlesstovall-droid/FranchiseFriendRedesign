@@ -29,7 +29,10 @@ import {
 export interface SeoPage {
   title: string;
   description: string;
-  canonical: string;
+  /** Omitted on not-found pages so the response has no canonical URL. */
+  canonical?: string;
+  /** Soft-404 guard: emit noindex and do not emit a canonical URL. */
+  noindex?: boolean;
   type?: "website" | "article";
   ogTitle?: string;
   bodyHtml?: string;
@@ -541,7 +544,7 @@ function renderBlogPostHtml(slug: string): SeoPage | null {
     return {
       title: "Post Not Found | Charles Stovall",
       description: "The blog post you're looking for doesn't exist. Browse our franchise consulting articles and guides.",
-      canonical: absoluteUrl("/blog"),
+      noindex: true,
       bodyHtml: `<article><h1>Post Not Found</h1><p>The blog post you're looking for doesn't exist.</p><p><a href="/blog">Back to Blog</a></p></article>`,
     };
   }
@@ -677,15 +680,78 @@ const STATIC_PAGES: Record<string, SeoPage> = {
   },
 };
 
+/** Exact paths registered in client/src/App.tsx, plus the static SEO pages. */
+const CLIENT_EXACT_PATHS = new Set<string>([
+  ...Object.keys(STATIC_PAGES),
+  "/speaking",
+  "/franchise-brands",
+  "/podcast-admin",
+  "/members-admin",
+  "/client-portal",
+  "/phase1",
+  "/phase2",
+  "/phase3",
+  "/phase4",
+  "/executive-access/process",
+  "/executive-access/about",
+  "/executive-access/investment",
+  "/home-franchise-results",
+  "/privacy-policy",
+  "/advisor/conversation",
+  "/advisor/privacy",
+  "/admin/advisor/login",
+  "/admin/advisor/brands",
+  "/admin/advisor/settings",
+  "/admin/advisor/analytics",
+  "/admin/advisor",
+]);
+
+const DYNAMIC_APP_PATHS: RegExp[] = [
+  /^\/advisor\/report\/[^/]+$/,
+  /^\/advisor\/resume\/[^/]+$/,
+  /^\/admin\/advisor\/candidates\/[^/]+$/,
+];
+
+export function normalizeRoutePath(pathname: string): string {
+  const raw = pathname.split("#")[0].split("?")[0];
+  const path = !raw || raw === "*" ? "/" : raw.startsWith("/") ? raw : `/${raw}`;
+  const trimmed = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+  return trimmed === "/index.html" ? "/" : trimmed;
+}
+
+function blogSlugFromPath(pathname: string): string | null {
+  const normalized = normalizeRoutePath(pathname);
+  if (!normalized.startsWith("/blog/")) return null;
+  const slug = normalized.slice("/blog/".length);
+  if (!slug || slug.includes("/")) return null;
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+}
+
+/** True when the SPA has a real page for this path. Unknown blog slugs are not known. */
+export function isKnownAppPath(pathname: string): boolean {
+  const normalized = normalizeRoutePath(pathname);
+  if (CLIENT_EXACT_PATHS.has(normalized)) return true;
+  if (DYNAMIC_APP_PATHS.some((pattern) => pattern.test(normalized))) return true;
+  const slug = blogSlugFromPath(normalized);
+  return slug != null && Boolean(getPostBySlug(slug));
+}
+
+/** HTTP status for the HTML document. Unknown routes and unknown blog slugs are 404. */
+export function statusForPath(pathname: string): 200 | 404 {
+  return isKnownAppPath(pathname) ? 200 : 404;
+}
+
 export function resolveSeoPage(pathname: string): SeoPage | null {
   const path = pathname.split("?")[0];
-  const normalized = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+  const normalized = normalizeRoutePath(path);
 
-  if (normalized.startsWith("/blog/") && normalized !== "/blog/") {
-    const slug = normalized.slice("/blog/".length);
-    if (slug && !slug.includes("/")) {
-      return renderBlogPostHtml(slug);
-    }
+  const slug = blogSlugFromPath(normalized);
+  if (slug) {
+    return renderBlogPostHtml(slug);
   }
 
   return STATIC_PAGES[normalized] || STATIC_PAGES[path] || null;
@@ -721,8 +787,60 @@ export function pathnameFromRequest(req: {
   return path.startsWith("/") ? path : `/${path}`;
 }
 
+const GENERIC_NOT_FOUND_TITLE = "404 Page Not Found";
+const GENERIC_NOT_FOUND_BODY = `<h1>404 Page Not Found</h1><p>Did you forget to add the page to the router?</p>`;
+
+function applyNotFoundHtml(html: string, page: SeoPage | null): string {
+  const title = page?.title || GENERIC_NOT_FOUND_TITLE;
+  const description = page?.description || "Did you forget to add the page to the router?";
+  const bodyHtml = page?.bodyHtml || GENERIC_NOT_FOUND_BODY;
+
+  let next = html;
+  next = next.replace(/<link\s+rel=["']canonical["'][^>]*>\s*/gi, "");
+  next = next.replace(/<meta\s+property=["']og:url["'][^>]*>\s*/gi, "");
+  next = next.replace(/<meta\s+name=["']twitter:url["'][^>]*>\s*/gi, "");
+  next = replaceOrInsert(
+    next,
+    /<meta name="robots"[^>]*>/,
+    `<meta name="robots" content="noindex" />`,
+  );
+  next = replaceOrInsert(next, /<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`);
+  next = replaceOrInsert(
+    next,
+    /<meta name="description"[^>]*>/,
+    `<meta name="description" content="${escapeHtml(description)}" />`,
+  );
+  next = replaceOrInsert(
+    next,
+    /<meta property="og:title"[^>]*>/,
+    `<meta property="og:title" content="${escapeHtml(title)}" />`,
+  );
+  next = replaceOrInsert(
+    next,
+    /<meta property="og:description"[^>]*>/,
+    `<meta property="og:description" content="${escapeHtml(description)}" />`,
+  );
+  next = replaceOrInsert(
+    next,
+    /<meta name="twitter:title"[^>]*>/,
+    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+  );
+  next = replaceOrInsert(
+    next,
+    /<meta name="twitter:description"[^>]*>/,
+    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+  );
+
+  if (bodyHtml) {
+    next = next.replace(/<div id="root"><\/div>/, `<div id="root">${bodyHtml}</div>`);
+  }
+
+  return next;
+}
+
 export function applySeoToHtml(html: string, pathname: string): string {
-  const page = resolveSeoPage(pathnameFromRequest({ originalUrl: pathname, path: pathname }));
+  const normalized = normalizeRoutePath(pathnameFromRequest({ originalUrl: pathname, path: pathname }));
+  const page = resolveSeoPage(normalized);
 
   let next = html;
   next = injectGoogleSiteVerification(next);
@@ -737,14 +855,20 @@ export function applySeoToHtml(html: string, pathname: string): string {
     `<meta name="twitter:image" content="${OG_IMAGE_URL}" />`,
   );
 
-  const pageJsonLd = page?.jsonLd
-    ? Array.isArray(page.jsonLd)
-      ? page.jsonLd
-      : [page.jsonLd]
-    : [];
+  const pageJsonLd = page?.noindex
+    ? []
+    : page?.jsonLd
+      ? Array.isArray(page.jsonLd)
+        ? page.jsonLd
+        : [page.jsonLd]
+      : [];
   next = replaceJsonLd(next, [...sitewideJsonLd(), ...pageJsonLd]);
 
-  if (!page) {
+  if (page?.noindex || !isKnownAppPath(normalized)) {
+    return applyNotFoundHtml(next, page?.noindex ? page : null);
+  }
+
+  if (!page?.canonical) {
     return next;
   }
 
