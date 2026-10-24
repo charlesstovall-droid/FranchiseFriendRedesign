@@ -17,7 +17,8 @@ import fitPortfolio from "@/assets/home/fit-portfolio.jpg";
 import fitEmpire from "@/assets/home/fit-empire.jpg";
 
 const CALENDLY = "https://calendly.com/charles-stovall/intro";
-const PHASE_COUNT = 4;
+const REVIEW_INTERVAL_MS = 9000;
+const PHASE_LINE_MS = 700;
 
 type LogoItem =
   | { kind: "dot" }
@@ -99,10 +100,6 @@ const footerGroups = [
   },
 ] as const;
 
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
 function LogoItems({ clone = false }: { clone?: boolean }) {
   return (
     <>
@@ -128,68 +125,82 @@ function LogoItems({ clone = false }: { clone?: boolean }) {
   );
 }
 
-function StatFigure({
-  value,
-  decimals = 0,
-  suffix,
-  label,
-}: {
-  value: number;
-  decimals?: number;
-  suffix?: ReactNode;
-  label: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [display, setDisplay] = useState(value);
+function alignPhaseRail(journey: HTMLElement) {
+  const rail = journey.querySelector<HTMLElement>(".phase-rail");
+  const cards = Array.from(journey.querySelectorAll<HTMLElement>(".phase"));
+  if (!rail || cards.length < 2) return;
+  if (window.matchMedia("(max-width: 980px)").matches) return;
+  const next = cards[1].getBoundingClientRect();
+  const first = cards[0].getBoundingClientRect();
+  if (first.bottom <= next.top + 1) return;
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-    let frame = 0;
-    let started = false;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting || started) return;
-        started = true;
-        const began = performance.now();
-        const duration = 1100;
-        const tick = (now: number) => {
-          const t = Math.min(1, (now - began) / duration);
-          const eased = 1 - (1 - t) ** 3;
-          const next = value * eased;
-          setDisplay(decimals ? Math.round(next * 10 ** decimals) / 10 ** decimals : Math.round(next));
-          if (t < 1) frame = requestAnimationFrame(tick);
-        };
-        setDisplay(0);
-        frame = requestAnimationFrame(tick);
-        observer.disconnect();
-      },
-      { threshold: 0.55 },
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [decimals, value]);
+  const parent = journey.getBoundingClientRect();
+  const last = cards[cards.length - 1].getBoundingClientRect();
+  const anchor = cards[0].querySelector<HTMLElement>(".ph-top") ?? cards[0];
+  const anchorBox = anchor.getBoundingClientRect();
+  const height = 2;
+  // Snap in viewport pixels so the 2px rule stays crisp, and tuck the ends
+  // under the outer cards just enough to meet the borders without a gap.
+  const topVp = Math.round(anchorBox.top + anchorBox.height / 2 - height / 2);
+  const x1 = Math.floor(first.right);
+  const x2 = Math.ceil(last.left);
+  rail.style.top = `${topVp - parent.top}px`;
+  rail.style.left = `${x1 - parent.left}px`;
+  rail.style.width = `${Math.max(0, x2 - x1)}px`;
+  rail.style.height = `${height}px`;
+  rail.style.right = "auto";
+  rail.style.bottom = "auto";
+  rail.style.transform = "none";
+}
 
-  const text = decimals ? display.toFixed(decimals) : String(display);
+function ReviewLayers({ active, tone }: { active: number; tone: "feature" | "card" }) {
   return (
-    <div className="stat" ref={ref}>
-      <div className="num">
-        <span>{text}</span>
-        {suffix}
-      </div>
-      <div className="cap">{label}</div>
-    </div>
+    <>
+      {reviews.map((review, index) => {
+        const on = index === active;
+        return (
+          <div
+            className={on ? "review-layer is-active" : "review-layer"}
+            key={review.author}
+            aria-hidden={on ? undefined : true}
+          >
+            {tone === "feature" ? (
+              <>
+                <span className="quote-mark" aria-hidden="true">
+                  “
+                </span>
+                <div>
+                  <p>{review.text}</p>
+                  <span className="who">
+                    {review.author} · Google Review
+                  </span>
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="stars" aria-hidden="true">
+                  ★★★★★
+                </span>
+                <div>
+                  <p>"{review.text}"</p>
+                  <span className="who">{review.author} · Google Review</span>
+                </div>
+              </>
+            )}
+          </div>
+        );
+      })}
+    </>
   );
 }
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
   const phasesRef = useRef<HTMLDivElement>(null);
-  const portraitRef = useRef<HTMLDivElement>(null);
+  const phasePlayed = useRef(false);
   const [featured, setFeatured] = useState(0);
+  const featuredRef = useRef(0);
+  const [slots, setSlots] = useState(() => reviews.map((_, index) => index).filter((index) => index !== 0));
   const [hoverPaused, setHoverPaused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
   const [reduced, setReduced] = useState(false);
@@ -197,98 +208,129 @@ export default function Home() {
   useLayoutEffect(() => {
     const page = pageRef.current;
     const journey = phasesRef.current;
-    if (!page || !journey || prefersReducedMotion()) return;
+    if (!page || !journey) return;
 
-    page.classList.add("motion");
-    const phaseNodes = Array.from(journey.querySelectorAll<HTMLElement>(".phase"));
-    const updateJourney = () => {
-      const rect = journey.getBoundingClientRect();
-      const viewH = window.innerHeight || 1;
-      const start = viewH * 0.86;
-      const end = viewH * 0.3;
-      const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end + rect.height * 0.2)));
-      journey.style.setProperty("--draw", progress.toFixed(3));
-      phaseNodes.forEach((node, index) => {
-        node.classList.toggle("is-on", progress >= (index + 0.15) / PHASE_COUNT);
-      });
-    };
-    updateJourney();
-
-    const reveals = Array.from(page.querySelectorAll<HTMLElement>(".reveal"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-in");
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.18, rootMargin: "0px 0px -6% 0px" },
-    );
-    for (const node of reveals) {
-      const rect = node.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) node.classList.add("is-in");
-      else observer.observe(node);
-    }
-
-    let frame = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateJourney);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const el = portraitRef.current;
-    if (!el || prefersReducedMotion()) return;
-    let frame = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const rect = el.getBoundingClientRect();
-        const viewH = window.innerHeight || 1;
-        const progress = (rect.top + rect.height / 2 - viewH / 2) / viewH;
-        const shift = Math.max(-14, Math.min(14, -progress * 18));
-        el.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
-      });
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setReduced(media.matches);
+    let headingObserver: IntersectionObserver | null = null;
+    let phaseObserver: IntersectionObserver | null = null;
+    let settleTimer = 0;
+    let frame = 0;
+    let cancelled = false;
+
+    const align = () => alignPhaseRail(journey);
+
+    const settleHeadings = () => {
+      headingObserver?.disconnect();
+      headingObserver = null;
+      const headings = Array.from(page.querySelectorAll<HTMLElement>(".fade-heading"));
+      if (media.matches) {
+        for (const node of headings) node.classList.remove("is-in", "is-seen");
+        return;
+      }
+      const pending: HTMLElement[] = [];
+      for (const node of headings) {
+        const rect = node.getBoundingClientRect();
+        const seen = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (seen) {
+          node.classList.add("is-in", "is-seen");
+        } else if (!node.classList.contains("is-in")) {
+          pending.push(node);
+        }
+      }
+      if (pending.length === 0) return;
+      headingObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-in");
+            headingObserver?.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.4, rootMargin: "0px 0px -6% 0px" },
+      );
+      for (const node of pending) headingObserver.observe(node);
+    };
+
+    const armPhases = () => {
+      phaseObserver?.disconnect();
+      phaseObserver = null;
+      window.clearTimeout(settleTimer);
+      if (media.matches) {
+        journey.classList.remove("is-drawn", "is-settled");
+        return;
+      }
+      align();
+      if (phasePlayed.current) {
+        journey.classList.add("is-drawn", "is-settled");
+        return;
+      }
+      const rect = journey.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > rect.height * 0.2;
+      const start = () => {
+        if (phasePlayed.current) return;
+        phasePlayed.current = true;
+        align();
+        journey.classList.add("is-drawn");
+        settleTimer = window.setTimeout(() => journey.classList.add("is-settled"), PHASE_LINE_MS + 220);
+        phaseObserver?.disconnect();
+      };
+      if (inView) {
+        start();
+        return;
+      }
+      phaseObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) start();
+        },
+        { threshold: 0.2 },
+      );
+      phaseObserver.observe(journey);
+    };
+
+    const apply = () => {
+      setReduced(media.matches);
+      if (media.matches) page.classList.remove("motion");
+      else page.classList.add("motion");
+      settleHeadings();
+      armPhases();
+    };
+
     apply();
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(align);
+    };
     media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
+    window.addEventListener("resize", onResize);
+    document.fonts?.ready.then(() => {
+      if (!cancelled && !media.matches) align();
+    });
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      window.clearTimeout(settleTimer);
+      headingObserver?.disconnect();
+      phaseObserver?.disconnect();
+      media.removeEventListener("change", apply);
+      window.removeEventListener("resize", onResize);
+      page.classList.remove("motion");
+    };
   }, []);
+
+  const stepReview = (delta: number) => {
+    const current = featuredRef.current;
+    const next = (current + delta + reviews.length) % reviews.length;
+    featuredRef.current = next;
+    setFeatured(next);
+    setSlots((currentSlots) => currentSlots.map((slot) => (slot === next ? current : slot)));
+  };
 
   useEffect(() => {
     if (reduced || hoverPaused || userPaused) return;
-    const id = window.setInterval(() => {
-      setFeatured((current) => (current + 1) % reviews.length);
-    }, 8000);
+    const id = window.setInterval(() => stepReview(1), REVIEW_INTERVAL_MS);
     return () => window.clearInterval(id);
   }, [hoverPaused, reduced, userPaused]);
-
-  const stepReview = (delta: number) => {
-    setFeatured((current) => (current + delta + reviews.length) % reviews.length);
-  };
 
   return (
     <div className="home-page" ref={pageRef}>
@@ -334,7 +376,7 @@ export default function Home() {
           <div className="wrap hero-grid">
             <div>
               <span className="eyebrow">For serious franchise investors</span>
-              <h1 className="reveal">
+              <h1 className="fade-heading">
                 <span className="sage">Invest</span> in Yourself.
                 <br />
                 Do it with someone
@@ -355,7 +397,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="portrait" ref={portraitRef}>
+            <div className="portrait">
               <img className="portrait-badge" src={shield} alt="" aria-hidden="true" width={80} height={149} />
               <div className="portrait-frame">
                 <img
@@ -391,20 +433,31 @@ export default function Home() {
 
         <div className="stats" id="track-record">
           <div className="wrap stats-grid">
-            <StatFigure value={30} label="Locations Built & Exited" />
-            <StatFigure value={4} label="Franchise Brands Owned" />
+            <div className="stat">
+              <div className="num">
+                <span>30</span>
+              </div>
+              <div className="cap">Locations Built & Exited</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                <span>4</span>
+              </div>
+              <div className="cap">Franchise Brands Owned</div>
+            </div>
             <div className="stat">
               <div className="num">
                 <em>PE</em>
               </div>
               <div className="cap">Private Equity Exit</div>
             </div>
-            <StatFigure
-              value={5}
-              decimals={1}
-              label="Google Rating"
-              suffix={<span style={{ fontSize: ".55em" }}>★</span>}
-            />
+            <div className="stat">
+              <div className="num">
+                <span>5.0</span>
+                <span style={{ fontSize: ".55em" }}>★</span>
+              </div>
+              <div className="cap">Google Rating</div>
+            </div>
           </div>
         </div>
 
@@ -412,7 +465,7 @@ export default function Home() {
           <div className="wrap story-grid">
             <div className="story-copy">
               <span className="eyebrow">Why work with me</span>
-              <h2 className="reveal">
+              <h2 className="fade-heading">
                 I have sat on <span className="sage">your side</span> of the table.
               </h2>
               <p>
@@ -430,7 +483,7 @@ export default function Home() {
                 <strong>If a concept is not right for you, I will tell you.</strong>
               </p>
             </div>
-            <div className="brand-list reveal" role="list">
+            <div className="brand-list" role="list">
               {[
                 ["Boost Mobile", "Retail · Multi-State Scale"],
                 ["Massage Envy", "Health & Wellness"],
@@ -452,9 +505,9 @@ export default function Home() {
 
         <section id="process">
           <div className="wrap">
-            <div className="section-head reveal">
+            <div className="section-head">
               <span className="eyebrow">The discovery process</span>
-              <h2>
+              <h2 className="fade-heading">
                 Four phases. <span className="sage">Zero pressure.</span>
               </h2>
               <p>
@@ -467,7 +520,7 @@ export default function Home() {
                 <span />
               </div>
               {phases.map((phase, index) => (
-                <div className="phase reveal" key={phase.title} style={{ animationDelay: `${index * 80}ms` }}>
+                <div className="phase" key={phase.title}>
                   <div className="ph-top">
                     <div className="ph-num">{index + 1}</div>
                     <span className="ph-icon">{phase.icon}</span>
@@ -493,9 +546,9 @@ export default function Home() {
           }}
         >
           <div className="wrap">
-            <div className="section-head reveal">
+            <div className="section-head">
               <span className="eyebrow">From Google Reviews</span>
-              <h2>
+              <h2 className="fade-heading">
                 Rated <span className="goldtext">{GOOGLE_REVIEW_RATING}</span> by the people who took the leap.
               </h2>
             </div>
@@ -555,33 +608,15 @@ export default function Home() {
                   {featured + 1} of {reviews.length}
                 </span>
               </div>
+              <div className="review-stage">
+                <ReviewLayers active={featured} tone="feature" />
+              </div>
               <div className="review-grid">
-                {reviews.map((review, index) => {
-                  const active = index === featured;
-                  return (
-                    <article
-                      className={active ? "review review-wide is-featured" : "review"}
-                      key={review.author}
-                      aria-label={active ? `Featured review by ${review.author}` : undefined}
-                    >
-                      {active ? (
-                        <span className="quote-mark" aria-hidden="true">
-                          “
-                        </span>
-                      ) : (
-                        <span className="stars" aria-hidden="true">
-                          ★★★★★
-                        </span>
-                      )}
-                      <div>
-                        <p>{active ? review.text : `"${review.text}"`}</p>
-                        <span className="who" style={active ? { display: "block", marginTop: ".9rem" } : undefined}>
-                          {review.author} · Google Review
-                        </span>
-                      </div>
-                    </article>
-                  );
-                })}
+                {slots.map((slotIndex, slot) => (
+                  <article className="review" key={slot} aria-label={`Review by ${reviews[slotIndex]?.author ?? ""}`}>
+                    <ReviewLayers active={slotIndex} tone="card" />
+                  </article>
+                ))}
               </div>
             </div>
           </div>
@@ -589,9 +624,9 @@ export default function Home() {
 
         <section>
           <div className="wrap">
-            <div className="section-head reveal">
+            <div className="section-head">
               <span className="eyebrow">Who this is for</span>
-              <h2>
+              <h2 className="fade-heading">
                 Built for people making a <span className="sage">serious</span> investment.
               </h2>
               <p>
@@ -624,9 +659,9 @@ export default function Home() {
 
         <section className="partners" id="partners">
           <div className="wrap">
-            <div className="section-head reveal">
+            <div className="section-head">
               <span className="eyebrow">Good guidance includes the next step</span>
-              <h2>
+              <h2 className="fade-heading">
                 Trusted <span className="sage">Referral Partners.</span>
               </h2>
               <p>
@@ -635,7 +670,7 @@ export default function Home() {
               </p>
             </div>
             <div className="partner-grid">
-              <article className="partner-card reveal">
+              <article className="partner-card">
                 <span className="chip">Career transition</span>
                 <h3>Franchising not the right fit? Let’s find your next direction.</h3>
                 <p>
@@ -654,7 +689,7 @@ export default function Home() {
                   </a>
                 </div>
               </article>
-              <article className="partner-card reveal">
+              <article className="partner-card">
                 <span className="chip">Business funding</span>
                 <h3>Ready for ownership? Explore your funding options.</h3>
                 <p>
@@ -682,7 +717,7 @@ export default function Home() {
           <div className="wrap">
             <img className="shield-final" src={shield} alt="" aria-hidden="true" width={80} height={149} />
             <span className="eyebrow">The first step costs nothing</span>
-            <h2 className="reveal">
+            <h2 className="fade-heading">
               Find Your <span className="goldtext">Freedom.</span>
             </h2>
             <p>
@@ -733,7 +768,7 @@ export default function Home() {
 
 function FitCard({ chip, title, body, image }: { chip: string; title: string; body: string; image: string }) {
   return (
-    <div className="fit reveal">
+    <div className="fit">
       <div className="fit-top">
         <span className="chip">{chip}</span>
         <span className="mini-arch">
