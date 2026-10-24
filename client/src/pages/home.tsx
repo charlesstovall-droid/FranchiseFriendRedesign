@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode, type SVGProps } from "react";
 import { SEO } from "@/components/SEO";
+import { featuredGoogleReviews, GOOGLE_REVIEW_COUNT, GOOGLE_REVIEW_RATING } from "@shared/google-reviews";
 import "./home.css";
 import shield from "@/assets/home/shield.png";
 import portrait from "@/assets/home/portrait.jpg";
@@ -67,32 +68,7 @@ const phases: { title: string; body: string; icon: ReactNode }[] = [
   },
 ];
 
-const reviews = [
-  {
-    author: "DK Patel",
-    text: "Excellent partner and guide in our journey into the franchise world. We gained valuable exposure to what is suitable and received great advice as we prepared to take a significant step from the corporate world to franchising.",
-  },
-  {
-    author: "Nate F.",
-    text: "He's incredibly knowledgeable about franchising, but what really stands out is how much he genuinely cares about helping you find the right fit. He's honest, professional, and patient throughout the entire process. I highly recommend him to anyone considering franchise ownership.",
-  },
-  {
-    author: "Justin Risedorf",
-    text: "One of the few business brokers with first-hand experience. Generous with his time and wisdom. Great guy to know and talk to about all things business ownership, franchising, and business acquisition.",
-  },
-  {
-    author: "Brent Ely",
-    text: "Charles is a great person with strong morals and that shows in how he works with his customers. He is positive, but also very honest to help you evaluate and make the best decision for you and your family. He draws on a ton of personal experience in the franchising world.",
-  },
-  {
-    author: "Simon Curtis",
-    text: "Charles made me millions in just a few years. Best choice I ever made. I have went with other investors in the past and they don't come close to the service and experience you get with him.",
-  },
-  {
-    author: "Brandon Dunevant",
-    text: "Charles was helpful pointing out some real potential pitfalls that we wouldn't have seen coming! Highly recommend getting him involved in any high stakes transaction!",
-  },
-];
+const reviews = featuredGoogleReviews;
 
 const footerGroups = [
   {
@@ -394,8 +370,8 @@ export default function Home() {
                 <span className="stars" aria-hidden="true">
                   ★★★★★
                 </span>
-                <span className="score">5.0</span>
-                <span className="label">37 Google Reviews</span>
+                <span className="score">{GOOGLE_REVIEW_RATING}</span>
+                <span className="label">{GOOGLE_REVIEW_COUNT} Google Reviews</span>
               </div>
             </div>
           </div>
@@ -520,17 +496,17 @@ export default function Home() {
             <div className="section-head reveal">
               <span className="eyebrow">From Google Reviews</span>
               <h2>
-                Rated <span className="goldtext">5.0</span> by the people who took the leap.
+                Rated <span className="goldtext">{GOOGLE_REVIEW_RATING}</span> by the people who took the leap.
               </h2>
             </div>
             <div className="review-meta">
-              <div className="big">5.0</div>
+              <div className="big">{GOOGLE_REVIEW_RATING}</div>
               <div>
                 <div className="stars" aria-label="5 out of 5 stars">
                   ★★★★★
                 </div>
                 <div className="sub">
-                  Based on 37 Google reviews ·{" "}
+                  Based on {GOOGLE_REVIEW_COUNT} Google reviews ·{" "}
                   <a
                     href="https://search.google.com/local/reviews?placeid=ChIJRbdi_zRz_ogR_IFxh2Ijx_g"
                     target="_blank"

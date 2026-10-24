@@ -1,5 +1,10 @@
 import { SITE_ORIGIN, absoluteUrl } from "../shared/site";
 import {
+  featuredGoogleReviews,
+  GOOGLE_REVIEW_COUNT,
+  GOOGLE_REVIEW_RATING,
+} from "../shared/google-reviews";
+import {
   GOOGLE_SITE_VERIFICATION,
   LOCAL_BUSINESS_ID,
   NAP,
@@ -105,6 +110,12 @@ export function localBusinessJsonLd() {
     sameAs: [...SAME_AS],
     founder: { "@id": PERSON_ID },
     parentOrganization: { "@id": ORGANIZATION_ID },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: GOOGLE_REVIEW_RATING,
+      reviewCount: GOOGLE_REVIEW_COUNT,
+      bestRating: "5",
+    },
   };
 }
 
@@ -217,7 +228,7 @@ export function renderHomeHtml(): string {
   <p>Charles Stovall · Your Franchise Friend · Charleston, SC</p>
   <h1>Invest in Yourself. Do it with someone who has done it.</h1>
   <p>You are weighing a six or seven figure decision. Before you sign an FDD, talk to a consultant who built 30 franchise locations across 4 brands and exited to private equity. Honest answers, real numbers.</p>
-  <p>5.0 · 37 Google Reviews</p>
+  <p>${GOOGLE_REVIEW_RATING} · ${GOOGLE_REVIEW_COUNT} Google Reviews</p>
   <p>Brands built, scaled and exited. Featured in Inc. 500, Entrepreneur, and Business RadioX. Boost Mobile, Massage Envy, YogaSix, Image Studios.</p>
   <h2>I have sat on your side of the table.</h2>
   <p>Most franchise consultants have never signed a lease, made payroll on a slow month, or negotiated a multi-unit development agreement. I have done all three, many times over.</p>
@@ -237,13 +248,13 @@ export function renderHomeHtml(): string {
     <li><strong>Matched Options</strong> — Owner-operator, semi-absentee, or multi-unit. Side-by-side comparisons included.</li>
     <li><strong>Due Diligence</strong> — FDD review, validation calls with current franchisees, funding strategy, and discovery day prep.</li>
   </ol>
-  <h2>Rated 5.0 by the people who took the leap.</h2>
-  <blockquote><p>Excellent partner and guide in our journey into the franchise world. We gained valuable exposure to what is suitable and received great advice as we prepared to take a significant step from the corporate world to franchising.</p><footer>DK Patel · Google Review</footer></blockquote>
-  <blockquote><p>He's incredibly knowledgeable about franchising, but what really stands out is how much he genuinely cares about helping you find the right fit. He's honest, professional, and patient throughout the entire process. I highly recommend him to anyone considering franchise ownership.</p><footer>Nate F. · Google Review</footer></blockquote>
-  <blockquote><p>One of the few business brokers with first-hand experience. Generous with his time and wisdom. Great guy to know and talk to about all things business ownership, franchising, and business acquisition.</p><footer>Justin Risedorf · Google Review</footer></blockquote>
-  <blockquote><p>Charles is a great person with strong morals and that shows in how he works with his customers. He is positive, but also very honest to help you evaluate and make the best decision for you and your family. He draws on a ton of personal experience in the franchising world.</p><footer>Brent Ely · Google Review</footer></blockquote>
-  <blockquote><p>Charles made me millions in just a few years. Best choice I ever made. I have went with other investors in the past and they don't come close to the service and experience you get with him.</p><footer>Simon Curtis · Google Review</footer></blockquote>
-  <blockquote><p>Charles was helpful pointing out some real potential pitfalls that we wouldn't have seen coming! Highly recommend getting him involved in any high stakes transaction!</p><footer>Brandon Dunevant · Google Review</footer></blockquote>
+  <h2>Rated ${GOOGLE_REVIEW_RATING} by the people who took the leap.</h2>
+  ${featuredGoogleReviews
+    .map(
+      (review) =>
+        `<blockquote><p>${escapeHtml(review.text)}</p><footer>${escapeHtml(review.author)} · Google Review</footer></blockquote>`,
+    )
+    .join("\n  ")}
   <h2>Built for people making a serious investment.</h2>
   <h3>Leaving the W-2 behind</h3>
   <p>You have 15 to 25 years of executive experience and want to own your outcome. We focus on concepts where your leadership skills transfer and the model matches your risk tolerance.</p>
