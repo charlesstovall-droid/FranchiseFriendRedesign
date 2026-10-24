@@ -75,6 +75,18 @@ assertPage("/", "Your Franchise Friend", (html) => {
   assert.match(html, /src="\/charles-headshot\.jpeg"/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
   assert.doesNotMatch(html, /Expert Franchise Consulting in Charleston SC/);
+  assert.match(html, /5\.0 · 40 Google Reviews/);
+  assert.match(html, /Nishita P/);
+  assert.match(html, /Chad Arsich/);
+  assert.match(html, /Khamari McGriff/);
+  assert.match(html, /listens to  what your looking for/);
+  assert.match(html, /&quot;salesy&quot;/);
+  assert.match(html, /"ratingValue":"5.0"/);
+  assert.match(html, /"reviewCount":40/);
+  assert.doesNotMatch(html, /37 Google|38 Google/);
+  assert.doesNotMatch(html, /"reviewCount":37|"reviewCount":38/);
+  assert.doesNotMatch(html, /Doug Marshall|Charles Wallace|Baseball 55/);
+  assert.doesNotMatch(html, /commission/i);
 });
 
 function assertJsonLd(html: string) {
@@ -113,6 +125,9 @@ assertPage("/mount-pleasant", "Franchise Consultant Mount Pleasant SC", (html) =
   assert.match(html, /"streetAddress":"1531 N Lakeshore Dr"/);
   assert.match(html, /"telephone":"\(919\) 827-3921"/);
   assert.match(html, /1531 N Lakeshore Dr/);
+  assert.match(html, /"ratingValue":"5.0"/);
+  assert.match(html, /"reviewCount":40/);
+  assert.doesNotMatch(html, /"reviewCount":37|"reviewCount":38/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
   assertJsonLd(html);
 });
@@ -144,6 +159,9 @@ assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assert.match(html, /"@type":"FAQPage"/);
   assert.match(html, /"streetAddress":"1531 N Lakeshore Dr"/);
   assert.match(html, /"telephone":"\(919\) 827-3921"/);
+  assert.match(html, /"ratingValue":"5.0"/);
+  assert.match(html, /"reviewCount":40/);
+  assert.doesNotMatch(html, /"reviewCount":37|"reviewCount":38/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
   assertJsonLd(html);
 });
@@ -170,6 +188,9 @@ assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
   assert.match(html, /src="\/charles-homepage-portrait\.jpg"/);
   assert.doesNotMatch(html, /src="\/charles-headshot\.jpeg"/);
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
+  assert.match(html, /"ratingValue":"5.0"/);
+  assert.match(html, /"reviewCount":40/);
+  assert.doesNotMatch(html, /"reviewCount":37|"reviewCount":38/);
 });
 
 assertPage("/executive-access", "Executive Access", (html) => {
@@ -225,8 +246,14 @@ assert.doesNotMatch(homeRaw, /opacity:\s*0/);
 assert.doesNotMatch(homeRaw, /no fees|black-book|franchise-assessment/i);
 assert.match(homeRaw, /Intro Call/);
 assert.match(homeRaw, /Due Diligence/);
+assert.match(homeRaw, /5\.0 · 40 Google Reviews/);
+assert.match(homeRaw, /Nishita P/);
+assert.match(homeRaw, /Chad Arsich/);
+assert.match(homeRaw, /Khamari McGriff/);
 assert.match(homeRaw, /DK Patel/);
 assert.match(homeRaw, /Brandon Dunevant/);
+assert.doesNotMatch(homeRaw, /Doug Marshall/);
+assert.doesNotMatch(homeRaw, /commission/i);
 assert.match(homeRaw, /href="\/privacy-policy"/);
 assert.match(homeRaw, /href="\/executive-access"/);
 
