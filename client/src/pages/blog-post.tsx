@@ -63,7 +63,7 @@ export default function BlogPost() {
         <SEO 
           title="Post Not Found | Charles Stovall"
           description="The blog post you're looking for doesn't exist. Browse our franchise consulting articles and guides."
-          canonicalUrl="https://www.charlesstovall.com/blog"
+          noindex
         />
         <Navbar />
         <section className="pt-32 pb-20">

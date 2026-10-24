@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import express from "express";
-import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, renderLocalMarketHtml, sitemapUrls, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, renderLocalMarketHtml, sitemapUrls, pathnameFromRequest, statusForPath } from "./seo";
 import { localMarketWordCount, mountPleasantPage, southCarolinaPage } from "../shared/local-markets";
 import { mountClientStatic } from "./serve-client";
 import { mountPlainSiteFiles } from "./plain-files";
@@ -62,7 +62,55 @@ assertPage("/blog", "Franchise Insights", (html) => {
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
   assert.match(html, /href="\/blog\/2026-franchise-outlook-boring-businesses"/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog"/);
+  assert.doesNotMatch(html, /noindex/);
 });
+
+function assertNotFoundHtml(html: string, heading: RegExp) {
+  assert.match(html, heading);
+  assert.match(html, /<meta name="robots" content="noindex"\s*\/?>/);
+  assert.doesNotMatch(html, /<link\s+rel=["']canonical["']/);
+  assert.doesNotMatch(html, /<meta\s+property=["']og:url["']/);
+  assert.doesNotMatch(html, /<meta\s+name=["']twitter:url["']/);
+  assert.match(html, /<div id="root">/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+}
+
+const missingSlug = "/blog/this-post-does-not-exist";
+const missingSlugPage = resolveSeoPage(missingSlug);
+assert.ok(missingSlugPage);
+assert.equal(missingSlugPage.noindex, true);
+assert.equal(missingSlugPage.canonical, undefined);
+assert.equal(statusForPath(missingSlug), 404);
+assertNotFoundHtml(applySeoToHtml(shell, missingSlug), /<h1>Post Not Found<\/h1>/);
+const missingSlugHtml = applySeoToHtml(shell, missingSlug);
+assert.match(missingSlugHtml, /The blog post you're looking for doesn't exist/);
+assert.match(missingSlugHtml, /href="\/blog"/);
+assert.doesNotMatch(missingSlugHtml, /https:\/\/www\.charlesstovall\.com\/blog"/);
+assert.doesNotMatch(missingSlugHtml, /https:\/\/charlesstovall\.com\/blog"/);
+
+const missingRoute = "/this-route-does-not-exist";
+assert.equal(resolveSeoPage(missingRoute), null);
+assert.equal(statusForPath(missingRoute), 404);
+assertNotFoundHtml(applySeoToHtml(shell, missingRoute), /<h1>404 Page Not Found<\/h1>/);
+assert.match(applySeoToHtml(shell, missingRoute), /Did you forget to add the page to the router\?/);
+assert.equal(statusForPath("/blog/also-missing/nested"), 404);
+assertNotFoundHtml(applySeoToHtml(shell, "/blog/also-missing/nested"), /<h1>404 Page Not Found<\/h1>/);
+
+for (const loc of sitemapUrls()) {
+  const pathname = new URL(loc).pathname;
+  assert.equal(statusForPath(pathname), 200, `${pathname} is in the sitemap and must stay 200`);
+  const html = applySeoToHtml(shell, pathname);
+  assert.doesNotMatch(html, /<meta name="robots" content="noindex"/, pathname);
+}
+assert.equal(statusForPath("/blog/fdd-red-flags"), 200);
+assert.equal(statusForPath("/speaking"), 200);
+assert.equal(statusForPath("/franchise-brands"), 200);
+assert.equal(statusForPath("/privacy-policy"), 200);
+assert.equal(statusForPath("/advisor/report/example-token"), 200);
+assert.equal(statusForPath("/advisor/resume/example-token"), 200);
+assert.equal(statusForPath("/admin/advisor/candidates/123"), 200);
+assert.equal(statusForPath("/"), 200);
 
 assertPage("/", "Your Franchise Friend", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/"/);
@@ -373,6 +421,36 @@ assert.match(fixedExec, /Keep the W-2/);
 assert.match(fixedExec, /id="executive-assessment-form"/);
 const png = await fetch(`http://127.0.0.1:${fixedPort}/cs-shield-logo.png`);
 assert.equal(png.status, 200);
+
+const missingSlugRes = await fetch(`http://127.0.0.1:${fixedPort}/blog/this-post-does-not-exist`, { headers: { "user-agent": chromeUa } });
+assert.equal(missingSlugRes.status, 404);
+assert.match(missingSlugRes.headers.get("content-type") || "", /text\/html/);
+const missingSlugBody = await missingSlugRes.text();
+assert.match(missingSlugBody, /<h1>Post Not Found<\/h1>/);
+assert.match(missingSlugBody, /<meta name="robots" content="noindex"/);
+assert.doesNotMatch(missingSlugBody, /<link\s+rel=["']canonical["']/);
+assert.doesNotMatch(missingSlugBody, /<meta\s+property=["']og:url["']/);
+
+const missingRouteRes = await fetch(`http://127.0.0.1:${fixedPort}/this-route-does-not-exist`, { headers: { "user-agent": chromeUa } });
+assert.equal(missingRouteRes.status, 404);
+const missingRouteBody = await missingRouteRes.text();
+assert.match(missingRouteBody, /<h1>404 Page Not Found<\/h1>/);
+assert.match(missingRouteBody, /Did you forget to add the page to the router\?/);
+assert.match(missingRouteBody, /<meta name="robots" content="noindex"/);
+assert.doesNotMatch(missingRouteBody, /<link\s+rel=["']canonical["']/);
+assert.doesNotMatch(missingRouteBody, /<meta\s+property=["']og:url["']/);
+
+for (const loc of sitemapUrls()) {
+  const pathname = new URL(loc).pathname;
+  const res = await fetch(`http://127.0.0.1:${fixedPort}${pathname}`, { headers: { "user-agent": chromeUa } });
+  assert.equal(res.status, 200, `${pathname} should return 200`);
+  const body = await res.text();
+  assert.doesNotMatch(body, /<meta name="robots" content="noindex"/, pathname);
+}
+const validBlogRes = await fetch(`http://127.0.0.1:${fixedPort}/blog/fdd-red-flags`, { headers: { "user-agent": chromeUa } });
+assert.equal(validBlogRes.status, 200);
+assert.match(await validBlogRes.text(), /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog\/fdd-red-flags"/);
+
 await new Promise<void>((resolve, reject) => fixedServer.close((err) => err ? reject(err) : resolve()));
 fs.rmSync(staticDir, { recursive: true, force: true });
 
@@ -515,6 +593,9 @@ await assertRedirect("/blackbook", "/");
 await assertRedirect("/free-franchise-guide", "/");
 await assertRedirect("/franchise-assessment", "/advisor");
 await assertRedirect("/assessment", "/advisor");
+await assertRedirect("/blog/this-post-does-not-exist/", "/blog/this-post-does-not-exist");
+await assertRedirect("/this-route-does-not-exist/", "/this-route-does-not-exist");
+await assertRedirect("/blog/fdd-red-flags/", "/blog/fdd-red-flags");
 await new Promise<void>((resolve, reject) => redirectServer.close((err) => err ? reject(err) : resolve()));
 
 assert.equal(NAP.addressLocality, "Mt Pleasant");

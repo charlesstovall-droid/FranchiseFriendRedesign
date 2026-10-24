@@ -4,7 +4,8 @@ import { toWwwCanonical } from "@shared/site";
 interface SEOProps {
   title: string;
   description: string;
-  canonicalUrl: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
   type?: "website" | "article";
   article?: {
     publishedTime: string;
@@ -19,6 +20,7 @@ export function SEO({
   title, 
   description, 
   canonicalUrl, 
+  noindex = false,
   type = "website",
   article,
   schema 
@@ -51,20 +53,27 @@ export function SEO({
       }
     };
 
-    const canonical = toWwwCanonical(canonicalUrl);
-
     updateMetaTag("description", description);
     updateMetaTag("title", title);
-    updateCanonical(canonical);
 
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
-    updateMetaTag("og:url", canonical, true);
     updateMetaTag("og:type", type, true);
 
     updateMetaTag("twitter:title", title);
     updateMetaTag("twitter:description", description);
-    updateMetaTag("twitter:url", canonical);
+
+    if (noindex) {
+      updateMetaTag("robots", "noindex");
+      document.querySelector('link[rel="canonical"]')?.remove();
+      document.querySelector('meta[property="og:url"]')?.remove();
+      document.querySelector('meta[name="twitter:url"]')?.remove();
+    } else if (canonicalUrl) {
+      const canonical = toWwwCanonical(canonicalUrl);
+      updateCanonical(canonical);
+      updateMetaTag("og:url", canonical, true);
+      updateMetaTag("twitter:url", canonical);
+    }
 
     if (article) {
       updateMetaTag("article:published_time", article.publishedTime, true);
@@ -95,7 +104,7 @@ export function SEO({
         dynamicSchema.remove();
       }
     };
-  }, [title, description, canonicalUrl, type, article, schema]);
+  }, [title, description, canonicalUrl, noindex, type, article, schema]);
 
   return null;
 }

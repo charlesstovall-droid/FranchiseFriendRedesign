@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import { createServer as createViteServer, createLogger } from "vite";
 
 import runApp from "./app";
-import { applySeoToHtml, pathnameFromRequest } from "./seo";
+import { applySeoToHtml, pathnameFromRequest, statusForPath } from "./seo";
 
 import viteConfig from "../vite.config";
 
@@ -52,8 +52,9 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
-      const page = applySeoToHtml(await vite.transformIndexHtml(url, template), pathnameFromRequest(req));
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      const pathname = pathnameFromRequest(req);
+      const page = applySeoToHtml(await vite.transformIndexHtml(url, template), pathname);
+      res.status(statusForPath(pathname)).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
