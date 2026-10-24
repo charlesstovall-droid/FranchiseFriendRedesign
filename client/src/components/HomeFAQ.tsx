@@ -15,7 +15,7 @@ const faqItems = [
   {
     id: "2",
     question: "How much does it cost to hire a franchise consultant?",
-    answer: "My franchise consulting services are completely free to you. I'm compensated by the franchise brands when a successful match is made, so you get expert guidance at no cost. There's no obligation, no hidden fees, and no pressure."
+    answer: "There is no separate invoice for the discovery process. We start with a conversation about your goals, capital, and timeline, and you can stop whenever you want."
   },
   {
     id: "3",

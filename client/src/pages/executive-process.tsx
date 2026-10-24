@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CheckCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export default function ExecutiveProcess() {
   useEffect(() => {
@@ -78,17 +78,6 @@ export default function ExecutiveProcess() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* No Cost Section */}
-          <div className="bg-[#D4AF37]/10 backdrop-blur rounded-xl p-8 border border-[#D4AF37]/30 text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <CheckCircle className="w-6 h-6 text-[#D4AF37]" />
-              <h3 className="text-xl font-serif font-bold text-white">No Cost to You</h3>
-            </div>
-            <p className="text-gray-300 max-w-xl mx-auto">
-              My services are 100% free to you. Franchises pay my fee only if we find a match—similar to how an executive recruiter works.
-            </p>
           </div>
 
           {/* CTA Section */}

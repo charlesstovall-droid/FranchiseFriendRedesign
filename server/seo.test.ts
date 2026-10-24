@@ -219,6 +219,17 @@ for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor 
   assert.equal(southCarolina.includes(banned), false, `south carolina SSR should not include "${banned}"`);
 }
 
+const homeRaw = renderHomeHtml();
+assert.equal(homeRaw.split("500").length - 1, 1, "Inc. 500 should appear once in homepage SSR");
+assert.doesNotMatch(homeRaw, /opacity:\s*0/);
+assert.doesNotMatch(homeRaw, /no fees|black-book|franchise-assessment/i);
+assert.match(homeRaw, /Intro Call/);
+assert.match(homeRaw, /Due Diligence/);
+assert.match(homeRaw, /DK Patel/);
+assert.match(homeRaw, /Brandon Dunevant/);
+assert.match(homeRaw, /href="\/privacy-policy"/);
+assert.match(homeRaw, /href="\/executive-access"/);
+
 for (const page of [mountPleasantPage, southCarolinaPage]) {
   const words = localMarketWordCount(page);
   assert.ok(words >= 900 && words <= 1350, `${page.path} should be about 900–1,300 words, got ${words}`);
