@@ -76,6 +76,7 @@ const footerGroups = [
     label: "Learn",
     links: [
       ["/blog", "Blog"],
+      ["/questions", "Buyer Questions"],
       ["/podcasts", "Podcast"],
       ["/faq", "FAQ"],
       ["/franchise-brands", "Franchise Brands"],

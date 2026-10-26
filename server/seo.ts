@@ -25,6 +25,11 @@ import {
   type Inline,
   type LocalMarketPage,
 } from "../shared/local-markets";
+import {
+  questionIndex,
+  questionPages,
+  type QuestionPage,
+} from "../shared/questions";
 
 export interface SeoPage {
   title: string;
@@ -492,7 +497,7 @@ function renderBlogIndexHtml(): string {
 <nav>
   <h1>Franchise Insights &amp; Resources</h1>
   <p>Expert franchise consulting articles and guides by Charles Stovall.</p>
-  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
+  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/questions">Buyer questions</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
   <ul>
     ${links}
   </ul>
@@ -532,6 +537,85 @@ export function renderAboutHtml(): string {
   ${napBlockHtml()}
 </article>
 `.trim();
+}
+
+function renderQuestionArticle(page: QuestionPage): string {
+  const sections = page.sections
+    .map((section) => {
+      const paragraphs = section.paragraphs
+        .map((paragraph) => `<p>${renderInlines(paragraph)}</p>`)
+        .join("\n");
+      const bullets = section.bullets?.length
+        ? `<ul>${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+        : "";
+      return `<section><h2>${escapeHtml(section.heading)}</h2>\n${paragraphs}\n${bullets}</section>`;
+    })
+    .join("\n");
+  const sources = page.sources.length
+    ? `<section><h2>Sources</h2><ul>${page.sources
+        .map((source) => `<li><a href="${escapeHtml(source.href)}">${escapeHtml(source.label)}</a></li>`)
+        .join("")}</ul></section>`
+    : "";
+  const related = `<section><h2>Keep reading</h2><ul>${page.related
+    .map((item) => `<li><a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`)
+    .join("")}</ul></section>`;
+
+  return `<article>
+  <p><a href="/questions">Buyer questions</a></p>
+  <h1>${escapeHtml(page.h1)}</h1>
+  ${page.lede.map((paragraph) => `<p>${renderInlines(paragraph)}</p>`).join("\n  ")}
+  ${sections}
+  ${renderFaqHtml(page.faqs, "FAQ")}
+  ${sources}
+  ${related}
+  <section>
+    <h2>${escapeHtml(page.ctaHeading)}</h2>
+    <p>${renderInlines(page.ctaBody)}</p>
+  </section>
+</article>`;
+}
+
+function questionArticleJsonLd(page: QuestionPage): object {
+  const canonical = absoluteUrl(page.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.h1,
+    description: page.description,
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    mainEntityOfPage: canonical,
+    url: canonical,
+    inLanguage: "en-US",
+  };
+}
+
+function questionSeoPage(page: QuestionPage): SeoPage {
+  return {
+    title: page.title,
+    description: page.description,
+    canonical: absoluteUrl(page.path),
+    type: "article",
+    bodyHtml: renderQuestionArticle(page),
+    jsonLd: [questionArticleJsonLd(page), faqPageSchema(page.faqs)],
+  };
+}
+
+function renderQuestionIndexHtml(): string {
+  const items = questionPages
+    .map(
+      (page) =>
+        `<li><h2><a href="${escapeHtml(page.path)}">${escapeHtml(page.h1)}</a></h2><p>${renderInlines(page.lede[0])}</p></li>`,
+    )
+    .join("\n");
+  return `<article>
+  <h1>${escapeHtml(questionIndex.h1)}</h1>
+  ${questionIndex.lede.map((paragraph) => `<p>${renderInlines(paragraph)}</p>`).join("\n  ")}
+  <ul>
+    ${items}
+  </ul>
+  <p><a href="https://calendly.com/charles-stovall/intro">Book a call</a> · <a href="/advisor">Try the advisor</a></p>
+</article>`;
 }
 
 function stripHtml(html: string): string {
@@ -678,6 +762,24 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     canonical: absoluteUrl("/advisor"),
     bodyHtml: renderAdvisorHtml(),
   },
+  "/questions": {
+    title: questionIndex.title,
+    description: questionIndex.description,
+    canonical: absoluteUrl("/questions"),
+    bodyHtml: renderQuestionIndexHtml(),
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: questionIndex.h1,
+      itemListElement: questionPages.map((page, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: page.h1,
+        url: absoluteUrl(page.path),
+      })),
+    },
+  },
+  ...Object.fromEntries(questionPages.map((page) => [page.path, questionSeoPage(page)])),
 };
 
 /** Exact paths registered in client/src/App.tsx, plus the static SEO pages. */
@@ -959,6 +1061,8 @@ export function sitemapUrls(): string[] {
     "/south-carolina",
     "/speaking",
     "/advisor",
+    "/questions",
+    ...questionPages.map((page) => page.path),
   ];
   return [
     ...staticUrls.map((path) => absoluteUrl(path)),
