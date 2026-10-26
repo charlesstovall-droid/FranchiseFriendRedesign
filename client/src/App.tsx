@@ -14,6 +14,7 @@ import PodcastsPage from "@/pages/podcasts";
 import ClientPortal from "@/pages/client-portal";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
+import QuestionsIndex, { QuestionPage } from "@/pages/questions";
 import FAQ from "@/pages/faq";
 import Phase1 from "@/pages/members/phase1";
 import Phase2 from "@/pages/members/phase2";
@@ -66,6 +67,8 @@ function Router() {
       <Route path="/members-admin" component={MembersAdmin} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/questions" component={QuestionsIndex} />
+      <Route path="/questions/:slug" component={QuestionPage} />
       <Route path="/faq" component={FAQ} />
       <Route path="/about" component={AboutPage} />
       <Route path="/client-portal" component={ClientPortal} />

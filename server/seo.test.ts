@@ -5,6 +5,7 @@ import path from "node:path";
 import express from "express";
 import { applySeoToHtml, resolveSeoPage, renderExecutiveAccessHtml, renderHomeHtml, renderCharlestonHtml, renderAboutHtml, renderLocalMarketHtml, sitemapUrls, pathnameFromRequest, statusForPath } from "./seo";
 import { localMarketWordCount, mountPleasantPage, southCarolinaPage } from "../shared/local-markets";
+import { questionIndex, questionPages, questionWordCount } from "../shared/questions";
 import { mountClientStatic } from "./serve-client";
 import { mountPlainSiteFiles } from "./plain-files";
 import { AD_LANDING_REDIRECTS, BLACK_BOOK_REDIRECTS, OLD_ASSESSMENT_REDIRECTS, seoRedirects } from "./redirects";
@@ -381,6 +382,15 @@ const fddHtml = await (await fetch(`http://127.0.0.1:${prodPort}/blog/fdd-red-fl
 assert.match(fddHtml, /<title>FDD Red Flags/);
 assert.match(fddHtml, /<article>/);
 assert.match(fddHtml, /Item 19/);
+
+const questionBotHtml = new Map<string, string>();
+for (const page of questionPages) {
+  const res = await fetch(`http://127.0.0.1:${prodPort}${page.path}`, { headers: { "user-agent": googlebot } });
+  assert.equal(res.status, 200, page.path);
+  questionBotHtml.set(page.path, await res.text());
+}
+const questionsIndexBot = await (await fetch(`http://127.0.0.1:${prodPort}/questions`, { headers: { "user-agent": googlebot } })).text();
+questionBotHtml.set("/questions", questionsIndexBot);
 await new Promise<void>((resolve, reject) => prodServer.close((err) => err ? reject(err) : resolve()));
 
 const staticDir = fs.mkdtempSync(path.join(os.tmpdir(), "seo-static-"));
@@ -539,6 +549,60 @@ assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/south-caroli
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/advisor"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/questions"), true);
+
+const blogPostsForQuestions = [
+  "/blog/fdd-red-flags",
+  "/blog/how-i-read-an-fdd-in-20-minutes",
+  "/blog/franchise-mistakes-first-time-buyers",
+];
+const seenTitles = new Set<string>();
+const seenDescriptions = new Set<string>();
+for (const page of questionPages) {
+  const words = questionWordCount(page);
+  assert.ok(words >= 500 && words <= 800, `${page.path} should be 500–800 words, got ${words}`);
+  assert.equal(seenTitles.has(page.title), false, page.title);
+  assert.equal(seenDescriptions.has(page.description), false, page.description);
+  seenTitles.add(page.title);
+  seenDescriptions.add(page.description);
+
+  const html = questionBotHtml.get(page.path) ?? "";
+  assert.ok(html.length > 0, page.path);
+  assert.equal(html, applySeoToHtml(shell, page.path));
+  assert.ok(html.includes(`<title>${page.title}</title>`), page.path);
+  assert.ok(html.includes(`<link rel="canonical" href="https://www.charlesstovall.com${page.path}"`), page.path);
+  assert.match(html, /<article>/);
+  assert.ok(html.includes(`<h1>${page.h1}</h1>`), page.path);
+  assert.ok(html.includes(page.faqs[0].question), page.path);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /href="\/advisor"/);
+  assert.match(html, /href="\/questions"/);
+  const siblings = questionPages.filter((other) => other.path !== page.path && html.includes(`href="${other.path}"`));
+  assert.ok(siblings.length >= 2, `${page.path} should link at least two sibling questions`);
+  const posts = blogPostsForQuestions.filter((href) => html.includes(`href="${href}"`));
+  assert.ok(posts.length >= 2, `${page.path} should link relevant franchise posts`);
+  assert.equal(sitemapUrls().includes(`https://www.charlesstovall.com${page.path}`), true);
+  assert.equal(statusForPath(page.path), 200);
+  const banned = ["commission", "compensat", "franchoice", "referral fee", "placement fee", "you pay nothing", "franchisor pays"];
+  const article = html.slice(html.indexOf("<article>"), html.lastIndexOf("</article>") + "</article>".length).toLowerCase();
+  const lower = article;
+  for (const phrase of banned) {
+    assert.equal(lower.includes(phrase), false, `${page.path} should not include "${phrase}"`);
+  }
+}
+
+const questionsHtml = questionBotHtml.get("/questions") ?? "";
+assert.ok(questionsHtml.includes(`<title>${questionIndex.title}</title>`));
+assert.ok(questionsHtml.includes(`<link rel="canonical" href="https://www.charlesstovall.com/questions"`));
+assert.match(questionsHtml, /<article>/);
+assert.ok(questionsHtml.includes(questionIndex.h1));
+for (const page of questionPages) {
+  assert.match(questionsHtml, new RegExp(`href="${page.path}"`));
+}
+assert.equal(statusForPath("/questions/not-a-real-question"), 404);
+assertNotFoundHtml(applySeoToHtml(shell, "/questions/not-a-real-question"), /<h1>404 Page Not Found<\/h1>/);
+assert.equal(statusForPath("/questions"), 200);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/blog/how-i-read-an-fdd-in-20-minutes"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/black-book"), false);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/franchise-assessment"), false);
