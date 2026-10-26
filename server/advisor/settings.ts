@@ -26,6 +26,9 @@ export const DEFAULT_SETTING_VALUES: Record<string, unknown> = {
 
 export type AdvisorSettingsMap = typeof DEFAULT_SETTING_VALUES;
 
+const STALE_LOCATION_SENTENCE = "He has been involved in opening more than 100 franchise locations.";
+const CURRENT_LOCATION_SENTENCE = "He built 30 franchise locations across 4 brands and exited to private equity.";
+
 function withoutStaleOpenAiKeyCopy<T extends { unconfiguredMessage?: unknown }>(copy: T): T {
   if (typeof copy.unconfiguredMessage === "string" && /openai/i.test(copy.unconfiguredMessage)) {
     return { ...copy, unconfiguredMessage: DEFAULT_ADVISOR_COPY.unconfiguredMessage };
@@ -33,11 +36,24 @@ function withoutStaleOpenAiKeyCopy<T extends { unconfiguredMessage?: unknown }>(
   return copy;
 }
 
+function withoutStaleLocationCopy<T extends { landingNearCta?: unknown }>(copy: T): T {
+  if (typeof copy.landingNearCta === "string" && /more than 100 franchise locations/i.test(copy.landingNearCta)) {
+    return { ...copy, landingNearCta: DEFAULT_ADVISOR_COPY.landingNearCta };
+  }
+  return copy;
+}
+
+function withoutStaleLocationInstructions(value: unknown): unknown {
+  if (typeof value !== "string" || !/more than 100 franchise locations/i.test(value)) return value;
+  const replaced = value.replaceAll(STALE_LOCATION_SENTENCE, CURRENT_LOCATION_SENTENCE);
+  return /more than 100 franchise locations/i.test(replaced) ? DEFAULT_SYSTEM_INSTRUCTIONS : replaced;
+}
+
 export function publicCopyFromSettings(settings: Record<string, unknown>): typeof DEFAULT_ADVISOR_COPY {
-  const copy = withoutStaleOpenAiKeyCopy({
+  const copy = withoutStaleLocationCopy(withoutStaleOpenAiKeyCopy({
     ...DEFAULT_ADVISOR_COPY,
     ...((settings.copy as Record<string, unknown> | undefined) || {}),
-  });
+  }));
   if (typeof settings.opening_message === "string") copy.openingMessage = settings.opening_message;
   if (typeof settings.disclosure === "string") copy.disclosure = settings.disclosure;
   if (typeof settings.booking_link === "string") copy.calendlyUrl = settings.booking_link;
@@ -48,9 +64,13 @@ export function publicCopyFromSettings(settings: Record<string, unknown>): typeo
 }
 
 export function sanitizeStoredAdvisorSettings(map: Record<string, unknown>): Record<string, unknown> {
-  const storedCopy = map.copy;
+  const next: Record<string, unknown> = {
+    ...map,
+    system_instructions: withoutStaleLocationInstructions(map.system_instructions),
+  };
+  const storedCopy = next.copy;
   if (storedCopy && typeof storedCopy === "object") {
-    return { ...map, copy: withoutStaleOpenAiKeyCopy({ ...(storedCopy as Record<string, unknown>) }) };
+    next.copy = withoutStaleLocationCopy(withoutStaleOpenAiKeyCopy({ ...(storedCopy as Record<string, unknown>) }));
   }
-  return map;
+  return next;
 }

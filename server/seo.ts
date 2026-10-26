@@ -18,6 +18,7 @@ import {
 } from "../shared/nap";
 import { charlestonFaqItems, executiveFaqItems, faqPageSchema, siteFaqItems } from "../shared/faq";
 import { blogPosts, getPostBySlug } from "../client/src/data/blog-posts";
+import { DEFAULT_ADVISOR_COPY } from "../shared/advisor-copy";
 import {
   localMarketJsonLd,
   mountPleasantPage,
@@ -579,7 +580,7 @@ export function renderAdvisorHtml(): string {
   <p>Franchise Friend Ownership Advisor</p>
   <h1>Before you choose a franchise, understand what should actually fit your life.</h1>
   <p>The Franchise Friend Ownership Advisor helps you think through your goals, finances, desired role and lifestyle before anyone tries to sell you a business.</p>
-  <p>A private, guided conversation built from Chuck Stovall's experience opening more than 100 franchise locations.</p>
+  <p>${escapeHtml(DEFAULT_ADVISOR_COPY.landingNearCta)}</p>
   <h2>What You'll Receive</h2>
   <ul>
     <li>A personalized Ownership Thesis</li>
