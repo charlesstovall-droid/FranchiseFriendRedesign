@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { BANNED_CANDIDATE_PHRASES, OPENING_QUESTION, THESIS_CONCLUSION, CALL_HANDOFF, FINANCIAL_DISCLAIMER, turnOutputSchema, HUBSPOT_ADVISOR_PROPERTIES, PROFILE_FIELD_KEYS } from "../shared/advisor";
-import { DEFAULT_ADVISOR_COPY } from "../shared/advisor-copy";
+import { DEFAULT_ADVISOR_COPY, DEFAULT_SYSTEM_INSTRUCTIONS } from "../shared/advisor-copy";
 import {
   AdvisorNotConfiguredError,
   DEFAULT_XAI_MODEL,
@@ -12,7 +12,7 @@ import {
   isAdvisorConfigured,
   type AdvisorChatClient,
 } from "../server/advisor/ai/provider";
-import { publicCopyFromSettings } from "../server/advisor/settings";
+import { publicCopyFromSettings, sanitizeStoredAdvisorSettings } from "../server/advisor/settings";
 import { mergeExtractedProfile } from "../server/advisor/profile";
 import { detectFollowUpHints, detectFinancialChapter } from "../server/advisor/followups";
 import { detectSafetyFlags, filterNamedBrands, sanitizeCandidateMessage } from "../server/advisor/safety";
@@ -43,6 +43,27 @@ section("exact public copy", () => {
   assert.equal(DEFAULT_ADVISOR_COPY.thesisConclusion, THESIS_CONCLUSION);
   assert.equal(DEFAULT_ADVISOR_COPY.financialDisclaimer, FINANCIAL_DISCLAIMER);
   assert.equal(DEFAULT_ADVISOR_COPY.bookingCta, "Review My Profile With Chuck");
+  assert.match(
+    DEFAULT_ADVISOR_COPY.landingNearCta,
+    /built 30 franchise locations across 4 brands and exited to private equity/,
+  );
+  assert.doesNotMatch(DEFAULT_ADVISOR_COPY.landingNearCta, /100 franchise/);
+  assert.match(DEFAULT_SYSTEM_INSTRUCTIONS, /built 30 franchise locations across 4 brands and exited to private equity/);
+  assert.doesNotMatch(DEFAULT_SYSTEM_INSTRUCTIONS, /100 franchise/);
+  const staleCopy = publicCopyFromSettings({
+    copy: {
+      landingNearCta:
+        "A private, guided conversation built from Chuck Stovall's experience opening more than 100 franchise locations.",
+    },
+  });
+  assert.equal(staleCopy.landingNearCta, DEFAULT_ADVISOR_COPY.landingNearCta);
+  const staleSettings = sanitizeStoredAdvisorSettings({
+    system_instructions: "He has been involved in opening more than 100 franchise locations.",
+  });
+  assert.equal(
+    staleSettings.system_instructions,
+    "He built 30 franchise locations across 4 brands and exited to private equity.",
+  );
 });
 
 section("profile merge does not invent or blindly overwrite", () => {

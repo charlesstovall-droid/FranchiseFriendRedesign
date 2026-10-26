@@ -305,6 +305,10 @@ assert.doesNotMatch(homeRaw, /commission/i);
 assert.match(homeRaw, /href="\/privacy-policy"/);
 assert.match(homeRaw, /href="\/executive-access"/);
 
+const advisorHtml = applySeoToHtml(shell, "/advisor");
+assert.match(advisorHtml, /built 30 franchise locations across 4 brands and exited to private equity/);
+assert.doesNotMatch(advisorHtml, /100 franchise locations/);
+
 for (const page of [mountPleasantPage, southCarolinaPage]) {
   const words = localMarketWordCount(page);
   assert.ok(words >= 900 && words <= 1350, `${page.path} should be about 900–1,300 words, got ${words}`);
