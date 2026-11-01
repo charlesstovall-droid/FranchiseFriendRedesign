@@ -10,6 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // Uses aria-expanded, aria-haspopup, role="menu".
 
 const buyerLinks = [
+  { name: "Buy a Franchise", href: "/buy-a-franchise" },
+  { name: "Semi-Absentee", href: "/semi-absentee-franchise-consultant" },
   { name: "Executive Franchises", href: "/executive-access" },
   { name: "Home-Based Franchises", href: "/home-based-franchises" },
   { name: "Charleston Buyers", href: "/charleston" },

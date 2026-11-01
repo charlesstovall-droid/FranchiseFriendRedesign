@@ -189,7 +189,7 @@ export default function HomeFranchiseResults() {
           <div className="max-w-4xl mx-auto">
             <button
               onClick={() => setSelectedFranchise(null)}
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-['Inter'] text-sm"
+              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-sans text-sm"
               data-testid="button-back-results"
             >
               <ArrowLeft size={16} />
@@ -201,56 +201,56 @@ export default function HomeFranchiseResults() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#1a2332] to-[#2a3a4f] p-8 md:p-12">
-                <span className="inline-block bg-[#c9a84c]/20 text-[#c9a84c] text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4 font-['Inter']">
+                <span className="inline-block bg-[#c9a84c]/20 text-[#c9a84c] text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4 font-sans">
                   {selectedFranchise.category}
                 </span>
-                <h1 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white mb-2">
+                <h1 className="font-serif text-3xl md:text-4xl font-bold text-white mb-2">
                   {selectedFranchise.name}
                 </h1>
               </div>
               <div className="p-8 md:p-12">
-                <p className="text-gray-700 text-lg leading-relaxed mb-8 font-['Inter']">
+                <p className="text-gray-700 text-lg leading-relaxed mb-8 font-sans">
                   {selectedFranchise.description}
                 </p>
                 <div className="grid sm:grid-cols-2 gap-6 mb-8">
                   <div className="bg-gray-50 rounded-xl p-5">
                     <div className="flex items-center gap-2 mb-2">
                       <DollarSign size={18} className="text-[#c9a84c]" />
-                      <span className="font-semibold text-[#1a2332] font-['Inter'] text-sm">Investment Range</span>
+                      <span className="font-semibold text-[#1a2332] font-sans text-sm">Investment Range</span>
                     </div>
-                    <p className="text-gray-700 font-['Inter'] text-lg font-bold">{selectedFranchise.investmentRange}</p>
+                    <p className="text-gray-700 font-sans text-lg font-bold">{selectedFranchise.investmentRange}</p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-5">
                     <div className="flex items-center gap-2 mb-2">
                       <Users size={18} className="text-[#c9a84c]" />
-                      <span className="font-semibold text-[#1a2332] font-['Inter'] text-sm">Ownership Model</span>
+                      <span className="font-semibold text-[#1a2332] font-sans text-sm">Ownership Model</span>
                     </div>
-                    <p className="text-gray-700 font-['Inter'] text-lg font-bold">{selectedFranchise.ownershipModel}</p>
+                    <p className="text-gray-700 font-sans text-lg font-bold">{selectedFranchise.ownershipModel}</p>
                   </div>
                 </div>
-                <h3 className="font-['Playfair_Display'] text-xl font-bold text-[#1a2332] mb-4">Key Highlights</h3>
+                <h3 className="font-serif text-xl font-bold text-[#1a2332] mb-4">Key Highlights</h3>
                 <div className="space-y-3 mb-8">
                   {selectedFranchise.highlights.map((h, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-[#c9a84c] flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check size={14} className="text-white" />
                       </div>
-                      <p className="text-gray-700 font-['Inter']">{h}</p>
+                      <p className="text-gray-700 font-sans">{h}</p>
                     </div>
                   ))}
                 </div>
                 <div className="bg-[#1a2332] rounded-xl p-6 text-center">
-                  <p className="text-white font-['Playfair_Display'] text-xl font-bold mb-2">
+                  <p className="text-white font-serif text-xl font-bold mb-2">
                     Interested in {selectedFranchise.name}?
                   </p>
-                  <p className="text-gray-300 text-sm font-['Inter'] mb-4">
+                  <p className="text-gray-300 text-sm font-sans mb-4">
                     Book a free call with Charles to learn more about this opportunity.
                   </p>
                   <a
                     href="https://calendly.com/charles-stovall/intro"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter']"
+                    className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-sans"
                     data-testid="button-book-detail"
                   >
                     <Calendar size={18} />
@@ -280,7 +280,7 @@ export default function HomeFranchiseResults() {
                 />
               ))}
             </div>
-            <p className="text-[#c9a84c] text-xs uppercase tracking-wider font-semibold font-['Inter'] mb-1">
+            <p className="text-[#c9a84c] text-xs uppercase tracking-wider font-semibold font-sans mb-1">
               Step {step + 1} of {surveySteps.length}
             </p>
           </div>
@@ -294,16 +294,16 @@ export default function HomeFranchiseResults() {
               transition={{ duration: 0.35 }}
             >
               <div className="bg-white rounded-2xl p-8 md:p-10 shadow-2xl">
-                <h2 className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a2332] mb-2">
+                <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#1a2332] mb-2">
                   {currentStep.question}
                 </h2>
-                <p className="text-gray-500 text-sm font-['Inter'] mb-8">{currentStep.subtitle}</p>
+                <p className="text-gray-500 text-sm font-sans mb-8">{currentStep.subtitle}</p>
                 <div className="space-y-3">
                   {currentStep.options.map((option, i) => (
                     <button
                       key={i}
                       onClick={() => handleAnswer(option.value)}
-                      className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 font-['Inter'] group hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 ${
+                      className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 font-sans group hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 ${
                         answers[currentStep.id] === option.value
                           ? "border-[#c9a84c] bg-[#c9a84c]/5"
                           : "border-gray-200"
@@ -317,7 +317,7 @@ export default function HomeFranchiseResults() {
                 {step > 0 && (
                   <button
                     onClick={() => setStep(step - 1)}
-                    className="mt-6 flex items-center gap-1 text-gray-400 hover:text-[#1a2332] transition-colors text-sm font-['Inter']"
+                    className="mt-6 flex items-center gap-1 text-gray-400 hover:text-[#1a2332] transition-colors text-sm font-sans"
                     data-testid="button-survey-back"
                   >
                     <ArrowLeft size={14} />
@@ -328,7 +328,7 @@ export default function HomeFranchiseResults() {
             </motion.div>
           </AnimatePresence>
 
-          <p className="text-center text-gray-400 text-xs mt-6 font-['Inter']">
+          <p className="text-center text-gray-400 text-xs mt-6 font-sans">
             Your answers help Charles match you with the right franchise — 100% free, no obligation.
           </p>
         </div>
@@ -343,12 +343,12 @@ export default function HomeFranchiseResults() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <div className="inline-flex items-center gap-2 bg-[#c9a84c]/20 rounded-full px-4 py-1.5 mb-4">
               <Check size={16} className="text-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-['Inter']">Your Results Are Ready</span>
+              <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-sans">Your Results Are Ready</span>
             </div>
-            <h1 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white mb-4">
+            <h1 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
               Your Home-Based Franchise Matches
             </h1>
-            <p className="text-gray-300 text-lg font-['Inter'] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-gray-300 text-lg font-sans max-w-2xl mx-auto leading-relaxed">
               {personalizedMessage}
             </p>
           </motion.div>
@@ -364,17 +364,17 @@ export default function HomeFranchiseResults() {
                   <Calendar size={20} className="text-[#c9a84c]" />
                 </div>
                 <div>
-                  <h2 className="font-['Playfair_Display'] text-lg font-bold text-[#1a2332]">
+                  <h2 className="font-serif text-lg font-bold text-[#1a2332]">
                     Ready to talk? Book your free call.
                   </h2>
-                  <p className="text-gray-500 text-xs font-['Inter']">30 minutes, zero cost, zero pressure.</p>
+                  <p className="text-gray-500 text-xs font-sans">30 minutes, zero cost, zero pressure.</p>
                 </div>
               </div>
               <a
                 href="https://calendly.com/charles-stovall/intro"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter'] text-sm"
+                className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-sans text-sm"
                 data-testid="button-book-call"
               >
                 <Calendar size={16} />
@@ -387,10 +387,10 @@ export default function HomeFranchiseResults() {
 
       <div className="max-w-6xl mx-auto px-4 pb-16">
         <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <h2 className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a2332] text-center mb-2">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#1a2332] text-center mb-2">
             Franchise Opportunities Matched to You
           </h2>
-          <p className="text-gray-500 text-center font-['Inter'] mb-10">
+          <p className="text-gray-500 text-center font-sans mb-10">
             Tap any card to learn more about the opportunity
           </p>
         </motion.div>
@@ -408,20 +408,20 @@ export default function HomeFranchiseResults() {
                 className="w-full text-left bg-white rounded-2xl border border-gray-100 hover:border-[#c9a84c]/40 hover:shadow-lg transition-all group p-6"
                 data-testid={`card-franchise-${i}`}
               >
-                <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-3 font-['Inter'] group-hover:bg-[#c9a84c]/10 group-hover:text-[#c9a84c] transition-colors">
+                <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-3 font-sans group-hover:bg-[#c9a84c]/10 group-hover:text-[#c9a84c] transition-colors">
                   {f.category}
                 </span>
-                <h3 className="font-['Playfair_Display'] text-lg font-bold text-[#1a2332] mb-2 group-hover:text-[#c9a84c] transition-colors">
+                <h3 className="font-serif text-lg font-bold text-[#1a2332] mb-2 group-hover:text-[#c9a84c] transition-colors">
                   {f.name}
                 </h3>
                 <div className="flex items-center gap-1.5 mb-3">
                   <DollarSign size={14} className="text-[#c9a84c]" />
-                  <span className="text-gray-600 text-xs font-['Inter'] font-medium">{f.investmentRange}</span>
+                  <span className="text-gray-600 text-xs font-sans font-medium">{f.investmentRange}</span>
                 </div>
-                <p className="text-gray-500 text-xs font-['Inter'] leading-relaxed line-clamp-3">
+                <p className="text-gray-500 text-xs font-sans leading-relaxed line-clamp-3">
                   {f.description}
                 </p>
-                <div className="mt-4 flex items-center gap-1 text-[#c9a84c] text-xs font-semibold font-['Inter']">
+                <div className="mt-4 flex items-center gap-1 text-[#c9a84c] text-xs font-semibold font-sans">
                   Learn More <ArrowRight size={12} />
                 </div>
               </button>
@@ -431,15 +431,15 @@ export default function HomeFranchiseResults() {
 
         <div className="text-center mt-12">
           <div className="bg-[#1a2332] rounded-2xl p-8 max-w-2xl mx-auto">
-            <p className="text-white font-['Playfair_Display'] text-xl font-bold mb-2">
+            <p className="text-white font-serif text-xl font-bold mb-2">
               Don't see the right fit?
             </p>
-            <p className="text-gray-300 text-sm font-['Inter'] mb-4">
+            <p className="text-gray-300 text-sm font-sans mb-4">
               Charles has access to 500+ franchise brands. Book a call and he'll find options tailored specifically to you.
             </p>
             <a
               href="tel:9198273921"
-              className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter'] text-sm"
+              className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-sans text-sm"
               data-testid="button-call-bottom"
             >
               <Phone size={16} />
@@ -451,7 +451,7 @@ export default function HomeFranchiseResults() {
 
       <footer className="bg-[#0f1922] py-8 border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-gray-500 text-xs font-['Inter']">
+          <p className="text-gray-500 text-xs font-sans">
             Results vary. Franchise investments involve risk. Charles Stovall is a FranChoice certified advisor. © 2026
           </p>
         </div>

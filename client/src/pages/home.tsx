@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode, type SVGProps } from "react";
 import { SEO } from "@/components/SEO";
+import { LocalPhotoStrip } from "@/components/LocalPhotoStrip";
 import { featuredGoogleReviews, GOOGLE_REVIEW_COUNT, GOOGLE_REVIEW_RATING } from "@shared/google-reviews";
 import "./home.css";
 import shield from "@/assets/home/shield.png";
@@ -94,6 +95,8 @@ const footerGroups = [
   {
     label: "With Charles",
     links: [
+      ["/buy-a-franchise", "Buy a Franchise"],
+      ["/semi-absentee-franchise-consultant", "Semi-Absentee"],
       ["/executive-access", "Executive Access"],
       ["#partners", "Referral Partners"],
       ["/privacy-policy", "Privacy"],
@@ -397,13 +400,16 @@ export default function Home() {
                   See How It Works
                 </a>
               </div>
+              <p className="hero-note">
+                <b>Free to you, no cost to work with me.</b>
+              </p>
             </div>
             <div className="portrait">
               <img className="portrait-badge" src={shield} alt="" aria-hidden="true" width={80} height={149} />
               <div className="portrait-frame">
                 <img
                   src={portrait}
-                  alt="Charles Stovall, franchise consultant, seated in a gray plaid blazer"
+                  alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, seated in a gray plaid blazer"
                   width={826}
                   height={1100}
                   fetchPriority="high"
@@ -419,6 +425,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <LocalPhotoStrip />
 
         <div className="logos" aria-label="Brands owned and media features">
           <span className="logo-eyebrow">
@@ -711,6 +719,73 @@ export default function Home() {
                 </div>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section id="questions">
+          <div className="wrap">
+            <div className="section-head">
+              <span className="eyebrow">Buyer questions</span>
+              <h2 className="fade-heading">Questions I answer before you sign.</h2>
+              <p>
+                Short answers from the same seat I sat in as an operator. Start with the index, then the two FDD posts
+                I send people first.
+              </p>
+            </div>
+            <ul className="quiet-links">
+              <li>
+                <a href="/questions">Questions I get before someone signs</a>
+              </li>
+              <li>
+                <a href="/questions/liquidity-after-opening">How much liquidity should I retain after opening?</a>
+              </li>
+              <li>
+                <a href="/questions/semi-absentee-franchise">What does semi-absentee really require?</a>
+              </li>
+              <li>
+                <a href="/questions/validate-item-19">How do I validate Item 19?</a>
+              </li>
+              <li>
+                <a href="/questions/franchise-vs-existing-business">Franchise startup vs buying an existing business</a>
+              </li>
+              <li>
+                <a href="/questions/low-employee-franchises">Which businesses require fewer employees?</a>
+              </li>
+            </ul>
+            <h3 className="quiet-subhead">From the blog</h3>
+            <ul className="quiet-links">
+              <li>
+                <a href="/blog/fdd-red-flags">FDD Red Flags I Learned the Hard Way</a>
+              </li>
+              <li>
+                <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Actually Read an FDD in 20 Minutes</a>
+              </li>
+              <li>
+                <a href="/blog/franchise-mistakes-first-time-buyers">
+                  The 7 Biggest Franchise Mistakes That Cost First-Time Buyers
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="services" className="services">
+          <div className="wrap">
+            <div className="section-head">
+              <span className="eyebrow">Start here</span>
+              <h2 className="fade-heading">Pick the page that matches the decision.</h2>
+            </div>
+            <ul className="quiet-links">
+              <li>
+                <a href="/buy-a-franchise">Buy a franchise</a>
+              </li>
+              <li>
+                <a href="/semi-absentee-franchise-consultant">Semi-absentee franchise consultant</a>
+              </li>
+              <li>
+                <a href="/charleston">Franchise Consultant Charleston SC</a>
+              </li>
+            </ul>
           </div>
         </section>
 

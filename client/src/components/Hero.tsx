@@ -125,25 +125,25 @@ export function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="pt-4 md:pt-8"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/20 text-[#c9a84c] text-sm font-semibold mb-6 border border-[#c9a84c]/30 font-['Inter']">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/20 text-[#c9a84c] text-sm font-semibold mb-6 border border-[#c9a84c]/30 font-sans">
             <span className="w-2 h-2 rounded-full bg-[#c9a84c]" />
             Nationwide Franchise Advisor
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-['Playfair_Display'] font-bold text-white leading-[1.1] mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.1] mb-6">
             <span className="text-[#c9a84c]">Charles Stovall</span>
             <br />
             <span className="text-3xl md:text-4xl lg:text-5xl text-white/90">Your Franchise Friend</span>
           </h1>
 
           {/* Issue 2: Updated body copy */}
-          <p className="text-lg md:text-xl text-white/70 mb-8 max-w-lg leading-relaxed font-['Inter']">
+          <p className="text-lg md:text-xl text-white/70 mb-8 max-w-lg leading-relaxed font-sans">
             I've scaled 30 units across multiple states. Now I help executives and professionals avoid the mistakes I made — and find franchises actually worth owning. No cost to you.
           </p>
 
           {/* Issue 10: Social proof row (hidden until flag is true) */}
           {SHOW_HERO_SOCIAL_PROOF && (
-            <div className="mb-6 flex items-center gap-2 text-white/80 text-sm font-['Inter']" data-testid="hero-social-proof">
+            <div className="mb-6 flex items-center gap-2 text-white/80 text-sm font-sans" data-testid="hero-social-proof">
               {/* TODO Charles: replace with real stat or remove entirely. */}
               ★★★★★ Trusted by franchise buyers across the U.S.
             </div>
@@ -154,7 +154,7 @@ export function Hero() {
             <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button
                 size="lg"
-                className="w-full bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base h-12 shadow-lg transition-all font-['Inter']"
+                className="w-full bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base h-12 shadow-lg transition-all font-sans"
                 data-testid="button-hero-primary"
               >
                 Book a Free Consultation
@@ -165,7 +165,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full border-white/30 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-['Inter']"
+                className="w-full border-white/30 text-white hover:bg-white/10 font-semibold text-base h-12 transition-all font-sans"
                 data-testid="button-hero-secondary"
               >
                 Ownership Advisor
@@ -173,7 +173,7 @@ export function Hero() {
             </Link>
           </div>
 
-          <div className="flex flex-col gap-3 text-sm font-medium text-white/60 font-['Inter']">
+          <div className="flex flex-col gap-3 text-sm font-medium text-white/60 font-sans">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-[#c9a84c]" />
               <span>Expert Guidance on Franchise Selection</span>
@@ -216,8 +216,8 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2332]/50 via-transparent to-transparent" />
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6 bg-[#1a2332]/90 backdrop-blur border border-[#c9a84c]/30 p-4 rounded-xl">
-              <p className="text-[#c9a84c] uppercase text-xs font-bold tracking-widest mb-1 font-['Inter']">Your Franchise Friend™</p>
-              <p className="text-white/80 text-sm italic font-['Inter']">"I provide a road map and honest assessment of how to succeed."</p>
+              <p className="text-[#c9a84c] uppercase text-xs font-bold tracking-widest mb-1 font-sans">Your Franchise Friend™</p>
+              <p className="text-white/80 text-sm italic font-sans">"I provide a road map and honest assessment of how to succeed."</p>
             </div>
           </div>
 

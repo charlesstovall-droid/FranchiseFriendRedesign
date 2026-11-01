@@ -11,6 +11,7 @@ import {
   type LocalMarketPage,
 } from "@shared/local-markets";
 import portrait from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
+import { CityPageLinks, ServingPlaces } from "@/components/ServingPlaces";
 
 function RichText({ parts, className }: { parts: Inline[]; className?: string }) {
   return (
@@ -330,6 +331,8 @@ export default function LocalMarketLanding({ page }: { page: LocalMarketPage }) 
           </section>
         );
       })}
+
+      {page.path === "/mount-pleasant" ? <ServingPlaces variant="mount-pleasant" /> : <CityPageLinks />}
 
       <section className="bg-[#081628] py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-5 md:px-10">

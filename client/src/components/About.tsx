@@ -39,10 +39,10 @@ export function About() {
 
             {/* Issue 6: Pull-quote surfacing the 1→20 story prominently */}
             <div className="mb-6 border-l-4 border-secondary pl-5">
-              <p className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-primary leading-tight">
+              <p className="font-serif text-2xl md:text-3xl font-bold text-primary leading-tight">
                 Scaled 1 → 20 franchise units.
               </p>
-              <p className="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-secondary mt-1">
+              <p className="font-serif text-xl md:text-2xl font-bold text-secondary mt-1">
                 Now I help you skip the mistakes.
               </p>
             </div>

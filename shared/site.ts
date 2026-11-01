@@ -2,6 +2,9 @@ export const SITE_ORIGIN = "https://www.charlesstovall.com";
 
 export const LEAD_CONVERSION_SEND_TO = "AW-593191309/w4I0CPeau54cEI3D7ZoC";
 
+/** Phone-call conversion already configured in client/index.html (phone_conversion_number). */
+export const PHONE_CONVERSION_SEND_TO = "AW-593191309/n8PCJ_J1dgDEI3D7ZoC";
+
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) {
     return path.replace("https://charlesstovall.com", SITE_ORIGIN);
