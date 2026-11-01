@@ -7,6 +7,7 @@ import { absoluteUrl } from "@shared/site";
 import { charlestonFaqItems, faqPageSchema } from "@shared/faq";
 import { NAP } from "@shared/nap";
 import portrait from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
+import { ServingPlaces } from "@/components/ServingPlaces";
 
 export default function Charleston() {
   const [, setLocation] = useLocation();
@@ -63,8 +64,8 @@ export default function Charleston() {
   return (
     <div className="min-h-screen bg-[#0A1F3C] text-[#F7F4EC]">
       <SEO
-        title="Charleston Franchise Consultant | Charles Stovall"
-        description="Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll."
+        title="Franchise Consultant Charleston SC | Charles Stovall"
+        description="Franchise consultant in Charleston, SC. Charles Stovall lives in Mount Pleasant and reads the FDD for Daniel Island, the islands, and the Lowcountry."
         canonicalUrl={absoluteUrl("/charleston")}
         schema={faqPageSchema(charlestonFaqItems)}
       />
@@ -106,8 +107,8 @@ export default function Charleston() {
                 Charleston · Mt. Pleasant · Daniel Island · the Lowcountry
               </p>
               <h1 className="font-serif text-[2.6rem] sm:text-5xl lg:text-[64px] font-bold leading-[1.04] text-[#F7F4EC] max-w-3xl mb-6">
-                Own a Business in Charleston.
-                <span className="block text-[#F7F4EC]/80">Without Starting One From Scratch.</span>
+                Franchise Consultant Charleston SC
+                <span className="block text-[#F7F4EC]/80">Own a Business in Charleston. Without Starting One From Scratch.</span>
               </h1>
               <p className="text-lg md:text-xl text-[#F7F4EC]/80 leading-relaxed max-w-xl mb-4">
                 I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.
@@ -122,7 +123,7 @@ export default function Charleston() {
             <figure className="w-[15rem] sm:w-[17rem] md:w-full justify-self-start md:justify-self-end shrink-0">
               <img
                 src={portrait}
-                alt="Charles Stovall, Charleston franchise consultant"
+                alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, photographed for the Charleston page"
                 className="w-full aspect-[3/4] object-cover object-top shadow-[0_24px_60px_rgba(0,0,0,0.35)]"
               />
             </figure>
@@ -299,6 +300,8 @@ export default function Charleston() {
           </button>
         </div>
       </section>
+
+      <ServingPlaces variant="charleston" />
 
       <section className="bg-[#0A1F3C] py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-5 md:px-10">

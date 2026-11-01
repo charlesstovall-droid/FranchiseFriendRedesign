@@ -166,6 +166,12 @@ assertPage("/mount-pleasant", "Franchise Consultant Mount Pleasant SC", (html) =
   assert.match(html, /95,469/);
   assert.match(html, /\$748,500/);
   assert.match(html, /<h2>Sources<\/h2>/);
+  assert.match(html, /<p>Serving<\/p>/);
+  for (const place of ["I'On", "Park West", "Carolina Park", "Old Village", "Isle of Palms", "Sullivan's Island", "West Ashley", "James Island"]) {
+    assert.match(html, new RegExp(place.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(html, /aria-label="City pages"/);
+  assert.match(html, /Franchise Consultant Charleston SC/);
   assert.match(html, /pointhopecharleston\.com/);
   assert.match(html, /census\.gov/);
   assert.match(html, /"@type":\["ProfessionalService","LocalBusiness"\]/);
@@ -203,6 +209,9 @@ assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
   assert.match(html, /calendly\.com\/charles-stovall\/intro/);
   assert.match(html, /<h2>Sources<\/h2>/);
+  assert.match(html, /aria-label="City pages"/);
+  assert.match(html, /Franchise Consultant Charleston SC/);
+  assert.match(html, /Franchise Consultant Mount Pleasant SC/);
   assert.match(html, /sccommerce\.com/);
   assert.match(html, /"@type":\["ProfessionalService","LocalBusiness"\]/);
   assert.match(html, /"@type":"FAQPage"/);
@@ -215,10 +224,18 @@ assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assertJsonLd(html);
 });
 
-assertPage("/charleston", "Charleston Franchise Consultant", (html) => {
+assertPage("/charleston", "Franchise Consultant Charleston SC", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
+  assert.match(html, /<h1>Franchise Consultant Charleston SC<\/h1>/);
   assert.match(html, /Own a Business in Charleston/);
   assert.match(html, /Without Starting One From Scratch/);
+  assert.match(html, /<p>Serving<\/p>/);
+  for (const place of ["I'On", "Park West", "Point Hope", "Carolina Park", "Shem Creek", "Old Village", "Daniel Island", "Isle of Palms", "Sullivan's Island", "West Ashley", "James Island", "Summerville"]) {
+    assert.match(html, new RegExp(place.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(html, /aria-label="City pages"/);
+  assert.match(html, /Franchise Consultant Mount Pleasant SC/);
+  assert.match(html, /Franchise Consultant South Carolina/);
   assert.match(html, /I live in this market/);
   assert.match(html, /The Lowcountry is not a national slide/);
   assert.match(html, /Mt\. Pleasant/);
@@ -281,15 +298,21 @@ const home = renderHomeHtml().toLowerCase();
 const charleston = renderCharlestonHtml().toLowerCase();
 const mountPleasant = renderLocalMarketHtml(mountPleasantPage).toLowerCase();
 const southCarolina = renderLocalMarketHtml(southCarolinaPage).toLowerCase();
-for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor pays", "free to you", "referral fee", "placement fee"]) {
+for (const banned of ["compensat", "franchoice", "you pay nothing", "franchisor pays", "referral fee", "placement fee"]) {
   assert.equal(exec.includes(banned), false, `landing SSR should not include "${banned}"`);
   assert.equal(home.includes(banned), false, `homepage SSR should not include "${banned}"`);
   assert.equal(charleston.includes(banned), false, `charleston SSR should not include "${banned}"`);
   assert.equal(mountPleasant.includes(banned), false, `mount pleasant SSR should not include "${banned}"`);
   assert.equal(southCarolina.includes(banned), false, `south carolina SSR should not include "${banned}"`);
 }
-
+for (const banned of ["free to you"]) {
+  assert.equal(exec.includes(banned), false, `landing SSR should not include "${banned}"`);
+  assert.equal(charleston.includes(banned), false, `charleston SSR should not include "${banned}"`);
+  assert.equal(mountPleasant.includes(banned), false, `mount pleasant SSR should not include "${banned}"`);
+  assert.equal(southCarolina.includes(banned), false, `south carolina SSR should not include "${banned}"`);
+}
 const homeRaw = renderHomeHtml();
+assert.match(homeRaw, /Free to you, no cost to work with me/);
 assert.equal(homeRaw.split("500").length - 1, 1, "Inc. 500 should appear once in homepage SSR");
 assert.doesNotMatch(homeRaw, /opacity:\s*0/);
 assert.doesNotMatch(homeRaw, /no fees|black-book|franchise-assessment/i);
@@ -360,7 +383,7 @@ assert.match(execHtml, /id="executive-assessment-form"/);
 assert.match(execHtml, /src="\/cs-shield-logo\.png"/);
 assert.match(execHtml, /src="\/charles-headshot\.jpeg"/);
 const charlestonHtml = await (await fetch(`http://127.0.0.1:${prodPort}/charleston`, { headers: { "user-agent": chromeUa } })).text();
-assert.match(charlestonHtml, /<title>Charleston Franchise Consultant/);
+assert.match(charlestonHtml, /<title>Franchise Consultant Charleston SC/);
 assert.match(charlestonHtml, /canonical" href="https:\/\/www\.charlesstovall\.com\/charleston"/);
 assert.match(charlestonHtml, /Own a Business in Charleston/);
 assert.match(charlestonHtml, /id="charleston-consultation-form"/);
@@ -491,6 +514,30 @@ assert.doesNotMatch(homeSeo, /"@id":"https:\/\/www\.charlesstovall\.com\/"/);
 assert.doesNotMatch(homeSeo, /"addressLocality":"Charleston"/);
 assert.match(homeSeo, new RegExp(`og:image" content="${OG_IMAGE_URL}"`));
 assert.doesNotMatch(homeSeo, /replit\.app/);
+assert.match(homeSeo, /"@type":"ProfessionalService"/);
+assert.match(homeSeo, /"priceRange":"Free consultation"/);
+assert.match(homeSeo, /"name":"Mount Pleasant SC"/);
+assert.match(homeSeo, /"name":"Charleston SC"/);
+assert.match(homeSeo, /"name":"Charleston County"/);
+assert.match(homeSeo, /"name":"South Carolina"/);
+assert.match(homeSeo, /"name":"United States"/);
+assert.match(homeSeo, /"hasOfferCatalog"/);
+assert.match(homeSeo, /"name":"Free franchise consultation"/);
+assert.match(homeSeo, /"price":0/);
+assert.doesNotMatch(homeSeo, /"priceRange":"\$\$"/);
+assert.doesNotMatch(homeSeo, /"@type":"LocalBusiness"/);
+assert.doesNotMatch(homeSeo, /yelp\.com/i);
+assert.match(homeSeo, /Free to you, no cost to work with me/);
+assert.match(homeSeo, /href="\/questions"/);
+assert.match(homeSeo, /href="\/questions\/liquidity-after-opening"/);
+assert.match(homeSeo, /href="\/questions\/semi-absentee-franchise"/);
+assert.match(homeSeo, /href="\/questions\/validate-item-19"/);
+assert.match(homeSeo, /href="\/questions\/franchise-vs-existing-business"/);
+assert.match(homeSeo, /href="\/questions\/low-employee-franchises"/);
+assert.match(homeSeo, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+assert.match(homeSeo, /href="\/blog\/franchise-mistakes-first-time-buyers"/);
+assert.match(homeSeo, /href="\/buy-a-franchise"/);
+assert.match(homeSeo, /href="\/semi-absentee-franchise-consultant"/);
 assert.match(homeSeo, /href="\/charleston"/);
 assert.match(homeSeo, /href="\/mount-pleasant"/);
 assert.match(homeSeo, /href="\/south-carolina"/);
@@ -521,6 +568,7 @@ assert.match(faqSeo, /<link rel="canonical" href="https:\/\/www\.charlesstovall\
 assert.doesNotMatch(faqSeo, /<div id="root"><\/div>/);
 assert.match(faqSeo, /What does a franchise consultant do\?/);
 assert.match(faqSeo, /How much money do I need to invest in a franchise\?/);
+assert.match(faqSeo, /Free to you, no cost to work with me/);
 assert.match(faqSeo, /"@type":"FAQPage"/);
 assert.match(faqSeo, /1531 N Lakeshore Dr/);
 
@@ -550,6 +598,44 @@ assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/about"), tru
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/faq"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/advisor"), true);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/questions"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/buy-a-franchise"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/semi-absentee-franchise-consultant"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/franchise-consultant-charleston-sc"), false);
+assert.equal(statusForPath("/franchise-consultant-charleston-sc"), 404);
+
+for (const servicePath of ["/buy-a-franchise", "/semi-absentee-franchise-consultant"]) {
+  const html = applySeoToHtml(shell, servicePath);
+  assert.match(html, /<article>/);
+  assert.match(html, /<h1>/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /<ul>/);
+  assert.match(html, /1531 N Lakeshore Dr/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com[^"]+"/);
+  assert.equal(statusForPath(servicePath), 200);
+  const article = html.slice(html.indexOf("<article>"), html.lastIndexOf("</article>") + "</article>".length).toLowerCase();
+  for (const phrase of ["commission", "compensat", "franchoice", "referral fee", "placement fee", "you pay nothing", "franchisor pays", "free to you"]) {
+    assert.equal(article.includes(phrase), false, `${servicePath} should not include "${phrase}"`);
+  }
+}
+const semiHtml = applySeoToHtml(shell, "/semi-absentee-franchise-consultant");
+assert.match(semiHtml, /href="\/questions\/semi-absentee-franchise"/);
+assert.match(semiHtml, /<title>Semi-Absentee Franchise Consultant \| Charles Stovall<\/title>/);
+const buyHtml = applySeoToHtml(shell, "/buy-a-franchise");
+assert.match(buyHtml, /<title>Buy a Franchise \| Charles Stovall, Your Franchise Friend<\/title>/);
+assert.equal(buyHtml, applySeoToHtml(shell, "/buy-a-franchise"));
+
+const indexShell = fs.readFileSync(path.resolve("client/index.html"), "utf8");
+assert.match(indexShell, /family=Libre\+Baskerville/);
+assert.match(indexShell, /family=Plus\+Jakarta\+Sans/);
+assert.doesNotMatch(indexShell, /family=Playfair\+Display/);
+assert.doesNotMatch(indexShell, /family=Inter/);
+const analyticsSrc = fs.readFileSync(path.resolve("client/src/lib/analytics.ts"), "utf8");
+const mainSrc = fs.readFileSync(path.resolve("client/src/main.tsx"), "utf8");
+assert.match(analyticsSrc, /phone_click/);
+assert.match(analyticsSrc, /PHONE_CONVERSION_SEND_TO/);
+assert.match(mainSrc, /installPhoneClickTracking/);
+assert.match(indexShell, /AW-593191309\/n8PCJ_J1dgDEI3D7ZoC/);
 
 const blogPostsForQuestions = [
   "/blog/fdd-red-flags",

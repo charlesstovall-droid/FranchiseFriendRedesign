@@ -31,6 +31,14 @@ import {
   questionPages,
   type QuestionPage,
 } from "../shared/questions";
+import {
+  charlestonAreaPlaces,
+  charlestonServing,
+  cityPageLinks,
+  mountPleasantNeighborhoods,
+  mountPleasantServing,
+} from "../shared/service-areas";
+import { CONSULT_CALENDLY, servicePages, type Inline as ServiceInline, type ServicePage } from "../shared/services";
 
 export interface SeoPage {
   title: string;
@@ -89,7 +97,7 @@ export function personJsonLd() {
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     "@id": LOCAL_BUSINESS_ID,
     name: NAP.name,
     alternateName: [...NAP.alternateNames],
@@ -99,16 +107,34 @@ export function localBusinessJsonLd() {
     url: `${SITE_ORIGIN}/`,
     telephone: NAP.telephone,
     email: NAP.email,
-    priceRange: "$$",
+    priceRange: "Free consultation",
     address: postalAddress(),
     geo: {
       "@type": "GeoCoordinates",
       latitude: NAP_GEO.latitude,
       longitude: NAP_GEO.longitude,
     },
-    areaServed: {
-      "@type": "Country",
-      name: "United States",
+    areaServed: [
+      { "@type": "City", name: "Mount Pleasant SC" },
+      { "@type": "City", name: "Charleston SC" },
+      { "@type": "AdministrativeArea", name: "Charleston County" },
+      { "@type": "State", name: "South Carolina" },
+      { "@type": "Country", name: "United States" },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Free franchise consultation",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          price: 0,
+          priceCurrency: "USD",
+          itemOffered: {
+            "@type": "Service",
+            name: "Free franchise consultation",
+          },
+        },
+      ],
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
@@ -232,7 +258,7 @@ function napBlockHtml(): string {
 export function renderHomeHtml(): string {
   return `
 <img src="/cs-shield-logo.png" alt="Charles Stovall" />
-<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Charleston, SC" />
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, seated for a headshot" />
 <article>
   <p>Charles Stovall · Your Franchise Friend · Charleston, SC</p>
   <h1>Invest in Yourself. Do it with someone who has done it.</h1>
@@ -291,6 +317,28 @@ export function renderHomeHtml(): string {
     <a href="/executive-access">Executive Access</a>
     <a href="/privacy-policy">Privacy</a>
   </nav>
+  <h2>Buyer questions</h2>
+  <ul>
+    <li><a href="/questions">Questions I get before someone signs</a></li>
+    <li><a href="/questions/liquidity-after-opening">How much liquidity should I retain after opening?</a></li>
+    <li><a href="/questions/semi-absentee-franchise">What does semi-absentee really require?</a></li>
+    <li><a href="/questions/validate-item-19">How do I validate Item 19?</a></li>
+    <li><a href="/questions/franchise-vs-existing-business">Franchise startup vs buying an existing business</a></li>
+    <li><a href="/questions/low-employee-franchises">Which businesses require fewer employees?</a></li>
+  </ul>
+  <h2>From the blog</h2>
+  <ul>
+    <li><a href="/blog/fdd-red-flags">FDD Red Flags I Learned the Hard Way</a></li>
+    <li><a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Actually Read an FDD in 20 Minutes</a></li>
+    <li><a href="/blog/franchise-mistakes-first-time-buyers">The 7 Biggest Franchise Mistakes That Cost First-Time Buyers</a></li>
+  </ul>
+  <h2>Start here</h2>
+  <ul>
+    <li><a href="/buy-a-franchise">Buy a franchise</a></li>
+    <li><a href="/semi-absentee-franchise-consultant">Semi-absentee franchise consultant</a></li>
+    <li><a href="/charleston">Franchise Consultant Charleston SC</a></li>
+  </ul>
+  <p>Free to you, no cost to work with me.</p>
   <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">919.827.3921</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a></p>
   ${napBlockHtml()}
 </article>
@@ -334,10 +382,11 @@ ${napBlockHtml()}
 export function renderCharlestonHtml(): string {
   return `
 <img src="/cs-shield-logo.png" alt="Charles Stovall" />
-<img src="/charles-homepage-portrait.jpg" alt="Charles Stovall, Charleston franchise consultant" />
+<img src="/charles-homepage-portrait.jpg" alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, photographed for the Charleston page" />
 <article>
   <p>Charleston · Mt. Pleasant · Daniel Island · the Lowcountry</p>
-  <h1>Own a Business in Charleston. Without Starting One From Scratch.</h1>
+  <h1>Franchise Consultant Charleston SC</h1>
+  <p>Own a Business in Charleston. Without Starting One From Scratch.</p>
   <p>I live in this market. I help Lowcountry executives, military retirees, and professionals match capital to a franchise — then read the FDD like someone who has made payroll.</p>
   <p>A national average does not know what labor costs in Mt. Pleasant, or whether the territory on Daniel Island is already spoken for.</p>
   <p>30 locations built. A PE exit. Charleston resident.</p>
@@ -345,6 +394,7 @@ export function renderCharlestonHtml(): string {
   <p>I know which concepts are already saturated in Mount Pleasant, where territories are still open in Summerville, and what's working on Daniel Island. National firms do not sit in those rooms.</p>
   <p>When we read an FDD together, you get an operator's view of Item 19, labor, and occupancy in this market — not a highlight reel built for a cheaper city. If the concept is wrong for Charleston, I will say so.</p>
   <p>The town I live in has its own page, and so does the state: <a href="/mount-pleasant">Mount Pleasant franchise consultant</a> and <a href="/south-carolina">South Carolina franchise consultant</a>. Read <a href="/blog/fdd-red-flags">FDD red flags</a> and <a href="/blog/how-i-read-an-fdd-in-20-minutes">how I read an FDD in 20 minutes</a> before you fall in love with a brand.</p>
+  ${renderServingHtml("charleston")}
   <h2>How it works</h2>
   <ol>
     <li>Discover — a 15-minute call on capital, goals, timeline, and lifestyle. No pitch. Just whether this market and this buyer fit.</li>
@@ -428,6 +478,7 @@ export function renderLocalMarketHtml(page: LocalMarketPage): string {
   ${page.lede.map((paragraph) => `<p>${renderInlines(paragraph)}</p>`).join("\n  ")}
   <p>${escapeHtml(page.proof)}</p>
   ${sections}
+  ${page.path === "/mount-pleasant" ? renderServingHtml("mount-pleasant") : renderCityNavHtml()}
   <h2>${escapeHtml(page.stepsHeading)}</h2>
   <ol>${steps}</ol>
   ${renderFaqHtml(page.faqs, page.faqHeading)}
@@ -512,6 +563,7 @@ function renderFaqPageHtml(): string {
 <article>
   <h1>Franchise Consulting FAQ</h1>
   <p>Everything you need to know about working with a franchise consultant.</p>
+  <p>Free to you, no cost to work with me.</p>
   ${renderFaqHtml(siteFaqItems, "Questions")}
   ${napBlockHtml()}
 </article>
@@ -521,7 +573,7 @@ function renderFaqPageHtml(): string {
 export function renderAboutHtml(): string {
   return `
 <img src="/cs-shield-logo.png" alt="Charles Stovall" />
-<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Mt Pleasant, SC" />
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, headshot near Charleston" />
 <article>
   <h1>About Charles Stovall</h1>
   <p>${escapeHtml(NAP.name)}</p>
@@ -679,6 +731,71 @@ export function renderAdvisorHtml(): string {
 `.trim();
 }
 
+function renderCityNavHtml(): string {
+  const links = cityPageLinks
+    .map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`)
+    .join(" · ");
+  return `<nav aria-label="City pages"><p>${links}</p></nav>`;
+}
+
+function renderPlaceList(label: string, places: readonly string[]): string {
+  const items = places.map((place) => `<li>${escapeHtml(place)}</li>`).join("");
+  return `<h3>${escapeHtml(label)}</h3><ul>${items}</ul>`;
+}
+
+function renderServingHtml(which: "mount-pleasant" | "charleston"): string {
+  const copy = which === "mount-pleasant" ? mountPleasantServing : charlestonServing;
+  return `<section>
+  <p>Serving</p>
+  <h2>${escapeHtml(copy.heading)}</h2>
+  <p>${escapeHtml(copy.intro)}</p>
+  ${renderPlaceList("Mount Pleasant", mountPleasantNeighborhoods)}
+  ${renderPlaceList("Around Charleston", charlestonAreaPlaces)}
+  ${renderCityNavHtml()}
+</section>`;
+}
+
+function renderServiceInlines(parts: ServiceInline[]): string {
+  return parts
+    .map((part) =>
+      typeof part === "string"
+        ? escapeHtml(part)
+        : `<a href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`,
+    )
+    .join("");
+}
+
+function renderServiceHtml(page: ServicePage): string {
+  const answer = page.answer.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n  ");
+  const checklist = page.checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const related = page.related
+    .map((link) => `<li><a href="${escapeHtml(link.href)}">${escapeHtml(link.text)}</a></li>`)
+    .join("");
+  return `<article>
+  <h1>${escapeHtml(page.h1)}</h1>
+  ${answer}
+  <p>${renderServiceInlines(page.bridge)}</p>
+  <p><a href="${escapeHtml(CONSULT_CALENDLY)}">Book a consult</a></p>
+  <h2>${escapeHtml(page.checklistTitle)}</h2>
+  <ul>${checklist}</ul>
+  ${renderFaqHtml(page.faqs, "FAQ")}
+  <h2>Keep going</h2>
+  <ul>${related}</ul>
+  <p><a href="${escapeHtml(CONSULT_CALENDLY)}">Book a consult</a></p>
+  ${napBlockHtml()}
+</article>`;
+}
+
+function serviceSeoPage(page: ServicePage): SeoPage {
+  return {
+    title: page.title,
+    description: page.description,
+    canonical: absoluteUrl(page.path),
+    bodyHtml: renderServiceHtml(page),
+    jsonLd: faqPageSchema(page.faqs),
+  };
+}
+
 const STATIC_PAGES: Record<string, SeoPage> = {
   "/": {
     title: "Charles Stovall | Your Franchise Friend — Franchise Consulting for Serious Investors",
@@ -723,8 +840,8 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     canonical: absoluteUrl("/podcasts"),
   },
   "/charleston": {
-    title: "Charleston Franchise Consultant | Charles Stovall",
-    description: "Franchise consulting for buyers in Charleston, Mt. Pleasant, Daniel Island, and the Lowcountry. Charles Stovall — operator, resident, FDD read like payroll.",
+    title: "Franchise Consultant Charleston SC | Charles Stovall",
+    description: "Franchise consultant in Charleston, SC. Charles Stovall lives in Mount Pleasant and reads the FDD for Daniel Island, the islands, and the Lowcountry.",
     canonical: absoluteUrl("/charleston"),
     bodyHtml: renderCharlestonHtml(),
     jsonLd: faqPageSchema(charlestonFaqItems),
@@ -781,6 +898,7 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     },
   },
   ...Object.fromEntries(questionPages.map((page) => [page.path, questionSeoPage(page)])),
+  ...Object.fromEntries(servicePages.map((page) => [page.path, serviceSeoPage(page)])),
 };
 
 /** Exact paths registered in client/src/App.tsx, plus the static SEO pages. */
@@ -1064,6 +1182,7 @@ export function sitemapUrls(): string[] {
     "/advisor",
     "/questions",
     ...questionPages.map((page) => page.path),
+    ...servicePages.map((page) => page.path),
   ];
   return [
     ...staticUrls.map((path) => absoluteUrl(path)),

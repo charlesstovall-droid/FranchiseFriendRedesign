@@ -185,6 +185,19 @@ body:has(.home-page){background:#F4ECE1}
 .home-page .social-row a:hover svg{fill:var(--navy)}
 .home-page .social-row svg{width:20px;height:20px;fill:var(--cream);transition:fill .15s}
 
+.home-page .quiet-links{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 2.4rem}
+.home-page .quiet-links a{display:block;padding:.9rem 0;border-bottom:1px solid var(--hairline);font-weight:600;color:var(--navy)}
+.home-page .quiet-links a:hover{color:#5f8d72}
+.home-page .quiet-subhead{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:2.4rem 0 .4rem}
+.home-page .services{background:var(--cream-soft);border-top:1px solid var(--hairline)}
+.home-page .photo-strip ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem}
+.home-page .photo-strip img{width:100%;height:240px;object-fit:cover;border-radius:18px}
+.home-page .photo-strip figcaption{margin-top:.55rem;font-size:.85rem;color:var(--ink-soft)}
+@media (max-width:980px){
+  .home-page .quiet-links{grid-template-columns:1fr}
+  .home-page .photo-strip ul{grid-template-columns:1fr}
+}
+
 /* final cta */
 .home-page .final{background:var(--navy);color:var(--cream);text-align:center;padding:6.5rem 0;position:relative;overflow:hidden}
 .home-page .final h2{color:var(--cream);font-size:clamp(2.6rem,5.4vw,4.4rem)}

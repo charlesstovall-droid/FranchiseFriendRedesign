@@ -183,26 +183,26 @@ export default function HomeBasedFranchises() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
               <div className="inline-flex items-center gap-2 bg-[#c9a84c]/20 border border-[#c9a84c]/30 rounded-full px-4 py-1.5 mb-6">
                 <span className="w-2 h-2 bg-[#c9a84c] rounded-full animate-pulse" />
-                <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-['Inter']">Now Accepting New Clients</span>
+                <span className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider font-sans">Now Accepting New Clients</span>
               </div>
-              <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.15] mb-6">
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.15] mb-6">
                 Own a Franchise From Your Kitchen Table
               </h1>
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 font-['Inter']">
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 font-sans">
                 Home-based franchise opportunities under $75K that you can run remotely, part-time, or alongside a full-time job. Get matched with brands that fit your budget, schedule, and goals — in 15 minutes, at no cost.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <DollarSign size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Low startup cost — under $75K</span>
+                  <span className="text-white text-sm font-medium font-sans">Low startup cost — under $75K</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <Home size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Run from anywhere</span>
+                  <span className="text-white text-sm font-medium font-sans">Run from anywhere</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <Star size={16} className="text-[#c9a84c]" />
-                  <span className="text-white text-sm font-medium font-['Inter']">Keep your day job</span>
+                  <span className="text-white text-sm font-medium font-sans">Keep your day job</span>
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-video max-w-md">
@@ -219,17 +219,17 @@ export default function HomeBasedFranchises() {
 
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} id="hero-form">
               <div className="bg-white rounded-2xl p-8 shadow-2xl">
-                <h2 className="font-['Playfair_Display'] text-2xl font-bold text-[#1a2332] text-center mb-2">
+                <h2 className="font-serif text-2xl font-bold text-[#1a2332] text-center mb-2">
                   See Your Home-Based Options
                 </h2>
-                <p className="text-gray-500 text-sm text-center mb-6 font-['Inter']">100% free. Takes 60 seconds.</p>
+                <p className="text-gray-500 text-sm text-center mb-6 font-sans">100% free. Takes 60 seconds.</p>
                 <form onSubmit={handleHeroSubmit} className="space-y-4">
                   <input
                     type="text"
                     required
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-['Inter']"
+                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-sans"
                     placeholder="First Name"
                     data-testid="input-first-name"
                   />
@@ -238,7 +238,7 @@ export default function HomeBasedFranchises() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-['Inter']"
+                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-sans"
                     placeholder="Email Address"
                     data-testid="input-email"
                   />
@@ -247,17 +247,17 @@ export default function HomeBasedFranchises() {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-['Inter']"
+                    className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition font-sans"
                     placeholder="Phone Number (required)"
                     data-testid="input-phone"
                   />
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-['Inter']">Liquid Capital Available <span className="font-normal text-gray-400">(Optional — helps us match you with the right opportunities)</span></label>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-sans">Liquid Capital Available <span className="font-normal text-gray-400">(Optional — helps us match you with the right opportunities)</span></label>
                     <select
                       value={formData.liquidCapital}
                       onChange={(e) => setFormData({ ...formData, liquidCapital: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-['Inter']"
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-sans"
                       data-testid="select-liquid-capital"
                     >
                       <option value="">Select range</option>
@@ -270,11 +270,11 @@ export default function HomeBasedFranchises() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-['Inter']">When are you looking to make a decision? <span className="font-normal text-gray-400">(Optional)</span></label>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1 font-sans">When are you looking to make a decision? <span className="font-normal text-gray-400">(Optional)</span></label>
                     <select
                       value={formData.timeline}
                       onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-['Inter']"
+                      className="w-full h-[52px] px-4 border border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#c9a84c] focus:ring-[3px] focus:ring-[#c9a84c]/10 transition bg-white text-gray-700 font-sans"
                       data-testid="select-timeline"
                     >
                       <option value="">Select timeline</option>
@@ -288,7 +288,7 @@ export default function HomeBasedFranchises() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full h-[56px] bg-[#c9a84c] text-[#1a2332] font-bold text-lg rounded-lg hover:bg-[#b8953f] transition-colors disabled:opacity-60 font-['Inter']"
+                    className="w-full h-[56px] bg-[#c9a84c] text-[#1a2332] font-bold text-lg rounded-lg hover:bg-[#b8953f] transition-colors disabled:opacity-60 font-sans"
                     data-testid="button-hero-submit"
                   >
                     {isSubmitting ? "Submitting..." : "See My Matches"}
@@ -296,11 +296,11 @@ export default function HomeBasedFranchises() {
                 </form>
                 <div className="flex items-center justify-center gap-2 mt-4">
                   <Lock size={14} className="text-gray-400" />
-                  <span className="text-gray-400 text-xs font-['Inter']">Your details stay private.</span>
+                  <span className="text-gray-400 text-xs font-sans">Your details stay private.</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-3 bg-amber-50 rounded-lg py-2 px-3">
                   <AlertTriangle size={14} className="text-amber-600" />
-                  <span className="text-amber-700 text-xs font-semibold font-['Inter']">Charles only takes 5 new clients per month — {spotsRemaining} spots remaining</span>
+                  <span className="text-amber-700 text-xs font-semibold font-sans">Charles only takes 5 new clients per month — {spotsRemaining} spots remaining</span>
                 </div>
               </div>
             </motion.div>
@@ -312,20 +312,20 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
               What Exactly Is a Home-Based Franchise — And Why Are So Many People Choosing Them?
             </h2>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <p className="text-gray-700 text-lg leading-relaxed font-['Inter'] mb-6">
+              <p className="text-gray-700 text-lg leading-relaxed font-sans mb-6">
                 A home-based franchise lets you operate a real, proven business without a physical storefront. You work from home, manage a team remotely or in the field, and follow a proven system built by a brand that's already figured out what works.
               </p>
-              <p className="text-gray-700 text-lg leading-relaxed font-['Inter'] mb-6">
+              <p className="text-gray-700 text-lg leading-relaxed font-sans mb-6">
                 You get the freedom of entrepreneurship with the safety net of a franchise system — training, marketing, technology, and ongoing support all included.
               </p>
               <div className="bg-[#1a2332] text-white rounded-xl p-5 mt-4">
-                <p className="text-sm font-['Inter'] italic">
+                <p className="text-sm font-sans italic">
                   "These aren't MLMs or side hustles. These are real, scalable businesses backed by billion-dollar brands."
                 </p>
               </div>
@@ -341,7 +341,7 @@ export default function HomeBasedFranchises() {
                   <div className="w-12 h-12 rounded-full bg-[#c9a84c]/10 flex items-center justify-center flex-shrink-0">
                     <item.icon size={22} className="text-[#c9a84c]" />
                   </div>
-                  <p className="text-gray-800 text-lg font-medium font-['Inter'] pt-2">{item.text}</p>
+                  <p className="text-gray-800 text-lg font-medium font-sans pt-2">{item.text}</p>
                 </div>
               ))}
             </motion.div>
@@ -352,14 +352,14 @@ export default function HomeBasedFranchises() {
       {/* AS SEEN IN BAR */}
       <section className="py-8 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <p className="text-center text-xs uppercase tracking-[3px] text-gray-400 font-['Inter'] font-semibold mb-6">As Seen In</p>
+          <p className="text-center text-xs uppercase tracking-[3px] text-gray-400 font-sans font-semibold mb-6">As Seen In</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
             {mediaLogos.map((media, i) => (
               <div key={i} className="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default" data-testid={`media-logo-${i}`}>
                 {media.logo ? (
                   <img src={media.logo} alt={media.name} className="h-8 md:h-10 object-contain" />
                 ) : (
-                  <span className="font-['Playfair_Display'] text-lg md:text-xl font-bold italic text-gray-400">{media.name}</span>
+                  <span className="font-serif text-lg md:text-xl font-bold italic text-gray-400">{media.name}</span>
                 )}
               </div>
             ))}
@@ -370,7 +370,7 @@ export default function HomeBasedFranchises() {
       {/* FRANCHISE BRAND LOGO TICKER */}
       <section className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6">
-          <p className="text-center text-sm uppercase tracking-[2px] text-gray-500 font-['Inter'] font-semibold">
+          <p className="text-center text-sm uppercase tracking-[2px] text-gray-500 font-sans font-semibold">
             A Sample of Home-Based Franchise Brands We Work With
           </p>
         </div>
@@ -385,7 +385,7 @@ export default function HomeBasedFranchises() {
                 {brand.logo ? (
                   <img src={brand.logo} alt={brand.name} className="max-h-[45px] max-w-[150px] object-contain px-2" />
                 ) : (
-                  <span className="font-['Inter'] text-sm font-semibold text-gray-600 text-center px-3">{brand.name}</span>
+                  <span className="font-sans text-sm font-semibold text-gray-600 text-center px-3">{brand.name}</span>
                 )}
               </div>
             ))}
@@ -397,10 +397,10 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-4">
               Popular Home-Based & In-Home Franchise Categories
             </h2>
-            <p className="text-gray-500 text-center mb-12 text-lg font-['Inter']">Explore the types of franchises Charles helps clients discover</p>
+            <p className="text-gray-500 text-center mb-12 text-lg font-sans">Explore the types of franchises Charles helps clients discover</p>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat, i) => (
@@ -421,14 +421,14 @@ export default function HomeBasedFranchises() {
                     <div className="w-10 h-10 rounded-lg bg-[#1a2332] flex items-center justify-center group-hover:bg-[#c9a84c] transition-colors flex-shrink-0">
                       <cat.icon size={20} className="text-[#c9a84c] group-hover:text-[#1a2332] transition-colors" />
                     </div>
-                    <h3 className="font-['Playfair_Display'] text-lg font-bold text-[#1a2332]">{cat.title}</h3>
+                    <h3 className="font-serif text-lg font-bold text-[#1a2332]">{cat.title}</h3>
                   </div>
-                  <p className="text-gray-600 text-sm font-['Inter'] leading-relaxed">{cat.desc}</p>
+                  <p className="text-gray-600 text-sm font-sans leading-relaxed">{cat.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center text-gray-600 mt-10 text-lg font-['Inter']">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center text-gray-600 mt-10 text-lg font-sans">
             Not sure which fits you? That's exactly what Charles helps you figure out — <span className="text-[#c9a84c] font-semibold">for free</span>.
           </motion.p>
         </div>
@@ -438,7 +438,7 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-[#1a2332]">
         <div className="max-w-5xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white text-center mb-12">
               Still Trading Time for a Paycheck That Was Never Really Yours?
             </h2>
           </motion.div>
@@ -455,12 +455,12 @@ export default function HomeBasedFranchises() {
                 <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <X size={16} className="text-red-400" />
                 </div>
-                <p className="text-gray-300 font-['Inter'] text-base">{point}</p>
+                <p className="text-gray-300 font-sans text-base">{point}</p>
               </motion.div>
             ))}
           </div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
-            <p className="text-[#c9a84c] text-xl md:text-2xl font-bold font-['Playfair_Display']">
+            <p className="text-[#c9a84c] text-xl md:text-2xl font-bold font-serif">
               A home-based franchise gives you the system, the brand, and the freedom — you just run it.
             </p>
           </motion.div>
@@ -484,13 +484,13 @@ export default function HomeBasedFranchises() {
                   />
                 </div>
                 <div className="bg-[#1a2332] px-6 py-4">
-                  <p className="text-white font-bold text-lg font-['Playfair_Display']">Charles Stovall</p>
-                  <p className="text-gray-300 text-sm font-['Inter']">Franchise Advisor · Charleston, SC</p>
+                  <p className="text-white font-bold text-lg font-serif">Charles Stovall</p>
+                  <p className="text-gray-300 text-sm font-sans">Franchise Advisor · Charleston, SC</p>
                 </div>
               </div>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] mb-8">
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] mb-8">
                 Your Guide to Finding the Right Home-Based Franchise
               </h2>
               <div className="space-y-4 mb-8">
@@ -504,18 +504,18 @@ export default function HomeBasedFranchises() {
                     <div className="w-6 h-6 rounded-full bg-[#c9a84c] flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check size={14} className="text-white" />
                     </div>
-                    <p className="text-gray-700 font-['Inter']">{point}</p>
+                    <p className="text-gray-700 font-sans">{point}</p>
                   </div>
                 ))}
               </div>
               <blockquote className="border-l-4 border-[#c9a84c] pl-6 py-2 mb-8">
-                <p className="text-[#1a2332] text-xl italic font-['Playfair_Display'] leading-relaxed">
+                <p className="text-[#1a2332] text-xl italic font-serif leading-relaxed">
                   "My job isn't to sell you a franchise. It's to make sure you never buy the wrong one."
                 </p>
               </blockquote>
               <button
                 onClick={scrollToForm}
-                className="bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter']"
+                className="bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-sans"
                 data-testid="button-scroll-charles"
               >
                 Talk to Charles — It's Free →
@@ -529,10 +529,10 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-4">
               Here's How We Find Your Perfect Home-Based Franchise in 3 Simple Steps
             </h2>
-            <p className="text-gray-500 text-center mb-12 text-lg font-['Inter']">From curious to confident — typically in under 30 days</p>
+            <p className="text-gray-500 text-center mb-12 text-lg font-sans">From curious to confident — typically in under 30 days</p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {steps.map((step, i) => (
@@ -546,14 +546,14 @@ export default function HomeBasedFranchises() {
                 data-testid={`card-step-${i}`}
               >
                 <div className="w-16 h-16 rounded-full bg-[#1a2332] flex items-center justify-center mx-auto mb-6">
-                  <span className="text-[#c9a84c] text-2xl font-bold font-['Playfair_Display']">{step.num}</span>
+                  <span className="text-[#c9a84c] text-2xl font-bold font-serif">{step.num}</span>
                 </div>
-                <h3 className="font-['Playfair_Display'] text-xl font-bold text-[#1a2332] mb-3">{step.title}</h3>
-                <p className="text-gray-600 font-['Inter'] text-sm leading-relaxed">{step.desc}</p>
+                <h3 className="font-serif text-xl font-bold text-[#1a2332] mb-3">{step.title}</h3>
+                <p className="text-gray-600 font-sans text-sm leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center text-gray-600 mt-10 text-lg font-['Inter']">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center text-gray-600 mt-10 text-lg font-sans">
             We've helped professionals across the Southeast find their first franchise — from retirees adding income to parents building something they can run during school hours.
           </motion.p>
         </div>
@@ -563,7 +563,7 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
               What Clients Are Saying
             </h2>
           </motion.div>
@@ -581,12 +581,12 @@ export default function HomeBasedFranchises() {
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => <Star key={j} size={16} className="fill-[#c9a84c] text-[#c9a84c]" />)}
                 </div>
-                <p className="text-gray-700 font-['Inter'] text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
+                <p className="text-gray-700 font-sans text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
                   <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
                   <div>
-                    <p className="font-bold text-[#1a2332] font-['Inter'] text-sm">{t.name}</p>
-                    <p className="text-gray-500 text-xs font-['Inter']">{t.title}</p>
+                    <p className="font-bold text-[#1a2332] font-sans text-sm">{t.name}</p>
+                    <p className="text-gray-500 text-xs font-sans">{t.title}</p>
                   </div>
                 </div>
               </motion.div>
@@ -599,8 +599,8 @@ export default function HomeBasedFranchises() {
               { val: "$0", label: "Advisor Fee" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <p className="text-[#c9a84c] text-3xl font-bold font-['Playfair_Display']">{stat.val}</p>
-                <p className="text-gray-300 text-sm font-['Inter']">{stat.label}</p>
+                <p className="text-[#c9a84c] text-3xl font-bold font-serif">{stat.val}</p>
+                <p className="text-gray-300 text-sm font-sans">{stat.label}</p>
               </div>
             ))}
           </motion.div>
@@ -613,12 +613,12 @@ export default function HomeBasedFranchises() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-[#c9a84c]/20 rounded-full px-4 py-2 mb-6">
               <Download size={16} className="text-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-sm font-semibold font-['Inter']">FREE DOWNLOAD</span>
+              <span className="text-[#c9a84c] text-sm font-semibold font-sans">FREE DOWNLOAD</span>
             </div>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
               The 2026 Guide to the Top 10 Home-Based Franchises Under $100K
             </h2>
-            <p className="text-gray-400 text-lg font-['Inter']">What's inside:</p>
+            <p className="text-gray-400 text-lg font-sans">What's inside:</p>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="space-y-4">
@@ -627,7 +627,7 @@ export default function HomeBasedFranchises() {
                   <div className="w-6 h-6 rounded-full bg-[#c9a84c] flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check size={14} className="text-[#1a2332]" />
                   </div>
-                  <p className="text-gray-300 font-['Inter'] text-sm">{item}</p>
+                  <p className="text-gray-300 font-sans text-sm">{item}</p>
                 </div>
               ))}
             </motion.div>
@@ -639,20 +639,20 @@ export default function HomeBasedFranchises() {
                     required
                     value={guideEmail}
                     onChange={(e) => setGuideEmail(e.target.value)}
-                    className="w-full h-[52px] px-4 bg-white rounded-lg text-base focus:outline-none focus:ring-[3px] focus:ring-[#c9a84c]/30 transition font-['Inter']"
+                    className="w-full h-[52px] px-4 bg-white rounded-lg text-base focus:outline-none focus:ring-[3px] focus:ring-[#c9a84c]/30 transition font-sans"
                     placeholder="Enter your email address"
                     data-testid="input-guide-email"
                   />
                   <button
                     type="submit"
                     disabled={isGuideSubmitting}
-                    className="w-full h-[52px] bg-[#c9a84c] text-[#1a2332] font-bold rounded-lg hover:bg-[#b8953f] transition-colors disabled:opacity-60 font-['Inter']"
+                    className="w-full h-[52px] bg-[#c9a84c] text-[#1a2332] font-bold rounded-lg hover:bg-[#b8953f] transition-colors disabled:opacity-60 font-sans"
                     data-testid="button-guide-submit"
                   >
                     {isGuideSubmitting ? "Sending..." : "Send Me the Free Guide →"}
                   </button>
                 </form>
-                <p className="text-gray-400 text-xs text-center mt-3 font-['Inter']">No spam. Unsubscribe anytime.</p>
+                <p className="text-gray-400 text-xs text-center mt-3 font-sans">No spam. Unsubscribe anytime.</p>
               </div>
             </motion.div>
           </div>
@@ -663,7 +663,7 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a2332] text-center mb-12">
               Frequently Asked Questions
             </h2>
           </motion.div>
@@ -683,7 +683,7 @@ export default function HomeBasedFranchises() {
                   className="w-full flex items-center justify-between p-5 text-left"
                   data-testid={`button-faq-${faq.id}`}
                 >
-                  <span className="font-semibold text-[#1a2332] font-['Inter'] pr-4">{faq.q}</span>
+                  <span className="font-semibold text-[#1a2332] font-sans pr-4">{faq.q}</span>
                   {openFaq === faq.id ? <ChevronUp size={20} className="text-[#c9a84c] flex-shrink-0" /> : <ChevronDown size={20} className="text-gray-400 flex-shrink-0" />}
                 </button>
                 <AnimatePresence>
@@ -694,7 +694,7 @@ export default function HomeBasedFranchises() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="px-5 pb-5 text-gray-600 text-sm leading-relaxed font-['Inter']">{faq.a}</div>
+                      <div className="px-5 pb-5 text-gray-600 text-sm leading-relaxed font-sans">{faq.a}</div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -708,13 +708,13 @@ export default function HomeBasedFranchises() {
       <section className="py-20 bg-[#1a2332]">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
               Your Home. Your Business. Your Freedom.<br />
               <span className="text-[#c9a84c]">It Starts With One Free Call.</span>
             </h2>
             <button
               onClick={scrollToForm}
-              className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold text-lg px-10 py-5 rounded-lg hover:bg-[#b8953f] transition-colors font-['Inter'] mb-4"
+              className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold text-lg px-10 py-5 rounded-lg hover:bg-[#b8953f] transition-colors font-sans mb-4"
               data-testid="button-final-cta"
             >
               Book My Free Home-Based Franchise Consultation
@@ -722,7 +722,7 @@ export default function HomeBasedFranchises() {
             </button>
             <div className="flex items-center justify-center gap-2 mt-4">
               <AlertTriangle size={14} className="text-amber-400" />
-              <span className="text-amber-300 text-sm font-semibold font-['Inter']">Only 5 spots open this month — don't wait</span>
+              <span className="text-amber-300 text-sm font-semibold font-sans">Only 5 spots open this month — don't wait</span>
             </div>
           </motion.div>
         </div>
@@ -733,25 +733,25 @@ export default function HomeBasedFranchises() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-3 gap-8 items-start">
             <div>
-              <p className="font-['Playfair_Display'] text-xl font-bold text-white mb-2">Charles Stovall</p>
-              <p className="text-gray-400 text-sm font-['Inter']">Franchise Advisor · Charleston, SC</p>
+              <p className="font-serif text-xl font-bold text-white mb-2">Charles Stovall</p>
+              <p className="text-gray-400 text-sm font-sans">Franchise Advisor · Charleston, SC</p>
             </div>
             <div className="text-center">
               <div className="space-y-1">
-                <a href="mailto:CStovall@FranChoice.com" className="text-gray-300 text-sm font-['Inter'] hover:text-[#c9a84c] transition-colors block">CStovall@FranChoice.com</a>
-                <a href="tel:9198273921" className="text-gray-300 text-sm font-['Inter'] hover:text-[#c9a84c] transition-colors block">(919) 827-3921</a>
+                <a href="mailto:CStovall@FranChoice.com" className="text-gray-300 text-sm font-sans hover:text-[#c9a84c] transition-colors block">CStovall@FranChoice.com</a>
+                <a href="tel:9198273921" className="text-gray-300 text-sm font-sans hover:text-[#c9a84c] transition-colors block">(919) 827-3921</a>
               </div>
             </div>
             <div className="md:text-right">
               <div className="flex md:justify-end gap-4 mb-3">
-                <a href="/" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Main Site</a>
-                <a href="/executive-access" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Executive Access</a>
-                <a href="/advisor" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-['Inter']">Ownership Advisor</a>
+                <a href="/" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-sans">Main Site</a>
+                <a href="/executive-access" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-sans">Executive Access</a>
+                <a href="/advisor" className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors font-sans">Ownership Advisor</a>
               </div>
             </div>
           </div>
           <div className="border-t border-white/10 mt-8 pt-6">
-            <p className="text-gray-500 text-xs font-['Inter'] text-center leading-relaxed">
+            <p className="text-gray-500 text-xs font-sans text-center leading-relaxed">
               Results vary. Franchise investments involve risk. Charles Stovall is a FranChoice certified advisor. © 2026 Charles Stovall. All rights reserved.
             </p>
           </div>
@@ -782,7 +782,7 @@ function FloatingCTA({ onClick }: { onClick: () => void }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onClick={onClick}
-      className="fixed bottom-6 right-6 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-4 rounded-full shadow-2xl hover:bg-[#b8953f] transition-colors z-40 font-['Inter'] text-sm flex items-center gap-2"
+      className="fixed bottom-6 right-6 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-4 rounded-full shadow-2xl hover:bg-[#b8953f] transition-colors z-40 font-sans text-sm flex items-center gap-2"
       data-testid="button-floating-cta"
     >
       <Phone size={18} />

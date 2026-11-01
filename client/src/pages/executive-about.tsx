@@ -48,7 +48,7 @@ export default function ExecutiveAbout() {
             <div className="flex justify-center">
               <img 
                 src="/charles-headshot.jpeg" 
-                alt="Charles Stovall" 
+                alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, headshot" 
                 className="w-64 h-64 rounded-2xl object-cover shadow-2xl"
               />
             </div>

@@ -28,7 +28,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-3xl space-y-6 text-muted-foreground leading-relaxed">
           <img
             src="/charles-headshot.jpeg"
-            alt="Charles Stovall, franchise consultant in Mt Pleasant, SC"
+            alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, headshot near Charleston"
             className="w-48 h-48 object-cover rounded-xl border border-secondary/30"
           />
           <p>

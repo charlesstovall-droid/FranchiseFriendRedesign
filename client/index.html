@@ -81,7 +81,7 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "ProfessionalService",
       "@id": "https://www.charlesstovall.com/#localbusiness",
       "name": "Charles Stovall Your Franchise Friend",
       "alternateName": ["Your Franchise Friend", "Franchise Friend"],
@@ -96,10 +96,33 @@
         "postalCode": "29466",
         "addressCountry": "US"
       },
+      "priceRange": "Free consultation",
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 32.829845904339,
         "longitude": -79.799492020957
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Mount Pleasant SC" },
+        { "@type": "City", "name": "Charleston SC" },
+        { "@type": "AdministrativeArea", "name": "Charleston County" },
+        { "@type": "State", "name": "South Carolina" },
+        { "@type": "Country", "name": "United States" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Free franchise consultation",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "price": 0,
+            "priceCurrency": "USD",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Free franchise consultation"
+            }
+          }
+        ]
       },
       "sameAs": [
         "https://www.linkedin.com/in/charles-stovall/",
@@ -150,8 +173,8 @@
     <link rel="dns-prefetch" href="https://www.youtube.com">
     <link rel="dns-prefetch" href="https://i.ytimg.com">
 
-    <!-- Google Fonts: Playfair Display, Inter, Libre Baskerville, Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans (body) and Libre Baskerville (headings). Homepage loads Fraunces and Archivo on its own. -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
