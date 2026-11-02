@@ -190,6 +190,9 @@ body:has(.home-page){background:#F4ECE1}
 .home-page .quiet-links a:hover{color:#5f8d72}
 .home-page .quiet-subhead{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:2.4rem 0 .4rem}
 .home-page .services{background:var(--cream-soft);border-top:1px solid var(--hairline)}
+.home-page .serving-state{margin-top:1.4rem;font-size:.95rem;color:rgba(18,48,76,.72)}
+.home-page .serving-state a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sage);padding-bottom:1px}
+.home-page .serving-state a:hover{color:#5f8d72;border-bottom-color:#5f8d72}
 .home-page .photo-strip ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem}
 .home-page .photo-strip img{width:100%;height:240px;object-fit:cover;border-radius:18px}
 .home-page .photo-strip figcaption{margin-top:.55rem;font-size:.85rem;color:var(--ink-soft)}

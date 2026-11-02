@@ -786,6 +786,9 @@ export default function Home() {
                 <a href="/charleston">Franchise Consultant Charleston SC</a>
               </li>
             </ul>
+            <p className="serving-state">
+              <a href="/south-carolina">Serving all of South Carolina</a>
+            </p>
           </div>
         </section>
 
