@@ -45,6 +45,8 @@ export interface LocalMarketPage {
   ctaHeading: string;
   ctaBody: string;
   portraitAlt: string;
+  /** Overrides the default intro-call link. South Carolina uses the consult event. */
+  calendlyUrl?: string;
 }
 
 function p(...parts: Inline[]): Inline[] {
@@ -268,14 +270,31 @@ export const mountPleasantPage: LocalMarketPage = {
 
 export const southCarolinaPage: LocalMarketPage = {
   path: "/south-carolina",
-  title: "Franchise Consultant South Carolina | Charles Stovall",
+  title: "Franchise Consultant South Carolina | Charles Stovall, Your Franchise Friend",
   description:
-    "Franchise consultant for South Carolina buyers. Charles Stovall on Charleston, the Upstate, Columbia, Myrtle Beach, and Hilton Head.",
+    "Franchise consultant in South Carolina. Charles Stovall, Your Franchise Friend, on how the Upstate, Midlands, and Lowcountry differ for operators.",
   leadType: "south-carolina",
   message: "South Carolina Landing Page",
   kicker: "Charleston · Upstate · Columbia · Grand Strand · Lowcountry",
-  h1: "South Carolina Is Not One Franchise Market.",
-  h1Sub: "The county line is the file.",
+  h1: "Franchise Consultant South Carolina.",
+  h1Sub: "Charles Stovall, Your Franchise Friend.",
+  // Stats below were fetched this run and only those figures are used in the new regional section.
+  // SC DEW, Employment Situation December 2025 (released January 27, 2026):
+  // https://www.dew.sc.gov/sites/dew/files/Documents/Employment%20Situation%20December%202025.pdf
+  // BLS QCEW, average weekly wage, total covered, all industries, South Carolina, Q3 2025:
+  // https://data.bls.gov/maps/cew/SC?period=2025-Q3&industry=10&geo_id=45000&ownerType=0&distribution=1&chartData=6
+  // County CSV cross-check, own_code 0, industry_code 10:
+  // https://data.bls.gov/cew/data/api/2025/3/area/45019.csv
+  // https://data.bls.gov/cew/data/api/2025/3/area/45045.csv
+  // https://data.bls.gov/cew/data/api/2025/3/area/45079.csv
+  // https://data.bls.gov/cew/data/api/2025/3/area/45083.csv
+  // NAI Charleston, 4Q25 Charleston MSA retail snapshot:
+  // https://www.naicharleston.com/report-year/2025/
+  // NAI Earle Furman, Upstate retail market report, Q4 2025:
+  // https://www.naiearlefurman.com/wp-content/uploads/sites/68/Q4-2025-NAI-Earle-Furman-Retail-Market-Report.pdf
+  // U.S. Census Bureau, Vintage 2025 population estimates (January 27, 2026):
+  // https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html
+  calendlyUrl: "https://calendly.com/charles-stovall/consult",
   lede: [
     p(
       "I live in Mount Pleasant and work with buyers choosing a territory in this state, sometimes after a move. These markets do not share a labor model, a rent line, or an age mix. Pick the place, then we read the FDD against it.",
@@ -357,6 +376,57 @@ export const southCarolinaPage: LocalMarketPage = {
       ],
     },
     {
+      kicker: "Three regions",
+      heading: "South Carolina Is Not One Franchise Market.",
+      paragraphs: [
+        p(
+          "I live in Mount Pleasant, and buyers still say the state when they mean a county. Labor is the first split. The ",
+          {
+            text: "South Carolina Department of Employment and Workforce",
+            href: "https://www.dew.sc.gov/sites/dew/files/Documents/Employment%20Situation%20December%202025.pdf",
+          },
+          " December 2025 employment situation, released January 27, 2026, puts the not-seasonally-adjusted unemployment rate at 4.1% in Charleston-North Charleston, 4.6% in Greenville-Anderson-Greer, 4.7% in Columbia, and 4.9% in Spartanburg. Hilton Head Island-Bluffton-Beaufort-Port Royal was 4.5%. Those prints are preliminary. The same release, seasonally adjusted, counts nonfarm jobs at 477,600 in Greenville-Anderson-Greer, 439,500 in Columbia, and 435,400 in Charleston-North Charleston. The Upstate has the larger payroll. Charleston-North Charleston is the tighter print. A concept that needs a deep hourly bench is a different bet in Greenville than it is on this side of the Cooper.",
+        ),
+        p(
+          "Read average weekly wage as county wage pressure. The crew rate on a posting is a separate number, and I will not invent it. The ",
+          {
+            text: "Bureau of Labor Statistics Quarterly Census of Employment and Wages",
+            href: "https://data.bls.gov/maps/cew/SC?period=2025-Q3&industry=10&geo_id=45000&ownerType=0&distribution=1&chartData=6",
+          },
+          " for the third quarter of 2025, all industries, total covered, shows Charleston County at $1,360, Greenville County at $1,236, Richland County at $1,224, and Spartanburg County at $1,162. The state figure on that table is $1,196. Beaufort County is $1,071. Horry County is $965. Charleston sits above that state figure. Spartanburg and the Grand Strand sit under it. An Item 7 labor assumption copied from a national deck misses both.",
+        ),
+        p(
+          "I do not have a sourced Midlands retail average, so I will not guess a Columbia rent, and I do not have a build-out price per foot I am willing to print. The rent and the empty space are the tell. ",
+          {
+            text: "NAI Charleston's fourth-quarter 2025 retail snapshot",
+            href: "https://www.naicharleston.com/report-year/2025/",
+          },
+          " puts Charleston-area average rents at about $26.36 per square foot, with vacancy near 3.1%, and North Mount Pleasant availability generally between 0% and 2%. ",
+          {
+            text: "NAI Earle Furman's Upstate retail report",
+            href: "https://www.naiearlefurman.com/wp-content/uploads/sites/68/Q4-2025-NAI-Earle-Furman-Retail-Market-Report.pdf",
+          },
+          " for the same quarter puts market rent at $15.78 per square foot and vacancy at 3.3%. On that sheet Greenville County is $18.42, vacancy 3.2%, and Spartanburg County is $15.77, vacancy 3.5%. A Lowcountry box and an Upstate box are a different Item 7.",
+        ),
+        p(
+          "Population is the other half, and the state total is still the wrong territory. The ",
+          {
+            text: "Census Bureau's Vintage 2025 release",
+            href: "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html",
+          },
+          " put South Carolina at 5,570,274 people on July 1, 2025, up 79,958, or 1.5%, the fastest of any state, with net domestic migration of 66,622. That growth does not land on one kind of customer. Upstate franchises that tend to fit need workers and a household to sell to: home services, kids' enrichment, fitness, pet, and health, at a rent the local wage can support. The Midlands is a year-round resident market, so a concept that only works in beach weeks is the wrong weight in Columbia. The Lowcountry splits. Charleston and Mount Pleasant are tight on labor and tight on retail space, which asks the model to clear a higher wage and a higher occupancy line. Hilton Head is a smaller, older island beside Bluffton's growth, so senior-weighted categories and home services are the honest start. I am naming categories, not a brand. When the buy is the question, read ",
+          { text: "how I look at buying a franchise", href: "/buy-a-franchise" },
+          " and the ",
+          { text: "questions I get before someone signs", href: "/questions" },
+          ". The ",
+          { text: "Charleston page", href: "/charleston" },
+          " and the ",
+          { text: "Mount Pleasant page", href: "/mount-pleasant" },
+          " are the Lowcountry detail.",
+        ),
+      ],
+    },
+    {
       kicker: "How I help",
       heading: "Choose the market, then make the file tell the truth.",
       paragraphs: [
@@ -368,12 +438,16 @@ export const southCarolinaPage: LocalMarketPage = {
           { text: "Charleston page", href: "/charleston" },
           " or the ",
           { text: "Mount Pleasant page", href: "/mount-pleasant" },
-          " if the Lowcountry is the target. Read ",
+          " if the Lowcountry is the target. The decision itself is on ",
+          { text: "buy a franchise", href: "/buy-a-franchise" },
+          ", and the objections I hear first are on the ",
+          { text: "questions page", href: "/questions" },
+          ". Read ",
           { text: "FDD red flags", href: "/blog/fdd-red-flags" },
           " and ",
           { text: "how I read an FDD in 20 minutes", href: "/blog/how-i-read-an-fdd-in-20-minutes" },
           " before discovery day. ",
-          { text: "Book a consultation", href: calendly },
+          { text: "Book a consultation", href: "https://calendly.com/charles-stovall/consult" },
           " when you know which county you mean, or call (919) 827-3921 and we will sort that out first.",
         ),
       ],
@@ -403,48 +477,46 @@ export const southCarolinaPage: LocalMarketPage = {
       id: "sc-one-market",
       question: "Is South Carolina one franchise market?",
       answer:
-        "No. The state added people at a 1.5% clip, the fastest in the country that year. Berkeley County grew 19.5%. Mount Pleasant grew 4.9%. Hilton Head grew 1.4%. Bluffton grew 33%. Those are different businesses.",
+        "No. In December 2025, unemployment was 4.1% in Charleston-North Charleston, 4.6% in Greenville-Anderson-Greer, 4.7% in Columbia, and 4.9% in Spartanburg. Charleston County's average weekly wage was $1,360. Spartanburg County's was $1,162. The state added people at 1.5%. The county is the file.",
     },
     {
-      id: "sc-migration",
-      question: "Where are new South Carolina residents moving from?",
+      id: "sc-regions",
+      question: "How do the Upstate, the Midlands, and the Lowcountry differ for a franchise operator?",
       answer:
-        "Census net domestic migration was 66,622 from July 2024 to July 2025. The 2024 origin list runs from North Carolina and New York through Florida, Georgia, Pennsylvania, Illinois, and Ohio. I do not have that split by town.",
+        "The Upstate has the larger payroll and the lower retail rent I could source. Columbia sits near the statewide average weekly wage, and I do not have a sourced Columbia retail average. Charleston and Mount Pleasant have to clear a tighter labor market and a higher retail rent. The figures, with the pages they came from, are in the regional section above.",
     },
     {
-      id: "sc-strand-upstate",
-      question: "How is the Grand Strand different from the Upstate?",
+      id: "sc-fit",
+      question: "What kinds of franchises tend to fit each South Carolina region?",
       answer:
-        "Horry County is up 21.8% and about 29.9% of residents are 65 or older. Myrtle Beach retail sales were $88,837 per person against a $60,394 median household income. Greenville County's median house is $299,000. Spartanburg County's is $233,300. Different labor, different rent.",
-    },
-    {
-      id: "sc-beaufort",
-      question: "Are Hilton Head and Bluffton the same territory?",
-      answer:
-        "No. Hilton Head is up 1.4%, with 39.2% of residents 65 or older and a $687,400 median house. Bluffton is up 33%, with median household income of $111,281. Same county. Different growth and a different labor pool.",
-    },
-    {
-      id: "sc-columbia",
-      question: "What about Columbia, Charleston, and Mount Pleasant?",
-      answer:
-        "Columbia is estimated at 147,035, up 7.5%. Charleston, Mount Pleasant, Summerville, and Berkeley County are a cluster. For the Lowcountry, start with the Charleston and Mount Pleasant pages, then Item 19, Item 7, and Item 20.",
+        "Home services, kids' enrichment, fitness, pet, and health show up in every region. The Upstate can carry concepts that need workers and a real box. The Midlands is a year-round resident market. Charleston and Mount Pleasant have to clear a tighter labor market and a higher retail rent. Hilton Head is older and smaller than Bluffton. I will not name a brand on a state page.",
     },
     {
       id: "sc-help",
-      question: "How does a South Carolina search with you work?",
+      question: "How does a search with a South Carolina franchise consultant work?",
       answer:
-        "A short call on capital and the market you will operate in, a short list of brands, then due diligence at your pace. I live in Mount Pleasant and work statewide. Book a consultation or call (919) 827-3921.",
-    },
-    {
-      id: "sc-climate",
-      question: "Does the state's business climate make every franchise easier?",
-      answer:
-        "Commerce lists a 5% corporate income tax and a deepwater port. That is the pitch to companies. Your deal still has to clear local rent, local labor, and the territory in the FDD.",
+        "A short call on capital and the county you will actually operate in, a short list, then Item 19, Item 7, and Item 20. I live in Mount Pleasant and work statewide. Book a consultation or call (919) 827-3921.",
     },
   ],
   sourcesIntro:
-    "Growth figures on this page come from pages I opened. Census percent changes are from each place's April 1, 2020 estimates base to the July 1, 2025 estimate, Vintage 2025, unless I name the decennial census. The state growth rate and the net domestic migration figure are from the Census Bureau's January 27, 2026 Vintage 2025 release. Department of Commerce figures are the department's own descriptions, not a second census.",
+    "Growth figures on this page come from pages I opened. Census percent changes are from each place's April 1, 2020 estimates base to the July 1, 2025 estimate, Vintage 2025, unless I name the decennial census. The state growth rate and the net domestic migration figure are from the Census Bureau's January 27, 2026 Vintage 2025 release. December 2025 unemployment rates and nonfarm job counts are from the South Carolina Department of Employment and Workforce release of January 27, 2026. Average weekly wages are from the Bureau of Labor Statistics Quarterly Census of Employment and Wages for the third quarter of 2025. Retail rents are from the NAI Charleston and NAI Earle Furman fourth-quarter 2025 reports named below. Department of Commerce figures are the department's own descriptions, not a second census.",
   sources: [
+    {
+      label: "SC Department of Employment and Workforce, Employment Situation, December 2025 (January 27, 2026)",
+      href: "https://www.dew.sc.gov/sites/dew/files/Documents/Employment%20Situation%20December%202025.pdf",
+    },
+    {
+      label: "U.S. Bureau of Labor Statistics, QCEW average weekly wage, all industries, total covered, South Carolina, Q3 2025",
+      href: "https://data.bls.gov/maps/cew/SC?period=2025-Q3&industry=10&geo_id=45000&ownerType=0&distribution=1&chartData=6",
+    },
+    {
+      label: "NAI Charleston, 4Q25 Charleston MSA retail snapshot",
+      href: "https://www.naicharleston.com/report-year/2025/",
+    },
+    {
+      label: "NAI Earle Furman, The Upstate retail market report, Q4 2025",
+      href: "https://www.naiearlefurman.com/wp-content/uploads/sites/68/Q4-2025-NAI-Earle-Furman-Retail-Market-Report.pdf",
+    },
     {
       label: "U.S. Census Bureau, Vintage 2025 population estimates news release (January 27, 2026)",
       href: "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html",

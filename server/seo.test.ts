@@ -189,7 +189,8 @@ assertPage("/mount-pleasant", "Franchise Consultant Mount Pleasant SC", (html) =
 
 assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/south-carolina"/);
-  assert.match(html, /<title>Franchise Consultant South Carolina \| Charles Stovall<\/title>/);
+  assert.match(html, /<title>Franchise Consultant South Carolina \| Charles Stovall, Your Franchise Friend<\/title>/);
+  assert.match(html, /<h1>Franchise Consultant South Carolina\. Charles Stovall, Your Franchise Friend\.<\/h1>/);
   assert.match(html, /South Carolina Is Not One Franchise Market/);
   assert.match(html, /Greenville/);
   assert.match(html, /Spartanburg/);
@@ -205,9 +206,18 @@ assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assert.match(html, /leadType" value="south-carolina"/);
   assert.match(html, /href="\/charleston"/);
   assert.match(html, /href="\/mount-pleasant"/);
+  assert.match(html, /href="\/buy-a-franchise"/);
+  assert.match(html, /href="\/questions"/);
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
-  assert.match(html, /calendly\.com\/charles-stovall\/intro/);
+  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /4\.1%/);
+  assert.match(html, /\$1,360/);
+  assert.match(html, /\$26\.36/);
+  assert.match(html, /dew\.sc\.gov/);
+  assert.match(html, /data\.bls\.gov/);
+  assert.match(html, /naicharleston\.com/);
+  assert.match(html, /naiearlefurman\.com/);
   assert.match(html, /<h2>Sources<\/h2>/);
   assert.match(html, /aria-label="City pages"/);
   assert.match(html, /Franchise Consultant Charleston SC/);
@@ -333,9 +343,17 @@ const advisorHtml = applySeoToHtml(shell, "/advisor");
 assert.match(advisorHtml, /built 30 franchise locations across 4 brands and exited to private equity/);
 assert.doesNotMatch(advisorHtml, /100 franchise locations/);
 
-for (const page of [mountPleasantPage, southCarolinaPage]) {
-  const words = localMarketWordCount(page);
-  assert.ok(words >= 900 && words <= 1350, `${page.path} should be about 900–1,300 words, got ${words}`);
+{
+  const mountPleasantWords = localMarketWordCount(mountPleasantPage);
+  assert.ok(
+    mountPleasantWords >= 900 && mountPleasantWords <= 1350,
+    `/mount-pleasant should be about 900–1,300 words, got ${mountPleasantWords}`,
+  );
+  const southCarolinaWords = localMarketWordCount(southCarolinaPage);
+  assert.ok(
+    southCarolinaWords >= 1400 && southCarolinaWords <= 1900,
+    `/south-carolina should be about 1,400–1,900 words, got ${southCarolinaWords}`,
+  );
 }
 
 const chromeUaHtml = applySeoToHtml(shell, "/blog/fdd-red-flags");
@@ -397,7 +415,7 @@ assert.match(mpBot, /Point Hope/);
 assert.match(mpBot, /<article>/);
 assert.doesNotMatch(mpBot, /<div id="root"><\/div>/);
 const scBot = await (await fetch(`http://127.0.0.1:${prodPort}/south-carolina`, { headers: { "user-agent": googlebot } })).text();
-assert.match(scBot, /<title>Franchise Consultant South Carolina \| Charles Stovall<\/title>/);
+assert.match(scBot, /<title>Franchise Consultant South Carolina \| Charles Stovall, Your Franchise Friend<\/title>/);
 assert.match(scBot, /Greenville/);
 assert.match(scBot, /<article>/);
 assert.doesNotMatch(scBot, /<div id="root"><\/div>/);
@@ -538,6 +556,7 @@ assert.match(homeSeo, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
 assert.match(homeSeo, /href="\/blog\/franchise-mistakes-first-time-buyers"/);
 assert.match(homeSeo, /href="\/buy-a-franchise"/);
 assert.match(homeSeo, /href="\/semi-absentee-franchise-consultant"/);
+assert.match(homeSeo, /Serving all of South Carolina/);
 assert.match(homeSeo, /href="\/charleston"/);
 assert.match(homeSeo, /href="\/mount-pleasant"/);
 assert.match(homeSeo, /href="\/south-carolina"/);

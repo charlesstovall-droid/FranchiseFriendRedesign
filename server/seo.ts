@@ -338,6 +338,7 @@ export function renderHomeHtml(): string {
     <li><a href="/semi-absentee-franchise-consultant">Semi-absentee franchise consultant</a></li>
     <li><a href="/charleston">Franchise Consultant Charleston SC</a></li>
   </ul>
+  <p><a href="/south-carolina">Serving all of South Carolina</a></p>
   <p>Free to you, no cost to work with me.</p>
   <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">919.827.3921</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a></p>
   ${napBlockHtml()}
@@ -453,6 +454,7 @@ function renderInlines(parts: Inline[]): string {
 
 export function renderLocalMarketHtml(page: LocalMarketPage): string {
   const formId = `${page.path.slice(1)}-consultation-form`;
+  const calendlyHref = page.calendlyUrl ?? "https://calendly.com/charles-stovall/intro";
   const sections = page.sections
     .map(
       (section) => `<section>
@@ -518,7 +520,7 @@ export function renderLocalMarketHtml(page: LocalMarketPage): string {
   <input type="hidden" name="message" value="${escapeHtml(page.message)}" />
   <button type="submit">Request the call</button>
 </form>
-<p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+<p><a href="${escapeHtml(calendlyHref)}">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
 <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant</a> · <a href="/south-carolina">South Carolina</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
 ${napBlockHtml()}
 `.trim();
