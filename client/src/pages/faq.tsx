@@ -38,7 +38,16 @@ export default function FAQ() {
 
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <p className="text-lg font-semibold text-primary mb-8">Free to you, no cost to work with me.</p>
+          <p className="text-lg font-semibold text-primary mb-4">Free to you, no cost to work with me.</p>
+          <p className="text-muted-foreground mb-8">
+            If you are still deciding whether ownership should look like a franchise, read{" "}
+            <a
+              href="/blog/is-buying-a-franchise-a-good-decision"
+              className="text-secondary underline hover:text-accent-pop transition-colors"
+            >
+              Is buying a franchise a good decision?
+            </a>
+          </p>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

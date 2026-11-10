@@ -59,9 +59,28 @@ assertPage("/blog/how-i-read-an-fdd-in-20-minutes", "How I Actually Read an FDD"
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
 });
 
+assertPage("/blog/is-buying-a-franchise-a-good-decision", "Is Buying a Franchise a Good Decision", (html) => {
+  assert.match(html, /<title>Is Buying a Franchise a Good Decision\? An Operator's Honest Answer \| Charles Stovall<\/title>/);
+  assert.match(html, /<meta name="description" content="A franchise can be a good decision\. It can also be an expensive job\. An operator who built 30 locations explains how to tell the difference before you sign\."/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog\/is-buying-a-franchise-a-good-decision"/);
+  assert.match(html, /<article>/);
+  assert.match(html, /It is a good investment only when the Tuesday still works/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /"name":"Is buying a franchise a good decision\?"/);
+  assert.match(html, /"name":"Should I leave my corporate job to buy a franchise\?"/);
+  assert.doesNotMatch(html, /Post Not Found/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+  const article = html.slice(html.indexOf("<article>"), html.lastIndexOf("</article>") + "</article>".length).toLowerCase();
+  for (const phrase of ["franchoice", "referral fee", "you pay nothing", "franchisor pays", "free to you", "my services are free"]) {
+    assert.equal(article.includes(phrase), false, `new post should not include "${phrase}"`);
+  }
+  assert.equal(statusForPath("/blog/is-buying-a-franchise-a-good-decision"), 200);
+});
+
 assertPage("/blog", "Franchise Insights", (html) => {
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /href="\/blog\/is-buying-a-franchise-a-good-decision"/);
   assert.match(html, /href="\/blog\/2026-franchise-outlook-boring-businesses"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/blog"/);
   assert.doesNotMatch(html, /noindex/);
@@ -709,6 +728,19 @@ assert.equal(statusForPath("/questions/not-a-real-question"), 404);
 assertNotFoundHtml(applySeoToHtml(shell, "/questions/not-a-real-question"), /<h1>404 Page Not Found<\/h1>/);
 assert.equal(statusForPath("/questions"), 200);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/blog/how-i-read-an-fdd-in-20-minutes"), true);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/blog/is-buying-a-franchise-a-good-decision"), true);
+
+for (const inboundPath of [
+  "/buy-a-franchise",
+  "/faq",
+  "/questions",
+  "/blog/franchise-mistakes-first-time-buyers",
+  "/blog/corporate-refugee-franchise-transition",
+]) {
+  const html = applySeoToHtml(shell, inboundPath);
+  assert.match(html, /href="\/blog\/is-buying-a-franchise-a-good-decision"/, inboundPath);
+  assert.match(html, /Is buying a franchise a good decision\?/, inboundPath);
+}
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/black-book"), false);
 assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/franchise-assessment"), false);
 

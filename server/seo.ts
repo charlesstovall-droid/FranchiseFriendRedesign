@@ -566,6 +566,7 @@ function renderFaqPageHtml(): string {
   <h1>Franchise Consulting FAQ</h1>
   <p>Everything you need to know about working with a franchise consultant.</p>
   <p>Free to you, no cost to work with me.</p>
+  <p>If you are still deciding whether ownership should look like a franchise, read <a href="/blog/is-buying-a-franchise-a-good-decision">Is buying a franchise a good decision?</a></p>
   ${renderFaqHtml(siteFaqItems, "Questions")}
   ${napBlockHtml()}
 </article>

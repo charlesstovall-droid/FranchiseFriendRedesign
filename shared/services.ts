@@ -48,6 +48,8 @@ export const servicePages: ServicePage[] = [
       { text: "FDD red flags", href: "/blog/fdd-red-flags" },
       ". The cash you should still have after opening is its own question: ",
       { text: "liquidity after opening", href: "/questions/liquidity-after-opening" },
+      ". If you are still deciding whether to buy at all, start with ",
+      { text: "Is buying a franchise a good decision?", href: "/blog/is-buying-a-franchise-a-good-decision" },
       ".",
     ],
     checklistTitle: "What I want in hand before you fall in love with a brand",
