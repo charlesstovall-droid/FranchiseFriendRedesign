@@ -91,6 +91,11 @@ export const questionIndex: QuestionIndex = {
       fddRead,
       ".",
     ),
+    p(
+      "I answer the question under all of these in ",
+      link("Is buying a franchise a good decision?", "/blog/is-buying-a-franchise-a-good-decision"),
+      ".",
+    ),
   ],
 };
 
