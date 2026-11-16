@@ -270,10 +270,18 @@ export function renderHomeHtml(): string {
   <p>You are weighing a six or seven figure decision. Before you sign an FDD, talk to a consultant who built 30 franchise locations across 4 brands and exited to private equity. Honest answers, real numbers.</p>
   <p>${GOOGLE_REVIEW_RATING} · ${GOOGLE_REVIEW_COUNT} Google Reviews</p>
   <p>Brands built, scaled and exited. Featured in Inc. 500, Entrepreneur, and Business RadioX. Boost Mobile, Massage Envy, YogaSix, Image Studios.</p>
-  <h2>I have sat on your side of the table.</h2>
-  <p>Most franchise consultants have never signed a lease, made payroll on a slow month, or negotiated a multi-unit development agreement. I have done all three, many times over.</p>
-  <p>I opened my first location in 2013. By 2017 I had scaled to 20 units across multiple states, and I went on to build and operate 30 locations across four very different brands before selling to private equity.</p>
-  <p>When we review an FDD together, you get an operator's read on Item 19, territory, labor model, and unit economics. If a concept is not right for you, I will tell you.</p>
+  <h2>You get an operator in your corner before you sign.</h2>
+  <p>I've signed leases, made payroll on slow months, and negotiated multi-unit deals, so I read a deal like someone who has to live with it.</p>
+  <h3>What I do for you</h3>
+  <ol>
+    <li><strong>Pressure-test Item 19</strong> — We turn the franchisor's numbers into your unit math: labor, rent, ramp time, and working capital, before you commit.</li>
+    <li><strong>Read the deal like an operator</strong> — Territory, the lease, the development schedule, and the clauses that bite in year two.</li>
+    <li><strong>Tell you no</strong> — If a concept isn't right for your money, time, or goals, I'll say so.</li>
+    <li><strong>Validation calls with real owners</strong> — You talk with people who run the units. I send you in with the questions that get honest answers.</li>
+  </ol>
+  <p>30 locations built · 4 brands · Retail, wellness, fitness, salon suites · Sold to private equity</p>
+  <p>Boost Mobile, Massage Envy, YogaSix, Image Studios</p>
+  <p><a href="https://calendly.com/charles-stovall/intro">Book a Call</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I read an FDD in 20 minutes</a></p>
   <ul>
     <li>30 locations built and exited</li>
     <li>4 franchise brands owned</li>

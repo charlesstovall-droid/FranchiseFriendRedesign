@@ -135,7 +135,10 @@ assert.equal(statusForPath("/"), 200);
 assertPage("/", "Your Franchise Friend", (html) => {
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/"/);
   assert.match(html, /Invest in Yourself/);
-  assert.match(html, /I have sat on your side of the table/);
+  assert.match(html, /You get an operator in your corner before you sign/);
+  assert.match(html, /Pressure-test Item 19/);
+  assert.match(html, /How I read an FDD in 20 minutes/);
+  assert.doesNotMatch(html, /I have sat on your side of the table/);
   assert.match(html, /30 locations/);
   assert.match(html, /4 brands/);
   assert.match(html, /private equity/i);
@@ -484,7 +487,7 @@ const fixedHome = await (await fetch(`http://127.0.0.1:${fixedPort}/`, { headers
 assert.match(fixedHome, /<title>Charles Stovall \| Your Franchise Friend/);
 assert.match(fixedHome, /canonical" href="https:\/\/www\.charlesstovall\.com\/"/);
 assert.match(fixedHome, /Invest in Yourself/);
-assert.match(fixedHome, /I have sat on your side of the table/);
+assert.match(fixedHome, /You get an operator in your corner before you sign/);
 assert.match(fixedHome, /src="\/cs-shield-logo\.png"/);
 assert.doesNotMatch(fixedHome, /<div id="root"><\/div>/);
 assert.doesNotMatch(fixedHome, /Expert Franchise Consulting in Charleston SC/);

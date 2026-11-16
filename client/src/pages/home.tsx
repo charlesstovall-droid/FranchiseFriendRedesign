@@ -47,6 +47,25 @@ const logos: LogoItem[] = [
   { kind: "dot" },
 ];
 
+const helpItems: { title: string; body: string }[] = [
+  {
+    title: "Pressure-test Item 19",
+    body: "We turn the franchisor's numbers into your unit math: labor, rent, ramp time, and working capital, before you commit.",
+  },
+  {
+    title: "Read the deal like an operator",
+    body: "Territory, the lease, the development schedule, and the clauses that bite in year two.",
+  },
+  {
+    title: "Tell you no",
+    body: "If a concept isn't right for your money, time, or goals, I'll say so.",
+  },
+  {
+    title: "Validation calls with real owners",
+    body: "You talk with people who run the units. I send you in with the questions that get honest answers.",
+  },
+];
+
 const phases: { title: string; body: string; icon: ReactNode }[] = [
   {
     title: "Intro Call",
@@ -470,44 +489,52 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="story">
-          <div className="wrap story-grid">
-            <div className="story-copy">
-              <span className="eyebrow">Why work with me</span>
-              <h2 className="fade-heading">
-                I have sat on <span className="sage">your side</span> of the table.
-              </h2>
-              <p>
-                Most franchise consultants have never signed a lease, made payroll on a slow month, or negotiated a
-                multi-unit development agreement. I have done all three, many times over.
-              </p>
-              <p>
-                I opened my first location in 2013. By 2017 I had scaled to 20 units across multiple states, and I went
-                on to build and operate <strong>30 locations across four very different brands</strong> before selling
-                to private equity.
-              </p>
-              <p>
-                That experience changes the conversation. When we review an FDD together, you get an operator's read on
-                Item 19, territory, labor model, and unit economics, not a sales pitch.{" "}
-                <strong>If a concept is not right for you, I will tell you.</strong>
-              </p>
-            </div>
-            <div className="brand-list" role="list">
-              {[
-                ["Boost Mobile", "Retail · Multi-State Scale"],
-                ["Massage Envy", "Health & Wellness"],
-                ["YogaSix", "Boutique Fitness"],
-                ["Image Studios", "Salon Suites · Real Estate"],
-              ].map(([name, role]) => (
-                <div className="brand-row" role="listitem" key={name}>
-                  <span className="b-name">{name}</span>
-                  <span className="b-role">{role}</span>
-                </div>
-              ))}
-              <div className="brand-row exit-row" role="listitem">
-                <span className="b-name">Private Equity Exit</span>
-                <span className="b-role">30 Locations Sold</span>
+        <section className="story" aria-labelledby="why-heading">
+          <div className="wrap">
+            <div className="story-grid">
+              <div className="story-copy">
+                <span className="eyebrow">Why work with me</span>
+                <h2 id="why-heading" className="fade-heading">
+                  You get an <span className="sage">operator</span> in your corner before you sign.
+                </h2>
+                <p>
+                  I've signed leases, made payroll on slow months, and negotiated multi-unit deals, so I read a deal
+                  like someone who has to live with it.
+                </p>
               </div>
+              <div className="help">
+                <p className="help-kicker">What I do for you</p>
+                <ol className="help-list">
+                  {helpItems.map((item, index) => (
+                    <li className="help-item" key={item.title}>
+                      <span className="help-num" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <div className="cred">
+              <p className="cred-line">
+                <span>30 locations built</span>
+                <span>4 brands</span>
+                <span className="cred-wide">Retail, wellness, fitness, salon suites</span>
+                <span>Sold to private equity</span>
+              </p>
+              <p className="cred-brands">Boost Mobile · Massage Envy · YogaSix · Image Studios</p>
+            </div>
+            <div className="story-actions">
+              <a className="btn btn-gold" href={CALENDLY} target="_blank" rel="noopener">
+                Book a Call
+              </a>
+              <a className="story-textlink" href="/blog/how-i-read-an-fdd-in-20-minutes">
+                How I read an FDD in 20 minutes
+              </a>
             </div>
           </div>
         </section>
