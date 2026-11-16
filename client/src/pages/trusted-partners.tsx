@@ -7,62 +7,92 @@ import {
   trustedPartnersPage,
   type TrustedPartner,
 } from "@shared/trusted-partners";
+import "./trusted-partners.css";
 
-function PartnerCard({ partner }: { partner: TrustedPartner }) {
-  const logoPlate =
-    partner.logo.plate === "navy"
-      ? "bg-[#12304C] px-4 py-3"
-      : "bg-white px-1 py-1";
+function PartnerMark({ partner }: { partner: TrustedPartner }) {
+  const plate = partner.logo.plate === "navy" ? "is-navy" : "is-ivory";
 
   return (
-    <article className="flex h-full flex-col border border-[#12304C]/12 bg-white p-6 md:p-7">
-      <div className={`mb-6 flex h-20 items-center ${logoPlate}`}>
+    <div className="partner-mark">
+      <span className={`partner-plate ${plate}`}>
         <img
           src={partner.logo.src}
           alt={partner.logo.alt}
           width={partner.logo.width}
           height={partner.logo.height}
-          className="max-h-16 w-auto max-w-full object-contain object-left"
+          data-logo={partner.id}
+          className="partner-logo"
         />
-      </div>
+      </span>
+    </div>
+  );
+}
 
+function PartnerPerson({ partner }: { partner: TrustedPartner }) {
+  if (!partner.person) return null;
+
+  return (
+    <div className="partner-person">
       {partner.headshot ? (
-        <div className="mb-5">
+        <span className="partner-headshot" data-person={partner.id}>
           <img
             src={partner.headshot.src}
             alt={partner.headshot.alt}
             width={partner.headshot.width}
             height={partner.headshot.height}
-            className={
-              partner.headshot.frame === "avatar"
-                ? "h-24 w-24 rounded-full object-cover"
-                : "h-44 w-auto max-w-[9rem] object-contain object-bottom"
-            }
           />
-        </div>
+        </span>
       ) : null}
+      <p className="partner-person-copy">
+        <span className="partner-person-name">{partner.person}</span>
+        {partner.role ? <span className="partner-person-role"> · {partner.role}</span> : null}
+      </p>
+    </div>
+  );
+}
 
-      <h3 className="font-serif text-2xl font-bold text-[#12304C]">{partner.firm}</h3>
-      {partner.person ? (
-        <p className="mt-1 text-sm font-semibold tracking-wide text-[#12304C]/75">
-          {partner.person}
-          {partner.role ? <span className="font-normal"> · {partner.role}</span> : null}
-        </p>
-      ) : null}
-      <p className="mt-4 flex-1 leading-7 text-[#12304C]/90">
+function PartnerVisit({ partner }: { partner: TrustedPartner }) {
+  return (
+    <a href={partner.url} target="_blank" rel="noopener noreferrer" className="partner-visit">
+      Visit {partner.firm}
+      <span aria-hidden="true">→</span>
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
+function PartnerEntry({ partner, solo }: { partner: TrustedPartner; solo: boolean }) {
+  if (solo) {
+    return (
+      <article className="partner-entry is-solo">
+        <PartnerMark partner={partner} />
+        <span className="partner-rule" aria-hidden="true" />
+        <div className="partner-solo-body">
+          <div className="partner-identity">
+            <h3>{partner.firm}</h3>
+            <PartnerPerson partner={partner} />
+          </div>
+          <div className="partner-aside">
+            <p className="partner-description">
+              {partner.description[0]} {partner.description[1]}
+            </p>
+            <PartnerVisit partner={partner} />
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className="partner-entry">
+      <PartnerMark partner={partner} />
+      <span className="partner-rule" aria-hidden="true" />
+      <h3>{partner.firm}</h3>
+      <PartnerPerson partner={partner} />
+      <p className="partner-description">
         {partner.description[0]} {partner.description[1]}
       </p>
-      <p className="mt-6">
-        <a
-          href={partner.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold text-[#12304C] underline decoration-[#9BD7B3] underline-offset-4 hover:decoration-[#F2C740]"
-        >
-          Visit {partner.firm}
-          <span className="sr-only"> (opens in a new tab)</span>
-        </a>
-      </p>
+      <PartnerVisit partner={partner} />
     </article>
   );
 }
@@ -71,7 +101,7 @@ export default function TrustedPartners() {
   const page = trustedPartnersPage;
 
   return (
-    <div className="min-h-screen bg-[#F4ECE1] text-[#12304C]">
+    <div className="trusted-partners-page">
       <SEO
         title={page.title}
         description={page.description}
@@ -79,79 +109,87 @@ export default function TrustedPartners() {
         schema={trustedPartnersJsonLd()}
       />
       <Navbar />
-      <header className="bg-[#12304C] pb-14 pt-40 text-[#F4ECE1]">
-        <div className="container mx-auto max-w-5xl px-4 md:px-6">
-          <p className="text-xs uppercase tracking-[0.18em] text-[#F2C740]">Partners I trust</p>
-          <h1 className="mt-4 max-w-3xl font-serif text-4xl font-bold leading-tight md:text-5xl">{page.h1}</h1>
-        </div>
-      </header>
+      <div className="trusted-fade">
+        <header className="tp-hero">
+          <div className="tp-wrap">
+            <p className="tp-kicker">Partners I trust</p>
+            <h1>{page.h1}</h1>
+          </div>
+        </header>
 
-      <main className="trusted-fade container mx-auto max-w-5xl px-4 py-12 md:px-6 md:py-16">
-        <div className="max-w-3xl space-y-5 text-lg leading-8">
-          {page.intro.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-
-        {page.sections.map((section) => (
-          <section key={section.id} id={section.id} className="mt-14">
-            <h2 className="font-serif text-3xl font-bold">{section.title}</h2>
-            <p className="mt-3 max-w-3xl leading-7 text-[#12304C]/85">{section.lead}</p>
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
-              {section.partners.map((partner) => (
-                <PartnerCard key={partner.id} partner={partner} />
+        <main>
+          <div className="tp-wrap">
+            <div className="tp-intro">
+              {page.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+          </div>
+
+          {page.sections.map((section) => {
+            const solo = section.partners.length === 1;
+            return (
+              <section
+                key={section.id}
+                id={section.id}
+                className={solo ? "partner-section is-single" : "partner-section"}
+              >
+                <div className="tp-wrap">
+                  <div className="partner-section-head">
+                    <h2>{section.title}</h2>
+                    <p>{section.lead}</p>
+                  </div>
+                  <div className={solo ? "partner-list is-solo" : "partner-list"}>
+                    {section.partners.map((partner) => (
+                      <PartnerEntry key={partner.id} partner={partner} solo={solo} />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            );
+          })}
+
+          <div className="tp-wrap tp-footnote-wrap">
+            <p className="tp-footnote">{page.footnote}</p>
+          </div>
+
+          <section className="tp-questions">
+            <div className="tp-wrap">
+              <h2>{page.questionsTitle}</h2>
+              <ul>
+                {page.questions.map((question) => (
+                  <li key={question}>{question}</li>
+                ))}
+              </ul>
+            </div>
           </section>
-        ))}
 
-        <p className="mt-10 max-w-3xl border-t border-[#12304C]/15 pt-6 text-sm leading-6 text-[#12304C]/70">
-          {page.footnote}
-        </p>
+          <section className="tp-reading">
+            <div className="tp-wrap">
+              <h2>{page.readingTitle}</h2>
+              <ul>
+                {page.reading.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
 
-        <section className="mt-14 max-w-3xl">
-          <h2 className="font-serif text-2xl font-bold">{page.questionsTitle}</h2>
-          <ul className="mt-5 space-y-3">
-            {page.questions.map((question) => (
-              <li key={question} className="flex gap-3 leading-7">
-                <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-[#9BD7B3]" aria-hidden="true" />
-                <span>{question}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-14 max-w-3xl">
-          <h2 className="font-serif text-2xl font-bold">{page.readingTitle}</h2>
-          <ul className="mt-4 space-y-2 leading-7">
-            {page.reading.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="font-semibold underline decoration-[#9BD7B3] underline-offset-4 hover:decoration-[#F2C740]"
-                >
-                  {link.text}
+          <section className="tp-cta">
+            <div className="tp-wrap">
+              <h2>{page.ctaHeading}</h2>
+              <p>{page.ctaBody}</p>
+              <p>
+                <a href={page.ctaHref} target="_blank" rel="noopener noreferrer" className="tp-button">
+                  {page.ctaLabel}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-14 max-w-3xl bg-[#12304C] p-8 text-[#F4ECE1] md:p-10">
-          <h2 className="font-serif text-2xl font-bold">{page.ctaHeading}</h2>
-          <p className="mt-4 leading-8 text-[#F4ECE1]/90">{page.ctaBody}</p>
-          <p className="mt-6">
-            <a
-              href={page.ctaHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#F2C740] px-6 py-3 font-semibold text-[#12304C] hover:bg-[#e3b833]"
-            >
-              {page.ctaLabel}
-            </a>
-          </p>
-        </section>
-      </main>
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
       <Footer />
     </div>
   );
