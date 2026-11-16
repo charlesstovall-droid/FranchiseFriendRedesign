@@ -151,6 +151,13 @@ assertPage("/", "Your Franchise Friend", (html) => {
   assert.match(html, /&quot;salesy&quot;/);
   assert.match(html, /"ratingValue":"5.0"/);
   assert.match(html, /"reviewCount":40/);
+  assert.match(html, /The team I'd put around you/);
+  assert.match(html, /href="\/trusted-partners"/);
+  assert.match(html, /Meet my trusted partners/);
+  assert.match(html, /alt="FranFund"/);
+  assert.match(html, /alt="Experience Matters"/);
+  assert.match(html, /src="\/partners\/franfund-logo\.png"/);
+  assert.doesNotMatch(html, /Peter Sherer|Tanielle Luepkes|Referral Partners/);
   assert.doesNotMatch(html, /37 Google|38 Google/);
   assert.doesNotMatch(html, /"reviewCount":37|"reviewCount":38/);
   assert.doesNotMatch(html, /Doug Marshall|Charles Wallace|Baseball 55/);
@@ -670,6 +677,17 @@ assertPage("/trusted-partners", "Trusted Partners", (html) => {
   assert.match(html, /<meta name="description" content="Funding, financial planning, and franchise attorneys Charles Stovall trusts and sends buyers to\. Based in Mt Pleasant, SC\."/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/trusted-partners"/);
   assert.match(html, /<h1>People I trust and send clients to\.<\/h1>/);
+  assert.match(html, /Buying a franchise takes a team\. I will read the file with you\./);
+  assert.match(html, /I am not the lender, the planner, or the lawyer\./);
+  assert.match(html, /Your operator/);
+  assert.match(html, /Fund it/);
+  assert.match(html, /Plan it/);
+  assert.match(html, /Protect it/);
+  assert.match(html, /href="#funding"/);
+  assert.match(html, /Tanielle Luepkes/);
+  assert.match(html, /Peter Sherer/);
+  assert.match(html, /Experience Matters/);
+  assert.match(html, /Other people I trust/);
   assert.match(html, /Partners I trust/);
   assert.match(html, /Each firm is independent\. I don't speak for them, and they don't speak for me\. Do your own diligence\./);
   assert.match(html, /Questions to ask any partner/);
@@ -703,7 +721,7 @@ assertPage("/trusted-partners", "Trusted Partners", (html) => {
   const organizations = itemList.itemListElement.map((entry: { item: { "@type": string; name: string; url: string } }) => entry.item);
   assert.deepEqual(
     organizations.map((org: { name: string }) => org.name),
-    ["FranFund", "Benetrends Financial", "Coastal Strategic Capital", "Kit Franchise Law", "BarnesLaw"],
+    ["FranFund", "Benetrends Financial", "Coastal Strategic Capital", "Kit Franchise Law", "BarnesLaw", "Experience Matters"],
   );
   assert.deepEqual(
     organizations.map((org: { url: string }) => org.url),
@@ -713,6 +731,7 @@ assertPage("/trusted-partners", "Trusted Partners", (html) => {
       "https://www.coastalstrategiccapital.com",
       "https://kitfranchiselaw.com",
       "https://www.barneslaw.com",
+      "https://expmatters.com",
     ],
   );
   for (const org of organizations) {
@@ -749,6 +768,7 @@ for (const file of [
   "kit-higgs.webp",
   "barneslaw-logo.png",
   "houston-barnes.webp",
+  "experience-matters-logo.png",
 ]) {
   assert.equal(fs.existsSync(path.resolve("client/public/partners", file)), true, file);
 }
