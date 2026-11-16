@@ -79,6 +79,7 @@ export function renderLlmsTxt(): string {
     absoluteUrl("/faq"),
     absoluteUrl("/about"),
     absoluteUrl("/buy-a-franchise"),
+    absoluteUrl("/trusted-partners"),
     absoluteUrl("/semi-absentee-franchise-consultant"),
     "https://www.franchoice.com/our-consultants/charles-stovall/",
     "https://business.mountpleasantchamber.org/list/member/platypi-consultants-dba-franchise-friend-4116",

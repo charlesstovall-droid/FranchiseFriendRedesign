@@ -50,6 +50,8 @@ export const servicePages: ServicePage[] = [
       { text: "liquidity after opening", href: "/questions/liquidity-after-opening" },
       ". If you are still deciding whether to buy at all, start with ",
       { text: "Is buying a franchise a good decision?", href: "/blog/is-buying-a-franchise-a-good-decision" },
+      " For funding, a plan, or a lawyer to read the FDD, start with ",
+      { text: "the partners I trust", href: "/trusted-partners" },
       ".",
     ],
     checklistTitle: "What I want in hand before you fall in love with a brand",
@@ -81,6 +83,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     related: [
+      { href: "/trusted-partners", text: "Partners I trust" },
       { href: "/questions", text: "Buyer questions" },
       { href: "/semi-absentee-franchise-consultant", text: "Semi-absentee franchise consultant" },
       { href: "/charleston", text: "Franchise Consultant Charleston SC" },
