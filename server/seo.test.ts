@@ -662,6 +662,96 @@ assert.match(semiHtml, /<title>Semi-Absentee Franchise Consultant \| Charles Sto
 const buyHtml = applySeoToHtml(shell, "/buy-a-franchise");
 assert.match(buyHtml, /<title>Buy a Franchise \| Charles Stovall, Your Franchise Friend<\/title>/);
 assert.equal(buyHtml, applySeoToHtml(shell, "/buy-a-franchise"));
+assert.match(buyHtml, /href="\/trusted-partners"/);
+assert.match(buyHtml, /the partners I trust/);
+
+assertPage("/trusted-partners", "Trusted Partners", (html) => {
+  assert.match(html, /<title>Trusted Partners \| Charles Stovall, Your Franchise Friend<\/title>/);
+  assert.match(html, /<meta name="description" content="Funding, financial planning, and franchise attorneys Charles Stovall trusts and sends buyers to\. Based in Mt Pleasant, SC\."/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/trusted-partners"/);
+  assert.match(html, /<h1>People I trust and send clients to\.<\/h1>/);
+  assert.match(html, /Partners I trust/);
+  assert.match(html, /Each firm is independent\. I don't speak for them, and they don't speak for me\. Do your own diligence\./);
+  assert.match(html, /Questions to ask any partner/);
+  assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
+  assert.match(html, /href="\/blog\/fdd-red-flags"/);
+  assert.match(html, /href="\/questions\/liquidity-after-opening"/);
+  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /Book a call with Charles/);
+  assert.match(html, /target="_blank"/);
+  assert.match(html, /rel="noopener noreferrer"/);
+  assert.match(html, /alt="FranFund logo"/);
+  assert.match(html, /alt="Benetrends Financial logo"/);
+  assert.match(html, /alt="Coastal Strategic Capital logo"/);
+  assert.match(html, /alt="Billy Petzold, wealth advisor at Coastal Strategic Capital in Charleston"/);
+  assert.match(html, /alt="Kit Franchise Law logo"/);
+  assert.match(html, /alt="Kit Higgs, franchise attorney at Kit Franchise Law"/);
+  assert.match(html, /alt="BarnesLaw logo"/);
+  assert.match(html, /alt="Houston Barnes, franchise attorney at BarnesLaw"/);
+  assert.match(html, /src="\/partners\/franfund-logo\.png"/);
+  assert.doesNotMatch(html, /https:\/\/www\.franfund\.com\/hs-fs/);
+  assert.doesNotMatch(html, /<div id="root"><\/div>/);
+
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) =>
+    JSON.parse(match[1]),
+  );
+  const webPage = blocks.find((block) => block["@type"] === "WebPage");
+  assert.ok(webPage);
+  assert.equal(webPage.url, "https://www.charlesstovall.com/trusted-partners");
+  const itemList = blocks.find((block) => block["@type"] === "ItemList" && block.name === "Partners I trust");
+  assert.ok(itemList);
+  const organizations = itemList.itemListElement.map((entry: { item: { "@type": string; name: string; url: string } }) => entry.item);
+  assert.deepEqual(
+    organizations.map((org: { name: string }) => org.name),
+    ["FranFund", "Benetrends Financial", "Coastal Strategic Capital", "Kit Franchise Law", "BarnesLaw"],
+  );
+  assert.deepEqual(
+    organizations.map((org: { url: string }) => org.url),
+    [
+      "https://www.franfund.com",
+      "https://www.benetrends.com",
+      "https://www.coastalstrategiccapital.com",
+      "https://kitfranchiselaw.com",
+      "https://www.barneslaw.com",
+    ],
+  );
+  for (const org of organizations) {
+    assert.equal(org["@type"], "Organization");
+  }
+
+  const article = html.slice(html.indexOf("<article>"), html.lastIndexOf("</article>") + "</article>".length).toLowerCase();
+  for (const phrase of [
+    "commission",
+    "compensat",
+    "franchoice",
+    "referral fee",
+    "placement fee",
+    "you pay nothing",
+    "franchisor pays",
+    "free to you",
+    "my services are free",
+    "nofollow",
+  ]) {
+    assert.equal(article.includes(phrase), false, `trusted partners should not include "${phrase}"`);
+  }
+});
+assert.equal(statusForPath("/trusted-partners"), 200);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/trusted-partners"), true);
+
+const footerSrc = fs.readFileSync(path.resolve("client/src/components/Footer.tsx"), "utf8");
+assert.match(footerSrc, /href="\/trusted-partners"/);
+for (const file of [
+  "franfund-logo.png",
+  "benetrends-logo.png",
+  "coastal-strategic-capital-logo.png",
+  "billy-petzold.jpg",
+  "kit-franchise-law-logo.png",
+  "kit-higgs.webp",
+  "barneslaw-logo.png",
+  "houston-barnes.webp",
+]) {
+  assert.equal(fs.existsSync(path.resolve("client/public/partners", file)), true, file);
+}
 
 const indexShell = fs.readFileSync(path.resolve("client/index.html"), "utf8");
 assert.match(indexShell, /family=Libre\+Baskerville/);

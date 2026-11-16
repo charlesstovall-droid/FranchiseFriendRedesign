@@ -39,6 +39,11 @@ import {
   mountPleasantServing,
 } from "../shared/service-areas";
 import { CONSULT_CALENDLY, servicePages, type Inline as ServiceInline, type ServicePage } from "../shared/services";
+import {
+  trustedPartnersJsonLd,
+  trustedPartnersPage,
+  type TrustedPartner,
+} from "../shared/trusted-partners";
 
 export interface SeoPage {
   title: string;
@@ -789,6 +794,53 @@ function renderServiceHtml(page: ServicePage): string {
 </article>`;
 }
 
+function renderPartnerCard(partner: TrustedPartner): string {
+  const logo = `<img src="${escapeHtml(partner.logo.src)}" alt="${escapeHtml(partner.logo.alt)}" width="${partner.logo.width}" height="${partner.logo.height}" />`;
+  const headshot = partner.headshot
+    ? `<img src="${escapeHtml(partner.headshot.src)}" alt="${escapeHtml(partner.headshot.alt)}" width="${partner.headshot.width}" height="${partner.headshot.height}" />`
+    : "";
+  const person = partner.person
+    ? `<p>${escapeHtml(partner.person)}${partner.role ? ` · ${escapeHtml(partner.role)}` : ""}</p>`
+    : "";
+  return `<article>
+    ${logo}
+    ${headshot}
+    <h3>${escapeHtml(partner.firm)}</h3>
+    ${person}
+    <p>${escapeHtml(partner.description[0])} ${escapeHtml(partner.description[1])}</p>
+    <p><a href="${escapeHtml(partner.url)}" target="_blank" rel="noopener noreferrer">Visit ${escapeHtml(partner.firm)}</a></p>
+  </article>`;
+}
+
+function renderTrustedPartnersHtml(): string {
+  const page = trustedPartnersPage;
+  const sections = page.sections
+    .map((section) => {
+      const cards = section.partners.map(renderPartnerCard).join("\n");
+      return `<section>
+    <h2>${escapeHtml(section.title)}</h2>
+    <p>${escapeHtml(section.lead)}</p>
+    ${cards}
+  </section>`;
+    })
+    .join("\n");
+  const questions = page.questions.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const reading = page.reading
+    .map((link) => `<li><a href="${escapeHtml(link.href)}">${escapeHtml(link.text)}</a></li>`)
+    .join("");
+  return `<article>
+  <h1>${escapeHtml(page.h1)}</h1>
+  ${page.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n  ")}
+  ${sections}
+  <p>${escapeHtml(page.footnote)}</p>
+  <h2>${escapeHtml(page.questionsTitle)}</h2>
+  <ul>${questions}</ul>
+  <h2>${escapeHtml(page.readingTitle)}</h2>
+  <ul>${reading}</ul>
+  <p><a href="${escapeHtml(page.ctaHref)}" target="_blank" rel="noopener noreferrer">${escapeHtml(page.ctaLabel)}</a></p>
+</article>`;
+}
+
 function serviceSeoPage(page: ServicePage): SeoPage {
   return {
     title: page.title,
@@ -876,6 +928,13 @@ const STATIC_PAGES: Record<string, SeoPage> = {
       name: "About Charles Stovall",
       mainEntity: { "@id": PERSON_ID },
     },
+  },
+  "/trusted-partners": {
+    title: trustedPartnersPage.title,
+    description: trustedPartnersPage.description,
+    canonical: absoluteUrl(trustedPartnersPage.path),
+    bodyHtml: renderTrustedPartnersHtml(),
+    jsonLd: trustedPartnersJsonLd(),
   },
   "/advisor": {
     title: "Ownership Advisor | Franchise Friend with Charles Stovall",
@@ -1184,6 +1243,7 @@ export function sitemapUrls(): string[] {
     "/speaking",
     "/advisor",
     "/questions",
+    "/trusted-partners",
     ...questionPages.map((page) => page.path),
     ...servicePages.map((page) => page.path),
   ];
