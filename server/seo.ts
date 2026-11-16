@@ -40,6 +40,7 @@ import {
 } from "../shared/service-areas";
 import { CONSULT_CALENDLY, servicePages, type Inline as ServiceInline, type ServicePage } from "../shared/services";
 import {
+  trustedPartnerSteps,
   trustedPartnersJsonLd,
   trustedPartnersPage,
   type TrustedPartner,
@@ -310,11 +311,18 @@ export function renderHomeHtml(): string {
   <p>You want a cash-flowing asset alongside your market portfolio. We target semi-absentee and manager-run models with strong Item 19s and a path to multiple units.</p>
   <h3>Going multi-unit from day one</h3>
   <p>You are thinking in territories, not storefronts. Having scaled 1 location to 30, I will help you structure development agreements and avoid the mistakes that stall growth.</p>
-  <h2>Trusted Referral Partners.</h2>
-  <h3>Peter Sherer · Experience Matters</h3>
-  <p>Executive and senior-professional career-transition coaching to help clarify your strengths and next steps.</p>
-  <h3>Tanielle Luepkes · FranFund</h3>
-  <p>FranFund helps prospective business owners explore funding options as they consider a franchise or other business opportunity.</p>
+  <h2>The team I'd put around you.</h2>
+  <ul>
+    ${trustedPartnersPage.sections
+      .flatMap((section) =>
+        section.partners.map(
+          (partner) =>
+            `<li><a href="/trusted-partners#${escapeHtml(section.id)}"><img src="${escapeHtml(partner.logo.src)}" alt="${escapeHtml(partner.firm)}" width="${partner.logo.width}" height="${partner.logo.height}" /></a></li>`,
+        ),
+      )
+      .join("\n    ")}
+  </ul>
+  <p><a href="/trusted-partners">Meet my trusted partners</a></p>
   <h2>Find Your Freedom.</h2>
   <p>Book a free, no-obligation consultation. Worst case, you leave with a clearer picture of franchising. Best case, you find the business that changes your family's trajectory.</p>
   <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant franchise consultant</a> · <a href="/south-carolina">South Carolina franchise consultant</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/about">About Charles</a></p>
@@ -836,9 +844,14 @@ function renderTrustedPartnersHtml(): string {
   const reading = page.reading
     .map((link) => `<li><a href="${escapeHtml(link.href)}">${escapeHtml(link.text)}</a></li>`)
     .join("");
+  const steps = trustedPartnerSteps
+    .map((step) => `<a href="#${escapeHtml(step.id)}">${escapeHtml(step.label)}</a>`)
+    .join(" · ");
   return `<article>
   <h1>${escapeHtml(page.h1)}</h1>
   ${page.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n  ")}
+  <p>Your operator · Charles Stovall</p>
+  <nav>${steps}</nav>
   ${sections}
   <p>${escapeHtml(page.footnote)}</p>
   <h2>${escapeHtml(page.questionsTitle)}</h2>

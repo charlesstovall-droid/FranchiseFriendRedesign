@@ -58,9 +58,8 @@ export const trustedPartnersPage: TrustedPartnersPage = {
     "Funding, financial planning, and franchise attorneys Charles Stovall trusts and sends buyers to. Based in Mt Pleasant, SC.",
   h1: "People I trust and send clients to.",
   intro: [
-    "Buying a franchise takes a team.",
-    "I will read the file with you. I am not the lender, the planner, or the lawyer.",
-    "These are the people I trust and send clients to.",
+    "Buying a franchise takes a team. I will read the file with you.",
+    "I am not the lender, the planner, or the lawyer.",
   ],
   sections: [
     {
@@ -72,6 +71,8 @@ export const trustedPartnersPage: TrustedPartnersPage = {
           id: "franfund",
           firm: "FranFund",
           url: "https://www.franfund.com",
+          person: "Tanielle Luepkes",
+          role: "Funding Consultant",
           description: [
             "FranFund helps people fund a franchise by building a plan around their finances, including SBA and conventional loans and 401(k)/IRA rollover funding (ROBS).",
             "Their funding consultants walk you through the options and can issue a pre-approval.",
@@ -189,6 +190,31 @@ export const trustedPartnersPage: TrustedPartnersPage = {
         },
       ],
     },
+    {
+      id: "other",
+      title: "Other people I trust",
+      lead: "When franchising is not the right path, this is who I send people to.",
+      partners: [
+        {
+          id: "experience-matters",
+          firm: "Experience Matters",
+          url: "https://expmatters.com",
+          person: "Peter Sherer",
+          role: "Executive transition coach",
+          description: [
+            "Peter Sherer founded Experience Matters in 2006 to coach executives and senior professionals through a career transition.",
+            "The work is a structured process to clarify strengths, goals, and the next assignment.",
+          ],
+          logo: {
+            src: "/partners/experience-matters-logo.png",
+            alt: "Experience Matters logo",
+            width: 452,
+            height: 94,
+            plate: "light",
+          },
+        },
+      ],
+    },
   ],
   footnote:
     "Each firm is independent. I don't speak for them, and they don't speak for me. Do your own diligence.",
@@ -213,8 +239,20 @@ export const trustedPartnersPage: TrustedPartnersPage = {
   ctaHref: CONSULT_CALENDLY,
 };
 
+export const trustedPartnerSteps = [
+  { id: "funding", label: "Fund it", role: "Funding" },
+  { id: "financial-planning", label: "Plan it", role: "Planning" },
+  { id: "franchise-attorneys", label: "Protect it", role: "Legal" },
+] as const;
+
 export function trustedPartnerOrganizations(): TrustedPartner[] {
   return trustedPartnersPage.sections.flatMap((section) => section.partners);
+}
+
+export function trustedPartnerMarks(): { sectionId: string; partner: TrustedPartner }[] {
+  return trustedPartnersPage.sections.flatMap((section) =>
+    section.partners.map((partner) => ({ sectionId: section.id, partner })),
+  );
 }
 
 export function trustedPartnersJsonLd(): object[] {

@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type ReactNode, type SVGP
 import { SEO } from "@/components/SEO";
 import { LocalPhotoStrip } from "@/components/LocalPhotoStrip";
 import { featuredGoogleReviews, GOOGLE_REVIEW_COUNT, GOOGLE_REVIEW_RATING } from "@shared/google-reviews";
+import { trustedPartnerMarks } from "@shared/trusted-partners";
 import "./home.css";
 import shield from "@/assets/home/shield.png";
 import portrait from "@/assets/home/portrait.jpg";
@@ -117,7 +118,7 @@ const footerGroups = [
       ["/buy-a-franchise", "Buy a Franchise"],
       ["/semi-absentee-franchise-consultant", "Semi-Absentee"],
       ["/executive-access", "Executive Access"],
-      ["#partners", "Referral Partners"],
+      ["/trusted-partners", "Trusted Partners"],
       ["/privacy-policy", "Privacy"],
     ],
   },
@@ -696,56 +697,30 @@ export default function Home() {
         <section className="partners" id="partners">
           <div className="wrap">
             <div className="section-head">
-              <span className="eyebrow">Good guidance includes the next step</span>
-              <h2 className="fade-heading">
-                Trusted <span className="sage">Referral Partners.</span>
-              </h2>
-              <p>
-                Franchising is not the right answer for everyone. When a different kind of help is more useful, these
-                are people and organizations I am glad to point you toward.
-              </p>
+              <span className="eyebrow">Trusted partners</span>
+              <h2 className="fade-heading">The team I'd put around you.</h2>
             </div>
-            <div className="partner-grid">
-              <article className="partner-card">
-                <span className="chip">Career transition</span>
-                <h3>Franchising not the right fit? Let’s find your next direction.</h3>
-                <p>
-                  Your next chapter should fit your strengths, goals, and life. If business ownership isn’t your path, I
-                  can connect you with professionals who can help you explore what comes next.
-                </p>
-                <div className="partner-name">Peter Sherer · Experience Matters</div>
-                <p className="partner-detail">
-                  Executive and senior-professional career-transition coaching to help clarify your strengths and next
-                  steps.
-                </p>
-                <div className="partner-links">
-                  <a href="mailto:peter@expmatters.com">Connect with Peter</a>
-                  <a href="https://expmatters.com/" target="_blank" rel="noopener">
-                    Visit Experience Matters
+            <ul className="partner-marks">
+              {trustedPartnerMarks().map(({ sectionId, partner }) => (
+                <li key={partner.id}>
+                  <a
+                    href={`/trusted-partners#${sectionId}`}
+                    className={partner.logo.plate === "navy" ? "is-navy" : undefined}
+                  >
+                    <img
+                      src={partner.logo.src}
+                      alt={partner.firm}
+                      width={partner.logo.width}
+                      height={partner.logo.height}
+                      data-logo={partner.id}
+                    />
                   </a>
-                </div>
-              </article>
-              <article className="partner-card">
-                <span className="chip">Business funding</span>
-                <h3>Ready for ownership? Explore your funding options.</h3>
-                <p>
-                  FranFund helps prospective business owners explore funding options as they consider a franchise or
-                  other business opportunity.
-                </p>
-                <div className="partner-name">Tanielle Luepkes · FranFund</div>
-                <p className="partner-detail">
-                  Funding Consultant · <a href="tel:+18177304502">(817) 730-4502</a>
-                </p>
-                <div className="partner-links">
-                  <a href="https://calendly.com/d/cvtm-4wx-bb8" target="_blank" rel="noopener">
-                    Book a meeting
-                  </a>
-                  <a href="https://www.franfund.com/" target="_blank" rel="noopener">
-                    Visit FranFund
-                  </a>
-                </div>
-              </article>
-            </div>
+                </li>
+              ))}
+            </ul>
+            <a className="btn btn-gold" href="/trusted-partners">
+              Meet my trusted partners <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 

@@ -2,12 +2,20 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { absoluteUrl } from "@shared/site";
+import { Compass, Landmark, Scale } from "lucide-react";
 import {
+  trustedPartnerSteps,
   trustedPartnersJsonLd,
   trustedPartnersPage,
   type TrustedPartner,
 } from "@shared/trusted-partners";
 import "./trusted-partners.css";
+
+const stepIcons = {
+  funding: Landmark,
+  "financial-planning": Compass,
+  "franchise-attorneys": Scale,
+} as const;
 
 function PartnerMark({ partner }: { partner: TrustedPartner }) {
   const plate = partner.logo.plate === "navy" ? "is-navy" : "is-ivory";
@@ -64,7 +72,7 @@ function PartnerVisit({ partner }: { partner: TrustedPartner }) {
 function PartnerEntry({ partner, solo }: { partner: TrustedPartner; solo: boolean }) {
   if (solo) {
     return (
-      <article className="partner-entry is-solo">
+      <article className="partner-entry is-solo" id={partner.id}>
         <PartnerMark partner={partner} />
         <span className="partner-rule" aria-hidden="true" />
         <div className="partner-solo-body">
@@ -84,7 +92,7 @@ function PartnerEntry({ partner, solo }: { partner: TrustedPartner; solo: boolea
   }
 
   return (
-    <article className="partner-entry">
+    <article className="partner-entry" id={partner.id}>
       <PartnerMark partner={partner} />
       <span className="partner-rule" aria-hidden="true" />
       <h3>{partner.firm}</h3>
@@ -97,8 +105,30 @@ function PartnerEntry({ partner, solo }: { partner: TrustedPartner; solo: boolea
   );
 }
 
+function TeamLogo({ partner }: { partner: TrustedPartner }) {
+  const plate = partner.logo.plate === "navy" ? "is-navy" : "is-ivory";
+
+  return (
+    <a href={`#${partner.id}`} className={plate} data-logo={partner.id}>
+      <img
+        src={partner.logo.src}
+        alt={partner.firm}
+        width={partner.logo.width}
+        height={partner.logo.height}
+        data-logo={partner.id}
+      />
+    </a>
+  );
+}
+
 export default function TrustedPartners() {
   const page = trustedPartnersPage;
+  const teamSections = trustedPartnerSteps
+    .map((step) => {
+      const section = page.sections.find((item) => item.id === step.id);
+      return section ? { step, section } : null;
+    })
+    .filter((item): item is { step: (typeof trustedPartnerSteps)[number]; section: (typeof page.sections)[number] } => item !== null);
 
   return (
     <div className="trusted-partners-page">
@@ -111,21 +141,64 @@ export default function TrustedPartners() {
       <Navbar />
       <div className="trusted-fade">
         <header className="tp-hero">
-          <div className="tp-wrap">
-            <p className="tp-kicker">Partners I trust</p>
-            <h1>{page.h1}</h1>
+          <div className="tp-wrap tp-hero-grid">
+            <div>
+              <p className="tp-kicker">Partners I trust</p>
+              <h1>{page.h1}</h1>
+              <div className="tp-subhead">
+                {page.intro.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+            <aside className="tp-team" aria-label="Your team">
+              <div className="tp-operator">
+                <img
+                  src="/charles-homepage-portrait.jpg"
+                  alt="Charles Stovall"
+                  width={1201}
+                  height={1600}
+                />
+                <p>
+                  <span className="tp-operator-kicker">Your operator</span>
+                  <strong>Charles Stovall</strong>
+                </p>
+              </div>
+              <div className="tp-team-groups">
+                {teamSections.map(({ step, section }) => (
+                  <div className="tp-team-group" key={step.id}>
+                    <a className="tp-role" href={`#${section.id}`}>
+                      {step.role}
+                    </a>
+                    <div className="tp-team-logos">
+                      {section.partners.map((partner) => (
+                        <TeamLogo key={partner.id} partner={partner} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </aside>
           </div>
         </header>
 
-        <main>
-          <div className="tp-wrap">
-            <div className="tp-intro">
-              {page.intro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+        <nav className="tp-steps" aria-label="Partner roles">
+          <div className="tp-wrap tp-step-row">
+            {trustedPartnerSteps.map((step) => {
+              const Icon = stepIcons[step.id];
+              return (
+                <a className="tp-step" href={`#${step.id}`} key={step.id}>
+                  <span className="tp-step-icon">
+                    <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
+                  </span>
+                  <span className="tp-step-label">{step.label}</span>
+                </a>
+              );
+            })}
           </div>
+        </nav>
 
+        <main>
           {page.sections.map((section) => {
             const solo = section.partners.length === 1;
             return (

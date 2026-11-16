@@ -174,23 +174,22 @@ body:has(.home-page){background:#F4ECE1}
 .home-page .fit h3{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:1rem 0 .6rem}
 .home-page .fit p{font-size:.95rem;color:var(--ink-soft)}
 .home-page .fit .chip{display:inline-block;background:var(--cream);border:1px solid var(--hairline);color:var(--navy);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:999px;padding:.4rem .9rem}
-/* trusted referral partners */
-.home-page .partners{background:var(--cream-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
-.home-page .partners .section-head{margin-bottom:2.4rem}
-.home-page .partner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
-.home-page .partner-card{background:var(--cream);border:1px solid var(--hairline);border-radius:22px;padding:2rem 1.9rem;display:flex;flex-direction:column;align-items:flex-start;min-height:100%;transition:box-shadow 150ms ease, border-color 150ms ease}
-.home-page .partner-card:hover{box-shadow:0 12px 28px rgba(18,48,76,.12);border-color:rgba(18,48,76,.22)}
-.home-page .partner-card:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(242,199,64,.42)}
-.home-page .partner-card .chip{display:inline-block;background:var(--sage);color:var(--navy);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:999px;padding:.4rem .9rem}
-.home-page .partner-card:nth-child(2) .chip{background:var(--gold)}
-.home-page .partner-card h3{font-family:var(--display);font-weight:600;font-size:clamp(1.45rem,2.4vw,2rem);line-height:1.12;margin:1.1rem 0 .85rem;color:var(--navy)}
-.home-page .partner-card p{font-size:.98rem;color:var(--ink-soft);max-width:34rem}
-.home-page .partner-card .partner-name{font-family:var(--display);font-size:1.12rem;font-weight:600;color:var(--ink);margin-top:1.3rem}
-.home-page .partner-card .partner-detail{font-size:.9rem;margin-top:.25rem}
-.home-page .partner-links{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:auto;padding-top:1.6rem;font-size:.9rem;font-weight:600;color:var(--navy)}
-.home-page .partner-links a{border-bottom:1px solid rgba(18,48,76,.35);padding-bottom:2px;transition:color .15s,border-color .15s}
-.home-page .partner-links a:hover, .home-page .partner-links a:focus-visible{color:#5f8d72;border-color:#5f8d72}
-.home-page .partner-links a:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:2px}
+/* trusted partners teaser */
+.home-page .partners{background:var(--cream-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:4rem 0 4.25rem}
+.home-page .partners .section-head{margin-bottom:1.35rem}
+.home-page .partner-marks{list-style:none;display:flex;align-items:center;flex-wrap:wrap;gap:1rem 1.35rem;margin:0 0 1.7rem}
+.home-page .partner-marks a{display:inline-flex;align-items:center;justify-content:center;min-height:3.1rem;filter:grayscale(1);opacity:.8;transition:filter 200ms ease,opacity 200ms ease}
+.home-page .partner-marks a:hover,.home-page .partner-marks a:focus-visible{filter:none;opacity:1}
+.home-page .partner-marks a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.home-page .partner-marks img{display:block;width:auto;height:2.25rem;max-width:8.5rem;object-fit:contain}
+.home-page .partner-marks a.is-navy{background:var(--navy);padding:.35rem .5rem}
+.home-page .partner-marks img[data-logo="franfund"]{height:2rem}
+.home-page .partner-marks img[data-logo="benetrends"]{height:2.45rem;max-width:9rem}
+.home-page .partner-marks img[data-logo="coastal-strategic-capital"]{height:1.45rem;max-width:15rem}
+.home-page .partner-marks img[data-logo="kit-franchise-law"]{height:2.35rem;max-width:8rem}
+.home-page .partner-marks img[data-logo="barneslaw"]{height:1.55rem;max-width:8.5rem}
+.home-page .partner-marks img[data-logo="experience-matters"]{height:2.05rem;max-width:11rem}
+.home-page .partners .btn:hover{transform:none}
 
 /* socials */
 .home-page .social-row{display:flex;gap:.9rem;justify-content:center;margin-top:2.4rem;flex-wrap:wrap}
@@ -258,7 +257,9 @@ body:has(.home-page){background:#F4ECE1}
   .home-page .review, .home-page .review-half{grid-column:span 1}
   .home-page .review-stage .review-layer{grid-template-columns:1fr}
   .home-page .fit-grid{grid-template-columns:1fr}
-  .home-page .partner-grid{grid-template-columns:1fr}
+  .home-page .partner-marks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;justify-items:start;column-gap:.85rem;row-gap:1.15rem}
+  .home-page .partner-marks li:has(img[data-logo="coastal-strategic-capital"]){grid-column:1 / -1}
+  .home-page .partner-marks img[data-logo="coastal-strategic-capital"]{max-width:16rem}
   .home-page .nav-links a:not(.btn){display:none}
 
 }

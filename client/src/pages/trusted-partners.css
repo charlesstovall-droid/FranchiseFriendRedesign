@@ -35,7 +35,7 @@
 .trusted-partners-page .tp-hero {
   background: var(--navy);
   color: var(--cream);
-  padding: 10.75rem 0 4.75rem;
+  padding: 10.75rem 0 3.25rem;
 }
 
 .trusted-partners-page .tp-kicker {
@@ -58,31 +58,232 @@
 }
 
 .trusted-partners-page .tp-hero h1 {
-  max-width: 14ch;
+  max-width: 11ch;
   margin: 1.15rem 0 0;
   color: var(--cream);
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5.2vw, 3.75rem);
+  font-size: clamp(2.45rem, 4.6vw, 3.55rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.015em;
 }
 
-.trusted-partners-page .tp-intro {
-  max-width: 38rem;
-  padding: 4.25rem 0 0.5rem;
+.trusted-partners-page .tp-hero h1::after {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  margin-top: 1.25rem;
+  background: var(--gold);
 }
 
-.trusted-partners-page .tp-intro p {
+.trusted-partners-page .tp-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(17.5rem, 0.9fr);
+  gap: 2.5rem 3.5rem;
+  align-items: center;
+}
+
+.trusted-partners-page .tp-subhead {
+  max-width: 34rem;
+  margin-top: 1.2rem;
+}
+
+.trusted-partners-page .tp-subhead p {
   margin: 0;
+  color: rgba(244, 236, 225, 0.86);
   font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.12rem, 1.6vw, 1.32rem);
   line-height: 1.55;
+}
+
+.trusted-partners-page .tp-subhead p + p {
+  margin-top: 0.7rem;
+}
+
+.trusted-partners-page .tp-team {
+  background: var(--ivory);
+  color: var(--navy);
+  padding: 1.25rem 1.25rem 1.05rem;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.trusted-partners-page .tp-operator {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.trusted-partners-page .tp-operator img {
+  flex: none;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 16%;
+  background: #e6dccf;
+  box-shadow: 0 0 0 1.5px var(--gold);
+}
+
+.trusted-partners-page .tp-operator p {
+  margin: 0;
+  min-width: 0;
+}
+
+.trusted-partners-page .tp-operator-kicker {
+  display: block;
+  color: var(--gold-ink);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.trusted-partners-page .tp-operator strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.trusted-partners-page .tp-team-groups {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.trusted-partners-page .tp-team-group {
+  display: grid;
+  grid-template-columns: 5.4rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.trusted-partners-page .tp-role {
+  color: var(--gold-ink);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.trusted-partners-page .tp-role:hover {
   color: var(--navy);
 }
 
-.trusted-partners-page .tp-intro p + p {
-  margin-top: 0.9rem;
+.trusted-partners-page .tp-team-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.85rem;
+  min-width: 0;
+}
+
+.trusted-partners-page .tp-team-logos a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  text-decoration: none;
+}
+
+.trusted-partners-page .tp-team-logos img {
+  display: block;
+  width: auto;
+  max-width: 6.6rem;
+  max-height: 1.65rem;
+  object-fit: contain;
+}
+
+.trusted-partners-page .tp-team-logos a.is-navy {
+  background: var(--navy);
+  padding: 0.28rem 0.4rem;
+}
+
+.trusted-partners-page .tp-team-logos img[data-logo="coastal-strategic-capital"] {
+  max-width: 100%;
+  max-height: 1.05rem;
+}
+
+.trusted-partners-page .tp-team-logos img[data-logo="experience-matters"] {
+  max-height: 2rem;
+  max-width: 4.6rem;
+}
+
+.trusted-partners-page .tp-steps {
+  background: var(--cream);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.trusted-partners-page .tp-step-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.trusted-partners-page .tp-step-row::before {
+  content: "";
+  position: absolute;
+  top: 2.35rem;
+  left: 16%;
+  right: 16%;
+  height: 1px;
+  background: #c4a035;
+}
+
+.trusted-partners-page .tp-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.3rem 0.6rem 1.2rem;
+  color: var(--navy);
+  text-align: center;
+  text-decoration: none;
+}
+
+.trusted-partners-page .tp-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--navy);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.trusted-partners-page .tp-step-label {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.trusted-partners-page .tp-step:hover .tp-step-label,
+.trusted-partners-page .tp-step:focus-visible .tp-step-label {
+  color: var(--gold-ink);
+}
+
+.trusted-partners-page .tp-step:focus-visible,
+.trusted-partners-page .tp-role:focus-visible,
+.trusted-partners-page .tp-team-logos a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.trusted-partners-page .partner-section,
+.trusted-partners-page .partner-entry {
+  scroll-margin-top: 7.5rem;
 }
 
 .trusted-partners-page .partner-section {
@@ -181,6 +382,10 @@
 
 .trusted-partners-page .partner-logo[data-logo="barneslaw"] {
   max-height: 2.85rem;
+}
+
+.trusted-partners-page .partner-logo[data-logo="experience-matters"] {
+  max-height: 2.35rem;
 }
 
 .trusted-partners-page .partner-rule {
@@ -479,11 +684,21 @@
   }
 
   .trusted-partners-page .tp-hero {
-    padding: 9.25rem 0 3.25rem;
+    padding: 9.25rem 0 2.5rem;
   }
 
-  .trusted-partners-page .tp-intro {
-    padding-top: 3rem;
+  .trusted-partners-page .tp-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .trusted-partners-page .tp-hero h1 {
+    max-width: 12ch;
+  }
+
+  .trusted-partners-page .tp-step-row::before {
+    left: 12%;
+    right: 12%;
   }
 
   .trusted-partners-page .partner-list {
@@ -527,7 +742,23 @@
 
 @media (max-width: 480px) {
   .trusted-partners-page .tp-kicker {
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
+  }
+
+  .trusted-partners-page .tp-step-row::before {
+    display: none;
+  }
+
+  .trusted-partners-page .tp-step {
+    padding-inline: 0.3rem;
+  }
+
+  .trusted-partners-page .tp-step-label {
+    font-size: 1.02rem;
+  }
+
+  .trusted-partners-page .tp-team-group {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
   }
 
   .trusted-partners-page .partner-person {
