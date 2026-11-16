@@ -208,8 +208,8 @@ export const trustedPartnersPage: TrustedPartnersPage = {
           logo: {
             src: "/partners/experience-matters-logo.png",
             alt: "Experience Matters logo",
-            width: 427,
-            height: 180,
+            width: 452,
+            height: 94,
             plate: "light",
           },
         },
