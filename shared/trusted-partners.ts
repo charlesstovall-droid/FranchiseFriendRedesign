@@ -120,8 +120,8 @@ export const trustedPartnersPage: TrustedPartnersPage = {
           logo: {
             src: "/partners/coastal-strategic-capital-logo.png",
             alt: "Coastal Strategic Capital logo",
-            width: 800,
-            height: 236,
+            width: 811,
+            height: 60,
             plate: "light",
           },
           headshot: {
