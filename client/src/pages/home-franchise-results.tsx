@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, Calendar, ChevronDown, ChevronUp, Home, DollarSign, Clock, Users, Star, Phone, X } from "lucide-react";
+import { BOOKING_URL } from "@shared/site";
 
 const surveySteps = [
   {
@@ -247,7 +248,7 @@ export default function HomeFranchiseResults() {
                     Book a free call with Charles to learn more about this opportunity.
                   </p>
                   <a
-                    href="https://calendly.com/charles-stovall/intro"
+                    href={BOOKING_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-8 py-4 rounded-lg hover:bg-[#b8953f] transition-colors font-sans"
@@ -371,7 +372,7 @@ export default function HomeFranchiseResults() {
                 </div>
               </div>
               <a
-                href="https://calendly.com/charles-stovall/intro"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2332] font-bold px-6 py-3 rounded-lg hover:bg-[#b8953f] transition-colors font-sans text-sm"

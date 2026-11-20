@@ -43,4 +43,4 @@ First-party events only: starts, chapter completion, drop-off, thesis completion
 
 ## Booking
 
-The candidate CTA uses `https://calendly.com/charles-stovall/intro` unless you change `CALENDLY_URL` or the booking link in settings. Booking can be marked booked, declined, or not decided.
+The candidate CTA uses `https://meetings-na2.hubspot.com/charles-stovall/brand-introductions` unless you change `BOOKING_URL` or the booking link in settings. Booking can be marked booked, declined, or not decided. A saved booking link that still points at the previous scheduler is rewritten to that HubSpot page.

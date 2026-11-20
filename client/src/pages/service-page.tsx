@@ -1,10 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { absoluteUrl } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
 import { NAP } from "@shared/nap";
 import { faqPageSchema } from "@shared/faq";
-import { CONSULT_CALENDLY, getServicePage, type Inline, type ServicePage } from "@shared/services";
+import { getServicePage, type Inline, type ServicePage } from "@shared/services";
 
 function Rich({ parts }: { parts: Inline[] }) {
   return (
@@ -58,7 +58,7 @@ function ServiceArticle({ page }: { page: ServicePage }) {
         </div>
         <p className="mt-8">
           <a
-            href={CONSULT_CALENDLY}
+            href={BOOKING_URL}
             className="inline-flex bg-[#F2C740] text-[#12304C] font-semibold px-6 py-3 rounded-full"
           >
             Book a consult
@@ -98,7 +98,7 @@ function ServiceArticle({ page }: { page: ServicePage }) {
 
         <p className="mt-10">
           <a
-            href={CONSULT_CALENDLY}
+            href={BOOKING_URL}
             className="inline-flex bg-[#12304C] text-[#F4ECE1] font-semibold px-6 py-3 rounded-full"
           >
             Book a consult

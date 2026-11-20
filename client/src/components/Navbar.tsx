@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Youtube, Instagram, Linkedin, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BOOKING_URL } from "@shared/site";
 
 // Issue 8: "For Buyers" dropdown added before "Speaking".
 // Accessibility: opens on hover, focus, click/tap.
@@ -158,7 +159,7 @@ export function Navbar() {
                 Candidate Portal
               </Button>
             </Link>
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 className="bg-[#C9A84C] text-[#0A1F3C] hover:bg-[#b8953f] font-semibold text-[11px] uppercase tracking-wide h-8 px-3 py-1"
                 data-testid="button-book-consultation"
@@ -262,7 +263,7 @@ export function Navbar() {
                     Candidate Portal
                   </Button>
                 </Link>
-                <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-full">
                   <Button className="w-full bg-[#C9A84C] text-[#0A1F3C] hover:bg-[#b8953f] font-semibold">
                     Book a Consultation
                   </Button>

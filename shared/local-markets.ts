@@ -1,6 +1,6 @@
 import { faqPageSchema, type FaqItem } from "./faq";
 import { NAP, OG_IMAGE_URL, postalAddress } from "./nap";
-import { absoluteUrl } from "./site";
+import { absoluteUrl, BOOKING_URL } from "./site";
 
 export type Inline = string | { text: string; href: string };
 
@@ -45,15 +45,11 @@ export interface LocalMarketPage {
   ctaHeading: string;
   ctaBody: string;
   portraitAlt: string;
-  /** Overrides the default intro-call link. South Carolina uses the consult event. */
-  calendlyUrl?: string;
 }
 
 function p(...parts: Inline[]): Inline[] {
   return parts;
 }
-
-const calendly = "https://calendly.com/charles-stovall/intro";
 
 export const mountPleasantPage: LocalMarketPage = {
   path: "/mount-pleasant",
@@ -155,7 +151,7 @@ export const mountPleasantPage: LocalMarketPage = {
           " and ",
           { text: "how I read an FDD in 20 minutes", href: "/blog/how-i-read-an-fdd-in-20-minutes" },
           ". Or ",
-          { text: "book a consultation", href: calendly },
+          { text: "book a consultation", href: BOOKING_URL },
           ".",
         ),
       ],
@@ -294,7 +290,6 @@ export const southCarolinaPage: LocalMarketPage = {
   // https://www.naiearlefurman.com/wp-content/uploads/sites/68/Q4-2025-NAI-Earle-Furman-Retail-Market-Report.pdf
   // U.S. Census Bureau, Vintage 2025 population estimates (January 27, 2026):
   // https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html
-  calendlyUrl: "https://calendly.com/charles-stovall/consult",
   lede: [
     p(
       "I live in Mount Pleasant and work with buyers choosing a territory in this state, sometimes after a move. These markets do not share a labor model, a rent line, or an age mix. Pick the place, then we read the FDD against it.",
@@ -447,7 +442,7 @@ export const southCarolinaPage: LocalMarketPage = {
           " and ",
           { text: "how I read an FDD in 20 minutes", href: "/blog/how-i-read-an-fdd-in-20-minutes" },
           " before discovery day. ",
-          { text: "Book a consultation", href: "https://calendly.com/charles-stovall/consult" },
+          { text: "Book a consultation", href: BOOKING_URL },
           " when you know which county you mean, or call (919) 827-3921 and we will sort that out first.",
         ),
       ],

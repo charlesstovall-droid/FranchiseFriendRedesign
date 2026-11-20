@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 import charlesPhoto from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
+import { BOOKING_URL } from "@shared/site";
 
 // ── Issue 10: Social proof flag ──────────────────────────────────────────────
 // TODO Charles: replace the placeholder copy below with a real stat/review,
@@ -151,7 +152,7 @@ export function Hero() {
 
           {/* Issue 1: Updated CTAs — stacked vertically to stay within left column */}
           <div className="flex flex-col gap-4 mb-10 max-w-sm">
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-full">
               <Button
                 size="lg"
                 className="w-full bg-[#c9a84c] text-[#1a2332] hover:bg-[#b8953f] font-bold text-base h-12 shadow-lg transition-all font-sans"

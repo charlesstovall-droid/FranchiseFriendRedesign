@@ -219,8 +219,6 @@ export const HUBSPOT_ADVISOR_PROPERTIES = [
   { name: "ownership_call_booked", label: "Ownership Call Booked", type: "string" },
 ] as const;
 
-export const DEFAULT_CALENDLY_URL = "https://calendly.com/charles-stovall/intro";
-
 export const THESIS_CONCLUSION =
   "This profile is not a franchise recommendation. It is a framework for having a more productive conversation about which ownership models may or may not fit your life.";
 

@@ -9,7 +9,7 @@ import { questionIndex, questionPages, questionWordCount } from "../shared/quest
 import { mountClientStatic } from "./serve-client";
 import { mountPlainSiteFiles } from "./plain-files";
 import { AD_LANDING_REDIRECTS, BLACK_BOOK_REDIRECTS, OLD_ASSESSMENT_REDIRECTS, seoRedirects } from "./redirects";
-import { SITE_ORIGIN, toWwwCanonical } from "../shared/site";
+import { SITE_ORIGIN, toWwwCanonical, BOOKING_URL } from "../shared/site";
 import { GOOGLE_SITE_VERIFICATION, GOOGLE_VERIFICATION_BODY, GOOGLE_VERIFICATION_FILENAME, NAP, NAP_GEO, OG_IMAGE_URL } from "../shared/nap";
 
 const shell = `<!DOCTYPE html>
@@ -191,7 +191,8 @@ assertPage("/mount-pleasant", "Franchise Consultant Mount Pleasant SC", (html) =
   assert.match(html, /href="\/charleston"/);
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
-  assert.match(html, /calendly\.com\/charles-stovall\/intro/);
+  assert.match(html, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+  assert.doesNotMatch(html, /calendly\.com/i);
   assert.match(html, /95,469/);
   assert.match(html, /\$748,500/);
   assert.match(html, /<h2>Sources<\/h2>/);
@@ -239,7 +240,8 @@ assertPage("/south-carolina", "Franchise Consultant South Carolina", (html) => {
   assert.match(html, /href="\/questions"/);
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
-  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+  assert.doesNotMatch(html, /calendly\.com/i);
   assert.match(html, /4\.1%/);
   assert.match(html, /\$1,360/);
   assert.match(html, /\$26\.36/);
@@ -656,7 +658,8 @@ for (const servicePath of ["/buy-a-franchise", "/semi-absentee-franchise-consult
   assert.match(html, /<article>/);
   assert.match(html, /<h1>/);
   assert.match(html, /"@type":"FAQPage"/);
-  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+  assert.doesNotMatch(html, /calendly\.com/i);
   assert.match(html, /<ul>/);
   assert.match(html, /1531 N Lakeshore Dr/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com[^"]+"/);
@@ -697,7 +700,8 @@ assertPage("/trusted-partners", "Trusted Partners", (html) => {
   assert.match(html, /href="\/blog\/how-i-read-an-fdd-in-20-minutes"/);
   assert.match(html, /href="\/blog\/fdd-red-flags"/);
   assert.match(html, /href="\/questions\/liquidity-after-opening"/);
-  assert.match(html, /calendly\.com\/charles-stovall\/consult/);
+  assert.match(html, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+  assert.doesNotMatch(html, /calendly\.com/i);
   assert.match(html, /Book a call with Charles/);
   assert.match(html, /target="_blank"/);
   assert.match(html, /rel="noopener noreferrer"/);
@@ -787,6 +791,52 @@ assert.match(analyticsSrc, /phone_click/);
 assert.match(analyticsSrc, /PHONE_CONVERSION_SEND_TO/);
 assert.match(mainSrc, /installPhoneClickTracking/);
 assert.match(indexShell, /AW-593191309\/n8PCJ_J1dgDEI3D7ZoC/);
+assert.match(indexShell, /phone_conversion_number/);
+assert.match(indexShell, /9198273921/);
+assert.doesNotMatch(indexShell, /calendly/i);
+assert.doesNotMatch(indexShell, /assets\.calendly/);
+
+const bookingRoutes = [
+  "/",
+  "/charleston",
+  "/mount-pleasant",
+  "/south-carolina",
+  "/executive-access",
+  "/about",
+  "/questions",
+  "/buy-a-franchise",
+  "/semi-absentee-franchise-consultant",
+  "/trusted-partners",
+  "/faq",
+  "/blog/fdd-red-flags",
+  "/blog/how-i-read-an-fdd-in-20-minutes",
+  "/blog/franchise-mistakes-first-time-buyers",
+  ...questionPages.map((page) => page.path),
+];
+for (const route of bookingRoutes) {
+  const html = applySeoToHtml(shell, route);
+  assert.equal(html.toLowerCase().includes("calendly.com"), false, `${route} should not render calendly.com`);
+}
+for (const route of [
+  "/",
+  "/charleston",
+  "/mount-pleasant",
+  "/south-carolina",
+  "/executive-access",
+  "/about",
+  "/questions",
+  "/buy-a-franchise",
+  "/semi-absentee-franchise-consultant",
+  "/trusted-partners",
+  ...questionPages.map((page) => page.path),
+]) {
+  const html = applySeoToHtml(shell, route);
+  assert.equal(html.includes(BOOKING_URL), true, `${route} should link to the HubSpot meetings page`);
+}
+for (const route of ["/", "/charleston", "/mount-pleasant", "/south-carolina", "/executive-access", "/about", "/buy-a-franchise"]) {
+  const html = applySeoToHtml(shell, route);
+  assert.match(html, /tel:9198273921/, `${route} should keep the phone link`);
+}
 
 const blogPostsForQuestions = [
   "/blog/fdd-red-flags",

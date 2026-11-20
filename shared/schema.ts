@@ -271,7 +271,7 @@ export const advisorBookingEvents = pgTable("advisor_booking_events", {
   id: uuidPk(),
   candidateId: varchar("candidate_id").notNull().references(() => advisorCandidates.id, { onDelete: "cascade" }),
   status: text("status").notNull(),
-  calendlyUrl: text("calendly_url"),
+  bookingUrl: text("calendly_url"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

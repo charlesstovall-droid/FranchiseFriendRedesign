@@ -11,6 +11,7 @@ import {
   Search,
   Star
 } from "lucide-react";
+import { BOOKING_URL } from "@shared/site";
 
 interface Franchise {
   name: string;
@@ -187,7 +188,7 @@ export default function FranchiseBrands() {
                     )}
                     <Button 
                       className="w-full font-semibold transition-all hover:shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
-                      onClick={() => window.open("https://calendly.com/charles-stovall/introduction-meeting-charlesstovall", "_blank")}
+                      onClick={() => window.open(BOOKING_URL, "_blank")}
                       data-testid={`button-details-${franchise.name}`}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />

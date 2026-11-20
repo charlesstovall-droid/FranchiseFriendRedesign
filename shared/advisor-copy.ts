@@ -4,6 +4,7 @@ import {
   OPENING_QUESTION,
   THESIS_CONCLUSION,
 } from "./advisor";
+import { BOOKING_URL } from "./site";
 
 export const DEFAULT_ADVISOR_COPY = {
   productName: "Franchise Friend Ownership Advisor",
@@ -28,7 +29,7 @@ export const DEFAULT_ADVISOR_COPY = {
   thesisConclusion: THESIS_CONCLUSION,
   callHandoff: CALL_HANDOFF,
   bookingCta: "Review My Profile With Chuck",
-  calendlyUrl: "https://calendly.com/charles-stovall/intro",
+  bookingUrl: BOOKING_URL,
   privacyConsent:
     "This is a private, AI-assisted conversation based on Chuck Stovall's ownership philosophy. It is educational, not legal, tax, or investment advice. Your answers stay in this application. You can request deletion at any time.",
   aiDisclosure:
@@ -95,7 +96,7 @@ I reviewed the Ownership Thesis you built with the Franchise Friend Ownership Ad
 
 The useful next step is a conversation about whether exploring actual businesses makes sense for your life, capital, and timeline. If you would like that, you can book a time here:
 
-{{calendlyUrl}}
+{{bookingUrl}}
 
 If now is not the right moment, keep the thesis. It should make any later research more honest.
 

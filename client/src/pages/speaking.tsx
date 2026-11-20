@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { BOOKING_URL } from "@shared/site";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink, Instagram, Globe, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -91,7 +92,7 @@ export default function Speaking() {
                 <p className="text-gray-400 text-sm mb-6">Charleston, SC — Available Nationwide</p>
 
                 <div className="space-y-3 mb-8">
-                  <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="w-full" data-testid="link-book-interview">
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-full" data-testid="link-book-interview">
                     <Button className="w-full bg-[#D4AF37] hover:bg-[#c9a432] text-[#1B2B3A] font-bold text-sm h-12 gap-2">
                       <Calendar size={18} />
                       Book Me for Your Podcast
@@ -306,7 +307,7 @@ export default function Speaking() {
               I'm ready to bring real franchise stories, actionable advice, and the kind of energy that keeps your audience hitting play.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" data-testid="link-book-bottom">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-testid="link-book-bottom">
                 <Button className="bg-[#D4AF37] hover:bg-[#c9a432] text-[#1B2B3A] font-bold text-base h-14 px-10 gap-2">
                   <Calendar size={20} />
                   Book Me for Your Show

@@ -1,5 +1,8 @@
 export const SITE_ORIGIN = "https://www.charlesstovall.com";
 
+/** Intro and consult booking. Plain link; opens in a new tab. */
+export const BOOKING_URL = "https://meetings-na2.hubspot.com/charles-stovall/brand-introductions";
+
 export const LEAD_CONVERSION_SEND_TO = "AW-593191309/w4I0CPeau54cEI3D7ZoC";
 
 /** Phone-call conversion already configured in client/index.html (phone_conversion_number). */

@@ -30,7 +30,7 @@ Copy values from `.env.example`. Never put secrets in client code.
 
 Required for a live conversation: `DATABASE_URL`, `XAI_API_KEY`.
 
-Useful in production: `SESSION_SECRET`, `APP_BASE_URL`, `CALENDLY_URL`, `HUBSPOT_PRIVATE_APP_TOKEN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
+Useful in production: `SESSION_SECRET`, `APP_BASE_URL`, `BOOKING_URL`, `HUBSPOT_PRIVATE_APP_TOKEN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
 
 Optional: `XAI_MODEL` (defaults to `grok-4.6`).
 

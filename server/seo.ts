@@ -1,4 +1,4 @@
-import { SITE_ORIGIN, absoluteUrl } from "../shared/site";
+import { SITE_ORIGIN, absoluteUrl, BOOKING_URL } from "../shared/site";
 import {
   featuredGoogleReviews,
   GOOGLE_REVIEW_COUNT,
@@ -38,7 +38,7 @@ import {
   mountPleasantNeighborhoods,
   mountPleasantServing,
 } from "../shared/service-areas";
-import { CONSULT_CALENDLY, servicePages, type Inline as ServiceInline, type ServicePage } from "../shared/services";
+import { servicePages, type Inline as ServiceInline, type ServicePage } from "../shared/services";
 import {
   trustedPartnerSteps,
   trustedPartnersJsonLd,
@@ -282,7 +282,7 @@ export function renderHomeHtml(): string {
   </ol>
   <p>30 locations built · 4 brands · Retail, wellness, fitness, salon suites · Sold to private equity</p>
   <p>Boost Mobile, Massage Envy, YogaSix, Image Studios</p>
-  <p><a href="https://calendly.com/charles-stovall/intro">Book a Call</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I read an FDD in 20 minutes</a></p>
+  <p><a href="${BOOKING_URL}">Book a Call</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I read an FDD in 20 minutes</a></p>
   <ul>
     <li>30 locations built and exited</li>
     <li>4 franchise brands owned</li>
@@ -361,7 +361,7 @@ export function renderHomeHtml(): string {
   </ul>
   <p><a href="/south-carolina">Serving all of South Carolina</a></p>
   <p>Free to you, no cost to work with me.</p>
-  <p><a href="https://calendly.com/charles-stovall/intro">Book a consultation</a> · <a href="tel:9198273921">919.827.3921</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a></p>
+  <p><a href="${BOOKING_URL}">Book a consultation</a> · <a href="tel:9198273921">919.827.3921</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a></p>
   ${napBlockHtml()}
 </article>
 `.trim();
@@ -396,7 +396,7 @@ export function renderExecutiveAccessHtml(): string {
   <input type="hidden" name="message" value="Executive Access — Franchise Assessment" />
   <button type="submit">Request the assessment</button>
 </form>
-<p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+<p><a href="${BOOKING_URL}">Book a call</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
 ${napBlockHtml()}
 `.trim();
 }
@@ -458,7 +458,7 @@ export function renderCharlestonHtml(): string {
   <input type="hidden" name="message" value="Charleston Ad Landing Page" />
   <button type="submit">Request the call</button>
 </form>
-<p><a href="https://calendly.com/charles-stovall/intro">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+<p><a href="${BOOKING_URL}">Book a call</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
 ${napBlockHtml()}
 `.trim();
 }
@@ -475,7 +475,6 @@ function renderInlines(parts: Inline[]): string {
 
 export function renderLocalMarketHtml(page: LocalMarketPage): string {
   const formId = `${page.path.slice(1)}-consultation-form`;
-  const calendlyHref = page.calendlyUrl ?? "https://calendly.com/charles-stovall/intro";
   const sections = page.sections
     .map(
       (section) => `<section>
@@ -541,7 +540,7 @@ export function renderLocalMarketHtml(page: LocalMarketPage): string {
   <input type="hidden" name="message" value="${escapeHtml(page.message)}" />
   <button type="submit">Request the call</button>
 </form>
-<p><a href="${escapeHtml(calendlyHref)}">Book a call on Calendly</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+<p><a href="${BOOKING_URL}">Book a call</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
 <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/mount-pleasant">Mount Pleasant</a> · <a href="/south-carolina">South Carolina</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="/blog/how-i-read-an-fdd-in-20-minutes">How I Read an FDD</a></p>
 ${napBlockHtml()}
 `.trim();
@@ -610,7 +609,7 @@ export function renderAboutHtml(): string {
     <li>Private equity exit</li>
     <li>Based in Mt Pleasant, SC — work with buyers nationwide</li>
   </ul>
-  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="https://calendly.com/charles-stovall/intro">Book a consultation</a></p>
+  <p><a href="/charleston">Charleston franchise consulting</a> · <a href="/blog/fdd-red-flags">FDD Red Flags</a> · <a href="${BOOKING_URL}">Book a consultation</a></p>
   ${napBlockHtml()}
 </article>
 `.trim();
@@ -691,7 +690,7 @@ function renderQuestionIndexHtml(): string {
   <ul>
     ${items}
   </ul>
-  <p><a href="https://calendly.com/charles-stovall/intro">Book a call</a> · <a href="/advisor">Try the advisor</a></p>
+  <p><a href="${BOOKING_URL}">Book a call</a> · <a href="/advisor">Try the advisor</a></p>
 </article>`;
 }
 
@@ -799,13 +798,13 @@ function renderServiceHtml(page: ServicePage): string {
   <h1>${escapeHtml(page.h1)}</h1>
   ${answer}
   <p>${renderServiceInlines(page.bridge)}</p>
-  <p><a href="${escapeHtml(CONSULT_CALENDLY)}">Book a consult</a></p>
+  <p><a href="${BOOKING_URL}">Book a consult</a></p>
   <h2>${escapeHtml(page.checklistTitle)}</h2>
   <ul>${checklist}</ul>
   ${renderFaqHtml(page.faqs, "FAQ")}
   <h2>Keep going</h2>
   <ul>${related}</ul>
-  <p><a href="${escapeHtml(CONSULT_CALENDLY)}">Book a consult</a></p>
+  <p><a href="${BOOKING_URL}">Book a consult</a></p>
   ${napBlockHtml()}
 </article>`;
 }

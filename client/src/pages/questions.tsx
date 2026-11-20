@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 import { useRoute } from "wouter";
-import { absoluteUrl } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
 import { faqPageSchema } from "@shared/faq";
 import {
   getQuestionBySlug,
@@ -175,7 +175,7 @@ export function QuestionPage() {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <a
-              href="https://calendly.com/charles-stovall/intro"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-[#F2C740] text-[#12304C] px-6 py-3 font-semibold hover:bg-[#e3b833]"
@@ -248,7 +248,7 @@ export default function QuestionsIndex() {
         </ul>
         <div className="mt-12 flex flex-col sm:flex-row gap-4">
           <a
-            href="https://calendly.com/charles-stovall/intro"
+            href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-[#F2C740] text-[#12304C] px-6 py-3 font-semibold hover:bg-[#e3b833]"

@@ -17,8 +17,8 @@ import franChoice from "@/assets/home/franchoice.png";
 import fitCorporate from "@/assets/home/fit-corporate.jpg";
 import fitPortfolio from "@/assets/home/fit-portfolio.jpg";
 import fitEmpire from "@/assets/home/fit-empire.jpg";
+import { BOOKING_URL } from "@shared/site";
 
-const CALENDLY = "https://calendly.com/charles-stovall/intro";
 const REVIEW_INTERVAL_MS = 9000;
 const PHASE_LINE_MS = 700;
 
@@ -388,7 +388,7 @@ export default function Home() {
             <a href="#process">Process</a>
             <a href="#reviews">Reviews</a>
             <a href="#partners">Partners</a>
-            <a className="btn btn-gold" href={CALENDLY} target="_blank" rel="noopener">
+            <a className="btn btn-gold" href={BOOKING_URL} target="_blank" rel="noopener">
               Book a Call
             </a>
           </nav>
@@ -413,7 +413,7 @@ export default function Home() {
                 answers, real numbers.
               </p>
               <div className="hero-ctas">
-                <a className="btn btn-gold" href={CALENDLY} target="_blank" rel="noopener">
+                <a className="btn btn-gold" href={BOOKING_URL} target="_blank" rel="noopener">
                   Book a Free Consultation
                 </a>
                 <a className="btn btn-ghost" href="#process">
@@ -530,7 +530,7 @@ export default function Home() {
               <p className="cred-brands">Boost Mobile · Massage Envy · YogaSix · Image Studios</p>
             </div>
             <div className="story-actions">
-              <a className="btn btn-gold" href={CALENDLY} target="_blank" rel="noopener">
+              <a className="btn btn-gold" href={BOOKING_URL} target="_blank" rel="noopener">
                 Book a Call
               </a>
               <a className="story-textlink" href="/blog/how-i-read-an-fdd-in-20-minutes">
@@ -805,7 +805,7 @@ export default function Home() {
               Book a free, no-obligation consultation. Worst case, you leave with a clearer picture of franchising.
               Best case, you find the business that changes your family's trajectory.
             </p>
-            <a className="btn btn-gold" href={CALENDLY} target="_blank" rel="noopener">
+            <a className="btn btn-gold" href={BOOKING_URL} target="_blank" rel="noopener">
               Book a Free Consultation
             </a>
             <div className="final-contact">

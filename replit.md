@@ -48,7 +48,7 @@ Preferred communication style: Simple, everyday language.
 ### Third-Party Services
 - **Neon Database**: PostgreSQL hosting via `@neondatabase/serverless`
 - **Google OAuth**: Admin authentication using passport-google-oauth20
-- **Calendly**: Embedded scheduling for consultations (external links)
+- **HubSpot Meetings**: Scheduling for consultations (external links)
 
 ### Email
 - **Nodemailer**: Configured for sending emails (transporter setup in routes.ts)
