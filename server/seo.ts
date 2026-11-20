@@ -871,6 +871,257 @@ function serviceSeoPage(page: ServicePage): SeoPage {
   };
 }
 
+function webPageJsonLd(name: string, description: string, path: string): object {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": url,
+    url,
+    name,
+    description,
+    inLanguage: "en-US",
+  };
+}
+
+function renderSpeakingHtml(): string {
+  return `
+<article>
+  <p>Podcast &amp; Media Guest</p>
+  <h1>The Franchise Expert Your Audience Needs to Hear</h1>
+  <p>Charles Stovall · Franchise Advisor &amp; Multi-Unit Owner · Charleston, SC — Available Nationwide</p>
+  <p>I've personally owned and scaled 20 franchise locations across four different concepts — Massage Envy, Image Studios, YogaSix, and more. I've navigated mergers, acquisitions, million-dollar build-outs, and the reality of Year 1 ownership.</p>
+  <p>Franchising isn't just about fast food. It can be a sophisticated investment vehicle that replaces a corporate salary and builds something meant to last.</p>
+  <ul>
+    <li>20 Franchise Locations Scaled</li>
+    <li>4+ Franchise Concepts Owned</li>
+    <li>$1.4M+ Active Build-out Experience</li>
+    <li>100+ Clients Guided</li>
+  </ul>
+  <h2>Core Podcast Topics</h2>
+  <p>Each topic comes with real stories, actionable frameworks, and candid insight.</p>
+  <ul>
+    <li><strong>The &quot;Franchise Friend&quot; Framework</strong> — How to identify which franchise brands actually align with lifestyle, income goals, and risk tolerance.</li>
+    <li><strong>Financing Franchise Ownership in 2026</strong> — SBA loans, ROBS (401k rollovers), portfolio lending, and deal structures.</li>
+    <li><strong>From 1 Location to 20: The Multi-Unit Playbook</strong> — Scaling from a single Massage Envy in Virginia to 20 locations across the Southeast.</li>
+    <li><strong>The Corporate Refugee Roadmap</strong> — Semi-absentee versus owner-operator models, and Year 1 reality versus expectations.</li>
+    <li><strong>AI &amp; Technology in Modern Franchising</strong> — Scheduling, marketing automation, and tech-forward brands.</li>
+    <li><strong>Reading the FDD Like a Pro</strong> — Item 19, territory traps, renewal clauses, and the red flags that can cost six figures.</li>
+  </ul>
+  <h2>I Don't Give Textbook Answers</h2>
+  <p>Your audience doesn't want another corporate talking head reading from a script. They want someone who's been in the trenches — who's signed personal guarantees, managed payroll for 200+ employees, and built a business from a single location to a multi-state operation.</p>
+  <h2>Let's Make Your Next Episode Unforgettable</h2>
+  <p>I'm ready to bring real franchise stories, actionable advice, and the kind of energy that keeps an audience hitting play.</p>
+  <p><a href="${BOOKING_URL}">Book Me for Your Show</a> · <a href="mailto:charles@franchisefriend.net">charles@franchisefriend.net</a> · <a href="tel:9198273921">(919) 827-3921</a> · <a href="/podcasts">The Franchise Friend Podcast</a></p>
+</article>`.trim();
+}
+
+const FEATURED_FRANCHISE_BRANDS: readonly (readonly [string, string])[] = [
+  ["1-800 Water Damage", "Water Damage Restoration"],
+  ["1-800-Packouts", "Packout Services"],
+  ["1-800-STRIPER", "Parking Lot Striping"],
+  ["2nd Family", "Senior Care"],
+  ["360° Painting", "Painting Services"],
+  ["4Ever Young", "Medical Spa/Anti-Aging"],
+  ["76 Fence", "Fence Installation"],
+  ["Accelerated Waste Solutions", "Waste Management"],
+  ["Ace Handyman Services", "Handyman Services"],
+  ["All Dogs Unleashed", "Dog Training"],
+  ["All Dry", "Water Damage Restoration"],
+  ["Alloy Personal Training", "Fitness"],
+  ["Always Best Care Senior Services (US)", "Senior Care"],
+  ["Art of Drawers", "Interior Organization"],
+  ["Assisted Living Locators", "Senior Care Placement"],
+  ["Aussie Pet Mobile", "Pet Grooming"],
+  ["Bar-B-Clean", "BBQ Grill Cleaning"],
+  ["Bath Tune-Up", "Bathroom Remodeling"],
+  ["beem Light Sauna", "Wellness/Sauna Services"],
+  ["Benetrends", "Financial Services"],
+  ["Big Frog Custom T-Shirts & More", "Custom T-Shirts/Retail"],
+  ["Bio-One", "Biohazard/Crime Scene Cleanup"],
+  ["Blingle!", "Holiday Lighting"],
+  ["Bloomin' Blinds", "Blinds/Window Coverings"],
+  ["Blue Kangaroo Packoutz", "Packout Services"],
+  ["Blue Moon Estate Sales", "Estate Sales"],
+  ["Body20", "Fitness/EMS Training"],
+  ["Boost Home Healthcare", "Home Healthcare"],
+  ["British Swim School", "Swim Lessons"],
+  ["Budget Blinds", "Blinds/Window Coverings"],
+  ["Bumble Bee Blinds", "Blinds/Window Coverings"],
+  ["Cabinet IQ", "Cabinet Refacing"],
+  ["CarePatrol", "Senior Care Placement"],
+  ["Cascadia Pizza", "Food Trucks"],
+  ["CertaPro Painters", "Interior/Exterior Painting"],
+  ["Chatime", "Bubble Tea"],
+  ["CMIT Solutions", "IT Services"],
+  ["ComForCare Home Care", "Senior Home Care"],
+  ["COOL-BINZ", "Dumpster Rental"],
+  ["CoolVu Glass and Surface Solutions", "Window Film/Glass Treatment"],
+  ["Creative Colors International", "Flooring/Color Consulting"],
+  ["D1 Sports Training", "Athletic Training"],
+  ["Degree Wellness", "Fitness/Wellness"],
+  ["Deka Lash", "Eyelash Extensions"],
+  ["dermani MEDSPA®", "Medical Spa"],
+  ["Discover Strength", "Fitness"],
+  ["DonutNV", "Food Trucks"],
+  ["ecomaids", "Green Cleaning"],
+  ["Ellie Mental Health", "Mental Health Services"],
+  ["ERA Group", "Real Estate"],
+  ["EverLine Coatings", "Parking Lot Coating"],
+  ["Exercise Coach", "Fitness Training"],
+  ["Express Employment Professionals", "Staffing Services"],
+  ["Face Foundrie", "Skincare/Cosmetics"],
+  ["Fastest Labs", "Drug Testing"],
+  ["Fibrenew", "Leather/Vinyl Repair"],
+  ["FirstLight Home Care", "Senior Home Care"],
+  ["Fish Window Cleaning", "Window Cleaning"],
+  ["Five Star Bath Solutions", "Bathroom Remodeling"],
+  ["Floor Coverings International", "Flooring Sales"],
+  ["Floyd's 99 Barbershop", "Barbershop"],
+  ["FocalPoint Coaching", "Business Coaching"],
+  ["FranFund", "Franchise Financing"],
+  ["Fundraising University", "Fundraising Services"],
+  ["Furry Land Mobile Grooming", "Pet Grooming"],
+  ["Gatsby Glass", "Glass Repair"],
+  ["goGLOW", "Beauty/Tanning"],
+  ["Gotcha Covered", "Blinds/Shades"],
+  ["Groovy Hues", "Painting/Art"],
+  ["Hallmark Homecare", "Senior Home Care"],
+  ["HealthSource Chiropractic", "Chiropractic"],
+  ["Heights Wellness Retreat", "Wellness"],
+  ["Hello Sugar", "Sugar/Wax Services"],
+  ["Heroes Lawn Care", "Lawn Care"],
+  ["HOMEstretch", "Real Estate"],
+  ["House Doctors", "Handyman Services"],
+  ["Hunters-Humbug", "Pest Control"],
+  ["iFlex", "Fitness"],
+  ["iFOAM", "Spray Foam Insulation"],
+  ["Image Studios", "Photography"],
+  ["Insulation Commandos", "Insulation Services"],
+  ["ISI® Elite Training", "Athletic Training"],
+  ["Ivybrook Academy", "Education"],
+];
+
+function renderFranchiseBrandsHtml(): string {
+  const items = FEATURED_FRANCHISE_BRANDS.map(
+    ([name, industry]) => `<li><strong>${escapeHtml(name)}</strong> — ${escapeHtml(industry)}</li>`,
+  ).join("");
+  return `
+<article>
+  <h1>Verified Franchise Opportunities</h1>
+  <p>Browse ${FEATURED_FRANCHISE_BRANDS.length}+ carefully selected franchise brands.</p>
+  <p>Information about franchise brands is for educational purposes. Each franchise has unique requirements and opportunities.</p>
+  <ul>${items}</ul>
+  <p><a href="${BOOKING_URL}">Book a Consultation</a></p>
+</article>`.trim();
+}
+
+function renderPrivacyPolicyHtml(): string {
+  return `
+<article>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: March 10, 2026</p>
+  <h2>Introduction</h2>
+  <p>Charles Stovall ("we," "us," or "our") operates the website charlesstovall.com (the "Site"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Site or submit information through our forms.</p>
+  <h2>Information We Collect</h2>
+  <p>Personal information you provide includes first and last name, email address, phone number, contact-form messages, and survey responses such as investment preferences, timeline, and business style.</p>
+  <p>Information collected automatically includes IP address and approximate location, browser and device, pages visited, referring URLs, and cookies.</p>
+  <h2>How We Use Your Information</h2>
+  <ul>
+    <li>Respond to your inquiries and consultation requests</li>
+    <li>Match you with relevant franchise opportunities</li>
+    <li>Send you information related to franchise consulting services</li>
+    <li>Improve the website, content, and user experience</li>
+    <li>Analyze website traffic and usage patterns</li>
+    <li>Comply with legal obligations</li>
+  </ul>
+  <h2>Cookies and Tracking Technologies</h2>
+  <p>The Site uses Google Analytics and Google Ads to measure performance and understand how visitors use the Site, plus session cookies to maintain a browsing session.</p>
+  <h2>Third-Party Services</h2>
+  <ul>
+    <li>HubSpot, for scheduling consultation calls</li>
+    <li>Google Ads and Google Analytics, for advertising, conversion tracking, and website analytics</li>
+    <li>LeadConnector (GoHighLevel), for CRM and lead management</li>
+    <li>YouTube, for embedded video</li>
+  </ul>
+  <h2>How We Share Your Information</h2>
+  <p>We do not sell your personal information. We may share it with franchise brands you express interest in, with service providers who assist in operating the Site, and when required by law.</p>
+  <h2>Data Retention</h2>
+  <p>We retain personal information for as long as necessary to fulfill the purposes described in this policy, or as required by law.</p>
+  <h2>Your Rights</h2>
+  <p>Depending on your location, you may access, correct, or delete your personal data, opt out of marketing communications, and request information about how your data is used.</p>
+  <h2>Children's Privacy</h2>
+  <p>Our Site is not intended for individuals under the age of 18. We do not knowingly collect personal information from children.</p>
+  <h2>Ownership Advisor</h2>
+  <p>If you use the Franchise Friend Ownership Advisor at <a href="/advisor">/advisor</a>, your conversation, profile, and Ownership Thesis are stored so you can resume later and so Charles can prepare for a strategy call. You can request deletion at <a href="/advisor/privacy">/advisor/privacy</a>.</p>
+  <h2>Contact Us</h2>
+  <p>Charles Stovall Your Franchise Friend</p>
+  <p>1531 N Lakeshore Dr, Mt Pleasant, SC 29466</p>
+  <p><a href="mailto:CStovall@FranChoice.com">CStovall@FranChoice.com</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+</article>`.trim();
+}
+
+function renderExecutiveProcessHtml(): string {
+  return `
+<article>
+  <p>Our Process</p>
+  <h1>How We Find Your Perfect Franchise Match</h1>
+  <p>I do the heavy lifting so you don't waste time on bad fits.</p>
+  <ol>
+    <li><strong>Discovery Call</strong> — We start with a confidential conversation about your goals, lifestyle preferences, investment capacity, and timeline. This helps me understand exactly what you're looking for.</li>
+    <li><strong>Franchise Matching</strong> — I screen 4,000+ franchise brands to identify the best fits for your specific situation. No generic lists — only carefully vetted opportunities that match your criteria.</li>
+    <li><strong>Brand Introductions</strong> — I connect you directly with franchise development teams for the brands that interest you.</li>
+    <li><strong>Due Diligence Support</strong> — I guide you through validation calls, FDD review, and the decision-making process.</li>
+  </ol>
+  <h2>Ready to Get Started?</h2>
+  <p>100% Confidential. No pressure. No obligation.</p>
+  <p><a href="${BOOKING_URL}">Start Your Discovery Call</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+</article>`.trim();
+}
+
+function renderExecutiveAboutHtml(): string {
+  return `
+<img src="/charles-headshot.jpeg" alt="Charles Stovall, franchise consultant in Mt Pleasant, SC, headshot" />
+<article>
+  <p>Meet Your Consultant</p>
+  <h1>Your Franchise Advisor: Charles Stovall</h1>
+  <ul>
+    <li>15+ years in franchise consulting</li>
+    <li>Helped 500+ people achieve their dream of business ownership</li>
+    <li>Personalized guidance through your franchise journey</li>
+    <li>Based in Charleston, SC — work with clients nationwide</li>
+  </ul>
+  <h2>My Philosophy</h2>
+  <p>I'm not here to sell you a franchise. I'm here to help you find the RIGHT franchise for YOUR goals.</p>
+  <p>100% Confidential. No Obligation.</p>
+  <h2>Let's Talk About Your Future</h2>
+  <p>Schedule a no-pressure conversation about your goals. No sales pitch. Just an honest conversation.</p>
+  <p><a href="${BOOKING_URL}">Schedule Your Intro Call</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+</article>`.trim();
+}
+
+function renderExecutiveInvestmentHtml(): string {
+  return `
+<article>
+  <p>Investment Opportunities</p>
+  <h1>Executive-Level Franchise Investment Opportunities</h1>
+  <p>Explore your path to business ownership with expert guidance.</p>
+  <p>For corporate executives and investors with $150K+ liquid capital seeking proven business models.</p>
+  <h2>Models I Specialize In</h2>
+  <ul>
+    <li><strong>Flexible Ownership Models</strong> — Find a franchise that fits your lifestyle, whether you want hands-on involvement or prefer to oversee operations.</li>
+    <li><strong>Manager-Run Business Models</strong> — Build a team to handle daily operations while you focus on the vision and growth of your business.</li>
+    <li><strong>Growth-Focused Opportunities</strong> — Explore franchise models designed for expansion and long-term business building.</li>
+    <li><strong>Proven Service Franchises</strong> — Essential services that help communities, from restoration to senior care to professional services.</li>
+  </ul>
+  <h2>Realize Your Dream of Business Ownership</h2>
+  <p>I help you find the right franchise that aligns with your goals, values, and desired lifestyle. The key is discovering the match for who you are and what you want to achieve.</p>
+  <h2>Explore Your Options</h2>
+  <p>Let's discuss which investment models align with your goals, timeline, and capital.</p>
+  <p><a href="${BOOKING_URL}">Book Your Consultation</a> · <a href="tel:9198273921">(919) 827-3921</a></p>
+</article>`.trim();
+}
+
 const STATIC_PAGES: Record<string, SeoPage> = {
   "/": {
     title: "Charles Stovall | Your Franchise Friend — Franchise Consulting for Serious Investors",
@@ -890,6 +1141,72 @@ const STATIC_PAGES: Record<string, SeoPage> = {
     canonical: absoluteUrl("/executive-access"),
     bodyHtml: renderExecutiveAccessHtml(),
     jsonLd: faqPageSchema(executiveFaqItems),
+  },
+  "/executive-access/process": {
+    title: "How We Find Your Perfect Franchise Match | Charles Stovall",
+    description: "I do the heavy lifting so you don't waste time on bad fits: a discovery call, franchise matching, brand introductions, and due diligence support.",
+    canonical: absoluteUrl("/executive-access/process"),
+    bodyHtml: renderExecutiveProcessHtml(),
+    jsonLd: webPageJsonLd(
+      "How We Find Your Perfect Franchise Match | Charles Stovall",
+      "I do the heavy lifting so you don't waste time on bad fits: a discovery call, franchise matching, brand introductions, and due diligence support.",
+      "/executive-access/process",
+    ),
+  },
+  "/executive-access/about": {
+    title: "Your Franchise Advisor: Charles Stovall | Executive Access",
+    description: "Meet Charles Stovall, franchise advisor in Charleston, SC. He helps clients find the right franchise for their goals, with confidential guidance and no obligation.",
+    canonical: absoluteUrl("/executive-access/about"),
+    bodyHtml: renderExecutiveAboutHtml(),
+    jsonLd: webPageJsonLd(
+      "Your Franchise Advisor: Charles Stovall | Executive Access",
+      "Meet Charles Stovall, franchise advisor in Charleston, SC. He helps clients find the right franchise for their goals, with confidential guidance and no obligation.",
+      "/executive-access/about",
+    ),
+  },
+  "/executive-access/investment": {
+    title: "Executive-Level Franchise Investment Opportunities | Charles Stovall",
+    description: "Franchise investment models for executives and investors with $150K+ liquid capital: flexible ownership, manager-run concepts, and proven service brands.",
+    canonical: absoluteUrl("/executive-access/investment"),
+    bodyHtml: renderExecutiveInvestmentHtml(),
+    jsonLd: webPageJsonLd(
+      "Executive-Level Franchise Investment Opportunities | Charles Stovall",
+      "Franchise investment models for executives and investors with $150K+ liquid capital: flexible ownership, manager-run concepts, and proven service brands.",
+      "/executive-access/investment",
+    ),
+  },
+  "/speaking": {
+    title: "The Franchise Expert Your Audience Needs to Hear | Charles Stovall",
+    description: "Book Charles Stovall as a podcast and media guest. Topics include franchise matching, FDD review, multi-unit scaling, financing, and the corporate-to-owner path.",
+    canonical: absoluteUrl("/speaking"),
+    bodyHtml: renderSpeakingHtml(),
+    jsonLd: webPageJsonLd(
+      "The Franchise Expert Your Audience Needs to Hear | Charles Stovall",
+      "Book Charles Stovall as a podcast and media guest. Topics include franchise matching, FDD review, multi-unit scaling, financing, and the corporate-to-owner path.",
+      "/speaking",
+    ),
+  },
+  "/franchise-brands": {
+    title: "Verified Franchise Opportunities | Charles Stovall",
+    description: "Browse carefully selected franchise brands across home services, senior care, fitness, and wellness. Charles Stovall lists them for educational purposes.",
+    canonical: absoluteUrl("/franchise-brands"),
+    bodyHtml: renderFranchiseBrandsHtml(),
+    jsonLd: webPageJsonLd(
+      "Verified Franchise Opportunities | Charles Stovall",
+      "Browse carefully selected franchise brands across home services, senior care, fitness, and wellness. Charles Stovall lists them for educational purposes.",
+      "/franchise-brands",
+    ),
+  },
+  "/privacy-policy": {
+    title: "Privacy Policy | Charles Stovall",
+    description: "How Charles Stovall collects, uses, shares, and safeguards information when you visit charlesstovall.com or submit a form. Updated March 10, 2026.",
+    canonical: absoluteUrl("/privacy-policy"),
+    bodyHtml: renderPrivacyPolicyHtml(),
+    jsonLd: webPageJsonLd(
+      "Privacy Policy | Charles Stovall",
+      "How Charles Stovall collects, uses, shares, and safeguards information when you visit charlesstovall.com or submit a form. Updated March 10, 2026.",
+      "/privacy-policy",
+    ),
   },
   "/home-based-franchises": {
     title: "Home-Based Franchise Opportunities | Work From Home Franchises | Charles Stovall",
@@ -1253,6 +1570,9 @@ export function sitemapUrls(): string[] {
     "/about",
     "/blog",
     "/executive-access",
+    "/executive-access/process",
+    "/executive-access/about",
+    "/executive-access/investment",
     "/home-based-franchises",
     "/podcasts",
     "/faq",

@@ -1,16 +1,8 @@
-import { useEffect } from "react";
 import { Phone } from "lucide-react";
-import { BOOKING_URL } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
+import { SEO } from "@/components/SEO";
 
 export default function ExecutiveProcess() {
-  useEffect(() => {
-    const meta = document.createElement('meta');
-    meta.name = 'robots';
-    meta.content = 'noindex, nofollow';
-    document.head.appendChild(meta);
-    return () => { document.head.removeChild(meta); };
-  }, []);
-
   const steps = [
     {
       number: "1",
@@ -36,6 +28,11 @@ export default function ExecutiveProcess() {
 
   return (
     <div className="min-h-screen bg-[#1E2B42] flex flex-col">
+      <SEO
+        title="How We Find Your Perfect Franchise Match | Charles Stovall"
+        description="I do the heavy lifting so you don't waste time on bad fits: a discovery call, franchise matching, brand introductions, and due diligence support."
+        canonicalUrl={absoluteUrl("/executive-access/process")}
+      />
       <a 
         href="tel:9198273921" 
         className="bg-[#D4AF37] text-[#1E2B42] py-3 px-4 flex items-center justify-center gap-2 hover:bg-[#c9a432] transition-colors"

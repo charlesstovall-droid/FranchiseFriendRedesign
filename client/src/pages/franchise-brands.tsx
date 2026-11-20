@@ -11,7 +11,8 @@ import {
   Search,
   Star
 } from "lucide-react";
-import { BOOKING_URL } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
+import { SEO } from "@/components/SEO";
 
 interface Franchise {
   name: string;
@@ -121,6 +122,11 @@ export default function FranchiseBrands() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Verified Franchise Opportunities | Charles Stovall"
+        description="Browse carefully selected franchise brands across home services, senior care, fitness, and wellness. Charles Stovall lists them for educational purposes."
+        canonicalUrl={absoluteUrl("/franchise-brands")}
+      />
       <Navbar />
       
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary to-primary text-primary-foreground">
