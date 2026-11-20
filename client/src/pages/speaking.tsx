@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { BOOKING_URL } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Linkedin, Mail, Phone, Mic, TrendingUp, DollarSign, Users, Building2, Brain, Shield, Podcast, ExternalLink, Instagram, Globe, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -61,6 +62,11 @@ const mediaAppearances = [
 export default function Speaking() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="The Franchise Expert Your Audience Needs to Hear | Charles Stovall"
+        description="Book Charles Stovall as a podcast and media guest. Topics include franchise matching, FDD review, multi-unit scaling, financing, and the corporate-to-owner path."
+        canonicalUrl={absoluteUrl("/speaking")}
+      />
       <div className="bg-[#1B2B3A] text-white">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#D4AF37] transition-colors" data-testid="link-back-home">

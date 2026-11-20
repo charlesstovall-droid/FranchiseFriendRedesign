@@ -1,16 +1,8 @@
-import { useEffect } from "react";
 import { TrendingUp, Clock, Building2, Shield, CheckCircle, Phone } from "lucide-react";
-import { BOOKING_URL } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
+import { SEO } from "@/components/SEO";
 
 export default function ExecutiveInvestment() {
-  useEffect(() => {
-    const meta = document.createElement('meta');
-    meta.name = 'robots';
-    meta.content = 'noindex, nofollow';
-    document.head.appendChild(meta);
-    return () => { document.head.removeChild(meta); };
-  }, []);
-
   const models = [
     {
       icon: Clock,
@@ -36,6 +28,11 @@ export default function ExecutiveInvestment() {
 
   return (
     <div className="min-h-screen bg-[#1E2B42] flex flex-col">
+      <SEO
+        title="Executive-Level Franchise Investment Opportunities | Charles Stovall"
+        description="Franchise investment models for executives and investors with $150K+ liquid capital: flexible ownership, manager-run concepts, and proven service brands."
+        canonicalUrl={absoluteUrl("/executive-access/investment")}
+      />
       <a 
         href="tel:9198273921" 
         className="bg-[#D4AF37] text-[#1E2B42] py-3 px-4 flex items-center justify-center gap-2 hover:bg-[#c9a432] transition-colors"
