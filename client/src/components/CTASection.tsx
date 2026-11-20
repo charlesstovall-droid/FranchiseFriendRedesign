@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
+import { BOOKING_URL } from "@shared/site";
 
 // Issue 3: whileInView scroll-reveal animations removed. Both columns render immediately.
 
@@ -51,11 +52,11 @@ export function CTASection() {
               </h3>
               <div className="space-y-4">
                 <a
-                  href="https://calendly.com/charles-stovall/intro"
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"
-                  data-testid="button-cta-calendly"
+                  data-testid="button-cta-booking"
                 >
                   <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold py-3 px-6 rounded-lg transition-all border-2 border-accent-pop/30 hover:border-accent-pop/50">
                     Book Your Free Consultation

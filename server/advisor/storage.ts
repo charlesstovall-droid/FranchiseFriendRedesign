@@ -405,8 +405,8 @@ export async function listHubspotEvents(limit = 50) {
   return db.select().from(advisorHubspotSyncEvents).orderBy(desc(advisorHubspotSyncEvents.createdAt)).limit(limit);
 }
 
-export async function addBookingEvent(candidateId: string, status: string, calendlyUrl?: string) {
-  await db.insert(advisorBookingEvents).values({ candidateId, status, calendlyUrl });
+export async function addBookingEvent(candidateId: string, status: string, bookingUrl?: string) {
+  await db.insert(advisorBookingEvents).values({ candidateId, status, bookingUrl });
   await touchCandidate(candidateId, { bookingStatus: status });
 }
 

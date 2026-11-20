@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Phone } from "lucide-react";
+import { BOOKING_URL } from "@shared/site";
 
 export default function ExecutiveProcess() {
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function ExecutiveProcess() {
               Book your free discovery call and let's find your perfect franchise match.
             </p>
             <a
-              href="https://calendly.com/charles-stovall/intro"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#1E2B42] hover:bg-[#2a3d5c] text-white font-bold py-4 px-8 rounded-lg transition-all duration-200"

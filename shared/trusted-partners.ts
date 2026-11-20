@@ -3,8 +3,7 @@
  */
 
 import { PERSON_ID } from "./nap";
-import { absoluteUrl } from "./site";
-import { CONSULT_CALENDLY } from "./services";
+import { absoluteUrl, BOOKING_URL } from "./site";
 
 export const TRUSTED_PARTNERS_PATH = "/trusted-partners";
 
@@ -236,7 +235,7 @@ export const trustedPartnersPage: TrustedPartnersPage = {
   ctaBody:
     "Bring the brand and a number you can actually write. I will tell you what I would ask, and whether I would send you to one of these firms.",
   ctaLabel: "Book a call with Charles",
-  ctaHref: CONSULT_CALENDLY,
+  ctaHref: BOOKING_URL,
 };
 
 export const trustedPartnerSteps = [

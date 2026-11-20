@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronLeft, Calendar } from "lucide-react";
 import { useRoute, Link } from "wouter";
+import { BOOKING_URL } from "@shared/site";
 import { 
   getPostBySlug, 
   formatDate, 
@@ -243,7 +244,7 @@ export default function BlogPost() {
                 Get personalized guidance from a certified franchise consultant. 
                 Let's find the right franchise fit for your goals and lifestyle.
               </p>
-              <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-accent-pop text-primary hover:bg-accent-pop/90 font-semibold">
                   Book a Free Consultation
                 </Button>

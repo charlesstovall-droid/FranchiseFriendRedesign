@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
             <h2 className="font-serif text-2xl font-bold text-[#1a2332]">Third-Party Services</h2>
             <p>We use the following third-party services that may collect or process your data:</p>
             <ul className="list-disc pl-6 space-y-1">
-              <li><strong>Calendly:</strong> For scheduling consultation calls. Calendly has its own privacy policy governing the data you provide when booking.</li>
+              <li><strong>HubSpot:</strong> For scheduling consultation calls. HubSpot has its own privacy policy governing the data you provide when booking.</li>
               <li><strong>Google Ads & Google Analytics:</strong> For advertising, conversion tracking, and website analytics.</li>
               <li><strong>LeadConnector (GoHighLevel):</strong> For CRM and lead management purposes.</li>
               <li><strong>YouTube:</strong> For embedded video content. YouTube may set cookies when you view embedded videos.</li>

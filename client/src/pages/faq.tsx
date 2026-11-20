@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { SEO } from "@/components/SEO";
 import { faqPageSchema, siteFaqItems as faqItems } from "@shared/faq";
+import { BOOKING_URL } from "@shared/site";
 
 const faqSchema = faqPageSchema(faqItems);
 
@@ -96,7 +97,7 @@ export default function FAQ() {
                           </a>{" "}
                           and then{" "}
                           <a
-                            href="https://calendly.com/charles-stovall/consult"
+                            href={BOOKING_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-secondary underline hover:text-accent-pop transition-colors"
@@ -124,7 +125,7 @@ export default function FAQ() {
             <h3 className="text-2xl font-bold text-primary mb-3">Didn't find your answer?</h3>
             <p className="text-muted-foreground mb-6">Schedule a consultation with Charles to discuss your specific questions and explore franchise opportunities.</p>
             <a 
-              href="https://calendly.com/charles-stovall/intro" 
+              href={BOOKING_URL} 
               target="_blank" 
               rel="noopener noreferrer"
             >

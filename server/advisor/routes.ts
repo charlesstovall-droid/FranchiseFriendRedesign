@@ -2,7 +2,6 @@ import type { Express, Request, Response } from "express";
 import { z } from "zod";
 import {
   CALL_HANDOFF,
-  DEFAULT_CALENDLY_URL,
   THESIS_CONCLUSION,
   type AdvisorChapter,
   type OwnershipThesis,
@@ -18,7 +17,7 @@ import { runAdvisorTurn, runBriefGeneration, runThesisGeneration } from "./ai/or
 import { renderOwnershipThesisPdf } from "./pdf";
 import { contactReady, primaryConflict, profileFromRow, summarizeProfile } from "./profile";
 import { clientKey, rateLimit } from "./rate-limit";
-import { publicCopyFromSettings } from "./settings";
+import { publicCopyFromSettings, resolveBookingUrl } from "./settings";
 import * as store from "./storage";
 import { getAppBaseUrl } from "./tokens";
 
@@ -297,7 +296,7 @@ export async function registerAdvisorRoutes(app: Express) {
       conclusion: THESIS_CONCLUSION,
       handoff: copy.callHandoff,
       bookingCta: copy.bookingCta,
-      calendlyUrl: process.env.CALENDLY_URL || copy.calendlyUrl || DEFAULT_CALENDLY_URL,
+      bookingUrl: resolveBookingUrl(copy.bookingUrl),
       firstName: candidate.firstName,
       hasContact: Boolean(candidate.email),
       bookingStatus: candidate.bookingStatus,
@@ -374,8 +373,8 @@ export async function registerAdvisorRoutes(app: Express) {
       ? await store.getCandidateById(report.candidateId)
       : await store.getCandidateByResumeToken(req.params.token);
     if (!candidate) return res.status(404).json({ error: "Not found" });
-    const calendlyUrl = process.env.CALENDLY_URL || DEFAULT_CALENDLY_URL;
-    await store.addBookingEvent(candidate.id, status.data, calendlyUrl);
+    const bookingUrl = resolveBookingUrl();
+    await store.addBookingEvent(candidate.id, status.data, bookingUrl);
     if (status.data === "booked") {
       await store.trackEvent({ candidateId: candidate.id, eventName: "booking_confirmed" });
     } else if (req.body?.clicked) {
@@ -396,7 +395,7 @@ export async function registerAdvisorRoutes(app: Express) {
         contradictions: (profile?.contradictionsIdentified as Array<{ tension: string; question: string }>) || [],
       });
     }
-    res.json({ ok: true, bookingStatus: status.data, calendlyUrl });
+    res.json({ ok: true, bookingStatus: status.data, bookingUrl });
   });
 
   app.post("/api/advisor/deletion-requests", async (req, res) => {

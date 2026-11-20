@@ -7,6 +7,7 @@ import { CheckCircle, Circle, Zap, Target, TrendingUp, Award, Download, External
 import { useState, useEffect } from "react";
 import { useProtectedRoute } from "@/lib/AuthContext";
 import { useLocation } from "wouter";
+import { BOOKING_URL } from "@shared/site";
 
 interface Brand {
   id: string;
@@ -361,7 +362,7 @@ export default function Phase1() {
                 <p className="text-muted-foreground">Schedule a consultation with Charles to discuss your progress and get personalized recommendations.</p>
               </div>
               <a 
-                href="https://calendly.com/charles-stovall/intro" 
+                href={BOOKING_URL} 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

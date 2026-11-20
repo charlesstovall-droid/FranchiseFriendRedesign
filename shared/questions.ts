@@ -3,6 +3,8 @@
  * Rules of thumb are Charles's operating practice, not published statistics.
  */
 
+import { BOOKING_URL } from "./site";
+
 export type Inline = string | { text: string; href: string };
 
 export interface QuestionSection {
@@ -56,8 +58,6 @@ const SBA_7A = "https://www.sba.gov/loans/7a-loans/";
 const SBA_DIRECTORY =
   "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise/sba-franchise-directory";
 const SBA_BUY = "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise";
-const CALENDLY = "https://calendly.com/charles-stovall/intro";
-
 function p(...parts: Inline[]): Inline[] {
   return parts;
 }
@@ -213,7 +213,7 @@ export const questionPages: QuestionPage[] = [
     ctaHeading: "Pressure-test the reserve before you sign",
     ctaBody: [
       "If you have an Item 7 and a real budget, I will read them like an operator and tell you if the leftover cash is a reserve or a wish. ",
-      link("Book a call", CALENDLY),
+      link("Book a call", BOOKING_URL),
       ", or start with ",
       advisor,
       " if you are still sorting what kind of business should fit the life.",
@@ -324,7 +324,7 @@ export const questionPages: QuestionPage[] = [
     ctaHeading: "If you want the week, not the slogan",
     ctaBody: [
       "Bring the brand and the calendar you actually have. I will tell you whether the labor model can stand a normal month without you. ",
-      link("Book a call", CALENDLY),
+      link("Book a call", BOOKING_URL),
       ", or use ",
       advisor,
       " if you are still deciding what role you want in the business at all.",
@@ -436,7 +436,7 @@ export const questionPages: QuestionPage[] = [
     ctaHeading: "Bring the Item 19, not the highlight reel",
     ctaBody: [
       "If a table is in your inbox, we can mark the subset, the middle, and the calls you still need. ",
-      link("Book a call", CALENDLY),
+      link("Book a call", BOOKING_URL),
       ". If you do not have a brand yet, ",
       advisor,
       " is the quieter place to start.",
@@ -551,7 +551,7 @@ export const questionPages: QuestionPage[] = [
     ctaHeading: "Pick the risk you can carry",
     ctaBody: [
       "Bring the FDD or the seller's numbers. I will tell you which story is skipping a document. ",
-      link("Book a call", CALENDLY),
+      link("Book a call", BOOKING_URL),
       ", or start with ",
       advisor,
       " if you are still deciding whether ownership should look like a startup at all.",
@@ -665,7 +665,7 @@ export const questionPages: QuestionPage[] = [
     ctaHeading: "Name the constraint, then read the labor",
     ctaBody: [
       "Tell me whether you want fewer people, fewer hours, or both. I will tell you if a model can actually do that. ",
-      link("Book a call", CALENDLY),
+      link("Book a call", BOOKING_URL),
       ", or try ",
       advisor,
       " if you want to sort the role before you sort brands.",

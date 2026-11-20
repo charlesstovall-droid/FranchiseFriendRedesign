@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { NAP, formattedAddressLine } from "@shared/nap";
-import { absoluteUrl } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
 
 export default function AboutPage() {
   return (
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </p>
           </address>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
               <Button className="bg-accent-pop hover:bg-accent-pop/90 text-primary font-semibold">
                 Book a consultation
               </Button>

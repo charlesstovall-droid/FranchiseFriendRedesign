@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "wouter";
 import type { OwnershipThesis } from "@shared/advisor";
-import { CALL_HANDOFF, DEFAULT_CALENDLY_URL, THESIS_CONCLUSION } from "@shared/advisor";
+import { CALL_HANDOFF, THESIS_CONCLUSION } from "@shared/advisor";
+import { BOOKING_URL } from "@shared/site";
 import { AdvisorShell } from "@/components/advisor/AdvisorShell";
 import { ThesisView } from "@/components/advisor/ThesisView";
 import { advisorJson } from "@/lib/advisor-api";
@@ -11,7 +12,7 @@ type ReportPayload = {
   conclusion: string;
   handoff: string;
   bookingCta: string;
-  calendlyUrl: string;
+  bookingUrl: string;
   firstName: string | null;
   hasContact: boolean;
   bookingStatus: string;
@@ -70,16 +71,16 @@ export default function AdvisorReport() {
   };
 
   const setBooking = async (status: "booked" | "declined" | "not_decided", clicked = false) => {
-    const result = await advisorJson<{ calendlyUrl: string }>(`/api/advisor/reports/${token}/booking`, {
+    const result = await advisorJson<{ bookingUrl: string }>(`/api/advisor/reports/${token}/booking`, {
       method: "POST",
       body: JSON.stringify({ status, clicked }),
     });
     if (status === "booked") setBookingNote("Marked as booked.");
     if (status === "declined") setBookingNote("Understood. The thesis remains yours to keep.");
-    return result.calendlyUrl;
+    return result.bookingUrl;
   };
 
-  const calendly = report?.calendlyUrl || DEFAULT_CALENDLY_URL;
+  const bookingUrl = report?.bookingUrl || BOOKING_URL;
 
   return (
     <AdvisorShell
@@ -108,7 +109,7 @@ export default function AdvisorReport() {
               <p className="advisor-display text-2xl leading-8 mb-6">{report.handoff || CALL_HANDOFF}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href={calendly}
+                  href={bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {

@@ -12,6 +12,7 @@ import { sendEmail } from "./gmail";
 import { sitemapUrls } from "./seo";
 import { mountPlainSiteFiles } from "./plain-files";
 import { registerAdvisorRoutes } from "./advisor/routes";
+import { BOOKING_URL } from "@shared/site";
 
 function generateRSSFeed(baseUrl: string, podcastTitle: string, podcastDescription: string, episodes: any[]) {
   const episodeItems = episodes.map(ep => `
@@ -309,7 +310,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             <p>Hi ${firstName},</p>
             <p>Thanks for reaching out. I got your information and I'll personally be in touch within one business day.</p>
             <p>If you'd rather skip the wait and pick a time directly on my calendar, here's my link:<br>
-            <a href="https://calendly.com/charles-stovall/intro">https://calendly.com/charles-stovall/intro</a></p>
+            <a href="${BOOKING_URL}">${BOOKING_URL}</a></p>
             <p>I'll be calling from <strong>(919) 827-3921</strong> — feel free to save it so you don't miss the call.</p>
             <p>Talk soon,<br>
             <strong>Charles Stovall</strong><br>
@@ -945,7 +946,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       doc.moveDown(1.5);
       doc.fontSize(9).fillColor("#666666").text(
-        "Ready to take the next step? Schedule a consultation at calendly.com/charles-stovall/intro",
+        "Ready to take the next step? Schedule a consultation at " + BOOKING_URL,
         { align: "center", width: pageWidth, lineGap: 2 }
       );
 
@@ -1109,7 +1110,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(11).font("Helvetica-Bold").fillColor(navyBlue).text("Ready to Deepen Your Exploration?", { align: "center" });
       doc.moveDown(0.3);
       doc.fontSize(10).fillColor("#333333").text("Schedule a call with Charles to discuss what you've learned.", { align: "center", width: pageWidth });
-      doc.fontSize(10).fillColor(gold).text("calendly.com/charles-stovall/intro", { align: "center" });
+      doc.fontSize(10).fillColor(gold).text(BOOKING_URL, { align: "center" });
 
       doc.end();
     } catch (error) {
@@ -1264,7 +1265,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       doc.fontSize(10).fillColor("#333333").text("If concerns remain, revisit those areas with corporate or franchisees.", { align: "center", width: pageWidth });
       doc.moveDown(0.3);
       doc.fontSize(10).fillColor(gold).text("Next step: Schedule a call with Charles to discuss your decision.", { align: "center" });
-      doc.fontSize(10).fillColor(gold).text("calendly.com/charles-stovall/intro", { align: "center" });
+      doc.fontSize(10).fillColor(gold).text(BOOKING_URL, { align: "center" });
 
       doc.end();
     } catch (error) {

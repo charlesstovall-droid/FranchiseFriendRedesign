@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Phone } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { trackConversion } from "@/lib/analytics";
-import { absoluteUrl } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
 import { charlestonFaqItems, faqPageSchema } from "@shared/faq";
 import { NAP } from "@shared/nap";
 import portrait from "@assets/ImageStudios_KDP-3_websize_1775530552090.jpg";
@@ -90,7 +90,7 @@ export default function Charleston() {
               <span className="hidden sm:inline">(919) 827-3921</span>
             </a>
             <a
-              href="https://calendly.com/charles-stovall/intro"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#c9a84c] hover:text-[#e0c56a] font-semibold"
@@ -142,12 +142,12 @@ export default function Charleston() {
               <p className="text-xs text-[#1a2332]/45">
                 Or{" "}
                 <a
-                  href="https://calendly.com/charles-stovall/intro"
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline font-semibold text-[#0A1F3C]"
                 >
-                  book a time on Calendly
+                  book a time
                 </a>
                 .
               </p>
@@ -377,7 +377,7 @@ export default function Charleston() {
               Request the call
             </button>
             <a
-              href="https://calendly.com/charles-stovall/intro"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center border border-[#F7F4EC]/25 px-8 py-4 hover:bg-white/5"

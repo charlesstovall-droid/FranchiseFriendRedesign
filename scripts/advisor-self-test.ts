@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { BANNED_CANDIDATE_PHRASES, OPENING_QUESTION, THESIS_CONCLUSION, CALL_HANDOFF, FINANCIAL_DISCLAIMER, turnOutputSchema, HUBSPOT_ADVISOR_PROPERTIES, PROFILE_FIELD_KEYS } from "../shared/advisor";
-import { DEFAULT_ADVISOR_COPY, DEFAULT_SYSTEM_INSTRUCTIONS } from "../shared/advisor-copy";
+import { DEFAULT_ADVISOR_COPY, DEFAULT_SYSTEM_INSTRUCTIONS, DEFAULT_FOLLOW_UP_EMAIL_TEMPLATE } from "../shared/advisor-copy";
+import { BOOKING_URL } from "../shared/site";
 import {
   AdvisorNotConfiguredError,
   DEFAULT_XAI_MODEL,
@@ -12,7 +13,7 @@ import {
   isAdvisorConfigured,
   type AdvisorChatClient,
 } from "../server/advisor/ai/provider";
-import { publicCopyFromSettings, sanitizeStoredAdvisorSettings } from "../server/advisor/settings";
+import { publicCopyFromSettings, resolveBookingUrl, sanitizeStoredAdvisorSettings } from "../server/advisor/settings";
 import { mergeExtractedProfile } from "../server/advisor/profile";
 import { detectFollowUpHints, detectFinancialChapter } from "../server/advisor/followups";
 import { detectSafetyFlags, filterNamedBrands, sanitizeCandidateMessage } from "../server/advisor/safety";
@@ -63,6 +64,32 @@ section("exact public copy", () => {
   assert.equal(
     staleSettings.system_instructions,
     "He built 30 franchise locations across 4 brands and exited to private equity.",
+  );
+  assert.equal(DEFAULT_ADVISOR_COPY.bookingUrl, BOOKING_URL);
+  assert.equal(DEFAULT_ADVISOR_COPY.bookingCta, "Review My Profile With Chuck");
+  assert.match(DEFAULT_FOLLOW_UP_EMAIL_TEMPLATE, /\{\{bookingUrl\}\}/);
+  assert.doesNotMatch(DEFAULT_FOLLOW_UP_EMAIL_TEMPLATE, /calendly/i);
+  const previousBookingUrl = process.env.BOOKING_URL;
+  delete process.env.BOOKING_URL;
+  try {
+    const fromStored = publicCopyFromSettings({
+      copy: { calendlyUrl: "https://calendly.com/charles-stovall/consult" },
+    });
+    assert.equal(fromStored.bookingUrl, BOOKING_URL);
+    assert.equal(resolveBookingUrl("https://example.com/custom"), "https://example.com/custom");
+    assert.equal(resolveBookingUrl("https://calendly.com/charles-stovall/intro"), BOOKING_URL);
+  } finally {
+    if (previousBookingUrl === undefined) delete process.env.BOOKING_URL;
+    else process.env.BOOKING_URL = previousBookingUrl;
+  }
+  const sanitized = sanitizeStoredAdvisorSettings({
+    booking_link: "https://calendly.com/charles-stovall/intro",
+    follow_up_email_template: "Book {{calendlyUrl}} at https://calendly.com/charles-stovall/consult today.",
+  });
+  assert.equal(sanitized.booking_link, BOOKING_URL);
+  assert.equal(
+    sanitized.follow_up_email_template,
+    `Book {{bookingUrl}} at ${BOOKING_URL} today.`,
   );
 });
 

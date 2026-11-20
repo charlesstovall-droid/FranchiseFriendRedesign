@@ -2,8 +2,6 @@
  * Service pages. One source for the React pages and the crawler HTML in server/seo.ts.
  */
 
-export const CONSULT_CALENDLY = "https://calendly.com/charles-stovall/consult";
-
 export type Inline = string | { text: string; href: string };
 
 export interface ServiceFaq {

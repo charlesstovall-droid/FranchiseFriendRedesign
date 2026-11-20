@@ -8,7 +8,7 @@ None of these belong in the git repo.
 | `XAI_API_KEY` | Server-side model calls (xAI / Grok) | Run the conversation and write the thesis |
 | `SESSION_SECRET` | Existing session cookie | Keep admin and resume sessions honest in production |
 | `APP_BASE_URL` | Public site origin | Build private report links |
-| `CALENDLY_URL` | Defaults to `https://calendly.com/charles-stovall/intro` | Booking handoff |
+| `BOOKING_URL` | Defaults to `https://meetings-na2.hubspot.com/charles-stovall/brand-introductions` | Booking handoff |
 | `HUBSPOT_PRIVATE_APP_TOKEN` | Existing CRM, if Chuck wants sync | Create/update contacts and notes |
 | `ADMIN_EMAIL` | Defaults to `charles@franchisefriend.net` | Password login at `/admin/advisor/login` |
 | `ADMIN_PASSWORD` | New, only if Chuck wants password login | Same |

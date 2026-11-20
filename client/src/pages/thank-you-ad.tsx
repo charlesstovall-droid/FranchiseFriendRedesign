@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { CheckCircle } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { BOOKING_URL } from "@shared/site";
 import { trackConversion } from "@/lib/analytics";
 import { absoluteUrl } from "@shared/site";
 
@@ -53,7 +54,7 @@ export default function ThankYouAd() {
           <p className="text-white/50 text-sm">
             Questions? Call <a href="tel:9198273921" className="text-[#c9a84c] hover:underline">(919) 827-3921</a>
             {" "}or{" "}
-            <a href="https://calendly.com/charles-stovall/intro" target="_blank" rel="noopener noreferrer" className="text-[#c9a84c] hover:underline">book a call</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-[#c9a84c] hover:underline">book a call</a>
           </p>
         </div>
 
