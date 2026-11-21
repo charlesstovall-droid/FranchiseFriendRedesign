@@ -1,16 +1,8 @@
-import { useEffect } from "react";
 import { CheckCircle, MapPin, Users, Briefcase, Shield, Phone } from "lucide-react";
-import { BOOKING_URL } from "@shared/site";
+import { absoluteUrl, BOOKING_URL } from "@shared/site";
+import { SEO } from "@/components/SEO";
 
 export default function ExecutiveAbout() {
-  useEffect(() => {
-    const meta = document.createElement('meta');
-    meta.name = 'robots';
-    meta.content = 'noindex, nofollow';
-    document.head.appendChild(meta);
-    return () => { document.head.removeChild(meta); };
-  }, []);
-
   const credentials = [
     { icon: Briefcase, text: "15+ years in franchise consulting" },
     { icon: Users, text: "Helped 500+ people achieve their dream of business ownership" },
@@ -20,6 +12,11 @@ export default function ExecutiveAbout() {
 
   return (
     <div className="min-h-screen bg-[#1E2B42] flex flex-col">
+      <SEO
+        title="Your Franchise Advisor: Charles Stovall | Executive Access"
+        description="Meet Charles Stovall, franchise advisor in Charleston, SC. He helps clients find the right franchise for their goals, with confidential guidance and no obligation."
+        canonicalUrl={absoluteUrl("/executive-access/about")}
+      />
       <a 
         href="tel:9198273921" 
         className="bg-[#D4AF37] text-[#1E2B42] py-3 px-4 flex items-center justify-center gap-2 hover:bg-[#c9a432] transition-colors"

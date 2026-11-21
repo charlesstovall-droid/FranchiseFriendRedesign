@@ -802,6 +802,12 @@ const bookingRoutes = [
   "/mount-pleasant",
   "/south-carolina",
   "/executive-access",
+  "/executive-access/process",
+  "/executive-access/about",
+  "/executive-access/investment",
+  "/speaking",
+  "/franchise-brands",
+  "/privacy-policy",
   "/about",
   "/questions",
   "/buy-a-franchise",
@@ -823,6 +829,11 @@ for (const route of [
   "/mount-pleasant",
   "/south-carolina",
   "/executive-access",
+  "/executive-access/process",
+  "/executive-access/about",
+  "/executive-access/investment",
+  "/speaking",
+  "/franchise-brands",
   "/about",
   "/questions",
   "/buy-a-franchise",
@@ -833,7 +844,7 @@ for (const route of [
   const html = applySeoToHtml(shell, route);
   assert.equal(html.includes(BOOKING_URL), true, `${route} should link to the HubSpot meetings page`);
 }
-for (const route of ["/", "/charleston", "/mount-pleasant", "/south-carolina", "/executive-access", "/about", "/buy-a-franchise"]) {
+for (const route of ["/", "/charleston", "/mount-pleasant", "/south-carolina", "/executive-access", "/executive-access/process", "/executive-access/about", "/executive-access/investment", "/speaking", "/privacy-policy", "/about", "/buy-a-franchise"]) {
   const html = applySeoToHtml(shell, route);
   assert.match(html, /tel:9198273921/, `${route} should keep the phone link`);
 }
@@ -968,5 +979,172 @@ await new Promise<void>((resolve, reject) => redirectServer.close((err) => err ?
 
 assert.equal(NAP.addressLocality, "Mt Pleasant");
 assert.equal(NAP.postalCode, "29466");
+
+const HOME_TITLE = "Charles Stovall | Your Franchise Friend — Franchise Consulting for Serious Investors";
+const HOME_DESCRIPTION = "Considering a six-figure franchise investment? Work with Charles Stovall, a consultant who built and exited 30 franchise locations across 4 brands.";
+const HOME_CANONICAL = "https://www.charlesstovall.com/";
+
+const shellRoutes = [
+  {
+    path: "/speaking",
+    title: "The Franchise Expert Your Audience Needs to Hear | Charles Stovall",
+    description: "Book Charles Stovall as a podcast and media guest. Topics include franchise matching, FDD review, multi-unit scaling, financing, and the corporate-to-owner path.",
+    h1: "The Franchise Expert Your Audience Needs to Hear",
+    inSitemap: true,
+  },
+  {
+    path: "/franchise-brands",
+    title: "Verified Franchise Opportunities | Charles Stovall",
+    description: "Browse carefully selected franchise brands across home services, senior care, fitness, and wellness. Charles Stovall lists them for educational purposes.",
+    h1: "Verified Franchise Opportunities",
+    inSitemap: true,
+  },
+  {
+    path: "/privacy-policy",
+    title: "Privacy Policy | Charles Stovall",
+    description: "How Charles Stovall collects, uses, shares, and safeguards information when you visit charlesstovall.com or submit a form. Updated March 10, 2026.",
+    h1: "Privacy Policy",
+    inSitemap: false,
+  },
+  {
+    path: "/executive-access/process",
+    title: "How We Find Your Perfect Franchise Match | Charles Stovall",
+    description: "I do the heavy lifting so you don't waste time on bad fits: a discovery call, franchise matching, brand introductions, and due diligence support.",
+    h1: "How We Find Your Perfect Franchise Match",
+    inSitemap: true,
+  },
+  {
+    path: "/executive-access/about",
+    title: "Your Franchise Advisor: Charles Stovall | Executive Access",
+    description: "Meet Charles Stovall, franchise advisor in Charleston, SC. He helps clients find the right franchise for their goals, with confidential guidance and no obligation.",
+    h1: "Your Franchise Advisor: Charles Stovall",
+    inSitemap: true,
+  },
+  {
+    path: "/executive-access/investment",
+    title: "Executive-Level Franchise Investment Opportunities | Charles Stovall",
+    description: "Franchise investment models for executives and investors with $150K+ liquid capital: flexible ownership, manager-run concepts, and proven service brands.",
+    h1: "Executive-Level Franchise Investment Opportunities",
+    inSitemap: true,
+  },
+];
+
+assert.equal(new Set(shellRoutes.map((route) => route.title)).size, shellRoutes.length);
+assert.equal(new Set(shellRoutes.map((route) => route.description)).size, shellRoutes.length);
+for (const route of shellRoutes) {
+  assert.notEqual(route.title, HOME_TITLE, route.path);
+  assert.notEqual(route.description, HOME_DESCRIPTION, route.path);
+}
+
+const shellSeoApp = express();
+shellSeoApp.use((req, res) => {
+  const pathname = pathnameFromRequest(req);
+  res.status(statusForPath(pathname)).type("html").send(applySeoToHtml(shell, pathname));
+});
+const shellSeoServer = await new Promise<import("node:http").Server>((resolve) => {
+  const server = shellSeoApp.listen(0, "127.0.0.1", () => resolve(server));
+});
+const shellSeoPort = (shellSeoServer.address() as { port: number }).port;
+
+for (const route of shellRoutes) {
+  const page = resolveSeoPage(route.path);
+  assert.ok(page, route.path);
+  assert.equal(page.title, route.title, route.path);
+  assert.equal(page.description, route.description, route.path);
+  assert.equal(page.canonical, `https://www.charlesstovall.com${route.path}`, route.path);
+  assert.equal(page.noindex, undefined, route.path);
+  assert.equal(statusForPath(route.path), 200, route.path);
+  assert.equal(sitemapUrls().includes(`https://www.charlesstovall.com${route.path}`), route.inSitemap, route.path);
+
+  const rendered = applySeoToHtml(shell, route.path);
+  const botRes = await fetch(`http://127.0.0.1:${shellSeoPort}${route.path}`, { headers: { "user-agent": googlebot } });
+  const chromeRes = await fetch(`http://127.0.0.1:${shellSeoPort}${route.path}`, { headers: { "user-agent": chromeUa } });
+  assert.equal(botRes.status, 200, route.path);
+  assert.equal(chromeRes.status, 200, route.path);
+  const botHtml = await botRes.text();
+  const chromeHtml = await chromeRes.text();
+  assert.equal(botHtml, chromeHtml, route.path);
+  assert.equal(botHtml, rendered, route.path);
+
+  assert.ok(botHtml.includes(`<title>${route.title}</title>`), route.path);
+  assert.ok(botHtml.includes(`<meta name="description" content="${route.description}"`), route.path);
+  assert.ok(botHtml.includes(`<link rel="canonical" href="${page.canonical}"`), route.path);
+  assert.ok(botHtml.includes(`<meta property="og:title" content="${route.title}"`), route.path);
+  assert.ok(botHtml.includes(`<meta property="og:description" content="${route.description}"`), route.path);
+  assert.ok(botHtml.includes(`<meta property="og:url" content="${page.canonical}"`), route.path);
+  assert.ok(botHtml.includes(`<meta name="twitter:title" content="${route.title}"`), route.path);
+  assert.ok(botHtml.includes(`<meta name="twitter:url" content="${page.canonical}"`), route.path);
+  assert.ok(botHtml.includes(`<h1>${route.h1}</h1>`), route.path);
+  assert.doesNotMatch(botHtml, /<div id="root"><\/div>/, route.path);
+  assert.doesNotMatch(botHtml, /noindex/, route.path);
+  assert.doesNotMatch(botHtml, /<title>Charles Stovall \| Expert Franchise Consulting in Charleston SC \| Franchise Friend<\/title>/, route.path);
+  assert.doesNotMatch(botHtml, new RegExp(`<title>${HOME_TITLE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</title>`), route.path);
+  assert.doesNotMatch(botHtml, /<link rel="canonical" href="https:\/\/www\.charlesstovall\.com\/"/, route.path);
+  assert.doesNotMatch(botHtml, /<meta property="og:url" content="https:\/\/www\.charlesstovall\.com\/"/, route.path);
+  assert.notEqual(page.canonical, HOME_CANONICAL, route.path);
+  assert.doesNotMatch(botHtml, /content="Homepage description"/, route.path);
+  assert.equal(botHtml.includes(HOME_DESCRIPTION), false, route.path);
+
+  const article = botHtml.slice(botHtml.indexOf("<article>"), botHtml.lastIndexOf("</article>") + "</article>".length).toLowerCase();
+  for (const phrase of ["compensat", "referral fee", "placement fee", "you pay nothing", "franchisor pays", "free to you", "my services are free"]) {
+    assert.equal(article.includes(phrase), false, `${route.path} should not include "${phrase}"`);
+  }
+  if (route.path !== "/privacy-policy") {
+    assert.equal(article.includes("franchoice"), false, `${route.path} should not include franchoice`);
+  }
+}
+
+const speakingHtml = applySeoToHtml(shell, "/speaking");
+assert.match(speakingHtml, /Core Podcast Topics/);
+assert.match(speakingHtml, /Reading the FDD Like a Pro/);
+assert.match(speakingHtml, /Item 19/);
+assert.match(speakingHtml, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+assert.doesNotMatch(speakingHtml, /calendly\.com/i);
+
+const brandsHtml = applySeoToHtml(shell, "/franchise-brands");
+assert.match(brandsHtml, /1-800 Water Damage/);
+assert.match(brandsHtml, /Image Studios/);
+assert.match(brandsHtml, /Ivybrook Academy/);
+assert.match(brandsHtml, /educational purposes/);
+assert.match(brandsHtml, /83\+/);
+assert.match(brandsHtml, /meetings-na2\.hubspot\.com\/charles-stovall\/brand-introductions/);
+
+const privacyHtml = applySeoToHtml(shell, "/privacy-policy");
+assert.match(privacyHtml, /Last updated: March 10, 2026/);
+assert.match(privacyHtml, /We do not sell your personal information/);
+assert.match(privacyHtml, /1531 N Lakeshore Dr/);
+assert.equal(sitemapUrls().includes("https://www.charlesstovall.com/privacy-policy"), false);
+
+const processHtml = applySeoToHtml(shell, "/executive-access/process");
+assert.match(processHtml, /Discovery Call/);
+assert.match(processHtml, /4,000\+/);
+assert.match(processHtml, /Due Diligence Support/);
+
+const execAboutHtml = applySeoToHtml(shell, "/executive-access/about");
+assert.match(execAboutHtml, /My Philosophy/);
+assert.match(execAboutHtml, /RIGHT franchise for YOUR goals/);
+assert.match(execAboutHtml, /Charleston, SC/);
+assert.doesNotMatch(execAboutHtml, /<title>About Charles Stovall \| Your Franchise Friend<\/title>/);
+
+const investmentHtml = applySeoToHtml(shell, "/executive-access/investment");
+assert.match(investmentHtml, /\$150K\+/);
+assert.match(investmentHtml, /Manager-Run Business Models/);
+assert.match(investmentHtml, /Proven Service Franchises/);
+
+for (const file of [
+  "speaking.tsx",
+  "franchise-brands.tsx",
+  "privacy-policy.tsx",
+  "executive-process.tsx",
+  "executive-about.tsx",
+  "executive-investment.tsx",
+]) {
+  const src = fs.readFileSync(path.resolve("client/src/pages", file), "utf8");
+  assert.doesNotMatch(src, /noindex/, file);
+  const match = shellRoutes.find((route) => src.includes(route.title) && src.includes(route.description));
+  assert.ok(match, `${file} should publish the same title and description as the server`);
+}
+
+await new Promise<void>((resolve, reject) => shellSeoServer.close((err) => err ? reject(err) : resolve()));
 
 console.log("seo.test.ts passed");

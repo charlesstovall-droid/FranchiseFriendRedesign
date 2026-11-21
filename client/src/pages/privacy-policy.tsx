@@ -1,6 +1,14 @@
+import { absoluteUrl } from "@shared/site";
+import { SEO } from "@/components/SEO";
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Privacy Policy | Charles Stovall"
+        description="How Charles Stovall collects, uses, shares, and safeguards information when you visit charlesstovall.com or submit a form. Updated March 10, 2026."
+        canonicalUrl={absoluteUrl("/privacy-policy")}
+      />
       <div className="bg-[#1a2332] py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="font-serif text-3xl md:text-4xl font-bold text-white mb-3">Privacy Policy</h1>
